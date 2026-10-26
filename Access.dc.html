@@ -1,0 +1,1137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<style>html{background:#1E2633}body{margin:0 auto!important;width:390px}</style>
+<title>Apna Booth — Accessibility</title>
+<script data-offline-shim>(function(){var M={"VoiceNav.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"hi\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Voice navigation\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\n@keyframes vn-pulse{0%{box-shadow:0 0 0 0 rgba(255,213,74,.7)}70%{box-shadow:0 0 0 18px rgba(255,213,74,0)}100%{box-shadow:0 0 0 0 rgba(255,213,74,0)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"font-family: 'Mukta', system-ui, sans-serif; color: #13233A\">\n\n\u003csc-if value=\"{{isFab}}\" hint-placeholder-val=\"{{true}}\">\n\u003cbutton aria-label=\"बोलकर चलाएँ — Speak to navigate\" onClick=\"{{open}}\" style=\"width: 60px; height: 60px; border-radius: 30px; border: 3px solid #FFFFFF; background: #13233A; color: #FFD54A; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(19,35,58,0.35); cursor: pointer\">\n\u003csvg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isBanner}}\" hint-placeholder-val=\"{{false}}\">\n\u003cbutton onClick=\"{{open}}\" style=\"width: 100%; min-height: 60px; border-radius: 14px; border: none; background: #13233A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 8px 14px; text-align: left; font-family: inherit; cursor: pointer\">\n\u003cspan style=\"width: 44px; height: 44px; border-radius: 22px; background: #FFD54A; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"font-size: 16px; font-weight: 800\">बोलकर कहीं भी जाएँ\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #C9D2E0\">Speak to go anywhere · \"मेरा बूथ\", \"ई-स्लिप\", \"SOS\"\u003c/span>\n\u003c/span>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isOpen}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"position: fixed; inset: 0; z-index: 1000; background: rgba(11,18,32,0.55); display: flex; flex-direction: column; justify-content: flex-end\">\n\u003cdiv role=\"dialog\" aria-label=\"Voice navigation\" style=\"background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 12px; max-height: 92%; overflow-y: auto; box-sizing: border-box\">\n\n\u003cdiv style=\"display: flex; align-items: center; justify-content: space-between; gap: 8px\">\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.15\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">{{t.title}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{t.sub}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; gap: 6px\">\n\u003cbutton aria-label=\"{{t.langAria}}\" onClick=\"{{toggleLang}}\" style=\"min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; font-family: inherit\">{{langBtn}}\u003c/button>\n\u003cbutton aria-label=\"{{t.close}}\" onClick=\"{{close}}\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6 6l12 12M18 6L6 18\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0\">\n\u003cbutton aria-label=\"{{micAria}}\" onClick=\"{{mic}}\" style=\"{{micStyle}}\">\n\u003csvg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003cspan role=\"status\" aria-live=\"polite\" style=\"font-size: 16px; font-weight: 700; text-align: center; min-height: 24px\">{{statusText}}\u003c/span>\n\u003csc-if value=\"{{hasHeard}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 18px; font-weight: 800; color: #1F4FBF; text-align: center\">“{{heard}}”\u003c/span>\n\u003c/sc-if>\n\u003csc-if value=\"{{hasNote}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 13px; color: #8A3A07; background: #FCEBDD; border-radius: 10px; padding: 6px 10px; text-align: center; line-height: 1.35\">{{note}}\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cspan style=\"font-size: 14px; font-weight: 700\">{{t.tryLabel}}\u003c/span>\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 6px\">\n\u003csc-for list=\"{{chips}}\" as=\"c\" hint-placeholder-count=\"12\">\n\u003cbutton onClick=\"{{c.go}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; font-family: inherit\">{{c.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; gap: 8px\">\n\u003clabel style=\"flex: 1; display: flex\">\n\u003cspan style=\"position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)\">{{t.typeLabel}}\u003c/span>\n\u003cinput type=\"text\" value=\"{{typed}}\" onChange=\"{{setTyped}}\" onKeyDown=\"{{onKey}}\" placeholder=\"{{t.typePh}}\" style=\"flex: 1; width: 100%; box-sizing: border-box; min-height: 46px; border-radius: 23px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 14px; font-family: inherit\">\n\u003c/label>\n\u003cbutton onClick=\"{{submitTyped}}\" style=\"min-height: 46px; padding: 0 16px; border-radius: 23px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 800; font-family: inherit\">{{t.go}}\u003c/button>\n\u003c/div>\n\n\u003ca ref=\"{{linkRef}}\" href=\"{{goHref}}\" aria-hidden=\"true\" tabindex=\"-1\" style=\"display: none\">go\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"variant\":{\"editor\":\"enum\",\"options\":[\"fab\",\"banner\"],\"default\":\"fab\"},\"$preview\":{\"width\":390,\"height\":120}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = { open: false, listening: false, heard: '', note: '', lang: 'hi', typed: '', go: null, goLabel: '' };\n    this.linkRef = (el) => { this.linkEl = el; };\n  }\n\n  componentWillUnmount() {\n    clearTimeout(this.goTimer);\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  componentDidUpdate() {\n    const prevGo = this._prevGo;\n    this._prevGo = this.state.go;\n    if (this.state.go && this.state.go !== prevGo) {\n      clearTimeout(this.goTimer);\n      this.goTimer = setTimeout(() => { try { if (this.linkEl) this.linkEl.click(); } catch (e) {} }, 900);\n    }\n  }\n\n  destinations() {\n    return [\n      { file: 'Access.dc.html#isl', hi: 'सांकेतिक भाषा मदद', en: 'Sign language help', keys: ['सांकेतिक', 'साइन', 'sign', 'isl', 'बधिर', 'deaf', 'मूक'] },\n      { file: 'Access.dc.html', hi: 'बूथ साथी', en: 'Booth Buddy', keys: ['बूथ साथी', 'साथी', 'buddy', 'volunteer', 'स्वयंसेवक', 'व्हीलचेयर', 'wheelchair', 'सुगम्य', 'accessib', 'दिव्यांग', 'disab'] },\n      { file: 'ESlip.dc.html', hi: 'ई-स्लिप', en: 'e-Slip', keys: ['स्लिप', 'पर्ची', 'slip', 'qr', 'क्यूआर', 'सूची', 'list', 'नाम', 'epic', 'एपिक', 'क्रमांक', 'serial'] },\n      { file: 'Safety.dc.html', hi: 'सुरक्षा और SOS', en: 'Safety and SOS', keys: ['sos', 'एसओएस', 'सुरक्षा', 'safety', 'safe', 'पुलिस', 'police', 'capf', 'सीएपीएफ', 'खतरा', 'danger'] },\n      { file: 'Queue.dc.html', hi: 'मेरा बूथ', en: 'My booth', keys: ['मेरा बूथ', 'बूथ', 'booth', 'लाइन', 'कतार', 'queue', 'line', 'मतदान केंद्र', 'polling', 'रास्ता', 'route', 'way'] },\n      { file: 'Rehearsal.dc.html', hi: 'मतपत्र अभ्यास', en: 'Ballot practice', keys: ['अभ्यास', 'practice', 'rehearsal', 'evm', 'ईवीएम', 'ballot', 'मतपत्र', 'vvpat'] },\n      { file: 'Selfie.dc.html', hi: 'सेल्फी', en: 'Selfie', keys: ['सेल्फी', 'selfie', 'फोटो', 'photo', 'इनाम', 'prize', 'contest'] },\n      { file: 'Chat.dc.html', hi: 'सहायक', en: 'Sahayak chat', keys: ['सहायक', 'sahayak', 'chat', 'चैट', 'सवाल', 'question', 'helpline', 'हेल्पलाइन', '1950'] },\n      { file: 'AiVoice.dc.html', hi: 'सुनें और अनुवाद', en: 'Listen & Translate', keys: ['अनुवाद', 'translate', 'सूचना', 'notice', 'ब्रेल', 'braille', 'पढ़', 'read'] },\n      { file: 'RampCheck.dc.html', hi: 'बूथ रेटिंग', en: 'Rate your booth', keys: ['रैंप', 'ramp', 'रेटिंग', 'rating', 'rate', 'best booth', 'सुविधा'] },\n      { file: 'Main.dc.html', hi: 'होम', en: 'Home', keys: ['होम', 'home', 'मुख्य', 'शुरू', 'start', 'back', 'वापस'] },\n    ];\n  }\n\n  speak(text) {\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = this.state.lang === 'en' ? 'en-IN' : 'hi-IN';\n      const v = (ss.getVoices() || []).find((x) => (x.lang || '').toLowerCase().indexOf(this.state.lang === 'en' ? 'en' : 'hi') === 0);\n      if (v) u.voice = v;\n      ss.speak(u);\n    } catch (e) {}\n  }\n\n  navigate(d) {\n    const label = this.state.lang === 'en' ? d.en : d.hi;\n    this.setState({ go: d.file, goLabel: label, note: '', listening: false });\n    this.speak((this.state.lang === 'en' ? 'Opening ' : 'खोल रहे हैं: ') + label);\n  }\n\n  handle(texts) {\n    const list = this.destinations();\n    for (const raw of texts) {\n      const s = String(raw || '').toLowerCase();\n      const d = list.find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n      if (d) { this.navigate(d); return; }\n    }\n    const msg = this.state.lang === 'en' ? \"Sorry, I didn't catch a place. Try again or tap one below.\" : 'माफ़ कीजिए, समझ नहीं आया। दोबारा बोलें या नीचे से चुनें।';\n    this.setState({ note: msg, listening: false });\n    this.speak(msg);\n  }\n\n  handleQuiet(v) {\n    const s = String(v || '').toLowerCase();\n    const d = this.destinations().find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n    if (d && !this.state.go) this.navigate(d);\n  }\n\n  listen() {\n    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;\n    const L = this.state.lang;\n    if (!SR) {\n      this.setState({ note: L === 'en' ? 'Voice recognition is not available here. Tap the box below and use the 🎤 on your keyboard to speak.' : 'यहाँ आवाज़ पहचान उपलब्ध नहीं है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें।' });\n      return;\n    }\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    const rec = new SR();\n    rec.lang = L === 'en' ? 'en-IN' : 'hi-IN';\n    rec.interimResults = true;\n    rec.maxAlternatives = 3;\n    rec.onresult = (e) => {\n      const res = e.results[e.results.length - 1];\n      const heard = res[0].transcript;\n      this.setState({ heard: heard });\n      if (res.isFinal) {\n        const alts = [];\n        for (let i = 0; i \u003c res.length; i++) alts.push(res[i].transcript);\n        this.handle(alts);\n      }\n    };\n    rec.onerror = (ev) => {\n      const blocked = ev && (ev.error === 'not-allowed' || ev.error === 'service-not-allowed');\n      this.setState({ listening: false, note: blocked\n        ? (L === 'en' ? 'This preview blocks the browser microphone. Tap the box below and use the 🎤 on your phone keyboard to speak — it works the same way.' : 'इस प्रीव्यू में ब्राउज़र माइक बंद है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें — वैसे ही काम करेगा।')\n        : (L === 'en' ? 'Could not hear clearly. Try again.' : 'साफ़ सुनाई नहीं दिया। दोबारा बोलें।') });\n    };\n    rec.onend = () => this.setState({ listening: false });\n    this.rec = rec;\n    this.setState({ listening: true, heard: '', note: '', go: null });\n    try { rec.start(); } catch (e) { this.setState({ listening: false }); }\n  }\n\n  renderVals() {\n    const st = this.state;\n    const L = st.lang;\n    const T = {\n      hi: { title: 'कहाँ जाना है?', sub: 'माइक दबाएँ और बोलें, जैसे \"मेरा बूथ\"', close: 'बंद करें', langAria: 'Switch to English',\n        tryLabel: 'बोलकर देखें या टैप करें', typeLabel: 'लिखकर बताएँ', typePh: 'लिखें या कीबोर्ड 🎤 से बोलें…', go: 'जाएँ',\n        idle: 'माइक दबाकर बोलें', listening: 'सुन रहे हैं…', opening: 'खोल रहे हैं: ' },\n      en: { title: 'Where do you want to go?', sub: 'Tap the mic and say, for example, \"my booth\"', close: 'Close', langAria: 'हिंदी में बदलें',\n        tryLabel: 'Say or tap one of these', typeLabel: 'Type a place', typePh: 'Type, or speak with keyboard 🎤…', go: 'Go',\n        idle: 'Tap the mic and speak', listening: 'Listening…', opening: 'Opening ' },\n    };\n    const t = T[L];\n    const variant = this.props.variant || 'fab';\n    const seen = {};\n    const chips = this.destinations().filter((d) => { const k = d.hi; if (seen[k]) return false; seen[k] = 1; return true; })\n      .map((d) => ({ label: L === 'en' ? d.en : d.hi, go: () => this.navigate(d) }));\n    const statusText = st.go ? t.opening + st.goLabel : (st.listening ? t.listening : t.idle);\n    const submit = () => { const v = (st.typed || '').trim(); if (v) this.handle([v]); };\n    return {\n      t, chips, statusText,\n      isFab: variant === 'fab',\n      isBanner: variant === 'banner',\n      isOpen: st.open,\n      heard: st.heard,\n      hasHeard: !!st.heard,\n      note: st.note,\n      hasNote: !!st.note,\n      typed: st.typed,\n      langBtn: L === 'en' ? 'हिं' : 'EN',\n      goHref: st.go || 'Main.dc.html',\n      linkRef: this.linkRef,\n      micAria: st.listening ? t.listening : t.idle,\n      micStyle: 'width: 96px; height: 96px; border-radius: 48px; border: none; color: #13233A; display: flex; align-items: center; justify-content: center; cursor: pointer; background: ' +\n        (st.listening ? '#FFD54A; animation: vn-pulse 1.2s infinite' : '#FFD54A'),\n      open: () => { this.setState({ open: true, note: '', heard: '', go: null }); setTimeout(() => this.listen(), 150); },\n      close: () => { try { if (this.rec) this.rec.abort(); } catch (e) {} clearTimeout(this.goTimer); this.setState({ open: false, listening: false, go: null }); },\n      mic: () => this.listen(),\n      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en', note: '' }),\n      setTyped: (e) => { const v = e.target.value; this.setState({ typed: v }); clearTimeout(this.typeTimer); if (v && v.trim().length > 2) this.typeTimer = setTimeout(() => this.handleQuiet(v), 1400); },\n      onKey: (e) => { if (e.key === 'Enter') submit(); },\n      submitTyped: submit,\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n", "Access.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Accessibility\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\na{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}\nbutton{font-family:inherit;cursor:pointer}\nbutton:disabled{cursor:not-allowed}\n@keyframes ab-armL{0%{transform:rotate(0deg)}100%{transform:rotate(-38deg)}}\n@keyframes ab-foreL{0%{transform:rotate(0deg)}100%{transform:rotate(-55deg)}}\n@keyframes ab-armR{0%{transform:rotate(0deg)}100%{transform:rotate(32deg)}}\n@keyframes ab-foreR{0%{transform:rotate(0deg)}100%{transform:rotate(60deg)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv lang=\"{{L}}\" style=\"{{s.root}}\">\n\u003cdiv style=\"{{s.scroll}}\">\n\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px\">\n\u003csc-if value=\"{{notHub}}\" hint-placeholder-val=\"{{false}}\">\n\u003cbutton aria-label=\"{{t.back}}\" onClick=\"{{goHub}}\" style=\"{{s.iconBtn}}\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M15 5l-7 7 7 7\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/sc-if>\n\u003cdiv style=\"flex: 1; display: flex; flex-direction: column; line-height: 1.15; min-width: 0\">\n\u003cspan style=\"{{s.h1}}\">{{title}}\u003c/span>\n\u003cspan style=\"{{s.sub}}\">{{subtitle}}\u003c/span>\n\u003c/div>\n\u003cbutton aria-label=\"{{listenAria}}\" aria-pressed=\"{{speakingStr}}\" onClick=\"{{speakTitle}}\" style=\"{{listenStyle}}\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003csc-if value=\"{{scr.hub}}\" hint-placeholder-val=\"{{true}}\">\n\u003cbutton aria-label=\"{{t.settingsTitle}}\" onClick=\"{{goSettings}}\" style=\"{{s.pillBtn}}\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"12\" r=\"9\">\u003c/circle>\u003cpath d=\"M3 12h18M12 3c2.5 2.7 3.7 5.7 3.7 9s-1.2 6.3-3.7 9c-2.5-2.7-3.7-5.7-3.7-9S9.5 5.7 12 3z\">\u003c/path>\u003c/svg>\n\u003cspan>{{langCode}}\u003c/span>\n\u003cspan style=\"font-weight: 800\">Aa\u003c/span>\n\u003c/button>\n\u003c/sc-if>\n\u003c/div>\n\n\u003csc-if value=\"{{voice}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv role=\"status\" style=\"{{s.voiceBar}}\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"flex-shrink: 0\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11\">\u003c/path>\u003c/svg>\n\u003cspan>{{voiceBanner}}\u003c/span>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.hub}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\n\u003clabel style=\"{{s.strongRow}}\">\n\u003cspan style=\"display: flex; align-items: center; gap: 10px\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11\">\u003c/path>\u003c/svg>\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"{{s.strongTitle}}\">{{t.voiceTitle}}\u003c/span>\n\u003cspan style=\"{{s.strongSub}}\">{{t.voiceSub}}\u003c/span>\n\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{voice}}\" onChange=\"{{toggleVoice}}\" style=\"{{s.checkStrong}}\">\n\u003c/label>\n\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px\">\n\u003ca href=\"Rehearsal.dc.html\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z\">\u003c/path>\u003cpath d=\"M4 4l16 16\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.rehearsal}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.rehearsalSub}}\u003c/span>\n\u003c/a>\n\u003cbutton onClick=\"{{goBuddy}}\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"9\" cy=\"8\" r=\"3.5\">\u003c/circle>\u003cpath d=\"M2.5 20a6.5 6.5 0 0 1 13 0\">\u003c/path>\u003cpath d=\"M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.buddy}}\u003c/span>\n\u003cspan style=\"{{bdTileStyle}}\">{{bdTile}}\u003c/span>\n\u003c/button>\n\u003cbutton onClick=\"{{goIsl}}\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 5h16v11H9l-5 4z\">\u003c/path>\u003cpath d=\"M9 10h6\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.isl}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.islSub}}\u003c/span>\n\u003c/button>\n\u003ca href=\"RampCheck.dc.html\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M3 19h18L7 9H3z\">\u003c/path>\u003cpath d=\"M3 15h4\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.ramp}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.rampSub}}\u003c/span>\n\u003c/a>\n\u003ca href=\"AiVoice.dc.html\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M3 5h9M7.5 3v2M5 5c0 4 3 7 6 8M10 5c0 3-2.5 6.5-6 8\">\u003c/path>\u003cpath d=\"M13 21l4-10 4 10M14.5 17.5h5\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.aiTile}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.aiTileSub}}\u003c/span>\n\u003c/a>\n\u003ca href=\"Chat.dc.html\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 5h16v11H9l-5 4z\">\u003c/path>\u003cpath d=\"M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.chatTile}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.chatTileSub}}\u003c/span>\n\u003c/a>\n\u003c/div>\n\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.25\">\n\u003cspan style=\"{{s.label}}\">{{t.phoneTitle}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{t.phoneSub}}\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{phone}}\" onChange=\"{{togglePhone}}\" style=\"{{s.check}}\">\n\u003c/label>\n\n\u003cdiv style=\"{{s.noteRow}}\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"flex-shrink: 0\">\u003cpath d=\"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z\">\u003c/path>\u003c/svg>\n\u003cspan>{{t.sosNote}}\u003c/span>\n\u003c/div>\n\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.settings}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cspan style=\"{{s.label}}\">{{t.langLabel}}\u003c/span>\n\u003cdiv style=\"{{s.stack6}}\">\n\u003csc-for list=\"{{langs}}\" as=\"l\" hint-placeholder-count=\"5\">\n\u003cbutton aria-pressed=\"{{l.pressed}}\" disabled=\"{{l.disabled}}\" onClick=\"{{l.pick}}\" style=\"{{l.style}}\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"{{l.nativeStyle}}\">{{l.native}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{l.note}}\u003c/span>\n\u003c/span>\n\u003csc-if value=\"{{l.on}}\" hint-placeholder-val=\"{{false}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M5 12l5 5 9-10\">\u003c/path>\u003c/svg>\n\u003c/sc-if>\n\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cspan style=\"{{s.label}}\">{{t.textSize}}\u003c/span>\n\u003cdiv style=\"{{s.row}}\">\n\u003csc-for list=\"{{sizes}}\" as=\"z\" hint-placeholder-count=\"3\">\n\u003cbutton aria-pressed=\"{{z.pressed}}\" aria-label=\"{{z.aria}}\" onClick=\"{{z.pick}}\" style=\"{{z.style}}\">{{z.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.25\">\n\u003cspan style=\"{{s.label}}\">{{t.contrast}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{t.contrastSub}}\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{contrast}}\" onChange=\"{{toggleContrast}}\" style=\"{{s.check}}\">\n\u003c/label>\n\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.25\">\n\u003cspan style=\"{{s.label}}\">{{t.vibrate}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{t.vibrateSub}}\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{vibrate}}\" onChange=\"{{toggleVibrate}}\" style=\"{{s.check}}\">\n\u003c/label>\n\n\u003cspan style=\"{{s.label}}\">{{t.speed}}\u003c/span>\n\u003cdiv style=\"{{s.row}}\">\n\u003csc-for list=\"{{speeds}}\" as=\"v\" hint-placeholder-count=\"3\">\n\u003cbutton aria-pressed=\"{{v.pressed}}\" onClick=\"{{v.pick}}\" style=\"{{v.style}}\">{{v.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"{{s.softCard}}\">\n\u003cspan style=\"{{s.softTitle}}\">{{t.previewLabel}}\u003c/span>\n\u003cspan style=\"{{s.softText}}\">{{t.preview}}\u003c/span>\n\u003c/div>\n\n\u003cbutton onClick=\"{{goHub}}\" style=\"{{s.primary}}\">{{t.done}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.pickup}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cspan style=\"{{s.label}}\">{{t.who}}\u003c/span>\n\u003cdiv style=\"{{s.wrap}}\">\n\u003csc-for list=\"{{puWho}}\" as=\"m\" hint-placeholder-count=\"4\">\n\u003cbutton aria-pressed=\"{{m.pressed}}\" onClick=\"{{m.pick}}\" style=\"{{m.style}}\">{{m.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cspan style=\"{{s.label}}\">{{t.needs}}\u003c/span>\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"{{s.body}}\">{{t.wheelVehicle}}\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{pu.wheel}}\" onChange=\"{{togglePuWheel}}\" style=\"{{s.check}}\">\n\u003c/label>\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"{{s.body}}\">{{t.doorHelp}}\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{pu.door}}\" onChange=\"{{togglePuDoor}}\" style=\"{{s.check}}\">\n\u003c/label>\n\n\u003cspan style=\"{{s.label}}\">{{t.pickTime}}\u003c/span>\n\u003cdiv style=\"{{s.stack6}}\">\n\u003csc-for list=\"{{slots}}\" as=\"sl\" hint-placeholder-count=\"4\">\n\u003cbutton aria-pressed=\"{{sl.pressed}}\" onClick=\"{{sl.pick}}\" style=\"{{sl.style}}\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"{{s.label}}\">{{sl.time}}\u003c/span>\n\u003cspan style=\"{{sl.qStyle}}\">{{sl.q}}\u003c/span>\n\u003c/span>\n\u003csc-if value=\"{{sl.best}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"{{s.badge}}\">{{t.recommended}}\u003c/span>\n\u003c/sc-if>\n\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"{{s.card}}; flex-direction: row; align-items: center; justify-content: space-between\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.25\">\n\u003cspan style=\"{{s.small}}\">{{t.from}}\u003c/span>\n\u003cspan style=\"{{s.label}}\">{{t.homeAddr}}\u003c/span>\n\u003c/span>\n\u003cbutton style=\"{{s.linkBtn}}\">{{t.change}}\u003c/button>\n\u003c/div>\n\n\u003cbutton onClick=\"{{bookPickup}}\" style=\"{{s.primary}}\">{{t.bookPickup}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.pickupDone}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cdiv style=\"{{s.okCard}}\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px\">\n\u003csvg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.ok}}\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"12\" r=\"10\">\u003c/circle>\u003cpath d=\"M7 12l3.5 3.5L17 9\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.okTitle}}\">{{t.pickupDoneTitle}}\u003c/span>\n\u003c/div>\n\u003cspan style=\"{{s.body}}\">{{t.pickupDoneSub}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"{{s.card}}\">\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.traveller}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{puDone.who}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.time}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{puDone.time}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.vehicle}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{puDone.vehicle}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRowLast}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.from}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{t.homeAddr}}\u003c/span>\u003c/div>\n\u003c/div>\n\u003cbutton onClick=\"{{goBuddy}}\" style=\"{{s.secondaryFull}}\">{{t.addBuddy}}\u003c/button>\n\u003cbutton onClick=\"{{goHub}}\" style=\"{{s.primary}}\">{{t.backToHub}}\u003c/button>\n\u003cbutton onClick=\"{{cancelPickup}}\" style=\"{{s.linkBtn}}\">{{t.cancelBooking}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.buddy}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cspan style=\"{{s.label}}\">{{t.whoHelp}}\u003c/span>\n\u003cdiv style=\"{{s.wrap}}\">\n\u003csc-for list=\"{{bdWho}}\" as=\"m\" hint-placeholder-count=\"4\">\n\u003cbutton aria-pressed=\"{{m.pressed}}\" onClick=\"{{m.pick}}\" style=\"{{m.style}}\">{{m.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cspan style=\"{{s.label}}\">{{t.helpWith}}\u003c/span>\n\u003cdiv style=\"{{s.wrap}}\">\n\u003csc-for list=\"{{bdNeeds}}\" as=\"n\" hint-placeholder-count=\"4\">\n\u003cbutton aria-pressed=\"{{n.pressed}}\" onClick=\"{{n.pick}}\" style=\"{{n.style}}\">{{n.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cspan style=\"{{s.label}}\">{{t.pref}}\u003c/span>\n\u003cdiv style=\"{{s.row}}\">\n\u003csc-for list=\"{{bdGender}}\" as=\"g\" hint-placeholder-count=\"3\">\n\u003cbutton aria-pressed=\"{{g.pressed}}\" onClick=\"{{g.pick}}\" style=\"{{g.style}}\">{{g.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cspan style=\"{{s.label}}\">{{t.meetAt}}\u003c/span>\n\u003cdiv style=\"{{s.stack6}}\">\n\u003csc-for list=\"{{bdGate}}\" as=\"g\" hint-placeholder-count=\"2\">\n\u003cbutton aria-pressed=\"{{g.pressed}}\" onClick=\"{{g.pick}}\" style=\"{{g.style}}\">\n\u003cspan style=\"{{s.label}}\">{{g.label}}\u003c/span>\n\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cbutton disabled=\"{{bdDisabled}}\" onClick=\"{{findBuddy}}\" style=\"{{bdBtnStyle}}\">{{t.findBuddy}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.buddyDone}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cdiv style=\"{{s.okCard}}\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px\">\n\u003csvg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.ok}}\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"12\" r=\"10\">\u003c/circle>\u003cpath d=\"M7 12l3.5 3.5L17 9\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.okTitle}}\">{{t.buddyDoneTitle}}\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003cdiv style=\"{{s.card}}\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 12px\">\n\u003cdiv style=\"{{s.avatar}}\">V\u003c/div>\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.25\">\n\u003cspan style=\"{{s.label}}\">{{t.volunteer}}\u003c/span>\n\u003cspan style=\"{{s.okSmall}}\">{{t.verified}}\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003cdiv style=\"{{s.row}}\">\n\u003cbutton style=\"{{s.secondary}}\">{{t.call}}\u003c/button>\n\u003cbutton style=\"{{s.secondary}}\">{{t.message}}\u003c/button>\n\u003c/div>\n\u003c/div>\n\u003cdiv style=\"{{s.card}}\">\n\u003cdiv style=\"display: flex; align-items: center; justify-content: space-between; gap: 8px\">\n\u003cspan style=\"{{s.label}}\">{{t.trackTitle}}\u003c/span>\n\u003cspan style=\"font-size: 13px; font-weight: 800; color: #0F6E63; background: #E3F1EE; border-radius: 10px; padding: 2px 8px\">{{t.trackEta}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; align-items: center; gap: 6px; margin-top: 10px\">\n\u003cspan style=\"width: 14px; height: 14px; border-radius: 7px; background: #0F6E63; flex-shrink: 0\">\u003c/span>\n\u003cspan style=\"flex: 1; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #0F6E63 62%, #E2E0D8 62%)\">\u003c/span>\n\u003cspan style=\"width: 14px; height: 14px; border-radius: 7px; border: 3px solid #1F4FBF; box-sizing: border-box; flex-shrink: 0\">\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; justify-content: space-between; font-size: 12px; color: #4F5B6B; margin-top: 4px\">\u003cspan>{{t.trackFrom}}\u003c/span>\u003cspan>{{t.trackTo}}\u003c/span>\u003c/div>\n\u003cspan style=\"display: block; font-size: 13px; color: #4F5B6B; margin-top: 8px; line-height: 1.35\">{{t.trackId}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"{{s.card}}\">\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.forWhom}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{bdDone.who}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.meetingPoint}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{bdDone.gate}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.time}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{bdDone.time}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRowLast}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.helpWith}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{bdDone.needs}}\u003c/span>\u003c/div>\n\u003c/div>\n\u003cbutton onClick=\"{{goHub}}\" style=\"{{s.primary}}\">{{t.backToHub}}\u003c/button>\n\u003cbutton onClick=\"{{cancelBuddy}}\" style=\"{{s.linkBtn}}\">{{t.cancelBooking}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.companion}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cdiv style=\"{{s.softCard}}\">\n\u003cspan style=\"{{s.softTitle}}\">{{t.rulesTitle}}\u003c/span>\n\u003cspan style=\"{{s.softText}}\">1. {{t.rule1}}\u003c/span>\n\u003cspan style=\"{{s.softText}}\">2. {{t.rule2}}\u003c/span>\n\u003cspan style=\"{{s.softText}}\">3. {{t.rule3}}\u003c/span>\n\u003c/div>\n\n\u003cspan style=\"{{s.label}}\">{{t.forVoter}}\u003c/span>\n\u003cdiv style=\"{{s.wrap}}\">\n\u003csc-for list=\"{{cpVoter}}\" as=\"m\" hint-placeholder-count=\"4\">\n\u003cbutton aria-pressed=\"{{m.pressed}}\" onClick=\"{{m.pick}}\" style=\"{{m.style}}\">{{m.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003clabel style=\"{{s.fieldLabel}}\">{{t.cName}}\n\u003cinput type=\"text\" value=\"{{cp.name}}\" onChange=\"{{setCpName}}\" placeholder=\"{{t.namePh}}\" style=\"{{s.input}}\">\n\u003c/label>\n\u003cdiv style=\"{{s.row}}\">\n\u003clabel style=\"{{s.fieldLabel}}; flex: 1\">{{t.cRel}}\n\u003cselect value=\"{{cp.rel}}\" onChange=\"{{setCpRel}}\" style=\"{{s.input}}\">\n\u003coption value=\"son\">{{t.relSon}}\u003c/option>\n\u003coption value=\"daughter\">{{t.relDaughter}}\u003c/option>\n\u003coption value=\"spouse\">{{t.relSpouse}}\u003c/option>\n\u003coption value=\"other\">{{t.relOther}}\u003c/option>\n\u003c/select>\n\u003c/label>\n\u003clabel style=\"{{s.fieldLabel}}; flex: 1.2\">{{t.cPhone}}\n\u003cinput type=\"tel\" value=\"{{cp.phone}}\" onChange=\"{{setCpPhone}}\" placeholder=\"[10-digit no.]\" style=\"{{s.input}}\">\n\u003c/label>\n\u003c/div>\n\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"{{s.body}}\">{{t.cAdult}}\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{cp.adult}}\" onChange=\"{{toggleCpAdult}}\" style=\"{{s.check}}\">\n\u003c/label>\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"{{s.body}}\">{{t.cSingle}}\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{cp.single}}\" onChange=\"{{toggleCpSingle}}\" style=\"{{s.check}}\">\n\u003c/label>\n\n\u003cbutton disabled=\"{{cpDisabled}}\" onClick=\"{{saveCompanion}}\" style=\"{{cpBtnStyle}}\">{{t.saveCompanion}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.companionDone}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cdiv style=\"{{s.passCard}}\">\n\u003cdiv style=\"{{s.passBand}}\">{{t.companionDoneTitle}}\u003c/div>\n\u003cdiv style=\"display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px\">\n\u003cdiv role=\"img\" aria-label=\"QR code for the companion pass\" style=\"{{s.qr}}\">[QR]\u003c/div>\n\u003cdiv style=\"width: 100%; display: flex; flex-direction: column\">\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.voterL}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{cpDone.voter}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.companionL}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{cpDone.name}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRow}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.cRel}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{cpDone.rel}}\u003c/span>\u003c/div>\n\u003cdiv style=\"{{s.detailRowLast}}\">\u003cspan style=\"{{s.detailKey}}\">{{t.cPhone}}\u003c/span>\u003cspan style=\"{{s.detailVal}}\">{{cpDone.phone}}\u003c/span>\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003cspan style=\"{{s.small}}\">{{t.companionDoneNote}}\u003c/span>\n\u003cbutton onClick=\"{{goHub}}\" style=\"{{s.primary}}\">{{t.backToHub}}\u003c/button>\n\u003cbutton onClick=\"{{editCompanion}}\" style=\"{{s.linkBtn}}\">{{t.edit}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.isl}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003clabel style=\"{{s.toggleRow}}\">\n\u003cspan style=\"display: flex; align-items: center; gap: 10px\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"flex-shrink: 0\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11\">\u003c/path>\u003c/svg>\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.25\">\n\u003cspan style=\"{{s.label}}\">{{t.islVoice}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{t.islVoiceSub}}\u003c/span>\n\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{islVoice}}\" onChange=\"{{toggleIslVoice}}\" style=\"{{s.check}}\">\n\u003c/label>\n\u003csc-if value=\"{{islPlaying}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"border-radius: 16px; overflow: hidden; background: #1B2A44; display: flex; flex-direction: column\">\n\u003csvg width=\"100%\" height=\"190\" viewBox=\"0 0 200 180\" preserveAspectRatio=\"xMidYMid meet\" role=\"img\" aria-label=\"{{signAria}}\" style=\"display: block\">\n\u003crect x=\"0\" y=\"0\" width=\"200\" height=\"180\" fill=\"#1B2A44\">\u003c/rect>\n\u003cpath d=\"M48 180 C50 150 72 132 100 132 C128 132 150 150 152 180 Z\" fill=\"#2E5BC9\">\u003c/path>\n\u003crect x=\"91\" y=\"98\" width=\"18\" height=\"18\" rx=\"6\" fill=\"#B97A4E\">\u003c/rect>\n\u003ccircle cx=\"100\" cy=\"78\" r=\"26\" fill=\"#C98A5B\">\u003c/circle>\n\u003cpath d=\"M74 76 C74 54 88 46 100 46 C114 46 127 54 126 76 C120 64 110 60 100 60 C90 60 80 64 74 76 Z\" fill=\"#1F1B18\">\u003c/path>\n\u003ccircle cx=\"91\" cy=\"80\" r=\"2.6\" fill=\"#1F1B18\">\u003c/circle>\n\u003ccircle cx=\"109\" cy=\"80\" r=\"2.6\" fill=\"#1F1B18\">\u003c/circle>\n\u003cpath d=\"M86 73 L95 72 M105 72 L114 73\" stroke=\"#1F1B18\" stroke-width=\"2.4\" stroke-linecap=\"round\">\u003c/path>\n\u003cpath d=\"M93 90 Q100 95 107 90\" stroke=\"#7A3E22\" stroke-width=\"2.4\" fill=\"none\" stroke-linecap=\"round\">\u003c/path>\n\u003cg style=\"transform-origin: 74px 142px; animation: ab-armL 0.8s ease-in-out infinite alternate\">\n\u003cpath d=\"M74 142 L58 170\" stroke=\"#4A76E8\" stroke-width=\"15\" stroke-linecap=\"round\">\u003c/path>\n\u003cg style=\"transform-origin: 58px 170px; animation: ab-foreL 0.55s ease-in-out infinite alternate\">\n\u003cpath d=\"M58 170 L80 140\" stroke=\"#C98A5B\" stroke-width=\"10\" stroke-linecap=\"round\">\u003c/path>\n\u003cg transform=\"translate(82 138)\">\n\u003crect x=\"-8\" y=\"-13\" width=\"16\" height=\"15\" rx=\"5\" fill=\"#E2AC7C\">\u003c/rect>\n\u003cpath d=\"M-6 -13v-8M-2 -14v-10M2 -14v-10M6 -13v-8M-8 -5l-6 -4\" stroke=\"#E2AC7C\" stroke-width=\"3.6\" stroke-linecap=\"round\">\u003c/path>\n\u003c/g>\n\u003c/g>\n\u003c/g>\n\u003cg style=\"transform-origin: 126px 142px; animation: ab-armR 0.95s ease-in-out infinite alternate\">\n\u003cpath d=\"M126 142 L142 170\" stroke=\"#4A76E8\" stroke-width=\"15\" stroke-linecap=\"round\">\u003c/path>\n\u003cg style=\"transform-origin: 142px 170px; animation: ab-foreR 0.6s ease-in-out infinite alternate\">\n\u003cpath d=\"M142 170 L120 140\" stroke=\"#C98A5B\" stroke-width=\"10\" stroke-linecap=\"round\">\u003c/path>\n\u003cg transform=\"translate(118 138)\">\n\u003crect x=\"-8\" y=\"-13\" width=\"16\" height=\"15\" rx=\"5\" fill=\"#E2AC7C\">\u003c/rect>\n\u003cpath d=\"M6 -13v-8M2 -14v-10M-2 -14v-10M-6 -13v-8M8 -5l6 -4\" stroke=\"#E2AC7C\" stroke-width=\"3.6\" stroke-linecap=\"round\">\u003c/path>\n\u003c/g>\n\u003c/g>\n\u003c/g>\n\u003c/svg>\n\u003cdiv role=\"log\" aria-label=\"Sign-language captions\" style=\"background: #0F1A2E; padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center\">\n\u003csc-for list=\"{{gloss}}\" as=\"g\" hint-placeholder-count=\"8\">\n\u003cspan style=\"{{g.style}}\">{{g.w}}\u003c/span>\n\u003c/sc-for>\n\u003c/div>\n\u003cdiv style=\"padding: 8px 12px 10px; color: #FFFFFF; font-size: 14px; font-weight: 700; line-height: 1.3\">{{islPlayingTitle}}\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\u003cspan style=\"{{s.label}}\">{{t.videos}}\u003c/span>\n\u003cdiv style=\"{{s.stack6}}\">\n\u003csc-for list=\"{{vids}}\" as=\"vd\" hint-placeholder-count=\"4\">\n\u003cdiv style=\"{{vd.style}}\">\n\u003cdiv style=\"{{s.thumb}}; background: #1B2A44; overflow: hidden\">\n\u003csvg width=\"84\" height=\"56\" viewBox=\"35 44 130 87\" preserveAspectRatio=\"xMidYMid slice\" aria-hidden=\"true\" style=\"display: block\">\n\u003crect x=\"0\" y=\"0\" width=\"200\" height=\"180\" fill=\"#1B2A44\">\u003c/rect>\n\u003cpath d=\"M48 180 C50 150 72 132 100 132 C128 132 150 150 152 180 Z\" fill=\"#2E5BC9\">\u003c/path>\n\u003ccircle cx=\"100\" cy=\"78\" r=\"26\" fill=\"#C98A5B\">\u003c/circle>\n\u003cpath d=\"M74 76 C74 54 88 46 100 46 C114 46 127 54 126 76 C120 64 110 60 100 60 C90 60 80 64 74 76 Z\" fill=\"#1F1B18\">\u003c/path>\n\u003cpath d=\"M74 142 L58 170 L80 140\" stroke=\"#C98A5B\" stroke-width=\"10\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\u003c/path>\n\u003cpath d=\"M126 142 L142 170 L120 140\" stroke=\"#C98A5B\" stroke-width=\"10\" fill=\"none\" stroke-linecap=\"round\" stroke-linejoin=\"round\">\u003c/path>\n\u003crect x=\"74\" y=\"125\" width=\"16\" height=\"15\" rx=\"5\" fill=\"#E2AC7C\">\u003c/rect>\n\u003crect x=\"110\" y=\"125\" width=\"16\" height=\"15\" rx=\"5\" fill=\"#E2AC7C\">\u003c/rect>\n\u003c/svg>\n\u003c/div>\n\u003cdiv style=\"flex: 1; display: flex; flex-direction: column; line-height: 1.25; min-width: 0\">\n\u003cspan style=\"{{s.labelSm}}\">{{vd.title}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{vd.dur}}\u003c/span>\n\u003c/div>\n\u003cbutton aria-label=\"{{vd.aria}}\" onClick=\"{{vd.pick}}\" style=\"{{vd.btnStyle}}\">{{vd.btn}}\u003c/button>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"{{s.card}}\">\n\u003cspan style=\"{{s.label}}\">{{t.interpTitle}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{t.interpSub}}\u003c/span>\n\u003csc-if value=\"{{islCalling}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv role=\"status\" style=\"{{s.callingBox}}\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"flex-shrink: 0\">\u003crect x=\"3\" y=\"6\" width=\"13\" height=\"12\" rx=\"2\">\u003c/rect>\u003cpath d=\"M16 10l5-3v10l-5-3z\">\u003c/path>\u003c/svg>\n\u003cspan style=\"flex: 1\">{{t.connecting}}\u003c/span>\n\u003cbutton onClick=\"{{endCall}}\" style=\"{{s.linkBtn}}\">{{t.endCall}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\u003csc-if value=\"{{islIdle}}\" hint-placeholder-val=\"{{true}}\">\n\u003cbutton onClick=\"{{startCall}}\" style=\"{{s.primary}}\">{{t.startCall}}\u003c/button>\n\u003c/sc-if>\n\u003cbutton style=\"{{s.secondaryFull}}\">{{t.textChat}}\u003c/button>\n\u003c/div>\n\n\u003cdiv style=\"{{s.card}}\">\n\u003cspan style=\"{{s.label}}\">{{t.bridgeTitle}}\u003c/span>\n\u003cspan style=\"{{s.small}}\">{{t.bridgeSub}}\u003c/span>\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px\">\n\u003ca href=\"AiVoice.dc.html\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"11\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.speakToSign}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.speakToSignSub}}\u003c/span>\n\u003c/a>\n\u003ca href=\"AiVoice.dc.html\" style=\"{{s.tile}}\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.accent}}\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4.5a1.5 1.5 0 0 1 3 0V12M14 11.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.tileTitle}}\">{{t.signToVoice}}\u003c/span>\n\u003cspan style=\"{{s.tileSub}}\">{{t.signToVoiceSub}}\u003c/span>\n\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.hv}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cdiv style=\"{{s.softCard}}\">\n\u003cspan style=\"{{s.softTitle}}\">{{t.hvWho}}\u003c/span>\n\u003cspan style=\"{{s.softText}}\">{{t.hvRule}}\u003c/span>\n\u003c/div>\n\u003cspan style=\"{{s.label}}\">{{t.hvChoose}}\u003c/span>\n\u003cdiv style=\"{{s.stack6}}\">\n\u003csc-for list=\"{{hvList}}\" as=\"m\" hint-placeholder-count=\"4\">\n\u003cbutton aria-pressed=\"{{m.pressed}}\" disabled=\"{{m.disabled}}\" onClick=\"{{m.pick}}\" style=\"{{m.style}}\">\n\u003cspan style=\"{{m.nameStyle}}\">{{m.label}}\u003c/span>\n\u003cspan style=\"{{m.tagStyle}}\">{{m.tag}}\u003c/span>\n\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\u003cdiv style=\"{{s.warnCard}}\">\n\u003cspan style=\"{{s.warnText}}\">{{t.hvWarn}}\u003c/span>\n\u003clabel style=\"display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px\">\n\u003cspan style=\"{{s.warnTitle}}\">{{t.hvAck}}\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{hv.ack}}\" onChange=\"{{toggleHvAck}}\" style=\"{{s.check}}\">\n\u003c/label>\n\u003c/div>\n\u003cbutton disabled=\"{{hvDisabled}}\" onClick=\"{{sendHv}}\" style=\"{{hvBtnStyle}}\">{{t.hvSubmit}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{scr.hvDone}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"{{s.stack}}\">\n\u003cdiv style=\"{{s.okCard}}\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px\">\n\u003csvg width=\"30\" height=\"30\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"{{c.ok}}\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"12\" r=\"10\">\u003c/circle>\u003cpath d=\"M7 12l3.5 3.5L17 9\">\u003c/path>\u003c/svg>\n\u003cspan style=\"{{s.okTitle}}\">{{t.hvDoneTitle}}\u003c/span>\n\u003c/div>\n\u003cspan style=\"{{s.body}}\">{{t.hvDoneSub}}\u003c/span>\n\u003c/div>\n\u003cbutton onClick=\"{{goHub}}\" style=\"{{s.primary}}\">{{t.backToHub}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\n\u003cnav aria-label=\"Main\" style=\"{{s.navBar}}\">\n\u003ca href=\"Main.dc.html\" style=\"{{s.navItem}}\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z\">\u003c/path>\u003c/svg>\n{{t.navHome}}\n\u003c/a>\n\u003ca href=\"Queue.dc.html\" style=\"{{s.navItem}}\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"12\" r=\"9\">\u003c/circle>\u003cpath d=\"M12 7v5l3 2\">\u003c/path>\u003c/svg>\n{{t.navPoll}}\n\u003c/a>\n\u003ca href=\"ESlip.dc.html\" style=\"{{s.navItem}}\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"4\" y=\"4\" width=\"6\" height=\"6\">\u003c/rect>\u003crect x=\"14\" y=\"4\" width=\"6\" height=\"6\">\u003c/rect>\u003crect x=\"4\" y=\"14\" width=\"6\" height=\"6\">\u003c/rect>\u003cpath d=\"M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2\">\u003c/path>\u003c/svg>\n{{t.navReport}}\n\u003c/a>\n\u003ca href=\"Safety.dc.html\" style=\"{{s.navItem}}\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z\">\u003c/path>\u003c/svg>\n{{t.navSafety}}\n\u003c/a>\n\u003ca href=\"Access.dc.html\" aria-current=\"page\" style=\"{{s.navItemOn}}\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"4.5\" r=\"1.8\">\u003c/circle>\u003cpath d=\"M5 8.5l7 1 7-1M12 9.5v5l-3.5 6.5M12 14.5l3.5 6.5\">\u003c/path>\u003c/svg>\n{{t.navAccess}}\n\u003c/a>\n\u003c/nav>\n\n\u003cdiv style=\"position: absolute; right: 16px; bottom: 96px; z-index: 40\">\u003cdc-import name=\"VoiceNav\" variant=\"fab\" hint-size=\"60px,60px\">\u003c/dc-import>\u003c/div>\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"$preview\":{\"width\":390,\"height\":844}}'>\nclass Component extends DCLogic {\n  componentDidMount() {\n    try { if ((window.location.hash || '').indexOf('isl') >= 0) this.setState({ screen: 'isl' }); } catch (e) {}\n  }\n\n  constructor(props) {\n    super(props);\n    this.state = {\n      screen: 'hub',\n      lang: 'en',\n      scale: 1,\n      contrast: false,\n      voice: false,\n      speed: 'normal',\n      vibrate: true,\n      phone: false,\n      pu: { who: 'kamla', wheel: true, door: true, slot: 's3', booked: false },\n      bd: { who: 'kamla', needs: { walk: true, wheel: true, read: false, sign: false }, gender: 'any', gate: 'side', booked: false },\n      cp: { voter: 'kamla', name: '', rel: 'son', phone: '', adult: false, single: false, saved: false },\n      isl: { playing: null, calling: false },\n      hv: { who: 'kamla', ack: false, sent: false },\n      islVoice: true,\n      speaking: false,\n      islWord: -1\n    };\n  }\n\n  startSign() {\n    clearInterval(this.signTimer);\n    this.setState({ islWord: 0 });\n    this.signTimer = setInterval(() => {\n      const words = (this._gloss && this._gloss[this.state.isl.playing]) || [];\n      if (!words.length) return;\n      this.setState({ islWord: (this.state.islWord + 1) % words.length });\n    }, 800);\n  }\n\n  stopSign() {\n    clearInterval(this.signTimer);\n    this.setState({ islWord: -1 });\n  }\n\n  speak(text, lang) {\n    const done = () => this.setState({ speaking: false });\n    this.setState({ speaking: true });\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') {\n        clearTimeout(this.speakTimer);\n        this.speakTimer = setTimeout(done, 3000);\n        return;\n      }\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = lang;\n      u.rate = { slow: 0.8, normal: 1, fast: 1.25 }[this.state.speed] || 1;\n      const vs = ss.getVoices() || [];\n      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||\n        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);\n      if (v) u.voice = v;\n      u.onend = done;\n      u.onerror = done;\n      ss.speak(u);\n    } catch (e) {\n      done();\n    }\n  }\n\n  stopSpeak() {\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n    clearTimeout(this.speakTimer);\n    this.setState({ speaking: false });\n  }\n\n  componentDidUpdate() {\n    const prev = this._prev || {};\n    this._prev = { voice: this.state.voice, screen: this.state.screen };\n    const turnedOn = !prev.voice && this.state.voice;\n    const moved = prev.screen !== this.state.screen;\n    if (this.state.voice && (turnedOn || moved) && this._screenSpeech) {\n      this.speak(this._screenSpeech, this.state.lang === 'hi' ? 'hi-IN' : 'en-IN');\n    }\n  }\n\n  componentWillUnmount() {\n    clearInterval(this.signTimer);\n    clearTimeout(this.speakTimer);\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  up(key, patch) {\n    this.setState({ [key]: Object.assign({}, this.state[key], patch) });\n  }\n\n  renderVals() {\n    const T = {\n      en: {\n        back: 'Back', settingsTitle: 'Language & display', hubTitle: 'Accessible voting', hubSub: 'No voter left behind',\n        voiceTitle: 'Voice-first mode', voiceSub: 'Reads every screen aloud', voiceBanner: 'Reading aloud · tap any item to hear it',\n        phoneTitle: 'Phone-call reminders', phoneSub: 'Works on any phone, no internet needed',\n        hvCardTitle: 'Home voting · Kamla Devi (85+)', hvCardSub: 'Form 12D window closes in', days: 'DAYS', hvCardBtn: 'Request home voting',\n        hvSentCard: 'Home voting requested · BLO will visit',\n        rehearsal: 'Ballot rehearsal', rehearsalSub: 'Hear candidates in EVM order',\n        pickup: 'Pick-up & drop', pickupSub: 'Slot matched to a short queue',\n        buddy: 'Booth Buddy', buddySub: 'A trained neighbour helps you',\n        companion: 'Companion voter', companionSub: 'Pre-register who helps you vote',\n        isl: 'Sign language help', islSub: 'ISL videos and video call',\n        ramp: 'Ramp Check', rampSub: 'Your booth: 3 of 5 ready',\n        booked: 'Booked', saved: 'Saved',\n        sosNote: 'SOS works without the screen: press power 3 times or shake the phone.',\n        langLabel: 'Language', soon: 'coming soon', textSize: 'Text size', contrast: 'High contrast', contrastSub: 'Black background, bright text',\n        vibrate: 'Vibration alerts', vibrateSub: 'For deaf and hard-of-hearing users', speed: 'Voice speed',\n        slow: 'Slow', normal: 'Normal', fast: 'Fast', previewLabel: 'Preview',\n        preview: 'Your booth is Part 142, Room 2. The queue is short right now.', done: 'Done',\n        pickupScreenSub: 'Free ride to the booth and back home', who: 'Who is travelling?', needs: 'What is needed?',\n        wheelVehicle: 'Wheelchair-accessible vehicle', doorHelp: 'Help from the door to the vehicle', pickTime: 'Pick a time',\n        qShort: 'Queue short', qLong: 'Queue long', recommended: 'Best time', from: 'Pick-up from', homeAddr: 'Home · [Address]', change: 'Change',\n        bookPickup: 'Book pick-up', pickupDoneTitle: 'Pick-up booked',\n        pickupDoneSub: 'The driver will call 30 minutes before arriving and will drop you back home after voting.',\n        vehicle: 'Vehicle', vehicleWheel: 'Wheelchair-accessible · [Vehicle no.]', vehicleStd: 'Car · [Vehicle no.]',\n        time: 'Time', traveller: 'Traveller', backToHub: 'Back to accessibility', cancelBooking: 'Cancel booking', addBuddy: 'Also add a Booth Buddy',\n        buddyScreenSub: 'A volunteer from your own booth', whoHelp: 'Who needs help?', helpWith: 'Help with',\n        nWalk: 'Walk with me from the gate', nWheel: 'Push the wheelchair', nRead: 'Read signs aloud', nSign: 'Sign language',\n        pref: 'Buddy preference', gAny: 'Anyone', gWoman: 'Woman', gMan: 'Man', meetAt: 'Meet at',\n        mainGate: 'Main gate', sideGate: 'Side gate (step-free)', findBuddy: 'Find a Booth Buddy',\n        buddyDoneTitle: 'Booth Buddy matched', volunteer: '[Volunteer name]', verified: 'NSS volunteer · Digital ID verified by BLO · accessibility trained',\n        trackTitle: 'Track your buddy', trackEta: 'Reaching in ~6 min', trackFrom: 'On the way', trackTo: 'Side gate (ramp)', trackId: 'Ask to see the digital ID card in the app before you go with the buddy.',\n        call: 'Call', message: 'Message', forWhom: 'For', meetingPoint: 'Meeting point', whenArrive: 'When you arrive',\n        companionScreenSub: 'For blind and infirm voters', rulesTitle: 'Rules at the booth',\n        rule1: 'The companion must be 18 or older.', rule2: 'They can help only one voter that day.',\n        rule3: 'They declare to the Presiding Officer that the vote stays secret.',\n        forVoter: 'For voter', cName: \"Companion's name\", namePh: '[Full name]', cRel: 'Relation',\n        relSon: 'Son', relDaughter: 'Daughter', relSpouse: 'Spouse', relOther: 'Other', cPhone: 'Mobile number',\n        cAdult: 'The companion is 18 or older', cSingle: 'They are not helping any other voter that day',\n        saveCompanion: 'Save companion pass', companionDoneTitle: 'COMPANION PASS',\n        companionDoneNote: 'Show this at the booth. The Presiding Officer takes the final declaration there.',\n        voterL: 'Voter', companionL: 'Companion', edit: 'Edit details',\n        islScreenSub: 'Indian Sign Language · with captions', videos: 'Videos',\n        v1: 'How to vote on the EVM and VVPAT', v2: 'Find your booth and check the queue', v3: 'Booth Buddy: get help at the booth', v4: 'Safe Path and SOS',\n        playing: 'Pause', play: 'Play', nowPlaying: 'Now playing',\n        interpTitle: 'Talk to an ISL interpreter', interpSub: 'Video call · [Helpline hours]', startCall: 'Start video call',\n        connecting: 'Connecting you to an interpreter…', endCall: 'Cancel', textChat: 'Chat by text instead',\n        hvTitle: 'Vote from home', hvScreenSub: 'Form 12D · postal ballot at home', hvWho: 'Who can apply',\n        hvRule: 'Voters aged 85+ and voters with 40% benchmark disability. Apply within 5 days of the election notification.',\n        hvChoose: 'Choose voter', eligible: 'Eligible · 85+', notEligible: 'Not eligible',\n        hvWarn: 'After choosing home voting, this voter cannot vote at the booth on poll day.', hvAck: 'I understand',\n        hvSubmit: 'Send request to BLO', hvDoneTitle: 'Request sent to BLO',\n        hvDoneSub: 'The BLO will visit to collect the signed Form 12D. The polling team’s visit date will come by SMS and phone call.',\n        navHome: 'Home', navPoll: 'Poll Day', navReport: 'e-Slip', navSafety: 'Safety', navAccess: 'Access',\n        listen: 'Listen to this screen', stopListen: 'Stop reading',\n        aiTile: 'Listen & Translate', aiTileSub: 'Any notice, in your language', chatTile: 'Ask Sahayak', chatTileSub: 'Helpline chat · type or speak',\n        islVoice: 'Voice-over with every video', islVoiceSub: 'For family members who hear, and for low-vision viewers',\n        islMeta: 'ISL · captions', voiceOn: 'voice-over',\n        bridgeTitle: 'AI sign ⇄ voice bridge', bridgeSub: 'Talk with polling staff without waiting for an interpreter',\n        speakToSign: 'Speech → Sign', speakToSignSub: 'Staff speak; an AI avatar signs it',\n        signToVoice: 'Sign → Voice', signToVoiceSub: 'You sign to the camera; the phone speaks it'\n      },\n      hi: {\n        back: 'वापस', settingsTitle: 'भाषा और डिस्प्ले', hubTitle: 'सुगम्य मतदान', hubSub: 'कोई मतदाता न छूटे',\n        voiceTitle: 'आवाज़ मोड', voiceSub: 'हर स्क्रीन पढ़कर सुनाए', voiceBanner: 'पढ़कर सुना रहे हैं · सुनने के लिए किसी भी चीज़ पर टैप करें',\n        phoneTitle: 'फ़ोन कॉल से याद दिलाएँ', phoneSub: 'किसी भी फ़ोन पर, इंटरनेट ज़रूरी नहीं',\n        hvCardTitle: 'घर से मतदान · कमला देवी (85+)', hvCardSub: 'फ़ॉर्म 12D की अंतिम तिथि में बाकी', days: 'दिन', hvCardBtn: 'घर से मतदान का अनुरोध करें',\n        hvSentCard: 'घर से मतदान का अनुरोध भेजा · BLO आएँगे',\n        rehearsal: 'मतपत्र अभ्यास', rehearsalSub: 'EVM क्रम में उम्मीदवार सुनें',\n        pickup: 'घर से लाना-ले जाना', pickupSub: 'छोटी लाइन के समय पर',\n        buddy: 'बूथ साथी', buddySub: 'प्रशिक्षित पड़ोसी मदद करेंगे',\n        companion: 'साथी मतदाता', companionSub: 'सहायक का पहले से पंजीकरण',\n        isl: 'सांकेतिक भाषा सहायता', islSub: 'ISL वीडियो और वीडियो कॉल',\n        ramp: 'रैंप जाँच', rampSub: 'आपका बूथ: 5 में से 3 तैयार',\n        booked: 'बुक है', saved: 'सहेजा गया',\n        sosNote: 'SOS बिना स्क्रीन देखे: पावर बटन 3 बार दबाएँ या फ़ोन हिलाएँ।',\n        langLabel: 'भाषा', soon: 'जल्द आ रहा है', textSize: 'अक्षर का आकार', contrast: 'हाई कॉन्ट्रास्ट', contrastSub: 'काली पृष्ठभूमि, चमकीले अक्षर',\n        vibrate: 'कंपन से सूचना', vibrateSub: 'बधिर और कम सुनने वालों के लिए', speed: 'आवाज़ की गति',\n        slow: 'धीमी', normal: 'सामान्य', fast: 'तेज़', previewLabel: 'नमूना',\n        preview: 'आपका बूथ भाग 142, कमरा 2 है। अभी लाइन छोटी है।', done: 'हो गया',\n        pickupScreenSub: 'बूथ तक मुफ़्त आना और घर वापसी', who: 'कौन जा रहा है?', needs: 'क्या ज़रूरत है?',\n        wheelVehicle: 'व्हीलचेयर वाला वाहन', doorHelp: 'दरवाज़े से वाहन तक मदद', pickTime: 'समय चुनें',\n        qShort: 'लाइन छोटी', qLong: 'लाइन लंबी', recommended: 'सबसे अच्छा समय', from: 'कहाँ से', homeAddr: 'घर · [पता]', change: 'बदलें',\n        bookPickup: 'पिक-अप बुक करें', pickupDoneTitle: 'पिक-अप बुक हो गया',\n        pickupDoneSub: 'ड्राइवर पहुँचने से 30 मिनट पहले फ़ोन करेंगे और मतदान के बाद घर छोड़ेंगे।',\n        vehicle: 'वाहन', vehicleWheel: 'व्हीलचेयर वाला · [वाहन नं.]', vehicleStd: 'कार · [वाहन नं.]',\n        time: 'समय', traveller: 'यात्री', backToHub: 'सुगम्यता पर वापस', cancelBooking: 'बुकिंग रद्द करें', addBuddy: 'बूथ साथी भी जोड़ें',\n        buddyScreenSub: 'आपके अपने बूथ का स्वयंसेवक', whoHelp: 'किसे मदद चाहिए?', helpWith: 'किसमें मदद',\n        nWalk: 'गेट से साथ चलें', nWheel: 'व्हीलचेयर चलाएँ', nRead: 'बोर्ड पढ़कर बताएँ', nSign: 'सांकेतिक भाषा',\n        pref: 'साथी की पसंद', gAny: 'कोई भी', gWoman: 'महिला', gMan: 'पुरुष', meetAt: 'कहाँ मिलें',\n        mainGate: 'मुख्य गेट', sideGate: 'साइड गेट (बिना सीढ़ी)', findBuddy: 'बूथ साथी खोजें',\n        buddyDoneTitle: 'बूथ साथी मिल गए', volunteer: '[स्वयंसेवक का नाम]', verified: 'NSS स्वयंसेवक · डिजिटल ID BLO से सत्यापित · सुगम्यता प्रशिक्षित',\n        trackTitle: 'साथी को ट्रैक करें', trackEta: 'लगभग 6 मिनट में', trackFrom: 'रास्ते में', trackTo: 'साइड गेट (रैंप)', trackId: 'साथ जाने से पहले ऐप में साथी का डिजिटल ID कार्ड ज़रूर देखें।',\n        call: 'कॉल करें', message: 'संदेश', forWhom: 'किसके लिए', meetingPoint: 'मिलने की जगह', whenArrive: 'आपके पहुँचने पर',\n        companionScreenSub: 'दृष्टिहीन और अशक्त मतदाताओं के लिए', rulesTitle: 'बूथ पर नियम',\n        rule1: 'साथी की उम्र 18 वर्ष या उससे अधिक हो।', rule2: 'वे उस दिन केवल एक मतदाता की मदद कर सकते हैं।',\n        rule3: 'वे पीठासीन अधिकारी के सामने मत गुप्त रखने की घोषणा करते हैं।',\n        forVoter: 'मतदाता', cName: 'साथी का नाम', namePh: '[पूरा नाम]', cRel: 'रिश्ता',\n        relSon: 'बेटा', relDaughter: 'बेटी', relSpouse: 'पति/पत्नी', relOther: 'अन्य', cPhone: 'मोबाइल नंबर',\n        cAdult: 'साथी 18 वर्ष या उससे अधिक के हैं', cSingle: 'वे उस दिन किसी और मतदाता की मदद नहीं कर रहे',\n        saveCompanion: 'साथी पास सहेजें', companionDoneTitle: 'साथी पास',\n        companionDoneNote: 'इसे बूथ पर दिखाएँ। अंतिम घोषणा पीठासीन अधिकारी वहीं लेंगे।',\n        voterL: 'मतदाता', companionL: 'साथी', edit: 'विवरण बदलें',\n        islScreenSub: 'भारतीय सांकेतिक भाषा · कैप्शन सहित', videos: 'वीडियो',\n        v1: 'EVM और VVPAT पर वोट कैसे दें', v2: 'अपना बूथ और लाइन कैसे देखें', v3: 'बूथ साथी: बूथ पर मदद पाएँ', v4: 'सुरक्षित रास्ता और SOS',\n        playing: 'रोकें', play: 'चलाएँ', nowPlaying: 'चल रहा है',\n        interpTitle: 'ISL दुभाषिए से बात करें', interpSub: 'वीडियो कॉल · [हेल्पलाइन समय]', startCall: 'वीडियो कॉल शुरू करें',\n        connecting: 'दुभाषिए से जोड़ रहे हैं…', endCall: 'रद्द करें', textChat: 'लिखकर बात करें',\n        hvTitle: 'घर से मतदान', hvScreenSub: 'फ़ॉर्म 12D · घर पर डाक मतपत्र', hvWho: 'कौन आवेदन कर सकता है',\n        hvRule: '85 वर्ष से अधिक आयु के मतदाता और 40% मानक दिव्यांगता वाले मतदाता। चुनाव अधिसूचना के 5 दिन के भीतर आवेदन करें।',\n        hvChoose: 'मतदाता चुनें', eligible: 'पात्र · 85+', notEligible: 'पात्र नहीं',\n        hvWarn: 'घर से मतदान चुनने के बाद यह मतदाता मतदान के दिन बूथ पर वोट नहीं दे सकेंगे।', hvAck: 'मैं समझ गया/गई',\n        hvSubmit: 'BLO को अनुरोध भेजें', hvDoneTitle: 'BLO को अनुरोध भेजा गया',\n        hvDoneSub: 'BLO हस्ताक्षरित फ़ॉर्म 12D लेने आएँगे। मतदान दल के आने की तारीख़ SMS और फ़ोन कॉल से बताई जाएगी।',\n        navHome: 'मुख्य', navPoll: 'मतदान दिवस', navReport: 'ई-स्लिप', navSafety: 'सुरक्षा', navAccess: 'सुगम्यता',\n        listen: 'यह स्क्रीन सुनें', stopListen: 'पढ़ना रोकें',\n        aiTile: 'सुनें और अनुवाद', aiTileSub: 'हर सूचना अपनी भाषा में', chatTile: 'सहायक से पूछें', chatTileSub: 'हेल्पलाइन चैट · लिखें या बोलें',\n        islVoice: 'हर वीडियो के साथ आवाज़', islVoiceSub: 'सुनने वाले परिजनों और कम दृष्टि वालों के लिए',\n        islMeta: 'ISL · कैप्शन', voiceOn: 'आवाज़',\n        bridgeTitle: 'AI संकेत ⇄ आवाज़ सेतु', bridgeSub: 'दुभाषिए का इंतज़ार किए बिना मतदान कर्मियों से बात करें',\n        speakToSign: 'आवाज़ → संकेत', speakToSignSub: 'कर्मी बोलें, AI अवतार संकेत में दिखाए',\n        signToVoice: 'संकेत → आवाज़', signToVoiceSub: 'आप कैमरे के आगे संकेत करें, फ़ोन बोलकर बताए'\n      }\n    };\n\n    const st = this.state;\n    const L = st.lang;\n    const t = T[L];\n    const k = st.scale;\n    const px = (n) => Math.round(n * k) + 'px';\n    const navPx = Math.min(Math.round(12 * k), 14) + 'px';\n\n    const c = st.contrast ? {\n      bg: '#000000', card: '#111111', ink: '#FFFFFF', muted: '#E0E0E0', line: '#8A8A8A', lineStrong: '#FFFFFF',\n      accent: '#FFD54A', accentInk: '#000000', soft: '#262010', softInk: '#FFD54A',\n      strong: '#FFD54A', strongInk: '#000000', strongSub: '#1A1A1A', checkStrong: '#000000',\n      warnBg: '#111111', warnLine: '#FFD54A', warnInk: '#FFD54A', warn: '#FFD54A', warnBtnInk: '#000000',\n      ok: '#7EE8B8', okBg: '#0A1F17', thumb: '#262626', navBg: '#000000'\n    } : {\n      bg: '#F6F5F1', card: '#FFFFFF', ink: '#13233A', muted: '#4F5B6B', line: '#E2E0D8', lineStrong: '#C9C5B9',\n      accent: '#1F4FBF', accentInk: '#FFFFFF', soft: '#E6EDFB', softInk: '#163A8F',\n      strong: '#13233A', strongInk: '#FFFFFF', strongSub: '#C9D2E0', checkStrong: '#FFD54A',\n      warnBg: '#FCEBDD', warnLine: '#F0C8A4', warnInk: '#6B2D05', warn: '#B4500E', warnBtnInk: '#FFFFFF',\n      ok: '#0F6E63', okBg: '#E3F1EE', thumb: '#E5E3DC', navBg: '#FFFFFF'\n    };\n\n    const chip = (on) => 'min-height: 44px; padding: 0 14px; border-radius: 22px; font-size: ' + px(14) + '; font-weight: 700; ' +\n      (on ? 'border: 2px solid ' + c.accent + '; background: ' + c.accent + '; color: ' + c.accentInk\n          : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink);\n    const seg = (on) => 'flex: 1; min-height: 48px; border-radius: 12px; font-size: ' + px(15) + '; font-weight: 700; ' +\n      (on ? 'border: 2px solid ' + c.accent + '; background: ' + c.accent + '; color: ' + c.accentInk\n          : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink);\n    const optionRow = (on, off) => 'width: 100%; min-height: 56px; border-radius: 12px; padding: 6px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; color: ' + c.ink + '; ' +\n      (off ? 'border: 1px dashed ' + c.line + '; background: transparent; opacity: 0.6'\n           : on ? 'border: 2px solid ' + c.accent + '; background: ' + c.soft\n                : 'border: 1px solid ' + c.line + '; background: ' + c.card);\n    const primary = 'width: 100%; min-height: 52px; border-radius: 14px; border: none; background: ' + c.accent + '; color: ' + c.accentInk + '; font-size: ' + px(17) + '; font-weight: 800';\n    const primaryOff = primary + '; opacity: 0.4';\n\n    const s = {\n      root: 'position: relative; width: 390px; height: 844px; box-sizing: border-box; background: ' + c.bg + \"; font-family: 'Mukta', system-ui, sans-serif; color: \" + c.ink + '; display: flex; flex-direction: column; overflow: hidden',\n      scroll: 'flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px 20px 16px; overflow-y: auto',\n      stack: 'display: flex; flex-direction: column; gap: 12px',\n      stack6: 'display: flex; flex-direction: column; gap: 6px',\n      row: 'display: flex; gap: 8px',\n      wrap: 'display: flex; flex-wrap: wrap; gap: 6px',\n      h1: 'font-size: ' + px(21) + '; font-weight: 800; color: ' + c.ink,\n      sub: 'font-size: ' + px(13) + '; color: ' + c.muted + '; font-weight: 500',\n      label: 'font-size: ' + px(15) + '; font-weight: 700; color: ' + c.ink,\n      labelSm: 'font-size: ' + px(14) + '; font-weight: 700; color: ' + c.ink,\n      body: 'font-size: ' + px(15) + '; color: ' + c.ink + '; line-height: 1.4',\n      small: 'font-size: ' + px(13) + '; color: ' + c.muted + '; line-height: 1.35',\n      card: 'background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px',\n      iconBtn: 'width: 44px; height: 44px; border-radius: 22px; background: ' + c.card + '; border: 1px solid ' + c.lineStrong + '; display: flex; align-items: center; justify-content: center; color: ' + c.ink + '; flex-shrink: 0',\n      pillBtn: 'min-height: 44px; padding: 0 12px; border-radius: 22px; background: ' + c.card + '; border: 1px solid ' + c.lineStrong + '; color: ' + c.ink + '; display: flex; align-items: center; gap: 6px; font-size: ' + px(14) + '; font-weight: 700; flex-shrink: 0',\n      voiceBar: 'display: flex; align-items: center; gap: 8px; background: ' + c.soft + '; color: ' + c.softInk + '; border-radius: 12px; padding: 8px 12px; font-size: ' + px(13) + '; font-weight: 700; line-height: 1.3',\n      strongRow: 'display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; background: ' + c.strong + '; color: ' + c.strongInk + '; border-radius: 14px; padding: 8px 14px',\n      strongTitle: 'font-size: ' + px(16) + '; font-weight: 700',\n      strongSub: 'font-size: ' + px(12) + '; color: ' + c.strongSub,\n      checkStrong: 'width: 24px; height: 24px; accent-color: ' + c.checkStrong + '; flex-shrink: 0',\n      check: 'width: 24px; height: 24px; accent-color: ' + c.accent + '; flex-shrink: 0',\n      toggleRow: 'display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 14px; padding: 8px 14px',\n      warnCard: 'background: ' + c.warnBg + '; border: 1px solid ' + c.warnLine + '; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px',\n      warnTitle: 'font-size: ' + px(16) + '; font-weight: 800; color: ' + c.warnInk,\n      warnText: 'font-size: ' + px(14) + '; color: ' + c.warnInk + '; line-height: 1.35',\n      warnBtn: 'min-height: 48px; border-radius: 12px; border: none; background: ' + c.warn + '; color: ' + c.warnBtnInk + '; font-size: ' + px(15) + '; font-weight: 700',\n      daysBox: 'display: flex; flex-direction: column; align-items: center; background: ' + c.card + '; border: 1px solid ' + c.warnLine + '; border-radius: 12px; padding: 4px 12px; line-height: 1; flex-shrink: 0',\n      daysNum: 'font-size: ' + px(28) + '; font-weight: 800; color: ' + c.warn,\n      daysLbl: 'font-size: ' + px(11) + '; font-weight: 700; color: ' + c.warnInk,\n      okRow: 'display: flex; align-items: center; gap: 10px; background: ' + c.okBg + '; border: 1px solid ' + c.ok + '; border-radius: 14px; padding: 12px 14px; font-size: ' + px(15) + '; font-weight: 700; color: ' + c.ink,\n      okCard: 'background: ' + c.okBg + '; border: 1px solid ' + c.ok + '; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px',\n      okTitle: 'font-size: ' + px(22) + '; font-weight: 800; color: ' + c.ok + '; line-height: 1.15',\n      okSmall: 'font-size: ' + px(13) + '; color: ' + c.ok + '; font-weight: 700',\n      tile: 'background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 14px; padding: 12px; min-height: 96px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; color: ' + c.ink + '; text-align: left',\n      tileTitle: 'font-size: ' + px(15) + '; font-weight: 700; line-height: 1.2',\n      tileSub: 'font-size: ' + px(12) + '; color: ' + c.muted + '; line-height: 1.25',\n      tileBadge: 'font-size: ' + px(12) + '; color: ' + c.ok + '; font-weight: 800; line-height: 1.25',\n      noteRow: 'display: flex; align-items: center; gap: 10px; background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 12px; padding: 10px 12px; font-size: ' + px(13) + '; line-height: 1.3; color: ' + c.ink,\n      softCard: 'background: ' + c.soft + '; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px',\n      softTitle: 'font-size: ' + px(15) + '; font-weight: 800; color: ' + c.softInk,\n      softText: 'font-size: ' + px(14) + '; color: ' + c.softInk + '; line-height: 1.4',\n      badge: 'font-size: ' + px(12) + '; font-weight: 800; color: ' + c.accentInk + '; background: ' + c.accent + '; border-radius: 999px; padding: 3px 10px; white-space: nowrap',\n      linkBtn: 'min-height: 44px; padding: 0 8px; border: none; background: transparent; color: ' + c.accent + '; font-size: ' + px(15) + '; font-weight: 700',\n      secondary: 'flex: 1; min-height: 48px; border-radius: 12px; border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink + '; font-size: ' + px(15) + '; font-weight: 700',\n      secondaryFull: 'width: 100%; min-height: 48px; border-radius: 12px; border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink + '; font-size: ' + px(15) + '; font-weight: 700',\n      primary: primary,\n      detailRow: 'display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px solid ' + c.line,\n      detailRowLast: 'display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0',\n      detailKey: 'font-size: ' + px(14) + '; color: ' + c.muted,\n      detailVal: 'font-size: ' + px(15) + '; font-weight: 700; text-align: right; color: ' + c.ink,\n      avatar: 'width: 48px; height: 48px; border-radius: 24px; background: ' + c.soft + '; color: ' + c.softInk + '; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; flex-shrink: 0',\n      fieldLabel: 'display: flex; flex-direction: column; gap: 4px; font-size: ' + px(14) + '; font-weight: 700; color: ' + c.ink,\n      input: 'width: 100%; box-sizing: border-box; min-height: 48px; border-radius: 12px; border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink + '; font-size: ' + px(16) + '; padding: 0 12px; font-family: inherit',\n      passCard: 'background: ' + c.card + '; border: 2px solid ' + c.accent + '; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column',\n      passBand: 'background: ' + c.accent + '; color: ' + c.accentInk + '; font-size: ' + px(15) + '; font-weight: 800; letter-spacing: 1px; padding: 10px 16px',\n      qr: 'width: 132px; height: 132px; border-radius: 12px; border: 2px dashed ' + c.lineStrong + '; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: ' + c.muted,\n      thumb: 'width: 84px; height: 56px; border-radius: 10px; background: ' + c.thumb + '; display: flex; align-items: center; justify-content: center; font-size: 11px; color: ' + c.muted + '; font-weight: 600; flex-shrink: 0; text-align: center',\n      callingBox: 'display: flex; align-items: center; gap: 10px; background: ' + c.soft + '; color: ' + c.softInk + '; border-radius: 12px; padding: 4px 4px 4px 12px; font-size: ' + px(15) + '; font-weight: 700',\n      navBar: 'height: 72px; background: ' + c.navBg + '; border-top: 1px solid ' + c.line + '; display: flex; justify-content: space-around; align-items: center; padding: 0 6px; flex-shrink: 0',\n      navItem: 'min-width: 64px; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: ' + navPx + '; font-weight: 600; color: ' + c.muted,\n      navItemOn: 'min-width: 64px; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: ' + navPx + '; font-weight: 800; color: ' + c.accent\n    };\n\n    const members = [\n      { id: 'kamla', n: { en: 'Kamla Devi', hi: 'कमला देवी' }, eligible: true },\n      { id: 'ramesh', n: { en: 'Ramesh', hi: 'रमेश' }, eligible: false },\n      { id: 'sunita', n: { en: 'Sunita', hi: 'सुनीता' }, eligible: false },\n      { id: 'aman', n: { en: 'Aman', hi: 'अमन' }, eligible: false }\n    ];\n    const nm = (id) => members.find((m) => m.id === id).n[L];\n    const memberChips = (key, field) => members.map((m) => {\n      const on = st[key][field] === m.id;\n      return { label: m.n[L], pressed: on ? 'true' : 'false', style: chip(on), pick: () => this.up(key, { [field]: m.id }) };\n    });\n\n    const slotDefs = [\n      { id: 's1', time: { en: '7:30 AM', hi: 'सुबह 7:30' }, q: 'short' },\n      { id: 's2', time: { en: '9:00 AM', hi: 'सुबह 9:00' }, q: 'long' },\n      { id: 's3', time: { en: '11:00 AM', hi: 'सुबह 11:00' }, q: 'short', best: true },\n      { id: 's4', time: { en: '2:30 PM', hi: 'दोपहर 2:30' }, q: 'short' }\n    ];\n    const slotTime = slotDefs.find((x) => x.id === st.pu.slot).time[L];\n    const slots = slotDefs.map((x) => {\n      const on = st.pu.slot === x.id;\n      return {\n        time: x.time[L],\n        q: x.q === 'short' ? t.qShort : t.qLong,\n        qStyle: 'font-size: ' + px(13) + '; font-weight: 700; color: ' + (x.q === 'short' ? c.ok : c.warn),\n        best: !!x.best,\n        pressed: on ? 'true' : 'false',\n        style: optionRow(on, false),\n        pick: () => this.up('pu', { slot: x.id })\n      };\n    });\n\n    const langDefs = [\n      { id: 'hi', native: 'हिन्दी', note: 'Hindi' },\n      { id: 'en', native: 'English', note: 'अंग्रेज़ी' },\n      { id: 'ur', native: 'اردو', note: 'Urdu', soon: true },\n      { id: 'bho', native: 'भोजपुरी', note: 'Bhojpuri', soon: true },\n      { id: 'awa', native: 'अवधी', note: 'Awadhi', soon: true }\n    ];\n    const langs = langDefs.map((l) => {\n      const on = L === l.id;\n      return {\n        native: l.native,\n        note: l.soon ? l.note + ' · ' + t.soon : l.note,\n        on: on,\n        pressed: on ? 'true' : 'false',\n        disabled: !!l.soon,\n        style: optionRow(on, !!l.soon),\n        nativeStyle: 'font-size: ' + px(18) + '; font-weight: 800; color: ' + c.ink,\n        pick: () => { if (!l.soon) this.setState({ lang: l.id }); }\n      };\n    });\n\n    const sizes = [\n      { v: 1, label: 'A', fs: '16px', aria: 'Normal text' },\n      { v: 1.2, label: 'A+', fs: '20px', aria: 'Large text' },\n      { v: 1.4, label: 'A++', fs: '24px', aria: 'Extra large text' }\n    ].map((z) => {\n      const on = st.scale === z.v;\n      return { label: z.label, aria: z.aria, pressed: on ? 'true' : 'false', style: seg(on) + '; font-size: ' + z.fs, pick: () => this.setState({ scale: z.v }) };\n    });\n\n    const speeds = ['slow', 'normal', 'fast'].map((v) => {\n      const on = st.speed === v;\n      return { label: t[v], pressed: on ? 'true' : 'false', style: seg(on), pick: () => this.setState({ speed: v }) };\n    });\n\n    const needDefs = [['walk', 'nWalk'], ['wheel', 'nWheel'], ['read', 'nRead'], ['sign', 'nSign']];\n    const bdNeeds = needDefs.map(([id, key]) => {\n      const on = !!st.bd.needs[id];\n      return {\n        label: t[key], pressed: on ? 'true' : 'false', style: chip(on),\n        pick: () => this.up('bd', { needs: Object.assign({}, st.bd.needs, { [id]: !on }) })\n      };\n    });\n    const anyNeed = needDefs.some(([id]) => st.bd.needs[id]);\n    const bdGender = [['any', 'gAny'], ['woman', 'gWoman'], ['man', 'gMan']].map(([id, key]) => {\n      const on = st.bd.gender === id;\n      return { label: t[key], pressed: on ? 'true' : 'false', style: seg(on), pick: () => this.up('bd', { gender: id }) };\n    });\n    const bdGate = [['side', 'sideGate'], ['main', 'mainGate']].map(([id, key]) => {\n      const on = st.bd.gate === id;\n      return { label: t[key], pressed: on ? 'true' : 'false', style: optionRow(on, false), pick: () => this.up('bd', { gate: id }) };\n    });\n\n    const relLabel = { son: t.relSon, daughter: t.relDaughter, spouse: t.relSpouse, other: t.relOther };\n    const cpValid = st.cp.name.trim().length > 1 && st.cp.adult && st.cp.single;\n    const hvValid = st.hv.ack;\n\n    const vidDefs = [['v1', '[3:10]'], ['v2', '[1:45]'], ['v3', '[2:20]'], ['v4', '[1:30]']];\n    const vids = vidDefs.map(([id, dur]) => {\n      const on = st.isl.playing === id;\n      return {\n        title: t[id],\n        dur: (on ? t.nowPlaying + ' · ' : '') + t.islMeta + (st.islVoice ? ' · ' + t.voiceOn : '') + ' · ' + dur,\n        btn: on ? t.playing : t.play,\n        aria: (on ? t.playing : t.play) + ': ' + t[id],\n        style: 'display: flex; align-items: center; gap: 10px; border-radius: 14px; padding: 8px; background: ' + c.card + '; border: ' + (on ? '2px solid ' + c.accent : '1px solid ' + c.line),\n        btnStyle: 'min-height: 44px; min-width: 64px; padding: 0 12px; border-radius: 22px; font-size: ' + px(14) + '; font-weight: 800; flex-shrink: 0; ' +\n          (on ? 'border: none; background: ' + c.accent + '; color: ' + c.accentInk : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink),\n        pick: () => {\n          this.up('isl', { playing: on ? null : id });\n          if (on) { this.stopSpeak(); this.stopSign(); return; }\n          this.startSign();\n          if (st.islVoice) this.speak(t[id], L === 'hi' ? 'hi-IN' : 'en-IN');\n        }\n      };\n    });\n\n    const hvList = members.map((m) => {\n      const on = st.hv.who === m.id;\n      return {\n        label: m.n[L],\n        tag: m.eligible ? t.eligible : t.notEligible,\n        pressed: on ? 'true' : 'false',\n        disabled: !m.eligible,\n        style: optionRow(on && m.eligible, !m.eligible),\n        nameStyle: 'font-size: ' + px(16) + '; font-weight: 700; color: ' + c.ink,\n        tagStyle: 'font-size: ' + px(13) + '; font-weight: 700; color: ' + (m.eligible ? c.ok : c.muted),\n        pick: () => { if (m.eligible) this.up('hv', { who: m.id }); }\n      };\n    });\n\n    const titles = {\n      hub: [t.hubTitle, t.hubSub], settings: [t.settingsTitle, 'Language · भाषा'],\n      pickup: [t.pickup, t.pickupScreenSub], pickupDone: [t.pickup, t.pickupScreenSub],\n      buddy: [t.buddy, t.buddyScreenSub], buddyDone: [t.buddy, t.buddyScreenSub],\n      companion: [t.companion, t.companionScreenSub], companionDone: [t.companion, t.companionScreenSub],\n      isl: [t.isl, t.islScreenSub], hv: [t.hvTitle, t.hvScreenSub], hvDone: [t.hvTitle, t.hvScreenSub]\n    };\n    const scrName = st.screen;\n    const scr = {};\n    Object.keys(titles).forEach((key) => { scr[key] = key === scrName; });\n\n    const go = (name) => () => this.setState({ screen: name });\n    const toggle = (key) => () => this.setState({ [key]: !st[key] });\n    const flip = (key, field) => () => this.up(key, { [field]: !st[key][field] });\n\n    const GL = {\n      v1: { en: ['EVM', 'BLUE BUTTON', 'PRESS', 'BEEP', 'VVPAT', 'SLIP', 'LOOK', '7 SECONDS'], hi: ['EVM', 'नीला बटन', 'दबाएँ', 'बीप', 'VVPAT', 'पर्ची', 'देखें', '7 सेकंड'] },\n      v2: { en: ['APP', 'OPEN', 'MY BOOTH', 'SEE', 'QUEUE', 'SHORT', 'GO NOW'], hi: ['ऐप', 'खोलें', 'मेरा बूथ', 'देखें', 'लाइन', 'छोटी', 'अभी जाएँ'] },\n      v3: { en: ['BUDDY', 'BOOK', 'GATE', 'MEET', 'SIGN', 'HELP', 'WOMAN', 'ASK'], hi: ['साथी', 'बुक', 'गेट', 'मिलें', 'संकेत', 'मदद', 'महिला', 'माँगें'] },\n      v4: { en: ['DANGER', 'POWER', 'PRESS', 'THREE', 'POLICE', 'COME', 'SAFE'], hi: ['खतरा', 'पावर', 'दबाएँ', 'तीन', 'पुलिस', 'आएगी', 'सुरक्षित'] }\n    };\n    this._gloss = { v1: GL.v1[L], v2: GL.v2[L], v3: GL.v3[L], v4: GL.v4[L] };\n    const playingId = st.isl.playing;\n    const glossWords = playingId ? this._gloss[playingId] : [];\n    const gloss = glossWords.map((w, i) => ({\n      w,\n      style: 'font-size: ' + px(13) + '; font-weight: 800; letter-spacing: 0.3px; border-radius: 6px; padding: 2px 8px; ' +\n        (i === st.islWord ? 'background: #FFD54A; color: #13233A' : i \u003c st.islWord ? 'color: #FFFFFF' : 'color: #8FA0BF')\n    }));\n\n    const ttsLang = L === 'hi' ? 'hi-IN' : 'en-IN';\n    this._screenSpeech = titles[scrName][0] + '. ' + titles[scrName][1];\n    const listenStyle = 'width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; ' +\n      (st.speaking ? 'border: none; background: ' + c.accent + '; color: ' + c.accentInk : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink);\n\n    const tileOk = s.tileBadge;\n    const tileNorm = s.tileSub;\n\n    return {\n      L, t, c, s, scr,\n      notHub: scrName !== 'hub',\n      title: titles[scrName][0],\n      subtitle: titles[scrName][1],\n      langCode: L === 'hi' ? 'हिं' : 'EN',\n      voice: st.voice,\n      voiceBanner: t.voiceBanner + ' · ' + t[st.speed],\n      contrast: st.contrast,\n      vibrate: st.vibrate,\n      phone: st.phone,\n      pu: st.pu, bd: st.bd, cp: st.cp, hv: st.hv,\n\n      hvPending: !st.hv.sent,\n      hvSent: st.hv.sent,\n\n      puTile: st.pu.booked ? t.booked + ' · ' + slotTime : t.pickupSub,\n      puTileStyle: st.pu.booked ? tileOk : tileNorm,\n      bdTile: st.bd.booked ? t.booked + ' · ' + nm(st.bd.who) : t.buddySub,\n      bdTileStyle: st.bd.booked ? tileOk : tileNorm,\n      cpTile: st.cp.saved ? t.saved + ' · ' + st.cp.name : t.companionSub,\n      cpTileStyle: st.cp.saved ? tileOk : tileNorm,\n\n      langs, sizes, speeds, slots,\n      puWho: memberChips('pu', 'who'),\n      bdWho: memberChips('bd', 'who'),\n      cpVoter: memberChips('cp', 'voter'),\n      bdNeeds, bdGender, bdGate, vids, hvList,\n\n      puDone: { who: nm(st.pu.who), time: slotTime, vehicle: st.pu.wheel ? t.vehicleWheel : t.vehicleStd },\n      bdDone: {\n        who: nm(st.bd.who),\n        gate: st.bd.gate === 'side' ? t.sideGate : t.mainGate,\n        time: st.pu.booked ? slotTime : t.whenArrive,\n        needs: needDefs.filter(([id]) => st.bd.needs[id]).map(([, key]) => t[key]).join(', ')\n      },\n      cpDone: { voter: nm(st.cp.voter), name: st.cp.name, rel: relLabel[st.cp.rel], phone: st.cp.phone || '—' },\n\n      bdDisabled: !anyNeed,\n      bdBtnStyle: anyNeed ? primary : primaryOff,\n      cpDisabled: !cpValid,\n      cpBtnStyle: cpValid ? primary : primaryOff,\n      hvDisabled: !hvValid,\n      hvBtnStyle: hvValid ? primary : primaryOff,\n      islCalling: st.isl.calling,\n      islIdle: !st.isl.calling,\n\n      goHub: go('hub'), goSettings: go('settings'), goPickup: () => this.setState({ screen: st.pu.booked ? 'pickupDone' : 'pickup' }),\n      goBuddy: () => this.setState({ screen: st.bd.booked ? 'buddyDone' : 'buddy' }),\n      goCompanion: () => this.setState({ screen: st.cp.saved ? 'companionDone' : 'companion' }),\n      goIsl: go('isl'), goHv: go('hv'),\n\n      toggleVoice: toggle('voice'), toggleContrast: toggle('contrast'), toggleVibrate: toggle('vibrate'), togglePhone: toggle('phone'),\n      togglePuWheel: flip('pu', 'wheel'), togglePuDoor: flip('pu', 'door'),\n      toggleCpAdult: flip('cp', 'adult'), toggleCpSingle: flip('cp', 'single'),\n      toggleHvAck: flip('hv', 'ack'),\n\n      setCpName: (e) => this.up('cp', { name: e.target.value }),\n      setCpRel: (e) => this.up('cp', { rel: e.target.value }),\n      setCpPhone: (e) => this.up('cp', { phone: e.target.value }),\n\n      bookPickup: () => this.setState({ pu: Object.assign({}, st.pu, { booked: true }), screen: 'pickupDone' }),\n      cancelPickup: () => this.setState({ pu: Object.assign({}, st.pu, { booked: false }), screen: 'hub' }),\n      findBuddy: () => { if (anyNeed) this.setState({ bd: Object.assign({}, st.bd, { booked: true }), screen: 'buddyDone' }); },\n      cancelBuddy: () => this.setState({ bd: Object.assign({}, st.bd, { booked: false }), screen: 'hub' }),\n      saveCompanion: () => { if (cpValid) this.setState({ cp: Object.assign({}, st.cp, { saved: true }), screen: 'companionDone' }); },\n      editCompanion: () => this.setState({ cp: Object.assign({}, st.cp, { saved: false }), screen: 'companion' }),\n      sendHv: () => { if (hvValid) this.setState({ hv: Object.assign({}, st.hv, { sent: true }), screen: 'hvDone' }); },\n      startCall: () => this.up('isl', { calling: true }),\n      endCall: () => this.up('isl', { calling: false }),\n\n      islVoice: st.islVoice,\n      toggleIslVoice: toggle('islVoice'),\n      islPlaying: !!playingId,\n      islPlayingTitle: playingId ? t.nowPlaying + ': ' + t[playingId] : '',\n      gloss,\n      signAria: playingId ? 'Avatar signing: ' + glossWords.join(' ') : '',\n      listenStyle,\n      listenAria: st.speaking ? t.stopListen : t.listen,\n      speakingStr: st.speaking ? 'true' : 'false',\n      speakTitle: () => { if (this.state.speaking) this.stopSpeak(); else this.speak(this._screenSpeech, ttsLang); }\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n"};var of=window.fetch;window.fetch=function(u,o){try{var s=String(u&&u.url||u);var n=s.split("#")[0].split("?")[0].split("/").pop();if(location.protocol==="file:"&&Object.prototype.hasOwnProperty.call(M,n)){return Promise.resolve(new Response(M[n],{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}}));}}catch(e){}return of.apply(this,arguments);};})();</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}
+button{font-family:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed}
+@keyframes ab-armL{0%{transform:rotate(0deg)}100%{transform:rotate(-38deg)}}
+@keyframes ab-foreL{0%{transform:rotate(0deg)}100%{transform:rotate(-55deg)}}
+@keyframes ab-armR{0%{transform:rotate(0deg)}100%{transform:rotate(32deg)}}
+@keyframes ab-foreR{0%{transform:rotate(0deg)}100%{transform:rotate(60deg)}}
+</style>
+</helmet>
+<div lang="{{L}}" style="{{s.root}}">
+<div style="{{s.scroll}}">
+
+<div style="display: flex; align-items: center; gap: 10px">
+<sc-if value="{{notHub}}" hint-placeholder-val="{{false}}">
+<button aria-label="{{t.back}}" onClick="{{goHub}}" style="{{s.iconBtn}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</button>
+</sc-if>
+<div style="flex: 1; display: flex; flex-direction: column; line-height: 1.15; min-width: 0">
+<span style="{{s.h1}}">{{title}}</span>
+<span style="{{s.sub}}">{{subtitle}}</span>
+</div>
+<button aria-label="{{listenAria}}" aria-pressed="{{speakingStr}}" onClick="{{speakTitle}}" style="{{listenStyle}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+</button>
+<sc-if value="{{scr.hub}}" hint-placeholder-val="{{true}}">
+<button aria-label="{{t.settingsTitle}}" onClick="{{goSettings}}" style="{{s.pillBtn}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M3 12h18M12 3c2.5 2.7 3.7 5.7 3.7 9s-1.2 6.3-3.7 9c-2.5-2.7-3.7-5.7-3.7-9S9.5 5.7 12 3z"></path></svg>
+<span>{{langCode}}</span>
+<span style="font-weight: 800">Aa</span>
+</button>
+</sc-if>
+</div>
+
+<sc-if value="{{voice}}" hint-placeholder-val="{{false}}">
+<div role="status" style="{{s.voiceBar}}">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+<span>{{voiceBanner}}</span>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.hub}}" hint-placeholder-val="{{true}}">
+<div style="{{s.stack}}">
+
+<label style="{{s.strongRow}}">
+<span style="display: flex; align-items: center; gap: 10px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+<span style="display: flex; flex-direction: column; line-height: 1.2">
+<span style="{{s.strongTitle}}">{{t.voiceTitle}}</span>
+<span style="{{s.strongSub}}">{{t.voiceSub}}</span>
+</span>
+</span>
+<input type="checkbox" checked="{{voice}}" onChange="{{toggleVoice}}" style="{{s.checkStrong}}">
+</label>
+
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<a href="Rehearsal.dc.html" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><path d="M4 4l16 16"></path></svg>
+<span style="{{s.tileTitle}}">{{t.rehearsal}}</span>
+<span style="{{s.tileSub}}">{{t.rehearsalSub}}</span>
+</a>
+<button onClick="{{goBuddy}}" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20a6.5 6.5 0 0 1 13 0"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"></path></svg>
+<span style="{{s.tileTitle}}">{{t.buddy}}</span>
+<span style="{{bdTileStyle}}">{{bdTile}}</span>
+</button>
+<button onClick="{{goIsl}}" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path><path d="M9 10h6"></path></svg>
+<span style="{{s.tileTitle}}">{{t.isl}}</span>
+<span style="{{s.tileSub}}">{{t.islSub}}</span>
+</button>
+<a href="RampCheck.dc.html" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 19h18L7 9H3z"></path><path d="M3 15h4"></path></svg>
+<span style="{{s.tileTitle}}">{{t.ramp}}</span>
+<span style="{{s.tileSub}}">{{t.rampSub}}</span>
+</a>
+<a href="AiVoice.dc.html" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 5h9M7.5 3v2M5 5c0 4 3 7 6 8M10 5c0 3-2.5 6.5-6 8"></path><path d="M13 21l4-10 4 10M14.5 17.5h5"></path></svg>
+<span style="{{s.tileTitle}}">{{t.aiTile}}</span>
+<span style="{{s.tileSub}}">{{t.aiTileSub}}</span>
+</a>
+<a href="Chat.dc.html" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4z"></path><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01"></path></svg>
+<span style="{{s.tileTitle}}">{{t.chatTile}}</span>
+<span style="{{s.tileSub}}">{{t.chatTileSub}}</span>
+</a>
+</div>
+
+<label style="{{s.toggleRow}}">
+<span style="display: flex; flex-direction: column; line-height: 1.25">
+<span style="{{s.label}}">{{t.phoneTitle}}</span>
+<span style="{{s.small}}">{{t.phoneSub}}</span>
+</span>
+<input type="checkbox" checked="{{phone}}" onChange="{{togglePhone}}" style="{{s.check}}">
+</label>
+
+<div style="{{s.noteRow}}">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+<span>{{t.sosNote}}</span>
+</div>
+
+</div>
+</sc-if>
+
+<sc-if value="{{scr.settings}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<span style="{{s.label}}">{{t.langLabel}}</span>
+<div style="{{s.stack6}}">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="5">
+<button aria-pressed="{{l.pressed}}" disabled="{{l.disabled}}" onClick="{{l.pick}}" style="{{l.style}}">
+<span style="display: flex; flex-direction: column; line-height: 1.2">
+<span style="{{l.nativeStyle}}">{{l.native}}</span>
+<span style="{{s.small}}">{{l.note}}</span>
+</span>
+<sc-if value="{{l.on}}" hint-placeholder-val="{{false}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5 9-10"></path></svg>
+</sc-if>
+</button>
+</sc-for>
+</div>
+
+<span style="{{s.label}}">{{t.textSize}}</span>
+<div style="{{s.row}}">
+<sc-for list="{{sizes}}" as="z" hint-placeholder-count="3">
+<button aria-pressed="{{z.pressed}}" aria-label="{{z.aria}}" onClick="{{z.pick}}" style="{{z.style}}">{{z.label}}</button>
+</sc-for>
+</div>
+
+<label style="{{s.toggleRow}}">
+<span style="display: flex; flex-direction: column; line-height: 1.25">
+<span style="{{s.label}}">{{t.contrast}}</span>
+<span style="{{s.small}}">{{t.contrastSub}}</span>
+</span>
+<input type="checkbox" checked="{{contrast}}" onChange="{{toggleContrast}}" style="{{s.check}}">
+</label>
+
+<label style="{{s.toggleRow}}">
+<span style="display: flex; flex-direction: column; line-height: 1.25">
+<span style="{{s.label}}">{{t.vibrate}}</span>
+<span style="{{s.small}}">{{t.vibrateSub}}</span>
+</span>
+<input type="checkbox" checked="{{vibrate}}" onChange="{{toggleVibrate}}" style="{{s.check}}">
+</label>
+
+<span style="{{s.label}}">{{t.speed}}</span>
+<div style="{{s.row}}">
+<sc-for list="{{speeds}}" as="v" hint-placeholder-count="3">
+<button aria-pressed="{{v.pressed}}" onClick="{{v.pick}}" style="{{v.style}}">{{v.label}}</button>
+</sc-for>
+</div>
+
+<div style="{{s.softCard}}">
+<span style="{{s.softTitle}}">{{t.previewLabel}}</span>
+<span style="{{s.softText}}">{{t.preview}}</span>
+</div>
+
+<button onClick="{{goHub}}" style="{{s.primary}}">{{t.done}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.pickup}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<span style="{{s.label}}">{{t.who}}</span>
+<div style="{{s.wrap}}">
+<sc-for list="{{puWho}}" as="m" hint-placeholder-count="4">
+<button aria-pressed="{{m.pressed}}" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}}</button>
+</sc-for>
+</div>
+
+<span style="{{s.label}}">{{t.needs}}</span>
+<label style="{{s.toggleRow}}">
+<span style="{{s.body}}">{{t.wheelVehicle}}</span>
+<input type="checkbox" checked="{{pu.wheel}}" onChange="{{togglePuWheel}}" style="{{s.check}}">
+</label>
+<label style="{{s.toggleRow}}">
+<span style="{{s.body}}">{{t.doorHelp}}</span>
+<input type="checkbox" checked="{{pu.door}}" onChange="{{togglePuDoor}}" style="{{s.check}}">
+</label>
+
+<span style="{{s.label}}">{{t.pickTime}}</span>
+<div style="{{s.stack6}}">
+<sc-for list="{{slots}}" as="sl" hint-placeholder-count="4">
+<button aria-pressed="{{sl.pressed}}" onClick="{{sl.pick}}" style="{{sl.style}}">
+<span style="display: flex; flex-direction: column; line-height: 1.2">
+<span style="{{s.label}}">{{sl.time}}</span>
+<span style="{{sl.qStyle}}">{{sl.q}}</span>
+</span>
+<sc-if value="{{sl.best}}" hint-placeholder-val="{{false}}">
+<span style="{{s.badge}}">{{t.recommended}}</span>
+</sc-if>
+</button>
+</sc-for>
+</div>
+
+<div style="{{s.card}}; flex-direction: row; align-items: center; justify-content: space-between">
+<span style="display: flex; flex-direction: column; line-height: 1.25">
+<span style="{{s.small}}">{{t.from}}</span>
+<span style="{{s.label}}">{{t.homeAddr}}</span>
+</span>
+<button style="{{s.linkBtn}}">{{t.change}}</button>
+</div>
+
+<button onClick="{{bookPickup}}" style="{{s.primary}}">{{t.bookPickup}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.pickupDone}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<div style="{{s.okCard}}">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="{{c.ok}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M7 12l3.5 3.5L17 9"></path></svg>
+<span style="{{s.okTitle}}">{{t.pickupDoneTitle}}</span>
+</div>
+<span style="{{s.body}}">{{t.pickupDoneSub}}</span>
+</div>
+<div style="{{s.card}}">
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.traveller}}</span><span style="{{s.detailVal}}">{{puDone.who}}</span></div>
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.time}}</span><span style="{{s.detailVal}}">{{puDone.time}}</span></div>
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.vehicle}}</span><span style="{{s.detailVal}}">{{puDone.vehicle}}</span></div>
+<div style="{{s.detailRowLast}}"><span style="{{s.detailKey}}">{{t.from}}</span><span style="{{s.detailVal}}">{{t.homeAddr}}</span></div>
+</div>
+<button onClick="{{goBuddy}}" style="{{s.secondaryFull}}">{{t.addBuddy}}</button>
+<button onClick="{{goHub}}" style="{{s.primary}}">{{t.backToHub}}</button>
+<button onClick="{{cancelPickup}}" style="{{s.linkBtn}}">{{t.cancelBooking}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.buddy}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<span style="{{s.label}}">{{t.whoHelp}}</span>
+<div style="{{s.wrap}}">
+<sc-for list="{{bdWho}}" as="m" hint-placeholder-count="4">
+<button aria-pressed="{{m.pressed}}" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}}</button>
+</sc-for>
+</div>
+
+<span style="{{s.label}}">{{t.helpWith}}</span>
+<div style="{{s.wrap}}">
+<sc-for list="{{bdNeeds}}" as="n" hint-placeholder-count="4">
+<button aria-pressed="{{n.pressed}}" onClick="{{n.pick}}" style="{{n.style}}">{{n.label}}</button>
+</sc-for>
+</div>
+
+<span style="{{s.label}}">{{t.pref}}</span>
+<div style="{{s.row}}">
+<sc-for list="{{bdGender}}" as="g" hint-placeholder-count="3">
+<button aria-pressed="{{g.pressed}}" onClick="{{g.pick}}" style="{{g.style}}">{{g.label}}</button>
+</sc-for>
+</div>
+
+<span style="{{s.label}}">{{t.meetAt}}</span>
+<div style="{{s.stack6}}">
+<sc-for list="{{bdGate}}" as="g" hint-placeholder-count="2">
+<button aria-pressed="{{g.pressed}}" onClick="{{g.pick}}" style="{{g.style}}">
+<span style="{{s.label}}">{{g.label}}</span>
+</button>
+</sc-for>
+</div>
+
+<button disabled="{{bdDisabled}}" onClick="{{findBuddy}}" style="{{bdBtnStyle}}">{{t.findBuddy}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.buddyDone}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<div style="{{s.okCard}}">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="{{c.ok}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M7 12l3.5 3.5L17 9"></path></svg>
+<span style="{{s.okTitle}}">{{t.buddyDoneTitle}}</span>
+</div>
+</div>
+<div style="{{s.card}}">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="{{s.avatar}}">V</div>
+<div style="display: flex; flex-direction: column; line-height: 1.25">
+<span style="{{s.label}}">{{t.volunteer}}</span>
+<span style="{{s.okSmall}}">{{t.verified}}</span>
+</div>
+</div>
+<div style="{{s.row}}">
+<button style="{{s.secondary}}">{{t.call}}</button>
+<button style="{{s.secondary}}">{{t.message}}</button>
+</div>
+</div>
+<div style="{{s.card}}">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="{{s.label}}">{{t.trackTitle}}</span>
+<span style="font-size: 13px; font-weight: 800; color: #0F6E63; background: #E3F1EE; border-radius: 10px; padding: 2px 8px">{{t.trackEta}}</span>
+</div>
+<div style="display: flex; align-items: center; gap: 6px; margin-top: 10px">
+<span style="width: 14px; height: 14px; border-radius: 7px; background: #0F6E63; flex-shrink: 0"></span>
+<span style="flex: 1; height: 6px; border-radius: 3px; background: linear-gradient(90deg, #0F6E63 62%, #E2E0D8 62%)"></span>
+<span style="width: 14px; height: 14px; border-radius: 7px; border: 3px solid #1F4FBF; box-sizing: border-box; flex-shrink: 0"></span>
+</div>
+<div style="display: flex; justify-content: space-between; font-size: 12px; color: #4F5B6B; margin-top: 4px"><span>{{t.trackFrom}}</span><span>{{t.trackTo}}</span></div>
+<span style="display: block; font-size: 13px; color: #4F5B6B; margin-top: 8px; line-height: 1.35">{{t.trackId}}</span>
+</div>
+<div style="{{s.card}}">
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.forWhom}}</span><span style="{{s.detailVal}}">{{bdDone.who}}</span></div>
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.meetingPoint}}</span><span style="{{s.detailVal}}">{{bdDone.gate}}</span></div>
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.time}}</span><span style="{{s.detailVal}}">{{bdDone.time}}</span></div>
+<div style="{{s.detailRowLast}}"><span style="{{s.detailKey}}">{{t.helpWith}}</span><span style="{{s.detailVal}}">{{bdDone.needs}}</span></div>
+</div>
+<button onClick="{{goHub}}" style="{{s.primary}}">{{t.backToHub}}</button>
+<button onClick="{{cancelBuddy}}" style="{{s.linkBtn}}">{{t.cancelBooking}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.companion}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<div style="{{s.softCard}}">
+<span style="{{s.softTitle}}">{{t.rulesTitle}}</span>
+<span style="{{s.softText}}">1. {{t.rule1}}</span>
+<span style="{{s.softText}}">2. {{t.rule2}}</span>
+<span style="{{s.softText}}">3. {{t.rule3}}</span>
+</div>
+
+<span style="{{s.label}}">{{t.forVoter}}</span>
+<div style="{{s.wrap}}">
+<sc-for list="{{cpVoter}}" as="m" hint-placeholder-count="4">
+<button aria-pressed="{{m.pressed}}" onClick="{{m.pick}}" style="{{m.style}}">{{m.label}}</button>
+</sc-for>
+</div>
+
+<label style="{{s.fieldLabel}}">{{t.cName}}
+<input type="text" value="{{cp.name}}" onChange="{{setCpName}}" placeholder="{{t.namePh}}" style="{{s.input}}">
+</label>
+<div style="{{s.row}}">
+<label style="{{s.fieldLabel}}; flex: 1">{{t.cRel}}
+<select value="{{cp.rel}}" onChange="{{setCpRel}}" style="{{s.input}}">
+<option value="son">{{t.relSon}}</option>
+<option value="daughter">{{t.relDaughter}}</option>
+<option value="spouse">{{t.relSpouse}}</option>
+<option value="other">{{t.relOther}}</option>
+</select>
+</label>
+<label style="{{s.fieldLabel}}; flex: 1.2">{{t.cPhone}}
+<input type="tel" value="{{cp.phone}}" onChange="{{setCpPhone}}" placeholder="[10-digit no.]" style="{{s.input}}">
+</label>
+</div>
+
+<label style="{{s.toggleRow}}">
+<span style="{{s.body}}">{{t.cAdult}}</span>
+<input type="checkbox" checked="{{cp.adult}}" onChange="{{toggleCpAdult}}" style="{{s.check}}">
+</label>
+<label style="{{s.toggleRow}}">
+<span style="{{s.body}}">{{t.cSingle}}</span>
+<input type="checkbox" checked="{{cp.single}}" onChange="{{toggleCpSingle}}" style="{{s.check}}">
+</label>
+
+<button disabled="{{cpDisabled}}" onClick="{{saveCompanion}}" style="{{cpBtnStyle}}">{{t.saveCompanion}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.companionDone}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<div style="{{s.passCard}}">
+<div style="{{s.passBand}}">{{t.companionDoneTitle}}</div>
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 16px">
+<div role="img" aria-label="QR code for the companion pass" style="{{s.qr}}">[QR]</div>
+<div style="width: 100%; display: flex; flex-direction: column">
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.voterL}}</span><span style="{{s.detailVal}}">{{cpDone.voter}}</span></div>
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.companionL}}</span><span style="{{s.detailVal}}">{{cpDone.name}}</span></div>
+<div style="{{s.detailRow}}"><span style="{{s.detailKey}}">{{t.cRel}}</span><span style="{{s.detailVal}}">{{cpDone.rel}}</span></div>
+<div style="{{s.detailRowLast}}"><span style="{{s.detailKey}}">{{t.cPhone}}</span><span style="{{s.detailVal}}">{{cpDone.phone}}</span></div>
+</div>
+</div>
+</div>
+<span style="{{s.small}}">{{t.companionDoneNote}}</span>
+<button onClick="{{goHub}}" style="{{s.primary}}">{{t.backToHub}}</button>
+<button onClick="{{editCompanion}}" style="{{s.linkBtn}}">{{t.edit}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.isl}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<label style="{{s.toggleRow}}">
+<span style="display: flex; align-items: center; gap: 10px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+<span style="display: flex; flex-direction: column; line-height: 1.25">
+<span style="{{s.label}}">{{t.islVoice}}</span>
+<span style="{{s.small}}">{{t.islVoiceSub}}</span>
+</span>
+</span>
+<input type="checkbox" checked="{{islVoice}}" onChange="{{toggleIslVoice}}" style="{{s.check}}">
+</label>
+<sc-if value="{{islPlaying}}" hint-placeholder-val="{{false}}">
+<div style="border-radius: 16px; overflow: hidden; background: #1B2A44; display: flex; flex-direction: column">
+<svg width="100%" height="190" viewBox="0 0 200 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{signAria}}" style="display: block">
+<rect x="0" y="0" width="200" height="180" fill="#1B2A44"></rect>
+<path d="M48 180 C50 150 72 132 100 132 C128 132 150 150 152 180 Z" fill="#2E5BC9"></path>
+<rect x="91" y="98" width="18" height="18" rx="6" fill="#B97A4E"></rect>
+<circle cx="100" cy="78" r="26" fill="#C98A5B"></circle>
+<path d="M74 76 C74 54 88 46 100 46 C114 46 127 54 126 76 C120 64 110 60 100 60 C90 60 80 64 74 76 Z" fill="#1F1B18"></path>
+<circle cx="91" cy="80" r="2.6" fill="#1F1B18"></circle>
+<circle cx="109" cy="80" r="2.6" fill="#1F1B18"></circle>
+<path d="M86 73 L95 72 M105 72 L114 73" stroke="#1F1B18" stroke-width="2.4" stroke-linecap="round"></path>
+<path d="M93 90 Q100 95 107 90" stroke="#7A3E22" stroke-width="2.4" fill="none" stroke-linecap="round"></path>
+<g style="transform-origin: 74px 142px; animation: ab-armL 0.8s ease-in-out infinite alternate">
+<path d="M74 142 L58 170" stroke="#4A76E8" stroke-width="15" stroke-linecap="round"></path>
+<g style="transform-origin: 58px 170px; animation: ab-foreL 0.55s ease-in-out infinite alternate">
+<path d="M58 170 L80 140" stroke="#C98A5B" stroke-width="10" stroke-linecap="round"></path>
+<g transform="translate(82 138)">
+<rect x="-8" y="-13" width="16" height="15" rx="5" fill="#E2AC7C"></rect>
+<path d="M-6 -13v-8M-2 -14v-10M2 -14v-10M6 -13v-8M-8 -5l-6 -4" stroke="#E2AC7C" stroke-width="3.6" stroke-linecap="round"></path>
+</g>
+</g>
+</g>
+<g style="transform-origin: 126px 142px; animation: ab-armR 0.95s ease-in-out infinite alternate">
+<path d="M126 142 L142 170" stroke="#4A76E8" stroke-width="15" stroke-linecap="round"></path>
+<g style="transform-origin: 142px 170px; animation: ab-foreR 0.6s ease-in-out infinite alternate">
+<path d="M142 170 L120 140" stroke="#C98A5B" stroke-width="10" stroke-linecap="round"></path>
+<g transform="translate(118 138)">
+<rect x="-8" y="-13" width="16" height="15" rx="5" fill="#E2AC7C"></rect>
+<path d="M6 -13v-8M2 -14v-10M-2 -14v-10M-6 -13v-8M8 -5l6 -4" stroke="#E2AC7C" stroke-width="3.6" stroke-linecap="round"></path>
+</g>
+</g>
+</g>
+</svg>
+<div role="log" aria-label="Sign-language captions" style="background: #0F1A2E; padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center">
+<sc-for list="{{gloss}}" as="g" hint-placeholder-count="8">
+<span style="{{g.style}}">{{g.w}}</span>
+</sc-for>
+</div>
+<div style="padding: 8px 12px 10px; color: #FFFFFF; font-size: 14px; font-weight: 700; line-height: 1.3">{{islPlayingTitle}}</div>
+</div>
+</sc-if>
+<span style="{{s.label}}">{{t.videos}}</span>
+<div style="{{s.stack6}}">
+<sc-for list="{{vids}}" as="vd" hint-placeholder-count="4">
+<div style="{{vd.style}}">
+<div style="{{s.thumb}}; background: #1B2A44; overflow: hidden">
+<svg width="84" height="56" viewBox="35 44 130 87" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="display: block">
+<rect x="0" y="0" width="200" height="180" fill="#1B2A44"></rect>
+<path d="M48 180 C50 150 72 132 100 132 C128 132 150 150 152 180 Z" fill="#2E5BC9"></path>
+<circle cx="100" cy="78" r="26" fill="#C98A5B"></circle>
+<path d="M74 76 C74 54 88 46 100 46 C114 46 127 54 126 76 C120 64 110 60 100 60 C90 60 80 64 74 76 Z" fill="#1F1B18"></path>
+<path d="M74 142 L58 170 L80 140" stroke="#C98A5B" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M126 142 L142 170 L120 140" stroke="#C98A5B" stroke-width="10" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+<rect x="74" y="125" width="16" height="15" rx="5" fill="#E2AC7C"></rect>
+<rect x="110" y="125" width="16" height="15" rx="5" fill="#E2AC7C"></rect>
+</svg>
+</div>
+<div style="flex: 1; display: flex; flex-direction: column; line-height: 1.25; min-width: 0">
+<span style="{{s.labelSm}}">{{vd.title}}</span>
+<span style="{{s.small}}">{{vd.dur}}</span>
+</div>
+<button aria-label="{{vd.aria}}" onClick="{{vd.pick}}" style="{{vd.btnStyle}}">{{vd.btn}}</button>
+</div>
+</sc-for>
+</div>
+
+<div style="{{s.card}}">
+<span style="{{s.label}}">{{t.interpTitle}}</span>
+<span style="{{s.small}}">{{t.interpSub}}</span>
+<sc-if value="{{islCalling}}" hint-placeholder-val="{{false}}">
+<div role="status" style="{{s.callingBox}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0"><rect x="3" y="6" width="13" height="12" rx="2"></rect><path d="M16 10l5-3v10l-5-3z"></path></svg>
+<span style="flex: 1">{{t.connecting}}</span>
+<button onClick="{{endCall}}" style="{{s.linkBtn}}">{{t.endCall}}</button>
+</div>
+</sc-if>
+<sc-if value="{{islIdle}}" hint-placeholder-val="{{true}}">
+<button onClick="{{startCall}}" style="{{s.primary}}">{{t.startCall}}</button>
+</sc-if>
+<button style="{{s.secondaryFull}}">{{t.textChat}}</button>
+</div>
+
+<div style="{{s.card}}">
+<span style="{{s.label}}">{{t.bridgeTitle}}</span>
+<span style="{{s.small}}">{{t.bridgeSub}}</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<a href="AiVoice.dc.html" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+<span style="{{s.tileTitle}}">{{t.speakToSign}}</span>
+<span style="{{s.tileSub}}">{{t.speakToSignSub}}</span>
+</a>
+<a href="AiVoice.dc.html" style="{{s.tile}}">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="{{c.accent}}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12M11 11V4.5a1.5 1.5 0 0 1 3 0V12M14 11.5V6a1.5 1.5 0 0 1 3 0v8a6 6 0 0 1-6 6h-.5a6 6 0 0 1-4.6-2.2L4 15.5a1.5 1.5 0 0 1 2.3-1.9L8 15"></path></svg>
+<span style="{{s.tileTitle}}">{{t.signToVoice}}</span>
+<span style="{{s.tileSub}}">{{t.signToVoiceSub}}</span>
+</a>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.hv}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<div style="{{s.softCard}}">
+<span style="{{s.softTitle}}">{{t.hvWho}}</span>
+<span style="{{s.softText}}">{{t.hvRule}}</span>
+</div>
+<span style="{{s.label}}">{{t.hvChoose}}</span>
+<div style="{{s.stack6}}">
+<sc-for list="{{hvList}}" as="m" hint-placeholder-count="4">
+<button aria-pressed="{{m.pressed}}" disabled="{{m.disabled}}" onClick="{{m.pick}}" style="{{m.style}}">
+<span style="{{m.nameStyle}}">{{m.label}}</span>
+<span style="{{m.tagStyle}}">{{m.tag}}</span>
+</button>
+</sc-for>
+</div>
+<div style="{{s.warnCard}}">
+<span style="{{s.warnText}}">{{t.hvWarn}}</span>
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px">
+<span style="{{s.warnTitle}}">{{t.hvAck}}</span>
+<input type="checkbox" checked="{{hv.ack}}" onChange="{{toggleHvAck}}" style="{{s.check}}">
+</label>
+</div>
+<button disabled="{{hvDisabled}}" onClick="{{sendHv}}" style="{{hvBtnStyle}}">{{t.hvSubmit}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{scr.hvDone}}" hint-placeholder-val="{{false}}">
+<div style="{{s.stack}}">
+<div style="{{s.okCard}}">
+<div style="display: flex; align-items: center; gap: 10px">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="{{c.ok}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M7 12l3.5 3.5L17 9"></path></svg>
+<span style="{{s.okTitle}}">{{t.hvDoneTitle}}</span>
+</div>
+<span style="{{s.body}}">{{t.hvDoneSub}}</span>
+</div>
+<button onClick="{{goHub}}" style="{{s.primary}}">{{t.backToHub}}</button>
+</div>
+</sc-if>
+
+</div>
+
+<nav aria-label="Main" style="{{s.navBar}}">
+<a href="Main.dc.html" style="{{s.navItem}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"></path></svg>
+{{t.navHome}}
+</a>
+<a href="Queue.dc.html" style="{{s.navItem}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>
+{{t.navPoll}}
+</a>
+<a href="ESlip.dc.html" style="{{s.navItem}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6" height="6"></rect><rect x="14" y="4" width="6" height="6"></rect><rect x="4" y="14" width="6" height="6"></rect><path d="M14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2"></path></svg>
+{{t.navReport}}
+</a>
+<a href="Safety.dc.html" style="{{s.navItem}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path></svg>
+{{t.navSafety}}
+</a>
+<a href="Access.dc.html" aria-current="page" style="{{s.navItemOn}}">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"></circle><path d="M5 8.5l7 1 7-1M12 9.5v5l-3.5 6.5M12 14.5l3.5 6.5"></path></svg>
+{{t.navAccess}}
+</a>
+</nav>
+
+<div style="position: absolute; right: 16px; bottom: 96px; z-index: 40"><dc-import name="VoiceNav" variant="fab" hint-size="60px,60px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    try { if ((window.location.hash || '').indexOf('isl') >= 0) this.setState({ screen: 'isl' }); } catch (e) {}
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      screen: 'hub',
+      lang: 'en',
+      scale: 1,
+      contrast: false,
+      voice: false,
+      speed: 'normal',
+      vibrate: true,
+      phone: false,
+      pu: { who: 'kamla', wheel: true, door: true, slot: 's3', booked: false },
+      bd: { who: 'kamla', needs: { walk: true, wheel: true, read: false, sign: false }, gender: 'any', gate: 'side', booked: false },
+      cp: { voter: 'kamla', name: '', rel: 'son', phone: '', adult: false, single: false, saved: false },
+      isl: { playing: null, calling: false },
+      hv: { who: 'kamla', ack: false, sent: false },
+      islVoice: true,
+      speaking: false,
+      islWord: -1
+    };
+  }
+
+  startSign() {
+    clearInterval(this.signTimer);
+    this.setState({ islWord: 0 });
+    this.signTimer = setInterval(() => {
+      const words = (this._gloss && this._gloss[this.state.isl.playing]) || [];
+      if (!words.length) return;
+      this.setState({ islWord: (this.state.islWord + 1) % words.length });
+    }, 800);
+  }
+
+  stopSign() {
+    clearInterval(this.signTimer);
+    this.setState({ islWord: -1 });
+  }
+
+  speak(text, lang) {
+    const done = () => this.setState({ speaking: false });
+    this.setState({ speaking: true });
+    try {
+      const ss = window.speechSynthesis;
+      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') {
+        clearTimeout(this.speakTimer);
+        this.speakTimer = setTimeout(done, 3000);
+        return;
+      }
+      ss.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      u.rate = { slow: 0.8, normal: 1, fast: 1.25 }[this.state.speed] || 1;
+      const vs = ss.getVoices() || [];
+      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||
+        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);
+      if (v) u.voice = v;
+      u.onend = done;
+      u.onerror = done;
+      ss.speak(u);
+    } catch (e) {
+      done();
+    }
+  }
+
+  stopSpeak() {
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+    clearTimeout(this.speakTimer);
+    this.setState({ speaking: false });
+  }
+
+  componentDidUpdate() {
+    const prev = this._prev || {};
+    this._prev = { voice: this.state.voice, screen: this.state.screen };
+    const turnedOn = !prev.voice && this.state.voice;
+    const moved = prev.screen !== this.state.screen;
+    if (this.state.voice && (turnedOn || moved) && this._screenSpeech) {
+      this.speak(this._screenSpeech, this.state.lang === 'hi' ? 'hi-IN' : 'en-IN');
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.signTimer);
+    clearTimeout(this.speakTimer);
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+  }
+
+  up(key, patch) {
+    this.setState({ [key]: Object.assign({}, this.state[key], patch) });
+  }
+
+  renderVals() {
+    const T = {
+      en: {
+        back: 'Back', settingsTitle: 'Language & display', hubTitle: 'Accessible voting', hubSub: 'No voter left behind',
+        voiceTitle: 'Voice-first mode', voiceSub: 'Reads every screen aloud', voiceBanner: 'Reading aloud · tap any item to hear it',
+        phoneTitle: 'Phone-call reminders', phoneSub: 'Works on any phone, no internet needed',
+        hvCardTitle: 'Home voting · Kamla Devi (85+)', hvCardSub: 'Form 12D window closes in', days: 'DAYS', hvCardBtn: 'Request home voting',
+        hvSentCard: 'Home voting requested · BLO will visit',
+        rehearsal: 'Ballot rehearsal', rehearsalSub: 'Hear candidates in EVM order',
+        pickup: 'Pick-up & drop', pickupSub: 'Slot matched to a short queue',
+        buddy: 'Booth Buddy', buddySub: 'A trained neighbour helps you',
+        companion: 'Companion voter', companionSub: 'Pre-register who helps you vote',
+        isl: 'Sign language help', islSub: 'ISL videos and video call',
+        ramp: 'Ramp Check', rampSub: 'Your booth: 3 of 5 ready',
+        booked: 'Booked', saved: 'Saved',
+        sosNote: 'SOS works without the screen: press power 3 times or shake the phone.',
+        langLabel: 'Language', soon: 'coming soon', textSize: 'Text size', contrast: 'High contrast', contrastSub: 'Black background, bright text',
+        vibrate: 'Vibration alerts', vibrateSub: 'For deaf and hard-of-hearing users', speed: 'Voice speed',
+        slow: 'Slow', normal: 'Normal', fast: 'Fast', previewLabel: 'Preview',
+        preview: 'Your booth is Part 142, Room 2. The queue is short right now.', done: 'Done',
+        pickupScreenSub: 'Free ride to the booth and back home', who: 'Who is travelling?', needs: 'What is needed?',
+        wheelVehicle: 'Wheelchair-accessible vehicle', doorHelp: 'Help from the door to the vehicle', pickTime: 'Pick a time',
+        qShort: 'Queue short', qLong: 'Queue long', recommended: 'Best time', from: 'Pick-up from', homeAddr: 'Home · [Address]', change: 'Change',
+        bookPickup: 'Book pick-up', pickupDoneTitle: 'Pick-up booked',
+        pickupDoneSub: 'The driver will call 30 minutes before arriving and will drop you back home after voting.',
+        vehicle: 'Vehicle', vehicleWheel: 'Wheelchair-accessible · [Vehicle no.]', vehicleStd: 'Car · [Vehicle no.]',
+        time: 'Time', traveller: 'Traveller', backToHub: 'Back to accessibility', cancelBooking: 'Cancel booking', addBuddy: 'Also add a Booth Buddy',
+        buddyScreenSub: 'A volunteer from your own booth', whoHelp: 'Who needs help?', helpWith: 'Help with',
+        nWalk: 'Walk with me from the gate', nWheel: 'Push the wheelchair', nRead: 'Read signs aloud', nSign: 'Sign language',
+        pref: 'Buddy preference', gAny: 'Anyone', gWoman: 'Woman', gMan: 'Man', meetAt: 'Meet at',
+        mainGate: 'Main gate', sideGate: 'Side gate (step-free)', findBuddy: 'Find a Booth Buddy',
+        buddyDoneTitle: 'Booth Buddy matched', volunteer: '[Volunteer name]', verified: 'NSS volunteer · Digital ID verified by BLO · accessibility trained',
+        trackTitle: 'Track your buddy', trackEta: 'Reaching in ~6 min', trackFrom: 'On the way', trackTo: 'Side gate (ramp)', trackId: 'Ask to see the digital ID card in the app before you go with the buddy.',
+        call: 'Call', message: 'Message', forWhom: 'For', meetingPoint: 'Meeting point', whenArrive: 'When you arrive',
+        companionScreenSub: 'For blind and infirm voters', rulesTitle: 'Rules at the booth',
+        rule1: 'The companion must be 18 or older.', rule2: 'They can help only one voter that day.',
+        rule3: 'They declare to the Presiding Officer that the vote stays secret.',
+        forVoter: 'For voter', cName: "Companion's name", namePh: '[Full name]', cRel: 'Relation',
+        relSon: 'Son', relDaughter: 'Daughter', relSpouse: 'Spouse', relOther: 'Other', cPhone: 'Mobile number',
+        cAdult: 'The companion is 18 or older', cSingle: 'They are not helping any other voter that day',
+        saveCompanion: 'Save companion pass', companionDoneTitle: 'COMPANION PASS',
+        companionDoneNote: 'Show this at the booth. The Presiding Officer takes the final declaration there.',
+        voterL: 'Voter', companionL: 'Companion', edit: 'Edit details',
+        islScreenSub: 'Indian Sign Language · with captions', videos: 'Videos',
+        v1: 'How to vote on the EVM and VVPAT', v2: 'Find your booth and check the queue', v3: 'Booth Buddy: get help at the booth', v4: 'Safe Path and SOS',
+        playing: 'Pause', play: 'Play', nowPlaying: 'Now playing',
+        interpTitle: 'Talk to an ISL interpreter', interpSub: 'Video call · [Helpline hours]', startCall: 'Start video call',
+        connecting: 'Connecting you to an interpreter…', endCall: 'Cancel', textChat: 'Chat by text instead',
+        hvTitle: 'Vote from home', hvScreenSub: 'Form 12D · postal ballot at home', hvWho: 'Who can apply',
+        hvRule: 'Voters aged 85+ and voters with 40% benchmark disability. Apply within 5 days of the election notification.',
+        hvChoose: 'Choose voter', eligible: 'Eligible · 85+', notEligible: 'Not eligible',
+        hvWarn: 'After choosing home voting, this voter cannot vote at the booth on poll day.', hvAck: 'I understand',
+        hvSubmit: 'Send request to BLO', hvDoneTitle: 'Request sent to BLO',
+        hvDoneSub: 'The BLO will visit to collect the signed Form 12D. The polling team’s visit date will come by SMS and phone call.',
+        navHome: 'Home', navPoll: 'Poll Day', navReport: 'e-Slip', navSafety: 'Safety', navAccess: 'Access',
+        listen: 'Listen to this screen', stopListen: 'Stop reading',
+        aiTile: 'Listen & Translate', aiTileSub: 'Any notice, in your language', chatTile: 'Ask Sahayak', chatTileSub: 'Helpline chat · type or speak',
+        islVoice: 'Voice-over with every video', islVoiceSub: 'For family members who hear, and for low-vision viewers',
+        islMeta: 'ISL · captions', voiceOn: 'voice-over',
+        bridgeTitle: 'AI sign ⇄ voice bridge', bridgeSub: 'Talk with polling staff without waiting for an interpreter',
+        speakToSign: 'Speech → Sign', speakToSignSub: 'Staff speak; an AI avatar signs it',
+        signToVoice: 'Sign → Voice', signToVoiceSub: 'You sign to the camera; the phone speaks it'
+      },
+      hi: {
+        back: 'वापस', settingsTitle: 'भाषा और डिस्प्ले', hubTitle: 'सुगम्य मतदान', hubSub: 'कोई मतदाता न छूटे',
+        voiceTitle: 'आवाज़ मोड', voiceSub: 'हर स्क्रीन पढ़कर सुनाए', voiceBanner: 'पढ़कर सुना रहे हैं · सुनने के लिए किसी भी चीज़ पर टैप करें',
+        phoneTitle: 'फ़ोन कॉल से याद दिलाएँ', phoneSub: 'किसी भी फ़ोन पर, इंटरनेट ज़रूरी नहीं',
+        hvCardTitle: 'घर से मतदान · कमला देवी (85+)', hvCardSub: 'फ़ॉर्म 12D की अंतिम तिथि में बाकी', days: 'दिन', hvCardBtn: 'घर से मतदान का अनुरोध करें',
+        hvSentCard: 'घर से मतदान का अनुरोध भेजा · BLO आएँगे',
+        rehearsal: 'मतपत्र अभ्यास', rehearsalSub: 'EVM क्रम में उम्मीदवार सुनें',
+        pickup: 'घर से लाना-ले जाना', pickupSub: 'छोटी लाइन के समय पर',
+        buddy: 'बूथ साथी', buddySub: 'प्रशिक्षित पड़ोसी मदद करेंगे',
+        companion: 'साथी मतदाता', companionSub: 'सहायक का पहले से पंजीकरण',
+        isl: 'सांकेतिक भाषा सहायता', islSub: 'ISL वीडियो और वीडियो कॉल',
+        ramp: 'रैंप जाँच', rampSub: 'आपका बूथ: 5 में से 3 तैयार',
+        booked: 'बुक है', saved: 'सहेजा गया',
+        sosNote: 'SOS बिना स्क्रीन देखे: पावर बटन 3 बार दबाएँ या फ़ोन हिलाएँ।',
+        langLabel: 'भाषा', soon: 'जल्द आ रहा है', textSize: 'अक्षर का आकार', contrast: 'हाई कॉन्ट्रास्ट', contrastSub: 'काली पृष्ठभूमि, चमकीले अक्षर',
+        vibrate: 'कंपन से सूचना', vibrateSub: 'बधिर और कम सुनने वालों के लिए', speed: 'आवाज़ की गति',
+        slow: 'धीमी', normal: 'सामान्य', fast: 'तेज़', previewLabel: 'नमूना',
+        preview: 'आपका बूथ भाग 142, कमरा 2 है। अभी लाइन छोटी है।', done: 'हो गया',
+        pickupScreenSub: 'बूथ तक मुफ़्त आना और घर वापसी', who: 'कौन जा रहा है?', needs: 'क्या ज़रूरत है?',
+        wheelVehicle: 'व्हीलचेयर वाला वाहन', doorHelp: 'दरवाज़े से वाहन तक मदद', pickTime: 'समय चुनें',
+        qShort: 'लाइन छोटी', qLong: 'लाइन लंबी', recommended: 'सबसे अच्छा समय', from: 'कहाँ से', homeAddr: 'घर · [पता]', change: 'बदलें',
+        bookPickup: 'पिक-अप बुक करें', pickupDoneTitle: 'पिक-अप बुक हो गया',
+        pickupDoneSub: 'ड्राइवर पहुँचने से 30 मिनट पहले फ़ोन करेंगे और मतदान के बाद घर छोड़ेंगे।',
+        vehicle: 'वाहन', vehicleWheel: 'व्हीलचेयर वाला · [वाहन नं.]', vehicleStd: 'कार · [वाहन नं.]',
+        time: 'समय', traveller: 'यात्री', backToHub: 'सुगम्यता पर वापस', cancelBooking: 'बुकिंग रद्द करें', addBuddy: 'बूथ साथी भी जोड़ें',
+        buddyScreenSub: 'आपके अपने बूथ का स्वयंसेवक', whoHelp: 'किसे मदद चाहिए?', helpWith: 'किसमें मदद',
+        nWalk: 'गेट से साथ चलें', nWheel: 'व्हीलचेयर चलाएँ', nRead: 'बोर्ड पढ़कर बताएँ', nSign: 'सांकेतिक भाषा',
+        pref: 'साथी की पसंद', gAny: 'कोई भी', gWoman: 'महिला', gMan: 'पुरुष', meetAt: 'कहाँ मिलें',
+        mainGate: 'मुख्य गेट', sideGate: 'साइड गेट (बिना सीढ़ी)', findBuddy: 'बूथ साथी खोजें',
+        buddyDoneTitle: 'बूथ साथी मिल गए', volunteer: '[स्वयंसेवक का नाम]', verified: 'NSS स्वयंसेवक · डिजिटल ID BLO से सत्यापित · सुगम्यता प्रशिक्षित',
+        trackTitle: 'साथी को ट्रैक करें', trackEta: 'लगभग 6 मिनट में', trackFrom: 'रास्ते में', trackTo: 'साइड गेट (रैंप)', trackId: 'साथ जाने से पहले ऐप में साथी का डिजिटल ID कार्ड ज़रूर देखें।',
+        call: 'कॉल करें', message: 'संदेश', forWhom: 'किसके लिए', meetingPoint: 'मिलने की जगह', whenArrive: 'आपके पहुँचने पर',
+        companionScreenSub: 'दृष्टिहीन और अशक्त मतदाताओं के लिए', rulesTitle: 'बूथ पर नियम',
+        rule1: 'साथी की उम्र 18 वर्ष या उससे अधिक हो।', rule2: 'वे उस दिन केवल एक मतदाता की मदद कर सकते हैं।',
+        rule3: 'वे पीठासीन अधिकारी के सामने मत गुप्त रखने की घोषणा करते हैं।',
+        forVoter: 'मतदाता', cName: 'साथी का नाम', namePh: '[पूरा नाम]', cRel: 'रिश्ता',
+        relSon: 'बेटा', relDaughter: 'बेटी', relSpouse: 'पति/पत्नी', relOther: 'अन्य', cPhone: 'मोबाइल नंबर',
+        cAdult: 'साथी 18 वर्ष या उससे अधिक के हैं', cSingle: 'वे उस दिन किसी और मतदाता की मदद नहीं कर रहे',
+        saveCompanion: 'साथी पास सहेजें', companionDoneTitle: 'साथी पास',
+        companionDoneNote: 'इसे बूथ पर दिखाएँ। अंतिम घोषणा पीठासीन अधिकारी वहीं लेंगे।',
+        voterL: 'मतदाता', companionL: 'साथी', edit: 'विवरण बदलें',
+        islScreenSub: 'भारतीय सांकेतिक भाषा · कैप्शन सहित', videos: 'वीडियो',
+        v1: 'EVM और VVPAT पर वोट कैसे दें', v2: 'अपना बूथ और लाइन कैसे देखें', v3: 'बूथ साथी: बूथ पर मदद पाएँ', v4: 'सुरक्षित रास्ता और SOS',
+        playing: 'रोकें', play: 'चलाएँ', nowPlaying: 'चल रहा है',
+        interpTitle: 'ISL दुभाषिए से बात करें', interpSub: 'वीडियो कॉल · [हेल्पलाइन समय]', startCall: 'वीडियो कॉल शुरू करें',
+        connecting: 'दुभाषिए से जोड़ रहे हैं…', endCall: 'रद्द करें', textChat: 'लिखकर बात करें',
+        hvTitle: 'घर से मतदान', hvScreenSub: 'फ़ॉर्म 12D · घर पर डाक मतपत्र', hvWho: 'कौन आवेदन कर सकता है',
+        hvRule: '85 वर्ष से अधिक आयु के मतदाता और 40% मानक दिव्यांगता वाले मतदाता। चुनाव अधिसूचना के 5 दिन के भीतर आवेदन करें।',
+        hvChoose: 'मतदाता चुनें', eligible: 'पात्र · 85+', notEligible: 'पात्र नहीं',
+        hvWarn: 'घर से मतदान चुनने के बाद यह मतदाता मतदान के दिन बूथ पर वोट नहीं दे सकेंगे।', hvAck: 'मैं समझ गया/गई',
+        hvSubmit: 'BLO को अनुरोध भेजें', hvDoneTitle: 'BLO को अनुरोध भेजा गया',
+        hvDoneSub: 'BLO हस्ताक्षरित फ़ॉर्म 12D लेने आएँगे। मतदान दल के आने की तारीख़ SMS और फ़ोन कॉल से बताई जाएगी।',
+        navHome: 'मुख्य', navPoll: 'मतदान दिवस', navReport: 'ई-स्लिप', navSafety: 'सुरक्षा', navAccess: 'सुगम्यता',
+        listen: 'यह स्क्रीन सुनें', stopListen: 'पढ़ना रोकें',
+        aiTile: 'सुनें और अनुवाद', aiTileSub: 'हर सूचना अपनी भाषा में', chatTile: 'सहायक से पूछें', chatTileSub: 'हेल्पलाइन चैट · लिखें या बोलें',
+        islVoice: 'हर वीडियो के साथ आवाज़', islVoiceSub: 'सुनने वाले परिजनों और कम दृष्टि वालों के लिए',
+        islMeta: 'ISL · कैप्शन', voiceOn: 'आवाज़',
+        bridgeTitle: 'AI संकेत ⇄ आवाज़ सेतु', bridgeSub: 'दुभाषिए का इंतज़ार किए बिना मतदान कर्मियों से बात करें',
+        speakToSign: 'आवाज़ → संकेत', speakToSignSub: 'कर्मी बोलें, AI अवतार संकेत में दिखाए',
+        signToVoice: 'संकेत → आवाज़', signToVoiceSub: 'आप कैमरे के आगे संकेत करें, फ़ोन बोलकर बताए'
+      }
+    };
+
+    const st = this.state;
+    const L = st.lang;
+    const t = T[L];
+    const k = st.scale;
+    const px = (n) => Math.round(n * k) + 'px';
+    const navPx = Math.min(Math.round(12 * k), 14) + 'px';
+
+    const c = st.contrast ? {
+      bg: '#000000', card: '#111111', ink: '#FFFFFF', muted: '#E0E0E0', line: '#8A8A8A', lineStrong: '#FFFFFF',
+      accent: '#FFD54A', accentInk: '#000000', soft: '#262010', softInk: '#FFD54A',
+      strong: '#FFD54A', strongInk: '#000000', strongSub: '#1A1A1A', checkStrong: '#000000',
+      warnBg: '#111111', warnLine: '#FFD54A', warnInk: '#FFD54A', warn: '#FFD54A', warnBtnInk: '#000000',
+      ok: '#7EE8B8', okBg: '#0A1F17', thumb: '#262626', navBg: '#000000'
+    } : {
+      bg: '#F6F5F1', card: '#FFFFFF', ink: '#13233A', muted: '#4F5B6B', line: '#E2E0D8', lineStrong: '#C9C5B9',
+      accent: '#1F4FBF', accentInk: '#FFFFFF', soft: '#E6EDFB', softInk: '#163A8F',
+      strong: '#13233A', strongInk: '#FFFFFF', strongSub: '#C9D2E0', checkStrong: '#FFD54A',
+      warnBg: '#FCEBDD', warnLine: '#F0C8A4', warnInk: '#6B2D05', warn: '#B4500E', warnBtnInk: '#FFFFFF',
+      ok: '#0F6E63', okBg: '#E3F1EE', thumb: '#E5E3DC', navBg: '#FFFFFF'
+    };
+
+    const chip = (on) => 'min-height: 44px; padding: 0 14px; border-radius: 22px; font-size: ' + px(14) + '; font-weight: 700; ' +
+      (on ? 'border: 2px solid ' + c.accent + '; background: ' + c.accent + '; color: ' + c.accentInk
+          : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink);
+    const seg = (on) => 'flex: 1; min-height: 48px; border-radius: 12px; font-size: ' + px(15) + '; font-weight: 700; ' +
+      (on ? 'border: 2px solid ' + c.accent + '; background: ' + c.accent + '; color: ' + c.accentInk
+          : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink);
+    const optionRow = (on, off) => 'width: 100%; min-height: 56px; border-radius: 12px; padding: 6px 14px; display: flex; align-items: center; justify-content: space-between; gap: 10px; text-align: left; color: ' + c.ink + '; ' +
+      (off ? 'border: 1px dashed ' + c.line + '; background: transparent; opacity: 0.6'
+           : on ? 'border: 2px solid ' + c.accent + '; background: ' + c.soft
+                : 'border: 1px solid ' + c.line + '; background: ' + c.card);
+    const primary = 'width: 100%; min-height: 52px; border-radius: 14px; border: none; background: ' + c.accent + '; color: ' + c.accentInk + '; font-size: ' + px(17) + '; font-weight: 800';
+    const primaryOff = primary + '; opacity: 0.4';
+
+    const s = {
+      root: 'position: relative; width: 390px; height: 844px; box-sizing: border-box; background: ' + c.bg + "; font-family: 'Mukta', system-ui, sans-serif; color: " + c.ink + '; display: flex; flex-direction: column; overflow: hidden',
+      scroll: 'flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px 20px 16px; overflow-y: auto',
+      stack: 'display: flex; flex-direction: column; gap: 12px',
+      stack6: 'display: flex; flex-direction: column; gap: 6px',
+      row: 'display: flex; gap: 8px',
+      wrap: 'display: flex; flex-wrap: wrap; gap: 6px',
+      h1: 'font-size: ' + px(21) + '; font-weight: 800; color: ' + c.ink,
+      sub: 'font-size: ' + px(13) + '; color: ' + c.muted + '; font-weight: 500',
+      label: 'font-size: ' + px(15) + '; font-weight: 700; color: ' + c.ink,
+      labelSm: 'font-size: ' + px(14) + '; font-weight: 700; color: ' + c.ink,
+      body: 'font-size: ' + px(15) + '; color: ' + c.ink + '; line-height: 1.4',
+      small: 'font-size: ' + px(13) + '; color: ' + c.muted + '; line-height: 1.35',
+      card: 'background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px',
+      iconBtn: 'width: 44px; height: 44px; border-radius: 22px; background: ' + c.card + '; border: 1px solid ' + c.lineStrong + '; display: flex; align-items: center; justify-content: center; color: ' + c.ink + '; flex-shrink: 0',
+      pillBtn: 'min-height: 44px; padding: 0 12px; border-radius: 22px; background: ' + c.card + '; border: 1px solid ' + c.lineStrong + '; color: ' + c.ink + '; display: flex; align-items: center; gap: 6px; font-size: ' + px(14) + '; font-weight: 700; flex-shrink: 0',
+      voiceBar: 'display: flex; align-items: center; gap: 8px; background: ' + c.soft + '; color: ' + c.softInk + '; border-radius: 12px; padding: 8px 12px; font-size: ' + px(13) + '; font-weight: 700; line-height: 1.3',
+      strongRow: 'display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; background: ' + c.strong + '; color: ' + c.strongInk + '; border-radius: 14px; padding: 8px 14px',
+      strongTitle: 'font-size: ' + px(16) + '; font-weight: 700',
+      strongSub: 'font-size: ' + px(12) + '; color: ' + c.strongSub,
+      checkStrong: 'width: 24px; height: 24px; accent-color: ' + c.checkStrong + '; flex-shrink: 0',
+      check: 'width: 24px; height: 24px; accent-color: ' + c.accent + '; flex-shrink: 0',
+      toggleRow: 'display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 14px; padding: 8px 14px',
+      warnCard: 'background: ' + c.warnBg + '; border: 1px solid ' + c.warnLine + '; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px',
+      warnTitle: 'font-size: ' + px(16) + '; font-weight: 800; color: ' + c.warnInk,
+      warnText: 'font-size: ' + px(14) + '; color: ' + c.warnInk + '; line-height: 1.35',
+      warnBtn: 'min-height: 48px; border-radius: 12px; border: none; background: ' + c.warn + '; color: ' + c.warnBtnInk + '; font-size: ' + px(15) + '; font-weight: 700',
+      daysBox: 'display: flex; flex-direction: column; align-items: center; background: ' + c.card + '; border: 1px solid ' + c.warnLine + '; border-radius: 12px; padding: 4px 12px; line-height: 1; flex-shrink: 0',
+      daysNum: 'font-size: ' + px(28) + '; font-weight: 800; color: ' + c.warn,
+      daysLbl: 'font-size: ' + px(11) + '; font-weight: 700; color: ' + c.warnInk,
+      okRow: 'display: flex; align-items: center; gap: 10px; background: ' + c.okBg + '; border: 1px solid ' + c.ok + '; border-radius: 14px; padding: 12px 14px; font-size: ' + px(15) + '; font-weight: 700; color: ' + c.ink,
+      okCard: 'background: ' + c.okBg + '; border: 1px solid ' + c.ok + '; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 8px',
+      okTitle: 'font-size: ' + px(22) + '; font-weight: 800; color: ' + c.ok + '; line-height: 1.15',
+      okSmall: 'font-size: ' + px(13) + '; color: ' + c.ok + '; font-weight: 700',
+      tile: 'background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 14px; padding: 12px; min-height: 96px; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; color: ' + c.ink + '; text-align: left',
+      tileTitle: 'font-size: ' + px(15) + '; font-weight: 700; line-height: 1.2',
+      tileSub: 'font-size: ' + px(12) + '; color: ' + c.muted + '; line-height: 1.25',
+      tileBadge: 'font-size: ' + px(12) + '; color: ' + c.ok + '; font-weight: 800; line-height: 1.25',
+      noteRow: 'display: flex; align-items: center; gap: 10px; background: ' + c.card + '; border: 1px solid ' + c.line + '; border-radius: 12px; padding: 10px 12px; font-size: ' + px(13) + '; line-height: 1.3; color: ' + c.ink,
+      softCard: 'background: ' + c.soft + '; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px',
+      softTitle: 'font-size: ' + px(15) + '; font-weight: 800; color: ' + c.softInk,
+      softText: 'font-size: ' + px(14) + '; color: ' + c.softInk + '; line-height: 1.4',
+      badge: 'font-size: ' + px(12) + '; font-weight: 800; color: ' + c.accentInk + '; background: ' + c.accent + '; border-radius: 999px; padding: 3px 10px; white-space: nowrap',
+      linkBtn: 'min-height: 44px; padding: 0 8px; border: none; background: transparent; color: ' + c.accent + '; font-size: ' + px(15) + '; font-weight: 700',
+      secondary: 'flex: 1; min-height: 48px; border-radius: 12px; border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink + '; font-size: ' + px(15) + '; font-weight: 700',
+      secondaryFull: 'width: 100%; min-height: 48px; border-radius: 12px; border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink + '; font-size: ' + px(15) + '; font-weight: 700',
+      primary: primary,
+      detailRow: 'display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px solid ' + c.line,
+      detailRowLast: 'display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0',
+      detailKey: 'font-size: ' + px(14) + '; color: ' + c.muted,
+      detailVal: 'font-size: ' + px(15) + '; font-weight: 700; text-align: right; color: ' + c.ink,
+      avatar: 'width: 48px; height: 48px; border-radius: 24px; background: ' + c.soft + '; color: ' + c.softInk + '; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; flex-shrink: 0',
+      fieldLabel: 'display: flex; flex-direction: column; gap: 4px; font-size: ' + px(14) + '; font-weight: 700; color: ' + c.ink,
+      input: 'width: 100%; box-sizing: border-box; min-height: 48px; border-radius: 12px; border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink + '; font-size: ' + px(16) + '; padding: 0 12px; font-family: inherit',
+      passCard: 'background: ' + c.card + '; border: 2px solid ' + c.accent + '; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column',
+      passBand: 'background: ' + c.accent + '; color: ' + c.accentInk + '; font-size: ' + px(15) + '; font-weight: 800; letter-spacing: 1px; padding: 10px 16px',
+      qr: 'width: 132px; height: 132px; border-radius: 12px; border: 2px dashed ' + c.lineStrong + '; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: ' + c.muted,
+      thumb: 'width: 84px; height: 56px; border-radius: 10px; background: ' + c.thumb + '; display: flex; align-items: center; justify-content: center; font-size: 11px; color: ' + c.muted + '; font-weight: 600; flex-shrink: 0; text-align: center',
+      callingBox: 'display: flex; align-items: center; gap: 10px; background: ' + c.soft + '; color: ' + c.softInk + '; border-radius: 12px; padding: 4px 4px 4px 12px; font-size: ' + px(15) + '; font-weight: 700',
+      navBar: 'height: 72px; background: ' + c.navBg + '; border-top: 1px solid ' + c.line + '; display: flex; justify-content: space-around; align-items: center; padding: 0 6px; flex-shrink: 0',
+      navItem: 'min-width: 64px; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: ' + navPx + '; font-weight: 600; color: ' + c.muted,
+      navItemOn: 'min-width: 64px; min-height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: ' + navPx + '; font-weight: 800; color: ' + c.accent
+    };
+
+    const members = [
+      { id: 'kamla', n: { en: 'Kamla Devi', hi: 'कमला देवी' }, eligible: true },
+      { id: 'ramesh', n: { en: 'Ramesh', hi: 'रमेश' }, eligible: false },
+      { id: 'sunita', n: { en: 'Sunita', hi: 'सुनीता' }, eligible: false },
+      { id: 'aman', n: { en: 'Aman', hi: 'अमन' }, eligible: false }
+    ];
+    const nm = (id) => members.find((m) => m.id === id).n[L];
+    const memberChips = (key, field) => members.map((m) => {
+      const on = st[key][field] === m.id;
+      return { label: m.n[L], pressed: on ? 'true' : 'false', style: chip(on), pick: () => this.up(key, { [field]: m.id }) };
+    });
+
+    const slotDefs = [
+      { id: 's1', time: { en: '7:30 AM', hi: 'सुबह 7:30' }, q: 'short' },
+      { id: 's2', time: { en: '9:00 AM', hi: 'सुबह 9:00' }, q: 'long' },
+      { id: 's3', time: { en: '11:00 AM', hi: 'सुबह 11:00' }, q: 'short', best: true },
+      { id: 's4', time: { en: '2:30 PM', hi: 'दोपहर 2:30' }, q: 'short' }
+    ];
+    const slotTime = slotDefs.find((x) => x.id === st.pu.slot).time[L];
+    const slots = slotDefs.map((x) => {
+      const on = st.pu.slot === x.id;
+      return {
+        time: x.time[L],
+        q: x.q === 'short' ? t.qShort : t.qLong,
+        qStyle: 'font-size: ' + px(13) + '; font-weight: 700; color: ' + (x.q === 'short' ? c.ok : c.warn),
+        best: !!x.best,
+        pressed: on ? 'true' : 'false',
+        style: optionRow(on, false),
+        pick: () => this.up('pu', { slot: x.id })
+      };
+    });
+
+    const langDefs = [
+      { id: 'hi', native: 'हिन्दी', note: 'Hindi' },
+      { id: 'en', native: 'English', note: 'अंग्रेज़ी' },
+      { id: 'ur', native: 'اردو', note: 'Urdu', soon: true },
+      { id: 'bho', native: 'भोजपुरी', note: 'Bhojpuri', soon: true },
+      { id: 'awa', native: 'अवधी', note: 'Awadhi', soon: true }
+    ];
+    const langs = langDefs.map((l) => {
+      const on = L === l.id;
+      return {
+        native: l.native,
+        note: l.soon ? l.note + ' · ' + t.soon : l.note,
+        on: on,
+        pressed: on ? 'true' : 'false',
+        disabled: !!l.soon,
+        style: optionRow(on, !!l.soon),
+        nativeStyle: 'font-size: ' + px(18) + '; font-weight: 800; color: ' + c.ink,
+        pick: () => { if (!l.soon) this.setState({ lang: l.id }); }
+      };
+    });
+
+    const sizes = [
+      { v: 1, label: 'A', fs: '16px', aria: 'Normal text' },
+      { v: 1.2, label: 'A+', fs: '20px', aria: 'Large text' },
+      { v: 1.4, label: 'A++', fs: '24px', aria: 'Extra large text' }
+    ].map((z) => {
+      const on = st.scale === z.v;
+      return { label: z.label, aria: z.aria, pressed: on ? 'true' : 'false', style: seg(on) + '; font-size: ' + z.fs, pick: () => this.setState({ scale: z.v }) };
+    });
+
+    const speeds = ['slow', 'normal', 'fast'].map((v) => {
+      const on = st.speed === v;
+      return { label: t[v], pressed: on ? 'true' : 'false', style: seg(on), pick: () => this.setState({ speed: v }) };
+    });
+
+    const needDefs = [['walk', 'nWalk'], ['wheel', 'nWheel'], ['read', 'nRead'], ['sign', 'nSign']];
+    const bdNeeds = needDefs.map(([id, key]) => {
+      const on = !!st.bd.needs[id];
+      return {
+        label: t[key], pressed: on ? 'true' : 'false', style: chip(on),
+        pick: () => this.up('bd', { needs: Object.assign({}, st.bd.needs, { [id]: !on }) })
+      };
+    });
+    const anyNeed = needDefs.some(([id]) => st.bd.needs[id]);
+    const bdGender = [['any', 'gAny'], ['woman', 'gWoman'], ['man', 'gMan']].map(([id, key]) => {
+      const on = st.bd.gender === id;
+      return { label: t[key], pressed: on ? 'true' : 'false', style: seg(on), pick: () => this.up('bd', { gender: id }) };
+    });
+    const bdGate = [['side', 'sideGate'], ['main', 'mainGate']].map(([id, key]) => {
+      const on = st.bd.gate === id;
+      return { label: t[key], pressed: on ? 'true' : 'false', style: optionRow(on, false), pick: () => this.up('bd', { gate: id }) };
+    });
+
+    const relLabel = { son: t.relSon, daughter: t.relDaughter, spouse: t.relSpouse, other: t.relOther };
+    const cpValid = st.cp.name.trim().length > 1 && st.cp.adult && st.cp.single;
+    const hvValid = st.hv.ack;
+
+    const vidDefs = [['v1', '[3:10]'], ['v2', '[1:45]'], ['v3', '[2:20]'], ['v4', '[1:30]']];
+    const vids = vidDefs.map(([id, dur]) => {
+      const on = st.isl.playing === id;
+      return {
+        title: t[id],
+        dur: (on ? t.nowPlaying + ' · ' : '') + t.islMeta + (st.islVoice ? ' · ' + t.voiceOn : '') + ' · ' + dur,
+        btn: on ? t.playing : t.play,
+        aria: (on ? t.playing : t.play) + ': ' + t[id],
+        style: 'display: flex; align-items: center; gap: 10px; border-radius: 14px; padding: 8px; background: ' + c.card + '; border: ' + (on ? '2px solid ' + c.accent : '1px solid ' + c.line),
+        btnStyle: 'min-height: 44px; min-width: 64px; padding: 0 12px; border-radius: 22px; font-size: ' + px(14) + '; font-weight: 800; flex-shrink: 0; ' +
+          (on ? 'border: none; background: ' + c.accent + '; color: ' + c.accentInk : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink),
+        pick: () => {
+          this.up('isl', { playing: on ? null : id });
+          if (on) { this.stopSpeak(); this.stopSign(); return; }
+          this.startSign();
+          if (st.islVoice) this.speak(t[id], L === 'hi' ? 'hi-IN' : 'en-IN');
+        }
+      };
+    });
+
+    const hvList = members.map((m) => {
+      const on = st.hv.who === m.id;
+      return {
+        label: m.n[L],
+        tag: m.eligible ? t.eligible : t.notEligible,
+        pressed: on ? 'true' : 'false',
+        disabled: !m.eligible,
+        style: optionRow(on && m.eligible, !m.eligible),
+        nameStyle: 'font-size: ' + px(16) + '; font-weight: 700; color: ' + c.ink,
+        tagStyle: 'font-size: ' + px(13) + '; font-weight: 700; color: ' + (m.eligible ? c.ok : c.muted),
+        pick: () => { if (m.eligible) this.up('hv', { who: m.id }); }
+      };
+    });
+
+    const titles = {
+      hub: [t.hubTitle, t.hubSub], settings: [t.settingsTitle, 'Language · भाषा'],
+      pickup: [t.pickup, t.pickupScreenSub], pickupDone: [t.pickup, t.pickupScreenSub],
+      buddy: [t.buddy, t.buddyScreenSub], buddyDone: [t.buddy, t.buddyScreenSub],
+      companion: [t.companion, t.companionScreenSub], companionDone: [t.companion, t.companionScreenSub],
+      isl: [t.isl, t.islScreenSub], hv: [t.hvTitle, t.hvScreenSub], hvDone: [t.hvTitle, t.hvScreenSub]
+    };
+    const scrName = st.screen;
+    const scr = {};
+    Object.keys(titles).forEach((key) => { scr[key] = key === scrName; });
+
+    const go = (name) => () => this.setState({ screen: name });
+    const toggle = (key) => () => this.setState({ [key]: !st[key] });
+    const flip = (key, field) => () => this.up(key, { [field]: !st[key][field] });
+
+    const GL = {
+      v1: { en: ['EVM', 'BLUE BUTTON', 'PRESS', 'BEEP', 'VVPAT', 'SLIP', 'LOOK', '7 SECONDS'], hi: ['EVM', 'नीला बटन', 'दबाएँ', 'बीप', 'VVPAT', 'पर्ची', 'देखें', '7 सेकंड'] },
+      v2: { en: ['APP', 'OPEN', 'MY BOOTH', 'SEE', 'QUEUE', 'SHORT', 'GO NOW'], hi: ['ऐप', 'खोलें', 'मेरा बूथ', 'देखें', 'लाइन', 'छोटी', 'अभी जाएँ'] },
+      v3: { en: ['BUDDY', 'BOOK', 'GATE', 'MEET', 'SIGN', 'HELP', 'WOMAN', 'ASK'], hi: ['साथी', 'बुक', 'गेट', 'मिलें', 'संकेत', 'मदद', 'महिला', 'माँगें'] },
+      v4: { en: ['DANGER', 'POWER', 'PRESS', 'THREE', 'POLICE', 'COME', 'SAFE'], hi: ['खतरा', 'पावर', 'दबाएँ', 'तीन', 'पुलिस', 'आएगी', 'सुरक्षित'] }
+    };
+    this._gloss = { v1: GL.v1[L], v2: GL.v2[L], v3: GL.v3[L], v4: GL.v4[L] };
+    const playingId = st.isl.playing;
+    const glossWords = playingId ? this._gloss[playingId] : [];
+    const gloss = glossWords.map((w, i) => ({
+      w,
+      style: 'font-size: ' + px(13) + '; font-weight: 800; letter-spacing: 0.3px; border-radius: 6px; padding: 2px 8px; ' +
+        (i === st.islWord ? 'background: #FFD54A; color: #13233A' : i < st.islWord ? 'color: #FFFFFF' : 'color: #8FA0BF')
+    }));
+
+    const ttsLang = L === 'hi' ? 'hi-IN' : 'en-IN';
+    this._screenSpeech = titles[scrName][0] + '. ' + titles[scrName][1];
+    const listenStyle = 'width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; ' +
+      (st.speaking ? 'border: none; background: ' + c.accent + '; color: ' + c.accentInk : 'border: 1px solid ' + c.lineStrong + '; background: ' + c.card + '; color: ' + c.ink);
+
+    const tileOk = s.tileBadge;
+    const tileNorm = s.tileSub;
+
+    return {
+      L, t, c, s, scr,
+      notHub: scrName !== 'hub',
+      title: titles[scrName][0],
+      subtitle: titles[scrName][1],
+      langCode: L === 'hi' ? 'हिं' : 'EN',
+      voice: st.voice,
+      voiceBanner: t.voiceBanner + ' · ' + t[st.speed],
+      contrast: st.contrast,
+      vibrate: st.vibrate,
+      phone: st.phone,
+      pu: st.pu, bd: st.bd, cp: st.cp, hv: st.hv,
+
+      hvPending: !st.hv.sent,
+      hvSent: st.hv.sent,
+
+      puTile: st.pu.booked ? t.booked + ' · ' + slotTime : t.pickupSub,
+      puTileStyle: st.pu.booked ? tileOk : tileNorm,
+      bdTile: st.bd.booked ? t.booked + ' · ' + nm(st.bd.who) : t.buddySub,
+      bdTileStyle: st.bd.booked ? tileOk : tileNorm,
+      cpTile: st.cp.saved ? t.saved + ' · ' + st.cp.name : t.companionSub,
+      cpTileStyle: st.cp.saved ? tileOk : tileNorm,
+
+      langs, sizes, speeds, slots,
+      puWho: memberChips('pu', 'who'),
+      bdWho: memberChips('bd', 'who'),
+      cpVoter: memberChips('cp', 'voter'),
+      bdNeeds, bdGender, bdGate, vids, hvList,
+
+      puDone: { who: nm(st.pu.who), time: slotTime, vehicle: st.pu.wheel ? t.vehicleWheel : t.vehicleStd },
+      bdDone: {
+        who: nm(st.bd.who),
+        gate: st.bd.gate === 'side' ? t.sideGate : t.mainGate,
+        time: st.pu.booked ? slotTime : t.whenArrive,
+        needs: needDefs.filter(([id]) => st.bd.needs[id]).map(([, key]) => t[key]).join(', ')
+      },
+      cpDone: { voter: nm(st.cp.voter), name: st.cp.name, rel: relLabel[st.cp.rel], phone: st.cp.phone || '—' },
+
+      bdDisabled: !anyNeed,
+      bdBtnStyle: anyNeed ? primary : primaryOff,
+      cpDisabled: !cpValid,
+      cpBtnStyle: cpValid ? primary : primaryOff,
+      hvDisabled: !hvValid,
+      hvBtnStyle: hvValid ? primary : primaryOff,
+      islCalling: st.isl.calling,
+      islIdle: !st.isl.calling,
+
+      goHub: go('hub'), goSettings: go('settings'), goPickup: () => this.setState({ screen: st.pu.booked ? 'pickupDone' : 'pickup' }),
+      goBuddy: () => this.setState({ screen: st.bd.booked ? 'buddyDone' : 'buddy' }),
+      goCompanion: () => this.setState({ screen: st.cp.saved ? 'companionDone' : 'companion' }),
+      goIsl: go('isl'), goHv: go('hv'),
+
+      toggleVoice: toggle('voice'), toggleContrast: toggle('contrast'), toggleVibrate: toggle('vibrate'), togglePhone: toggle('phone'),
+      togglePuWheel: flip('pu', 'wheel'), togglePuDoor: flip('pu', 'door'),
+      toggleCpAdult: flip('cp', 'adult'), toggleCpSingle: flip('cp', 'single'),
+      toggleHvAck: flip('hv', 'ack'),
+
+      setCpName: (e) => this.up('cp', { name: e.target.value }),
+      setCpRel: (e) => this.up('cp', { rel: e.target.value }),
+      setCpPhone: (e) => this.up('cp', { phone: e.target.value }),
+
+      bookPickup: () => this.setState({ pu: Object.assign({}, st.pu, { booked: true }), screen: 'pickupDone' }),
+      cancelPickup: () => this.setState({ pu: Object.assign({}, st.pu, { booked: false }), screen: 'hub' }),
+      findBuddy: () => { if (anyNeed) this.setState({ bd: Object.assign({}, st.bd, { booked: true }), screen: 'buddyDone' }); },
+      cancelBuddy: () => this.setState({ bd: Object.assign({}, st.bd, { booked: false }), screen: 'hub' }),
+      saveCompanion: () => { if (cpValid) this.setState({ cp: Object.assign({}, st.cp, { saved: true }), screen: 'companionDone' }); },
+      editCompanion: () => this.setState({ cp: Object.assign({}, st.cp, { saved: false }), screen: 'companion' }),
+      sendHv: () => { if (hvValid) this.setState({ hv: Object.assign({}, st.hv, { sent: true }), screen: 'hvDone' }); },
+      startCall: () => this.up('isl', { calling: true }),
+      endCall: () => this.up('isl', { calling: false }),
+
+      islVoice: st.islVoice,
+      toggleIslVoice: toggle('islVoice'),
+      islPlaying: !!playingId,
+      islPlayingTitle: playingId ? t.nowPlaying + ': ' + t[playingId] : '',
+      gloss,
+      signAria: playingId ? 'Avatar signing: ' + glossWords.join(' ') : '',
+      listenStyle,
+      listenAria: st.speaking ? t.stopListen : t.listen,
+      speakingStr: st.speaking ? 'true' : 'false',
+      speakTitle: () => { if (this.state.speaking) this.stopSpeak(); else this.speak(this._screenSpeech, ttsLang); }
+    };
+  }
+}
+</script>
+</body>
+</html>

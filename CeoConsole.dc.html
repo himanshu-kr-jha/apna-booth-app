@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apna Booth — CEO Office Console</title>
+<script data-offline-shim>(function(){var M={"VoiceNav.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"hi\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Voice navigation\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\n@keyframes vn-pulse{0%{box-shadow:0 0 0 0 rgba(255,213,74,.7)}70%{box-shadow:0 0 0 18px rgba(255,213,74,0)}100%{box-shadow:0 0 0 0 rgba(255,213,74,0)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"font-family: 'Mukta', system-ui, sans-serif; color: #13233A\">\n\n\u003csc-if value=\"{{isFab}}\" hint-placeholder-val=\"{{true}}\">\n\u003cbutton aria-label=\"बोलकर चलाएँ — Speak to navigate\" onClick=\"{{open}}\" style=\"width: 60px; height: 60px; border-radius: 30px; border: 3px solid #FFFFFF; background: #13233A; color: #FFD54A; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(19,35,58,0.35); cursor: pointer\">\n\u003csvg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isBanner}}\" hint-placeholder-val=\"{{false}}\">\n\u003cbutton onClick=\"{{open}}\" style=\"width: 100%; min-height: 60px; border-radius: 14px; border: none; background: #13233A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 8px 14px; text-align: left; font-family: inherit; cursor: pointer\">\n\u003cspan style=\"width: 44px; height: 44px; border-radius: 22px; background: #FFD54A; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"font-size: 16px; font-weight: 800\">बोलकर कहीं भी जाएँ\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #C9D2E0\">Speak to go anywhere · \"मेरा बूथ\", \"ई-स्लिप\", \"SOS\"\u003c/span>\n\u003c/span>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isOpen}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"position: fixed; inset: 0; z-index: 1000; background: rgba(11,18,32,0.55); display: flex; flex-direction: column; justify-content: flex-end\">\n\u003cdiv role=\"dialog\" aria-label=\"Voice navigation\" style=\"background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 12px; max-height: 92%; overflow-y: auto; box-sizing: border-box\">\n\n\u003cdiv style=\"display: flex; align-items: center; justify-content: space-between; gap: 8px\">\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.15\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">{{t.title}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{t.sub}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; gap: 6px\">\n\u003cbutton aria-label=\"{{t.langAria}}\" onClick=\"{{toggleLang}}\" style=\"min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; font-family: inherit\">{{langBtn}}\u003c/button>\n\u003cbutton aria-label=\"{{t.close}}\" onClick=\"{{close}}\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6 6l12 12M18 6L6 18\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0\">\n\u003cbutton aria-label=\"{{micAria}}\" onClick=\"{{mic}}\" style=\"{{micStyle}}\">\n\u003csvg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003cspan role=\"status\" aria-live=\"polite\" style=\"font-size: 16px; font-weight: 700; text-align: center; min-height: 24px\">{{statusText}}\u003c/span>\n\u003csc-if value=\"{{hasHeard}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 18px; font-weight: 800; color: #1F4FBF; text-align: center\">“{{heard}}”\u003c/span>\n\u003c/sc-if>\n\u003csc-if value=\"{{hasNote}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 13px; color: #8A3A07; background: #FCEBDD; border-radius: 10px; padding: 6px 10px; text-align: center; line-height: 1.35\">{{note}}\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cspan style=\"font-size: 14px; font-weight: 700\">{{t.tryLabel}}\u003c/span>\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 6px\">\n\u003csc-for list=\"{{chips}}\" as=\"c\" hint-placeholder-count=\"12\">\n\u003cbutton onClick=\"{{c.go}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; font-family: inherit\">{{c.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; gap: 8px\">\n\u003clabel style=\"flex: 1; display: flex\">\n\u003cspan style=\"position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)\">{{t.typeLabel}}\u003c/span>\n\u003cinput type=\"text\" value=\"{{typed}}\" onChange=\"{{setTyped}}\" onKeyDown=\"{{onKey}}\" placeholder=\"{{t.typePh}}\" style=\"flex: 1; width: 100%; box-sizing: border-box; min-height: 46px; border-radius: 23px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 14px; font-family: inherit\">\n\u003c/label>\n\u003cbutton onClick=\"{{submitTyped}}\" style=\"min-height: 46px; padding: 0 16px; border-radius: 23px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 800; font-family: inherit\">{{t.go}}\u003c/button>\n\u003c/div>\n\n\u003ca ref=\"{{linkRef}}\" href=\"{{goHref}}\" aria-hidden=\"true\" tabindex=\"-1\" style=\"display: none\">go\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"variant\":{\"editor\":\"enum\",\"options\":[\"fab\",\"banner\"],\"default\":\"fab\"},\"$preview\":{\"width\":390,\"height\":120}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = { open: false, listening: false, heard: '', note: '', lang: 'hi', typed: '', go: null, goLabel: '' };\n    this.linkRef = (el) => { this.linkEl = el; };\n  }\n\n  componentWillUnmount() {\n    clearTimeout(this.goTimer);\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  componentDidUpdate() {\n    const prevGo = this._prevGo;\n    this._prevGo = this.state.go;\n    if (this.state.go && this.state.go !== prevGo) {\n      clearTimeout(this.goTimer);\n      this.goTimer = setTimeout(() => { try { if (this.linkEl) this.linkEl.click(); } catch (e) {} }, 900);\n    }\n  }\n\n  destinations() {\n    return [\n      { file: 'Access.dc.html#isl', hi: 'सांकेतिक भाषा मदद', en: 'Sign language help', keys: ['सांकेतिक', 'साइन', 'sign', 'isl', 'बधिर', 'deaf', 'मूक'] },\n      { file: 'Access.dc.html', hi: 'बूथ साथी', en: 'Booth Buddy', keys: ['बूथ साथी', 'साथी', 'buddy', 'volunteer', 'स्वयंसेवक', 'व्हीलचेयर', 'wheelchair', 'सुगम्य', 'accessib', 'दिव्यांग', 'disab'] },\n      { file: 'ESlip.dc.html', hi: 'ई-स्लिप', en: 'e-Slip', keys: ['स्लिप', 'पर्ची', 'slip', 'qr', 'क्यूआर', 'सूची', 'list', 'नाम', 'epic', 'एपिक', 'क्रमांक', 'serial'] },\n      { file: 'Safety.dc.html', hi: 'सुरक्षा और SOS', en: 'Safety and SOS', keys: ['sos', 'एसओएस', 'सुरक्षा', 'safety', 'safe', 'पुलिस', 'police', 'capf', 'सीएपीएफ', 'खतरा', 'danger'] },\n      { file: 'Queue.dc.html', hi: 'मेरा बूथ', en: 'My booth', keys: ['मेरा बूथ', 'बूथ', 'booth', 'लाइन', 'कतार', 'queue', 'line', 'मतदान केंद्र', 'polling', 'रास्ता', 'route', 'way'] },\n      { file: 'Rehearsal.dc.html', hi: 'मतपत्र अभ्यास', en: 'Ballot practice', keys: ['अभ्यास', 'practice', 'rehearsal', 'evm', 'ईवीएम', 'ballot', 'मतपत्र', 'vvpat'] },\n      { file: 'Selfie.dc.html', hi: 'सेल्फी', en: 'Selfie', keys: ['सेल्फी', 'selfie', 'फोटो', 'photo', 'इनाम', 'prize', 'contest'] },\n      { file: 'Chat.dc.html', hi: 'सहायक', en: 'Sahayak chat', keys: ['सहायक', 'sahayak', 'chat', 'चैट', 'सवाल', 'question', 'helpline', 'हेल्पलाइन', '1950'] },\n      { file: 'AiVoice.dc.html', hi: 'सुनें और अनुवाद', en: 'Listen & Translate', keys: ['अनुवाद', 'translate', 'सूचना', 'notice', 'ब्रेल', 'braille', 'पढ़', 'read'] },\n      { file: 'RampCheck.dc.html', hi: 'बूथ रेटिंग', en: 'Rate your booth', keys: ['रैंप', 'ramp', 'रेटिंग', 'rating', 'rate', 'best booth', 'सुविधा'] },\n      { file: 'Main.dc.html', hi: 'होम', en: 'Home', keys: ['होम', 'home', 'मुख्य', 'शुरू', 'start', 'back', 'वापस'] },\n    ];\n  }\n\n  speak(text) {\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = this.state.lang === 'en' ? 'en-IN' : 'hi-IN';\n      const v = (ss.getVoices() || []).find((x) => (x.lang || '').toLowerCase().indexOf(this.state.lang === 'en' ? 'en' : 'hi') === 0);\n      if (v) u.voice = v;\n      ss.speak(u);\n    } catch (e) {}\n  }\n\n  navigate(d) {\n    const label = this.state.lang === 'en' ? d.en : d.hi;\n    this.setState({ go: d.file, goLabel: label, note: '', listening: false });\n    this.speak((this.state.lang === 'en' ? 'Opening ' : 'खोल रहे हैं: ') + label);\n  }\n\n  handle(texts) {\n    const list = this.destinations();\n    for (const raw of texts) {\n      const s = String(raw || '').toLowerCase();\n      const d = list.find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n      if (d) { this.navigate(d); return; }\n    }\n    const msg = this.state.lang === 'en' ? \"Sorry, I didn't catch a place. Try again or tap one below.\" : 'माफ़ कीजिए, समझ नहीं आया। दोबारा बोलें या नीचे से चुनें।';\n    this.setState({ note: msg, listening: false });\n    this.speak(msg);\n  }\n\n  handleQuiet(v) {\n    const s = String(v || '').toLowerCase();\n    const d = this.destinations().find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n    if (d && !this.state.go) this.navigate(d);\n  }\n\n  listen() {\n    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;\n    const L = this.state.lang;\n    if (!SR) {\n      this.setState({ note: L === 'en' ? 'Voice recognition is not available here. Tap the box below and use the 🎤 on your keyboard to speak.' : 'यहाँ आवाज़ पहचान उपलब्ध नहीं है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें।' });\n      return;\n    }\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    const rec = new SR();\n    rec.lang = L === 'en' ? 'en-IN' : 'hi-IN';\n    rec.interimResults = true;\n    rec.maxAlternatives = 3;\n    rec.onresult = (e) => {\n      const res = e.results[e.results.length - 1];\n      const heard = res[0].transcript;\n      this.setState({ heard: heard });\n      if (res.isFinal) {\n        const alts = [];\n        for (let i = 0; i \u003c res.length; i++) alts.push(res[i].transcript);\n        this.handle(alts);\n      }\n    };\n    rec.onerror = (ev) => {\n      const blocked = ev && (ev.error === 'not-allowed' || ev.error === 'service-not-allowed');\n      this.setState({ listening: false, note: blocked\n        ? (L === 'en' ? 'This preview blocks the browser microphone. Tap the box below and use the 🎤 on your phone keyboard to speak — it works the same way.' : 'इस प्रीव्यू में ब्राउज़र माइक बंद है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें — वैसे ही काम करेगा।')\n        : (L === 'en' ? 'Could not hear clearly. Try again.' : 'साफ़ सुनाई नहीं दिया। दोबारा बोलें।') });\n    };\n    rec.onend = () => this.setState({ listening: false });\n    this.rec = rec;\n    this.setState({ listening: true, heard: '', note: '', go: null });\n    try { rec.start(); } catch (e) { this.setState({ listening: false }); }\n  }\n\n  renderVals() {\n    const st = this.state;\n    const L = st.lang;\n    const T = {\n      hi: { title: 'कहाँ जाना है?', sub: 'माइक दबाएँ और बोलें, जैसे \"मेरा बूथ\"', close: 'बंद करें', langAria: 'Switch to English',\n        tryLabel: 'बोलकर देखें या टैप करें', typeLabel: 'लिखकर बताएँ', typePh: 'लिखें या कीबोर्ड 🎤 से बोलें…', go: 'जाएँ',\n        idle: 'माइक दबाकर बोलें', listening: 'सुन रहे हैं…', opening: 'खोल रहे हैं: ' },\n      en: { title: 'Where do you want to go?', sub: 'Tap the mic and say, for example, \"my booth\"', close: 'Close', langAria: 'हिंदी में बदलें',\n        tryLabel: 'Say or tap one of these', typeLabel: 'Type a place', typePh: 'Type, or speak with keyboard 🎤…', go: 'Go',\n        idle: 'Tap the mic and speak', listening: 'Listening…', opening: 'Opening ' },\n    };\n    const t = T[L];\n    const variant = this.props.variant || 'fab';\n    const seen = {};\n    const chips = this.destinations().filter((d) => { const k = d.hi; if (seen[k]) return false; seen[k] = 1; return true; })\n      .map((d) => ({ label: L === 'en' ? d.en : d.hi, go: () => this.navigate(d) }));\n    const statusText = st.go ? t.opening + st.goLabel : (st.listening ? t.listening : t.idle);\n    const submit = () => { const v = (st.typed || '').trim(); if (v) this.handle([v]); };\n    return {\n      t, chips, statusText,\n      isFab: variant === 'fab',\n      isBanner: variant === 'banner',\n      isOpen: st.open,\n      heard: st.heard,\n      hasHeard: !!st.heard,\n      note: st.note,\n      hasNote: !!st.note,\n      typed: st.typed,\n      langBtn: L === 'en' ? 'हिं' : 'EN',\n      goHref: st.go || 'Main.dc.html',\n      linkRef: this.linkRef,\n      micAria: st.listening ? t.listening : t.idle,\n      micStyle: 'width: 96px; height: 96px; border-radius: 48px; border: none; color: #13233A; display: flex; align-items: center; justify-content: center; cursor: pointer; background: ' +\n        (st.listening ? '#FFD54A; animation: vn-pulse 1.2s infinite' : '#FFD54A'),\n      open: () => { this.setState({ open: true, note: '', heard: '', go: null }); setTimeout(() => this.listen(), 150); },\n      close: () => { try { if (this.rec) this.rec.abort(); } catch (e) {} clearTimeout(this.goTimer); this.setState({ open: false, listening: false, go: null }); },\n      mic: () => this.listen(),\n      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en', note: '' }),\n      setTyped: (e) => { const v = e.target.value; this.setState({ typed: v }); clearTimeout(this.typeTimer); if (v && v.trim().length > 2) this.typeTimer = setTimeout(() => this.handleQuiet(v), 1400); },\n      onKey: (e) => { if (e.key === 'Enter') submit(); },\n      submitTyped: submit,\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n", "CeoConsole.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — CEO Office Console\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\na{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}\nbutton{font-family:inherit;cursor:pointer}\nbutton:disabled{cursor:not-allowed}\ninput,select{font-family:inherit}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"min-height: 100vh; box-sizing: border-box; background: #F3F2EE; font-family: 'Mukta', system-ui, sans-serif; color: #13233A\">\n\n\u003csc-if value=\"{{isLogin}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"min-height: 100vh; display: flex; flex-wrap: wrap\">\n\u003cdiv style=\"flex: 1 1 420px; background: #13233A; color: #FFFFFF; padding: 48px 40px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 32px\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 12px\">\n\u003cdiv style=\"width: 44px; height: 44px; border-radius: 12px; background: #1F4FBF; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z\">\u003c/path>\u003ccircle cx=\"12\" cy=\"9\" r=\"2.5\">\u003c/circle>\u003c/svg>\n\u003c/div>\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.1\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">Apna Booth · Officer Console\u003c/span>\n\u003cspan style=\"font-size: 14px; color: #C9D2E0\">Office of the Chief Electoral Officer · Uttar Pradesh (pilot)\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 16px; max-width: 520px\">\n\u003ch1 style=\"margin: 0; font-size: 38px; line-height: 1.15; font-weight: 800\">A cleaner voter list, every quarter.\u003c/h1>\n\u003cp style=\"margin: 0; font-size: 17px; line-height: 1.5; color: #D7DEEA\">AI flags duplicate, shifted and deceased entries after each qualifying date. Your DEOs, EROs and BLOs verify every match, and no name is removed without notice to the voter.\u003c/p>\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 8px\">\n\u003cspan style=\"font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 12px\">Runs 2 Jan · 2 Apr · 2 Jul · 2 Oct\u003c/span>\n\u003cspan style=\"font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 12px\">Name, photo &amp; EPIC matching\u003c/span>\n\u003cspan style=\"font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 12px\">Full audit trail\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003cspan style=\"font-size: 13px; color: #9FB0C8\">Authorised election officials only. All access is logged.\u003c/span>\n\u003c/div>\n\n\u003cdiv style=\"flex: 1 1 420px; display: flex; align-items: center; justify-content: center; padding: 40px 20px; box-sizing: border-box\">\n\u003cdiv style=\"width: 100%; max-width: 420px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 20px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 10px 30px rgba(19,35,58,0.08)\">\n\n\u003csc-if value=\"{{isCreds}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 18px\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 4px\">\n\u003ch2 style=\"margin: 0; font-size: 26px; font-weight: 800\">Officer sign in\u003c/h2>\n\u003cspan style=\"font-size: 15px; color: #4F5B6B\">Step 1 of 2 · ID and password\u003c/span>\n\u003c/div>\n\u003clabel style=\"display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700\">Role\n\u003cselect value=\"{{role}}\" onChange=\"{{setRole}}\" style=\"min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 16px; padding: 0 12px\">\n\u003coption value=\"ceo\">CEO office (state)\u003c/option>\n\u003coption value=\"deo\">District Election Officer\u003c/option>\n\u003coption value=\"ero\">Electoral Registration Officer\u003c/option>\n\u003c/select>\n\u003c/label>\n\u003clabel style=\"display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700\">Official ID or gov.in email\n\u003cinput type=\"text\" value=\"{{uid}}\" onChange=\"{{setUid}}\" placeholder=\"name.surname@[state].gov.in\" autocomplete=\"username\" style=\"min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; color: #13233A; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%\">\n\u003c/label>\n\u003clabel style=\"display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700\">Password\n\u003cinput type=\"password\" value=\"{{pw}}\" onChange=\"{{setPw}}\" autocomplete=\"current-password\" style=\"min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; color: #13233A; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%\">\n\u003c/label>\n\u003cbutton disabled=\"{{credsDisabled}}\" onClick=\"{{toOtp}}\" style=\"{{credsBtn}}\">Continue\u003c/button>\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px; color: #4F5B6B; font-size: 13px\">\u003cspan style=\"flex: 1; height: 1px; background: #E2E0D8\">\u003c/span>or\u003cspan style=\"flex: 1; height: 1px; background: #E2E0D8\">\u003c/span>\u003c/div>\n\u003cbutton onClick=\"{{toOtp}}\" style=\"min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 700\">Sign in with Government SSO\u003c/button>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B; text-align: center\">Demo: type anything to continue. No real credentials are checked or stored.\u003c/span>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isOtp}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 18px\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 4px\">\n\u003ch2 style=\"margin: 0; font-size: 26px; font-weight: 800\">Verify it's you\u003c/h2>\n\u003cspan style=\"font-size: 15px; color: #4F5B6B\">Step 2 of 2 · OTP sent to your registered mobile ending ••42\u003c/span>\n\u003c/div>\n\u003clabel style=\"display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700\">6-digit OTP\n\u003cinput type=\"text\" inputmode=\"numeric\" maxlength=\"6\" value=\"{{otp}}\" onChange=\"{{setOtp}}\" autocomplete=\"one-time-code\" placeholder=\"••••••\" style=\"min-height: 56px; border-radius: 12px; border: 1px solid #C9C5B9; color: #13233A; font-size: 26px; font-weight: 800; letter-spacing: 12px; text-align: center; box-sizing: border-box; width: 100%\">\n\u003c/label>\n\u003cbutton disabled=\"{{otpDisabled}}\" onClick=\"{{signIn}}\" style=\"{{otpBtn}}\">Verify and sign in\u003c/button>\n\u003cdiv style=\"display: flex; justify-content: space-between\">\n\u003cbutton onClick=\"{{backToCreds}}\" style=\"min-height: 44px; border: none; background: transparent; color: #1F4FBF; font-size: 15px; font-weight: 700; padding: 0\">← Back\u003c/button>\n\u003cbutton style=\"min-height: 44px; border: none; background: transparent; color: #1F4FBF; font-size: 15px; font-weight: 700; padding: 0\">Resend OTP in 0:28\u003c/button>\n\u003c/div>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B; text-align: center\">Demo: enter any 6 digits.\u003c/span>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isApp}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-direction: column\">\n\n\u003cheader style=\"background: #13233A; color: #FFFFFF\">\n\u003cdiv style=\"max-width: 1320px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px; flex: 1 1 320px\">\n\u003cdiv style=\"width: 36px; height: 36px; border-radius: 10px; background: #1F4FBF; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#FFFFFF\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z\">\u003c/path>\u003ccircle cx=\"12\" cy=\"9\" r=\"2.5\">\u003c/circle>\u003c/svg>\n\u003c/div>\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.1\">\n\u003cspan style=\"font-size: 17px; font-weight: 800\">Voter List De-duplication\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #C9D2E0\">CEO Office · Uttar Pradesh · pilot\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003cnav aria-label=\"Console sections\" style=\"display: flex; flex-wrap: wrap; gap: 4px\">\n\u003csc-for list=\"{{tabs}}\" as=\"tb\" hint-placeholder-count=\"4\">\n\u003cbutton aria-current=\"{{tb.current}}\" onClick=\"{{tb.pick}}\" style=\"{{tb.style}}\">{{tb.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/nav>\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px\">\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.1; text-align: right\">\n\u003cspan style=\"font-size: 14px; font-weight: 700\">{{roleName}}\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #C9D2E0\">{{uidShow}}\u003c/span>\n\u003c/div>\n\u003cbutton onClick=\"{{logout}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #4A5F80; background: transparent; color: #FFFFFF; font-size: 14px; font-weight: 700\">Sign out\u003c/button>\n\u003c/div>\n\u003c/div>\n\u003c/header>\n\n\u003cmain style=\"max-width: 1320px; width: 100%; margin: 0 auto; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px\">\n\n\u003cdiv role=\"note\" style=\"display: flex; align-items: flex-start; gap: 12px; background: #E3F1EE; border: 1px solid #0F6E63; border-radius: 14px; padding: 12px 16px\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#0F6E63\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"flex-shrink: 0; margin-top: 2px\">\u003cpath d=\"M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z\">\u003c/path>\u003cpath d=\"M9 12l2 2 4-4\">\u003c/path>\u003c/svg>\n\u003cspan style=\"font-size: 15px; line-height: 1.4\">\u003cb>No automatic deletions.\u003c/b> AI only flags possible matches. Every removal needs BLO field verification, a notice to the voter with time to reply, and an ERO order. Voters see the notice in Apna Booth's Roll Watch.\u003c/span>\n\u003c/div>\n\n\u003csc-if value=\"{{tabOverview}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 20px\">\n\n\u003csection aria-label=\"Current cycle\" style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 2px\">\n\u003cspan style=\"font-size: 13px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.6px\">CURRENT CYCLE · EVERY 3 MONTHS\u003c/span>\n\u003ch2 style=\"margin: 0; font-size: 26px; font-weight: 800\">Q4 2026 · after qualifying date 1 October\u003c/h2>\n\u003cspan style=\"font-size: 15px; color: #4F5B6B\">AI scan started 2 Oct · review closes 31 Dec · next cycle starts 2 Jan 2027\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; gap: 8px; flex-wrap: wrap\">\n\u003cbutton onClick=\"{{exportCsv}}\" style=\"min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 700\">Export district report (CSV)\u003c/button>\n\u003cbutton onClick=\"{{goReview}}\" style=\"min-height: 44px; padding: 0 16px; border-radius: 12px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 700\">Review queue · {{pendingCount}} pending\u003c/button>\n\u003c/div>\n\u003c/div>\n\u003csc-if value=\"{{exportMsgOn}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan role=\"status\" style=\"font-size: 14px; font-weight: 700; color: #0F6E63\">{{exportMsg}}\u003c/span>\n\u003c/sc-if>\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px\">\n\u003csc-for list=\"{{steps}}\" as=\"sp\" hint-placeholder-count=\"6\">\n\u003cdiv style=\"{{sp.style}}\">\n\u003cspan style=\"{{sp.badge}}\">{{sp.state}}\u003c/span>\n\u003cspan style=\"font-size: 15px; font-weight: 800; line-height: 1.2\">{{sp.title}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B; line-height: 1.3\">{{sp.sub}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\u003c/section>\n\n\u003csection aria-label=\"Key numbers\" style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px\">\n\u003csc-for list=\"{{kpis}}\" as=\"k\" hint-placeholder-count=\"4\">\n\u003cdiv style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px\">\n\u003cspan style=\"font-size: 13px; font-weight: 700; color: #4F5B6B\">{{k.label}}\u003c/span>\n\u003cspan style=\"{{k.valStyle}}\">{{k.value}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{k.note}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/section>\n\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start\">\n\n\u003csection aria-label=\"Matches by type\" style=\"flex: 1 1 340px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 14px\">\n\u003ch3 style=\"margin: 0; font-size: 18px; font-weight: 800\">What the AI flagged this cycle\u003c/h3>\n\u003csc-for list=\"{{types}}\" as=\"ty\" hint-placeholder-count=\"5\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 4px\">\n\u003cdiv style=\"display: flex; justify-content: space-between; gap: 8px; font-size: 14px\">\n\u003cspan style=\"font-weight: 700\">{{ty.label}}\u003c/span>\n\u003cspan style=\"font-weight: 800\">{{ty.count}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"height: 10px; border-radius: 5px; background: #ECEAE3; overflow: hidden\">\n\u003cdiv style=\"{{ty.bar}}\">\u003c/div>\n\u003c/div>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B\">{{ty.how}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/section>\n\n\u003csection aria-label=\"District progress\" style=\"flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 12px\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px\">\n\u003ch3 style=\"margin: 0; font-size: 18px; font-weight: 800\">District progress\u003c/h3>\n\u003clabel style=\"display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700\">District\n\u003cselect value=\"{{district}}\" onChange=\"{{setDistrict}}\" style=\"min-height: 40px; border-radius: 10px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; padding: 0 10px\">\n\u003coption value=\"all\">All districts (sample of 8)\u003c/option>\n\u003coption value=\"Lucknow\">Lucknow\u003c/option>\n\u003coption value=\"Prayagraj\">Prayagraj\u003c/option>\n\u003coption value=\"Kanpur Nagar\">Kanpur Nagar\u003c/option>\n\u003coption value=\"Varanasi\">Varanasi\u003c/option>\n\u003coption value=\"Gorakhpur\">Gorakhpur\u003c/option>\n\u003coption value=\"Agra\">Agra\u003c/option>\n\u003coption value=\"Meerut\">Meerut\u003c/option>\n\u003coption value=\"Bareilly\">Bareilly\u003c/option>\n\u003c/select>\n\u003c/label>\n\u003c/div>\n\u003cdiv style=\"overflow-x: auto\">\n\u003cdiv role=\"table\" aria-label=\"District progress\" style=\"min-width: 680px; display: flex; flex-direction: column\">\n\u003cdiv role=\"row\" style=\"display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr 1fr 1fr 1fr; gap: 8px; padding: 8px 10px; background: #F3F2EE; border-radius: 10px; font-size: 13px; font-weight: 800; color: #4F5B6B\">\n\u003cspan role=\"columnheader\">District\u003c/span>\u003cspan role=\"columnheader\">Electors\u003c/span>\u003cspan role=\"columnheader\">Flagged\u003c/span>\u003cspan role=\"columnheader\">BLO verified\u003c/span>\u003cspan role=\"columnheader\">ERO decided\u003c/span>\u003cspan role=\"columnheader\">Pending\u003c/span>\u003cspan role=\"columnheader\">Status\u003c/span>\n\u003c/div>\n\u003csc-for list=\"{{districts}}\" as=\"d\" hint-placeholder-count=\"8\">\n\u003cdiv role=\"row\" style=\"display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr 1fr 1fr 1fr; gap: 8px; padding: 10px; border-bottom: 1px solid #ECEAE3; font-size: 15px; align-items: center\">\n\u003cspan role=\"cell\" style=\"font-weight: 700\">{{d.name}}\u003c/span>\n\u003cspan role=\"cell\">{{d.electors}}\u003c/span>\n\u003cspan role=\"cell\">{{d.flagged}}\u003c/span>\n\u003cspan role=\"cell\" style=\"display: flex; align-items: center; gap: 6px\">\u003cspan style=\"flex: 1; height: 8px; border-radius: 4px; background: #ECEAE3; overflow: hidden\">\u003cspan style=\"{{d.bar}}\">\u003c/span>\u003c/span>{{d.verified}}\u003c/span>\n\u003cspan role=\"cell\">{{d.decided}}\u003c/span>\n\u003cspan role=\"cell\">{{d.pending}}\u003c/span>\n\u003cspan role=\"cell\">\u003cspan style=\"{{d.badge}}\">{{d.status}}\u003c/span>\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\u003c/div>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B\">Demo data for the pilot pitch. Live numbers come from the electoral roll database after integration.\u003c/span>\n\u003c/section>\n\u003c/div>\n\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{tabReview}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start\">\n\n\u003csection aria-label=\"Flagged matches\" style=\"flex: 1 1 320px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 8px\">\n\u003cdiv style=\"display: flex; justify-content: space-between; align-items: baseline\">\n\u003ch3 style=\"margin: 0; font-size: 18px; font-weight: 800\">Review queue\u003c/h3>\n\u003cspan style=\"font-size: 13px; font-weight: 700; color: #4F5B6B\">{{pendingCount}} pending · {{doneCount}} done\u003c/span>\n\u003c/div>\n\u003csc-for list=\"{{caseList}}\" as=\"cs\" hint-placeholder-count=\"6\">\n\u003cbutton aria-pressed=\"{{cs.pressed}}\" onClick=\"{{cs.pick}}\" style=\"{{cs.style}}\">\n\u003cspan style=\"display: flex; justify-content: space-between; gap: 8px; width: 100%\">\n\u003cspan style=\"font-size: 12px; font-weight: 800; color: #163A8F; letter-spacing: 0.4px\">{{cs.type}}\u003c/span>\n\u003cspan style=\"{{cs.confStyle}}\">{{cs.conf}}\u003c/span>\n\u003c/span>\n\u003cspan style=\"font-size: 15px; font-weight: 800; text-align: left\">{{cs.title}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B; text-align: left\">{{cs.where}}\u003c/span>\n\u003cspan style=\"{{cs.statusStyle}}\">{{cs.status}}\u003c/span>\n\u003c/button>\n\u003c/sc-for>\n\u003c/section>\n\n\u003csection aria-label=\"Compare entries\" style=\"flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 2px\">\n\u003cspan style=\"font-size: 13px; font-weight: 800; color: #163A8F; letter-spacing: 0.4px\">{{sel.type}} · CASE {{sel.id}}\u003c/span>\n\u003ch3 style=\"margin: 0; font-size: 22px; font-weight: 800\">{{sel.title}}\u003c/h3>\n\u003c/div>\n\u003cspan style=\"{{sel.confStyle}}\">AI match confidence {{sel.conf}}\u003c/span>\n\u003c/div>\n\n\u003cdiv style=\"overflow-x: auto\">\n\u003cdiv style=\"min-width: 520px; display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr); border: 1px solid #E2E0D8; border-radius: 12px; overflow: hidden\">\n\u003cspan style=\"padding: 10px 12px; background: #F3F2EE; font-size: 13px; font-weight: 800; color: #4F5B6B\">Field\u003c/span>\n\u003cspan style=\"padding: 10px 12px; background: #F3F2EE; font-size: 13px; font-weight: 800; color: #4F5B6B\">Entry A\u003c/span>\n\u003cspan style=\"padding: 10px 12px; background: #F3F2EE; font-size: 13px; font-weight: 800; color: #4F5B6B\">Entry B\u003c/span>\n\u003csc-for list=\"{{sel.rows}}\" as=\"fr\" hint-placeholder-count=\"6\">\n\u003cspan style=\"padding: 10px 12px; border-top: 1px solid #ECEAE3; font-size: 14px; font-weight: 700; color: #4F5B6B\">{{fr.f}}\u003c/span>\n\u003cspan style=\"{{fr.aStyle}}\">{{fr.a}}\u003c/span>\n\u003cspan style=\"{{fr.bStyle}}\">{{fr.b}}\u003c/span>\n\u003c/sc-for>\n\u003cspan style=\"padding: 10px 12px; border-top: 1px solid #ECEAE3; font-size: 14px; font-weight: 700; color: #4F5B6B\">Photo\u003c/span>\n\u003cspan style=\"padding: 10px 12px; border-top: 1px solid #ECEAE3\">\n\u003cspan style=\"width: 64px; height: 76px; border-radius: 6px; background: #E6E8EA; display: flex; align-items: flex-end; justify-content: center; overflow: hidden\">\n\u003csvg width=\"48\" height=\"56\" viewBox=\"0 0 24 28\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"9\" r=\"5.5\" fill=\"#8C939C\">\u003c/circle>\u003cpath d=\"M2 28c0-7 4.5-11 10-11s10 4 10 11z\" fill=\"#8C939C\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003c/span>\n\u003cspan style=\"padding: 10px 12px; border-top: 1px solid #ECEAE3; display: flex; align-items: center; gap: 12px\">\n\u003cspan style=\"width: 64px; height: 76px; border-radius: 6px; background: #E6E8EA; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; flex-shrink: 0\">\n\u003csvg width=\"48\" height=\"56\" viewBox=\"0 0 24 28\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"9\" r=\"5.5\" fill=\"#8C939C\">\u003c/circle>\u003cpath d=\"M2 28c0-7 4.5-11 10-11s10 4 10 11z\" fill=\"#8C939C\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003cspan style=\"{{sel.photoStyle}}\">Face match {{sel.photo}}\u003c/span>\n\u003c/span>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 6px\">\n\u003cspan style=\"font-size: 14px; font-weight: 800\">Why the AI flagged this\u003c/span>\n\u003cspan style=\"font-size: 15px; line-height: 1.45\">{{sel.why}}\u003c/span>\n\u003cspan style=\"font-size: 14px; line-height: 1.45; color: #163A8F; background: #E6EDFB; border-radius: 10px; padding: 8px 12px\">\u003cb>Suggested next step:\u003c/b> {{sel.suggest}}\u003c/span>\n\u003c/div>\n\n\u003csc-if value=\"{{selPending}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 8px\">\n\u003cbutton onClick=\"{{actSame}}\" style=\"flex: 1 1 200px; min-height: 48px; border-radius: 12px; border: none; background: #B4500E; color: #FFFFFF; font-size: 15px; font-weight: 700\">Same person · send notice via ERO\u003c/button>\n\u003cbutton onClick=\"{{actField}}\" style=\"flex: 1 1 160px; min-height: 48px; border-radius: 12px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 700\">Send BLO for field check\u003c/button>\n\u003cbutton onClick=\"{{actDiff}}\" style=\"flex: 1 1 160px; min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 700\">Different people · clear\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\u003csc-if value=\"{{selDone}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; background: #F3F2EE; border-radius: 12px; padding: 12px 14px\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">Decision recorded: {{sel.status}}\u003c/span>\n\u003cbutton onClick=\"{{undo}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">Undo\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\u003c/section>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{tabSchedule}}\" hint-placeholder-val=\"{{false}}\">\n\u003csection aria-label=\"Quarterly schedule\" style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px; max-width: 860px\">\n\u003ch2 style=\"margin: 0; font-size: 22px; font-weight: 800\">Quarterly de-duplication schedule\u003c/h2>\n\u003cspan style=\"font-size: 15px; color: #4F5B6B; line-height: 1.45\">A fresh scan runs the day after each qualifying date, so new and shifted voters are checked before the next revision.\u003c/span>\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px\">\n\u003csc-for list=\"{{quarters}}\" as=\"q\" hint-placeholder-count=\"4\">\n\u003cdiv style=\"{{q.style}}\">\n\u003cspan style=\"font-size: 13px; font-weight: 800; color: #4F5B6B\">{{q.q}}\u003c/span>\n\u003cspan style=\"font-size: 18px; font-weight: 800\">{{q.run}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{q.after}}\u003c/span>\n\u003cspan style=\"{{q.badge}}\">{{q.state}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 8px\">\n\u003csc-for list=\"{{settings}}\" as=\"sg\" hint-placeholder-count=\"5\">\n\u003clabel style=\"display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; border: 1px solid #E2E0D8; border-radius: 12px; padding: 6px 14px\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.3\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">{{sg.label}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{sg.sub}}\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{sg.on}}\" onChange=\"{{sg.toggle}}\" style=\"width: 22px; height: 22px; accent-color: #1F4FBF; flex-shrink: 0\">\n\u003c/label>\n\u003c/sc-for>\n\u003c/div>\n\u003clabel style=\"display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 700\">Minimum AI confidence to flag a match\n\u003cselect value=\"{{threshold}}\" onChange=\"{{setThreshold}}\" style=\"min-height: 44px; border-radius: 10px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; padding: 0 10px\">\n\u003coption value=\"75\">75% · catch more, more field work\u003c/option>\n\u003coption value=\"85\">85% · recommended\u003c/option>\n\u003coption value=\"95\">95% · only very strong matches\u003c/option>\n\u003c/select>\n\u003c/label>\n\u003c/section>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{tabAudit}}\" hint-placeholder-val=\"{{false}}\">\n\u003csection aria-label=\"Audit log\" style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 10px; max-width: 980px\">\n\u003ch2 style=\"margin: 0; font-size: 22px; font-weight: 800\">Audit log\u003c/h2>\n\u003cspan style=\"font-size: 14px; color: #4F5B6B\">Every sign-in and decision is recorded with officer, time and reason. Entries cannot be edited.\u003c/span>\n\u003csc-for list=\"{{audit}}\" as=\"au\" hint-placeholder-count=\"5\">\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 10px 12px; border: 1px solid #ECEAE3; border-radius: 10px\">\n\u003cspan style=\"font-size: 13px; font-weight: 700; color: #4F5B6B; min-width: 150px\">{{au.time}}\u003c/span>\n\u003cspan style=\"font-size: 14px; font-weight: 700; min-width: 180px\">{{au.who}}\u003c/span>\n\u003cspan style=\"font-size: 14px; flex: 1 1 260px\">{{au.what}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/section>\n\u003c/sc-if>\n\n\u003c/main>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"$preview\":{\"width\":1440,\"height\":1500}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = {\n      step: 'creds', role: 'ceo', uid: '', pw: '', otp: '',\n      tab: 'overview', district: 'all', sel: 'C-1042', threshold: '85',\n      decisions: {},\n      settings: { auto: true, crs: true, photo: true, notify: true, voterNotice: true },\n      audit: [\n        { time: '22 Oct 2026 · 09:10', who: 'System', what: 'Q4 scan finished: 2,83,950 possible matches flagged at 85% confidence.' },\n        { time: '21 Oct 2026 · 17:42', who: 'DEO Lucknow', what: 'Sent 1,240 cases to BLOs for field verification.' },\n        { time: '21 Oct 2026 · 11:05', who: 'ERO 172', what: 'Cleared case C-0987 as different people (age gap 18 years).' }\n      ],\n      exportMsg: ''\n    };\n  }\n\n  log(what) {\n    const now = new Date();\n    const pad = (n) => (n \u003c 10 ? '0' : '') + n;\n    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];\n    const time = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear() + ' · ' + pad(now.getHours()) + ':' + pad(now.getMinutes());\n    const who = { ceo: 'CEO office', deo: 'DEO', ero: 'ERO' }[this.state.role] + ' · ' + (this.state.uid || 'officer');\n    this.setState({ audit: [{ time, who, what }].concat(this.state.audit) });\n  }\n\n  renderVals() {\n    const st = this.state;\n    const CASES = [\n      { id: 'C-1042', type: 'SIMILAR DETAILS', district: 'Lucknow', conf: 96, photo: 91,\n        title: 'Ramesh Kumar Verma · listed twice',\n        a: { name: 'Ramesh Kumar Verma', rel: 's/o Shyam Lal', age: '46 · M', epic: 'XYZ1234567', part: 'Part 142 · Ram Nagar', addr: 'H-12, Sector B, Ram Nagar' },\n        b: { name: 'Ramesh K. Verma', rel: 's/o Shyam Lal', age: '47 · M', epic: 'XYZ7654321', part: 'Part 88 · Indira Nagar', addr: '4/221, Indira Nagar' },\n        same: ['rel'],\n        why: 'Same father’s name, near-identical name and age, and 91% face match. Entry B is from 2019; Entry A was added in 2024 after a shift of address, but the old entry was never removed.',\n        suggest: 'Likely shifted voter. Ask the BLO of Part 88 to confirm, then notify the voter that the old entry will be removed.' },\n      { id: 'C-1043', type: 'SAME EPIC NUMBER', district: 'Prayagraj', conf: 99, photo: 22,\n        title: 'One EPIC number, two different people',\n        a: { name: 'Anil Kumar', rel: 's/o Ram Prakash', age: '39 · M', epic: 'ABC0045123', part: 'Part 12 · Civil Lines', addr: '18, Civil Lines' },\n        b: { name: 'Anil Kumar Pal', rel: 's/o Sukhdev Pal', age: '52 · M', epic: 'ABC0045123', part: 'Part 301 · Kanpur Nagar', addr: '77, Govind Nagar' },\n        same: ['epic'],\n        why: 'The EPIC number is identical, but father’s name, age and face (22% match) are different. This is a numbering error, not a duplicate voter.',\n        suggest: 'Do not delete. Issue a fresh EPIC number to one voter and inform both.' },\n      { id: 'C-1044', type: 'PHOTO MATCH', district: 'Varanasi', conf: 88, photo: 96,\n        title: 'Suman Devi / Suman Yadav',\n        a: { name: 'Suman Devi', rel: 'd/o Hari Ram', age: '27 · F', epic: 'PQR5566778', part: 'Part 54 · Sigra', addr: '9, Sigra Colony' },\n        b: { name: 'Suman Yadav', rel: 'w/o Deepak Yadav', age: '28 · F', epic: 'PQR9988776', part: 'Part 210 · Lanka', addr: 'B-3, Lanka' },\n        same: [],\n        why: 'Very high face match (96%) with different surnames and relatives. Possibly listed at her parents’ home and again after marriage.',\n        suggest: 'Field check by BLO. If confirmed, keep the voter’s chosen address and remove the other entry after notice.' },\n      { id: 'C-1045', type: 'DECEASED · CRS MATCH', district: 'Gorakhpur', conf: 93, photo: 0,\n        title: 'Kailash Nath · death record found',\n        a: { name: 'Kailash Nath', rel: 's/o Badri Nath', age: '81 · M', epic: 'GKP3344556', part: 'Part 77 · Rapti Nagar', addr: '22, Rapti Nagar' },\n        b: { name: 'Kailash Nath (death record)', rel: 's/o Badri Nath', age: 'Died Aug 2026', epic: '—', part: 'Civil registration record', addr: '22, Rapti Nagar' },\n        same: ['rel', 'addr'],\n        why: 'Name, father’s name and address match a death registered in August 2026 with the civil registration system.',\n        suggest: 'BLO to visit the family and collect Form 7 before the ERO orders deletion.' },\n      { id: 'C-1046', type: 'SIMILAR DETAILS', district: 'Meerut', conf: 76, photo: 31,\n        title: 'Mohd. Salim / Mohd. Saleem',\n        a: { name: 'Mohd. Salim', rel: 's/o Abdul Karim', age: '34 · M', epic: 'MRT1122334', part: 'Part 19 · Shastri Nagar', addr: '5, Shastri Nagar' },\n        b: { name: 'Mohd. Saleem', rel: 's/o Abdul Kareem', age: '52 · M', epic: 'MRT4433221', part: 'Part 19 · Shastri Nagar', addr: '61, Shastri Nagar' },\n        same: ['part'],\n        why: 'Names sound alike, but the ages differ by 18 years and the face match is low (31%).',\n        suggest: 'Probably different people. Clear unless the BLO reports otherwise.' },\n      { id: 'C-1047', type: 'SHIFTED · NOT DELETED', district: 'Agra', conf: 94, photo: 93,\n        title: 'Neha Sharma · Agra and Lucknow',\n        a: { name: 'Neha Sharma', rel: 'd/o Vijay Sharma', age: '31 · F', epic: 'AGR6677889', part: 'Part 40 · Kamla Nagar', addr: '14, Kamla Nagar' },\n        b: { name: 'Neha Sharma', rel: 'd/o Vijay Sharma', age: '31 · F', epic: 'LKO2211009', part: 'Lucknow · Part 160', addr: '3-C, Gomti Nagar' },\n        same: ['name', 'rel', 'age'],\n        why: 'Identical name, father and age with 93% face match. Form 8 shifting to Lucknow was approved in 2025, but the Agra entry remains.',\n        suggest: 'Notify the voter and remove the Agra entry after the reply period.' }\n    ];\n\n    const statusText = { same: 'Notice sent via ERO', field: 'With BLO for field check', diff: 'Cleared · different people' };\n    const filtered = CASES.filter((c) => st.district === 'all' || c.district === st.district);\n    const shownCases = filtered.length ? filtered : CASES;\n    const selCase = CASES.find((c) => c.id === st.sel) || CASES[0];\n    const pendingCount = CASES.filter((c) => !st.decisions[c.id]).length;\n\n    const confStyle = (v) => 'font-size: 13px; font-weight: 800; border-radius: 999px; padding: 2px 10px; white-space: nowrap; ' +\n      (v >= 90 ? 'background: #FCEBDD; color: #8A3A07' : v >= 80 ? 'background: #E6EDFB; color: #163A8F' : 'background: #ECEAE3; color: #4F5B6B');\n\n    const caseList = shownCases.map((c) => {\n      const on = c.id === selCase.id;\n      const dec = st.decisions[c.id];\n      return {\n        type: c.type, title: c.title, where: c.district + ' · ' + c.id,\n        conf: c.conf + '%', confStyle: confStyle(c.conf),\n        status: dec ? statusText[dec] : 'Pending review',\n        statusStyle: 'font-size: 12px; font-weight: 700; color: ' + (dec ? '#0F6E63' : '#8A3A07'),\n        pressed: on ? 'true' : 'false',\n        style: 'width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; border-radius: 12px; padding: 10px 12px; color: #13233A; ' +\n          (on ? 'border: 2px solid #1F4FBF; background: #E6EDFB' : 'border: 1px solid #E2E0D8; background: #FFFFFF'),\n        pick: () => this.setState({ sel: c.id })\n      };\n    });\n\n    const fields = [['name', 'Name'], ['rel', 'Relative'], ['age', 'Age · gender'], ['epic', 'EPIC no.'], ['part', 'Part · area'], ['addr', 'Address']];\n    const cell = 'padding: 10px 12px; border-top: 1px solid #ECEAE3; font-size: 15px; ';\n    const selDec = st.decisions[selCase.id];\n    const sel = {\n      id: selCase.id, type: selCase.type, title: selCase.title,\n      conf: selCase.conf + '%', confStyle: confStyle(selCase.conf),\n      photo: selCase.photo ? selCase.photo + '%' : 'n/a',\n      photoStyle: 'font-size: 14px; font-weight: 800; ' + (selCase.photo >= 85 ? 'color: #8A3A07' : 'color: #4F5B6B'),\n      why: selCase.why, suggest: selCase.suggest,\n      status: selDec ? statusText[selDec] : '',\n      rows: fields.map(([k, label]) => {\n        const match = selCase.a[k] === selCase.b[k] || selCase.same.indexOf(k) >= 0;\n        const s = cell + (match ? 'background: #FFF6E5; font-weight: 700' : '');\n        return { f: label, a: selCase.a[k], b: selCase.b[k], aStyle: s, bStyle: s };\n      })\n    };\n\n    const decide = (kind) => () => {\n      this.setState({ decisions: Object.assign({}, st.decisions, { [selCase.id]: kind }) });\n      this.log(selCase.id + ' (' + selCase.district + '): ' + statusText[kind] + '.');\n    };\n\n    const DISTRICTS = [\n      ['Lucknow', '40.1 L', 7420, 74, 4810, 'On track'],\n      ['Prayagraj', '46.3 L', 8960, 61, 4230, 'On track'],\n      ['Kanpur Nagar', '35.8 L', 6110, 58, 3020, 'At risk'],\n      ['Varanasi', '30.2 L', 5040, 69, 3150, 'On track'],\n      ['Gorakhpur', '33.9 L', 6890, 47, 2410, 'At risk'],\n      ['Agra', '33.1 L', 5510, 72, 3640, 'On track'],\n      ['Meerut', '27.4 L', 4970, 66, 2990, 'On track'],\n      ['Bareilly', '33.7 L', 6320, 51, 2700, 'At risk']\n    ];\n    const fmt = (n) => n.toLocaleString('en-IN');\n    const districtRows = DISTRICTS.filter((d) => st.district === 'all' || d[0] === st.district);\n    const districts = districtRows.map((d) => ({\n      name: d[0], electors: d[1], flagged: fmt(d[2]), verified: d[3] + '%', decided: fmt(d[4]), pending: fmt(d[2] - d[4]),\n      bar: 'display: block; height: 100%; width: ' + d[3] + '%; background: #1F4FBF',\n      status: d[5],\n      badge: 'font-size: 12px; font-weight: 800; border-radius: 999px; padding: 3px 10px; white-space: nowrap; ' +\n        (d[5] === 'On track' ? 'background: #E3F1EE; color: #0F6E63' : 'background: #FCEBDD; color: #8A3A07')\n    }));\n\n    const TYPES = [\n      ['Similar details (name, relative, age)', 142300, 'Fuzzy match on name, relative’s name, age and gender in Hindi and English spellings'],\n      ['Photo match', 61200, 'Face similarity between photos on different entries'],\n      ['Shifted but not deleted', 48700, 'Form 8 shift approved, old entry still on the roll'],\n      ['Deceased · civil registration match', 21900, 'Matched with registered deaths'],\n      ['Same EPIC number', 9850, 'One EPIC number on more than one person']\n    ];\n    const maxT = TYPES[0][1];\n    const types = TYPES.map((x) => ({\n      label: x[0], count: fmt(x[1]), how: x[2],\n      bar: 'height: 100%; width: ' + Math.round((x[1] / maxT) * 100) + '%; background: #1F4FBF; border-radius: 5px'\n    }));\n\n    const kpis = [\n      { label: 'Electors scanned', value: '15.31 Cr', note: 'All 75 districts · demo figure', valStyle: 'font-size: 30px; font-weight: 800' },\n      { label: 'Possible matches flagged', value: '2,83,950', note: '1.85% of the roll · at ' + st.threshold + '% confidence', valStyle: 'font-size: 30px; font-weight: 800; color: #8A3A07' },\n      { label: 'Decided by EROs', value: '1,96,420', note: '69% of flagged · 70 days left', valStyle: 'font-size: 30px; font-weight: 800; color: #0F6E63' },\n      { label: 'Cleared as different people', value: '41,380', note: 'No action on these voters', valStyle: 'font-size: 30px; font-weight: 800' }\n    ];\n\n    const stepState = (k) => ({ done: 'DONE', now: 'IN PROGRESS', next: 'UPCOMING' }[k]);\n    const steps = [\n      ['done', '1 · AI scan', '2–5 Oct · whole roll'],\n      ['now', '2 · DEO / ERO review', 'Check each flagged pair'],\n      ['now', '3 · BLO field check', 'Doorstep verification'],\n      ['next', '4 · Notice to voter', 'Reply window before any removal'],\n      ['next', '5 · ERO orders', 'Roll updated with reasons'],\n      ['next', '6 · Report to ECI', 'Cycle summary by 31 Dec']\n    ].map(([k, title, sub]) => ({\n      title, sub, state: stepState(k),\n      style: 'border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px; ' +\n        (k === 'now' ? 'border: 2px solid #1F4FBF; background: #E6EDFB' : k === 'done' ? 'border: 1px solid #0F6E63; background: #E3F1EE' : 'border: 1px solid #E2E0D8; background: #FFFFFF'),\n      badge: 'align-self: flex-start; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; border-radius: 999px; padding: 2px 8px; ' +\n        (k === 'now' ? 'background: #1F4FBF; color: #FFFFFF' : k === 'done' ? 'background: #0F6E63; color: #FFFFFF' : 'background: #ECEAE3; color: #4F5B6B')\n    }));\n\n    const quarters = [\n      ['Q1', '2 January', 'after qualifying date 1 Jan', 'next'],\n      ['Q2', '2 April', 'after qualifying date 1 Apr', 'next'],\n      ['Q3', '2 July', 'after qualifying date 1 Jul', 'done'],\n      ['Q4', '2 October', 'after qualifying date 1 Oct', 'now']\n    ].map(([q, run, after, k]) => ({\n      q, run, after,\n      state: k === 'now' ? 'Running now' : k === 'done' ? 'Completed' : 'Scheduled',\n      style: 'border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; ' +\n        (k === 'now' ? 'border: 2px solid #1F4FBF; background: #E6EDFB' : 'border: 1px solid #E2E0D8; background: #FFFFFF'),\n      badge: 'align-self: flex-start; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 10px; ' +\n        (k === 'now' ? 'background: #1F4FBF; color: #FFFFFF' : k === 'done' ? 'background: #E3F1EE; color: #0F6E63' : 'background: #ECEAE3; color: #4F5B6B')\n    }));\n\n    const SET = [\n      ['auto', 'Run automatically every 3 months', 'Starts the day after each qualifying date'],\n      ['photo', 'Include photo matching', 'Face similarity across entries in the state'],\n      ['crs', 'Check civil death registrations', 'Flag entries that match a registered death'],\n      ['notify', 'Alert DEOs and EROs when a cycle starts', 'SMS and email with their district queue'],\n      ['voterNotice', 'Notify voters in Apna Booth Roll Watch', 'Voters see any notice on their entry and can reply']\n    ];\n    const settings = SET.map(([k, label, sub]) => ({\n      label, sub, on: !!st.settings[k],\n      toggle: () => {\n        const on = !st.settings[k];\n        this.setState({ settings: Object.assign({}, st.settings, { [k]: on }) });\n        this.log('Setting changed: \"' + label + '\" ' + (on ? 'on' : 'off') + '.');\n      }\n    }));\n\n    const tabStyle = (on) => 'min-height: 40px; padding: 0 14px; border-radius: 10px; font-size: 15px; font-weight: 700; ' +\n      (on ? 'border: none; background: #FFFFFF; color: #13233A' : 'border: 1px solid #4A5F80; background: transparent; color: #FFFFFF');\n    const tabs = [['overview', 'Overview'], ['review', 'Review queue'], ['schedule', 'Schedule'], ['audit', 'Audit log']].map(([id, label]) => ({\n      label: id === 'review' ? label + ' (' + pendingCount + ')' : label,\n      current: st.tab === id ? 'page' : 'false',\n      style: tabStyle(st.tab === id),\n      pick: () => this.setState({ tab: id })\n    }));\n\n    const credsOk = st.uid.trim().length > 0 && st.pw.length > 0;\n    const otpOk = /^\\d{6}$/.test(st.otp);\n    const btn = (ok) => 'min-height: 52px; border-radius: 12px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 17px; font-weight: 800' + (ok ? '' : '; opacity: 0.45');\n    const roleNames = { ceo: 'CEO office · Rolls cell', deo: 'District Election Officer', ero: 'Electoral Registration Officer' };\n\n    const exportCsv = async () => {\n      const head = 'District,Electors,Flagged,BLO verified %,ERO decided,Pending,Status';\n      const lines = DISTRICTS.map((d) => [d[0], d[1], d[2], d[3], d[4], d[2] - d[4], d[5]].join(','));\n      const csv = ['Apna Booth - Q4 2026 de-duplication report (demo data)', head].concat(lines).join('\\r\\n') + '\\r\\n';\n      let dl = null;\n      try { dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { dl = null; }\n      if (!dl) {\n        try {\n          const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));\n          const a = document.createElement('a');\n          a.href = url;\n          a.download = 'dedup_report_Q4_2026.csv';\n          a.click();\n          setTimeout(() => URL.revokeObjectURL(url), 4000);\n          this.setState({ exportMsg: 'Saved dedup_report_Q4_2026.csv' });\n          this.log('Exported Q4 district report (CSV).');\n        } catch (e) {\n          this.setState({ exportMsg: 'Export is not available in this browser.' });\n        }\n        return;\n      }\n      try {\n        await dl.save({ filename: 'dedup_report_Q4_2026.csv', data: csv });\n        this.setState({ exportMsg: 'Saved dedup_report_Q4_2026.csv' });\n        this.log('Exported Q4 district report (CSV).');\n      } catch (e) {\n        this.setState({ exportMsg: e && e.code === 'declined' ? 'Export cancelled.' : 'Export is not available here.' });\n      }\n    };\n\n    return {\n      isLogin: st.step !== 'app', isCreds: st.step === 'creds', isOtp: st.step === 'otp', isApp: st.step === 'app',\n      role: st.role, uid: st.uid, pw: st.pw, otp: st.otp,\n      setRole: (e) => this.setState({ role: e.target.value }),\n      setUid: (e) => this.setState({ uid: e.target.value }),\n      setPw: (e) => this.setState({ pw: e.target.value }),\n      setOtp: (e) => this.setState({ otp: e.target.value.replace(/\\D/g, '').slice(0, 6) }),\n      credsDisabled: !credsOk, credsBtn: btn(credsOk),\n      otpDisabled: !otpOk, otpBtn: btn(otpOk),\n      toOtp: () => this.setState({ step: 'otp' }),\n      backToCreds: () => this.setState({ step: 'creds', otp: '' }),\n      signIn: () => { if (!otpOk) return; this.setState({ step: 'app', pw: '', otp: '' }); this.log('Signed in with OTP.'); },\n      logout: () => { this.log('Signed out.'); this.setState({ step: 'creds', tab: 'overview' }); },\n      roleName: roleNames[st.role], uidShow: st.uid || 'officer',\n\n      tabs, tabOverview: st.tab === 'overview', tabReview: st.tab === 'review', tabSchedule: st.tab === 'schedule', tabAudit: st.tab === 'audit',\n      goReview: () => this.setState({ tab: 'review' }),\n      steps, kpis, types, districts,\n      district: st.district,\n      setDistrict: (e) => {\n        const v = e.target.value;\n        const first = CASES.find((c) => v === 'all' || c.district === v);\n        this.setState({ district: v, sel: first ? first.id : st.sel });\n      },\n      pendingCount: String(pendingCount), doneCount: String(CASES.length - pendingCount),\n      caseList, sel, selPending: !selDec, selDone: !!selDec,\n      actSame: decide('same'), actField: decide('field'), actDiff: decide('diff'),\n      undo: () => {\n        const d = Object.assign({}, st.decisions);\n        delete d[selCase.id];\n        this.setState({ decisions: d });\n        this.log(selCase.id + ': decision undone.');\n      },\n      quarters, settings,\n      threshold: st.threshold,\n      setThreshold: (e) => { this.setState({ threshold: e.target.value }); this.log('Match threshold set to ' + e.target.value + '%.'); },\n      audit: st.audit,\n      exportCsv, exportMsg: st.exportMsg, exportMsgOn: !!st.exportMsg\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n"};var of=window.fetch;window.fetch=function(u,o){try{var s=String(u&&u.url||u);var n=s.split("#")[0].split("?")[0].split("/").pop();if(location.protocol==="file:"&&Object.prototype.hasOwnProperty.call(M,n)){return Promise.resolve(new Response(M[n],{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}}));}}catch(e){}return of.apply(this,arguments);};})();</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}
+button{font-family:inherit;cursor:pointer}
+button:disabled{cursor:not-allowed}
+input,select{font-family:inherit}
+</style>
+</helmet>
+<div style="min-height: 100vh; box-sizing: border-box; background: #F3F2EE; font-family: 'Mukta', system-ui, sans-serif; color: #13233A">
+
+<sc-if value="{{isLogin}}" hint-placeholder-val="{{true}}">
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap">
+<div style="flex: 1 1 420px; background: #13233A; color: #FFFFFF; padding: 48px 40px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between; gap: 32px">
+<div style="display: flex; align-items: center; gap: 12px">
+<div style="width: 44px; height: 44px; border-radius: 12px; background: #1F4FBF; display: flex; align-items: center; justify-content: center">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+</div>
+<div style="display: flex; flex-direction: column; line-height: 1.1">
+<span style="font-size: 20px; font-weight: 800">Apna Booth · Officer Console</span>
+<span style="font-size: 14px; color: #C9D2E0">Office of the Chief Electoral Officer · Uttar Pradesh (pilot)</span>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px; max-width: 520px">
+<h1 style="margin: 0; font-size: 38px; line-height: 1.15; font-weight: 800">A cleaner voter list, every quarter.</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; color: #D7DEEA">AI flags duplicate, shifted and deceased entries after each qualifying date. Your DEOs, EROs and BLOs verify every match, and no name is removed without notice to the voter.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 12px">Runs 2 Jan · 2 Apr · 2 Jul · 2 Oct</span>
+<span style="font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 12px">Name, photo &amp; EPIC matching</span>
+<span style="font-size: 13px; font-weight: 700; background: rgba(255,255,255,0.1); border-radius: 999px; padding: 6px 12px">Full audit trail</span>
+</div>
+</div>
+<span style="font-size: 13px; color: #9FB0C8">Authorised election officials only. All access is logged.</span>
+</div>
+
+<div style="flex: 1 1 420px; display: flex; align-items: center; justify-content: center; padding: 40px 20px; box-sizing: border-box">
+<div style="width: 100%; max-width: 420px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 20px; padding: 32px; box-sizing: border-box; display: flex; flex-direction: column; gap: 18px; box-shadow: 0 10px 30px rgba(19,35,58,0.08)">
+
+<sc-if value="{{isCreds}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-size: 26px; font-weight: 800">Officer sign in</h2>
+<span style="font-size: 15px; color: #4F5B6B">Step 1 of 2 · ID and password</span>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700">Role
+<select value="{{role}}" onChange="{{setRole}}" style="min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 16px; padding: 0 12px">
+<option value="ceo">CEO office (state)</option>
+<option value="deo">District Election Officer</option>
+<option value="ero">Electoral Registration Officer</option>
+</select>
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700">Official ID or gov.in email
+<input type="text" value="{{uid}}" onChange="{{setUid}}" placeholder="name.surname@[state].gov.in" autocomplete="username" style="min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; color: #13233A; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700">Password
+<input type="password" value="{{pw}}" onChange="{{setPw}}" autocomplete="current-password" style="min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; color: #13233A; font-size: 16px; padding: 0 12px; box-sizing: border-box; width: 100%">
+</label>
+<button disabled="{{credsDisabled}}" onClick="{{toOtp}}" style="{{credsBtn}}">Continue</button>
+<div style="display: flex; align-items: center; gap: 10px; color: #4F5B6B; font-size: 13px"><span style="flex: 1; height: 1px; background: #E2E0D8"></span>or<span style="flex: 1; height: 1px; background: #E2E0D8"></span></div>
+<button onClick="{{toOtp}}" style="min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 700">Sign in with Government SSO</button>
+<span style="font-size: 12px; color: #4F5B6B; text-align: center">Demo: type anything to continue. No real credentials are checked or stored.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{isOtp}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-size: 26px; font-weight: 800">Verify it's you</h2>
+<span style="font-size: 15px; color: #4F5B6B">Step 2 of 2 · OTP sent to your registered mobile ending ••42</span>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700">6-digit OTP
+<input type="text" inputmode="numeric" maxlength="6" value="{{otp}}" onChange="{{setOtp}}" autocomplete="one-time-code" placeholder="••••••" style="min-height: 56px; border-radius: 12px; border: 1px solid #C9C5B9; color: #13233A; font-size: 26px; font-weight: 800; letter-spacing: 12px; text-align: center; box-sizing: border-box; width: 100%">
+</label>
+<button disabled="{{otpDisabled}}" onClick="{{signIn}}" style="{{otpBtn}}">Verify and sign in</button>
+<div style="display: flex; justify-content: space-between">
+<button onClick="{{backToCreds}}" style="min-height: 44px; border: none; background: transparent; color: #1F4FBF; font-size: 15px; font-weight: 700; padding: 0">← Back</button>
+<button style="min-height: 44px; border: none; background: transparent; color: #1F4FBF; font-size: 15px; font-weight: 700; padding: 0">Resend OTP in 0:28</button>
+</div>
+<span style="font-size: 12px; color: #4F5B6B; text-align: center">Demo: enter any 6 digits.</span>
+</div>
+</sc-if>
+
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isApp}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column">
+
+<header style="background: #13233A; color: #FFFFFF">
+<div style="max-width: 1320px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+<div style="display: flex; align-items: center; gap: 10px; flex: 1 1 320px">
+<div style="width: 36px; height: 36px; border-radius: 10px; background: #1F4FBF; display: flex; align-items: center; justify-content: center">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-12a7 7 0 0 1 14 0c0 5.5-7 12-7 12z"></path><circle cx="12" cy="9" r="2.5"></circle></svg>
+</div>
+<div style="display: flex; flex-direction: column; line-height: 1.1">
+<span style="font-size: 17px; font-weight: 800">Voter List De-duplication</span>
+<span style="font-size: 13px; color: #C9D2E0">CEO Office · Uttar Pradesh · pilot</span>
+</div>
+</div>
+<nav aria-label="Console sections" style="display: flex; flex-wrap: wrap; gap: 4px">
+<sc-for list="{{tabs}}" as="tb" hint-placeholder-count="4">
+<button aria-current="{{tb.current}}" onClick="{{tb.pick}}" style="{{tb.style}}">{{tb.label}}</button>
+</sc-for>
+</nav>
+<div style="display: flex; align-items: center; gap: 10px">
+<div style="display: flex; flex-direction: column; line-height: 1.1; text-align: right">
+<span style="font-size: 14px; font-weight: 700">{{roleName}}</span>
+<span style="font-size: 12px; color: #C9D2E0">{{uidShow}}</span>
+</div>
+<button onClick="{{logout}}" style="min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #4A5F80; background: transparent; color: #FFFFFF; font-size: 14px; font-weight: 700">Sign out</button>
+</div>
+</div>
+</header>
+
+<main style="max-width: 1320px; width: 100%; margin: 0 auto; padding: 24px; box-sizing: border-box; display: flex; flex-direction: column; gap: 20px">
+
+<div role="note" style="display: flex; align-items: flex-start; gap: 12px; background: #E3F1EE; border: 1px solid #0F6E63; border-radius: 14px; padding: 12px 16px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0F6E63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 2px"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg>
+<span style="font-size: 15px; line-height: 1.4"><b>No automatic deletions.</b> AI only flags possible matches. Every removal needs BLO field verification, a notice to the voter with time to reply, and an ERO order. Voters see the notice in Apna Booth's Roll Watch.</span>
+</div>
+
+<sc-if value="{{tabOverview}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-direction: column; gap: 20px">
+
+<section aria-label="Current cycle" style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.6px">CURRENT CYCLE · EVERY 3 MONTHS</span>
+<h2 style="margin: 0; font-size: 26px; font-weight: 800">Q4 2026 · after qualifying date 1 October</h2>
+<span style="font-size: 15px; color: #4F5B6B">AI scan started 2 Oct · review closes 31 Dec · next cycle starts 2 Jan 2027</span>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap">
+<button onClick="{{exportCsv}}" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 700">Export district report (CSV)</button>
+<button onClick="{{goReview}}" style="min-height: 44px; padding: 0 16px; border-radius: 12px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 700">Review queue · {{pendingCount}} pending</button>
+</div>
+</div>
+<sc-if value="{{exportMsgOn}}" hint-placeholder-val="{{false}}">
+<span role="status" style="font-size: 14px; font-weight: 700; color: #0F6E63">{{exportMsg}}</span>
+</sc-if>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px">
+<sc-for list="{{steps}}" as="sp" hint-placeholder-count="6">
+<div style="{{sp.style}}">
+<span style="{{sp.badge}}">{{sp.state}}</span>
+<span style="font-size: 15px; font-weight: 800; line-height: 1.2">{{sp.title}}</span>
+<span style="font-size: 13px; color: #4F5B6B; line-height: 1.3">{{sp.sub}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<section aria-label="Key numbers" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+<sc-for list="{{kpis}}" as="k" hint-placeholder-count="4">
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 16px; padding: 16px 18px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 13px; font-weight: 700; color: #4F5B6B">{{k.label}}</span>
+<span style="{{k.valStyle}}">{{k.value}}</span>
+<span style="font-size: 13px; color: #4F5B6B">{{k.note}}</span>
+</div>
+</sc-for>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section aria-label="Matches by type" style="flex: 1 1 340px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 800">What the AI flagged this cycle</h3>
+<sc-for list="{{types}}" as="ty" hint-placeholder-count="5">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; justify-content: space-between; gap: 8px; font-size: 14px">
+<span style="font-weight: 700">{{ty.label}}</span>
+<span style="font-weight: 800">{{ty.count}}</span>
+</div>
+<div style="height: 10px; border-radius: 5px; background: #ECEAE3; overflow: hidden">
+<div style="{{ty.bar}}"></div>
+</div>
+<span style="font-size: 12px; color: #4F5B6B">{{ty.how}}</span>
+</div>
+</sc-for>
+</section>
+
+<section aria-label="District progress" style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h3 style="margin: 0; font-size: 18px; font-weight: 800">District progress</h3>
+<label style="display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700">District
+<select value="{{district}}" onChange="{{setDistrict}}" style="min-height: 40px; border-radius: 10px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; padding: 0 10px">
+<option value="all">All districts (sample of 8)</option>
+<option value="Lucknow">Lucknow</option>
+<option value="Prayagraj">Prayagraj</option>
+<option value="Kanpur Nagar">Kanpur Nagar</option>
+<option value="Varanasi">Varanasi</option>
+<option value="Gorakhpur">Gorakhpur</option>
+<option value="Agra">Agra</option>
+<option value="Meerut">Meerut</option>
+<option value="Bareilly">Bareilly</option>
+</select>
+</label>
+</div>
+<div style="overflow-x: auto">
+<div role="table" aria-label="District progress" style="min-width: 680px; display: flex; flex-direction: column">
+<div role="row" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr 1fr 1fr 1fr; gap: 8px; padding: 8px 10px; background: #F3F2EE; border-radius: 10px; font-size: 13px; font-weight: 800; color: #4F5B6B">
+<span role="columnheader">District</span><span role="columnheader">Electors</span><span role="columnheader">Flagged</span><span role="columnheader">BLO verified</span><span role="columnheader">ERO decided</span><span role="columnheader">Pending</span><span role="columnheader">Status</span>
+</div>
+<sc-for list="{{districts}}" as="d" hint-placeholder-count="8">
+<div role="row" style="display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr 1fr 1fr 1fr; gap: 8px; padding: 10px; border-bottom: 1px solid #ECEAE3; font-size: 15px; align-items: center">
+<span role="cell" style="font-weight: 700">{{d.name}}</span>
+<span role="cell">{{d.electors}}</span>
+<span role="cell">{{d.flagged}}</span>
+<span role="cell" style="display: flex; align-items: center; gap: 6px"><span style="flex: 1; height: 8px; border-radius: 4px; background: #ECEAE3; overflow: hidden"><span style="{{d.bar}}"></span></span>{{d.verified}}</span>
+<span role="cell">{{d.decided}}</span>
+<span role="cell">{{d.pending}}</span>
+<span role="cell"><span style="{{d.badge}}">{{d.status}}</span></span>
+</div>
+</sc-for>
+</div>
+</div>
+<span style="font-size: 12px; color: #4F5B6B">Demo data for the pilot pitch. Live numbers come from the electoral roll database after integration.</span>
+</section>
+</div>
+
+</div>
+</sc-if>
+
+<sc-if value="{{tabReview}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section aria-label="Flagged matches" style="flex: 1 1 320px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline">
+<h3 style="margin: 0; font-size: 18px; font-weight: 800">Review queue</h3>
+<span style="font-size: 13px; font-weight: 700; color: #4F5B6B">{{pendingCount}} pending · {{doneCount}} done</span>
+</div>
+<sc-for list="{{caseList}}" as="cs" hint-placeholder-count="6">
+<button aria-pressed="{{cs.pressed}}" onClick="{{cs.pick}}" style="{{cs.style}}">
+<span style="display: flex; justify-content: space-between; gap: 8px; width: 100%">
+<span style="font-size: 12px; font-weight: 800; color: #163A8F; letter-spacing: 0.4px">{{cs.type}}</span>
+<span style="{{cs.confStyle}}">{{cs.conf}}</span>
+</span>
+<span style="font-size: 15px; font-weight: 800; text-align: left">{{cs.title}}</span>
+<span style="font-size: 13px; color: #4F5B6B; text-align: left">{{cs.where}}</span>
+<span style="{{cs.statusStyle}}">{{cs.status}}</span>
+</button>
+</sc-for>
+</section>
+
+<section aria-label="Compare entries" style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 13px; font-weight: 800; color: #163A8F; letter-spacing: 0.4px">{{sel.type}} · CASE {{sel.id}}</span>
+<h3 style="margin: 0; font-size: 22px; font-weight: 800">{{sel.title}}</h3>
+</div>
+<span style="{{sel.confStyle}}">AI match confidence {{sel.conf}}</span>
+</div>
+
+<div style="overflow-x: auto">
+<div style="min-width: 520px; display: grid; grid-template-columns: 150px minmax(0, 1fr) minmax(0, 1fr); border: 1px solid #E2E0D8; border-radius: 12px; overflow: hidden">
+<span style="padding: 10px 12px; background: #F3F2EE; font-size: 13px; font-weight: 800; color: #4F5B6B">Field</span>
+<span style="padding: 10px 12px; background: #F3F2EE; font-size: 13px; font-weight: 800; color: #4F5B6B">Entry A</span>
+<span style="padding: 10px 12px; background: #F3F2EE; font-size: 13px; font-weight: 800; color: #4F5B6B">Entry B</span>
+<sc-for list="{{sel.rows}}" as="fr" hint-placeholder-count="6">
+<span style="padding: 10px 12px; border-top: 1px solid #ECEAE3; font-size: 14px; font-weight: 700; color: #4F5B6B">{{fr.f}}</span>
+<span style="{{fr.aStyle}}">{{fr.a}}</span>
+<span style="{{fr.bStyle}}">{{fr.b}}</span>
+</sc-for>
+<span style="padding: 10px 12px; border-top: 1px solid #ECEAE3; font-size: 14px; font-weight: 700; color: #4F5B6B">Photo</span>
+<span style="padding: 10px 12px; border-top: 1px solid #ECEAE3">
+<span style="width: 64px; height: 76px; border-radius: 6px; background: #E6E8EA; display: flex; align-items: flex-end; justify-content: center; overflow: hidden">
+<svg width="48" height="56" viewBox="0 0 24 28" aria-hidden="true"><circle cx="12" cy="9" r="5.5" fill="#8C939C"></circle><path d="M2 28c0-7 4.5-11 10-11s10 4 10 11z" fill="#8C939C"></path></svg>
+</span>
+</span>
+<span style="padding: 10px 12px; border-top: 1px solid #ECEAE3; display: flex; align-items: center; gap: 12px">
+<span style="width: 64px; height: 76px; border-radius: 6px; background: #E6E8EA; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; flex-shrink: 0">
+<svg width="48" height="56" viewBox="0 0 24 28" aria-hidden="true"><circle cx="12" cy="9" r="5.5" fill="#8C939C"></circle><path d="M2 28c0-7 4.5-11 10-11s10 4 10 11z" fill="#8C939C"></path></svg>
+</span>
+<span style="{{sel.photoStyle}}">Face match {{sel.photo}}</span>
+</span>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 14px; font-weight: 800">Why the AI flagged this</span>
+<span style="font-size: 15px; line-height: 1.45">{{sel.why}}</span>
+<span style="font-size: 14px; line-height: 1.45; color: #163A8F; background: #E6EDFB; border-radius: 10px; padding: 8px 12px"><b>Suggested next step:</b> {{sel.suggest}}</span>
+</div>
+
+<sc-if value="{{selPending}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<button onClick="{{actSame}}" style="flex: 1 1 200px; min-height: 48px; border-radius: 12px; border: none; background: #B4500E; color: #FFFFFF; font-size: 15px; font-weight: 700">Same person · send notice via ERO</button>
+<button onClick="{{actField}}" style="flex: 1 1 160px; min-height: 48px; border-radius: 12px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 700">Send BLO for field check</button>
+<button onClick="{{actDiff}}" style="flex: 1 1 160px; min-height: 48px; border-radius: 12px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 700">Different people · clear</button>
+</div>
+</sc-if>
+<sc-if value="{{selDone}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px; background: #F3F2EE; border-radius: 12px; padding: 12px 14px">
+<span style="font-size: 15px; font-weight: 700">Decision recorded: {{sel.status}}</span>
+<button onClick="{{undo}}" style="min-height: 40px; padding: 0 12px; border-radius: 10px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">Undo</button>
+</div>
+</sc-if>
+</section>
+</div>
+</sc-if>
+
+<sc-if value="{{tabSchedule}}" hint-placeholder-val="{{false}}">
+<section aria-label="Quarterly schedule" style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 16px; max-width: 860px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800">Quarterly de-duplication schedule</h2>
+<span style="font-size: 15px; color: #4F5B6B; line-height: 1.45">A fresh scan runs the day after each qualifying date, so new and shifted voters are checked before the next revision.</span>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px">
+<sc-for list="{{quarters}}" as="q" hint-placeholder-count="4">
+<div style="{{q.style}}">
+<span style="font-size: 13px; font-weight: 800; color: #4F5B6B">{{q.q}}</span>
+<span style="font-size: 18px; font-weight: 800">{{q.run}}</span>
+<span style="font-size: 13px; color: #4F5B6B">{{q.after}}</span>
+<span style="{{q.badge}}">{{q.state}}</span>
+</div>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{settings}}" as="sg" hint-placeholder-count="5">
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 56px; border: 1px solid #E2E0D8; border-radius: 12px; padding: 6px 14px">
+<span style="display: flex; flex-direction: column; line-height: 1.3">
+<span style="font-size: 15px; font-weight: 700">{{sg.label}}</span>
+<span style="font-size: 13px; color: #4F5B6B">{{sg.sub}}</span>
+</span>
+<input type="checkbox" checked="{{sg.on}}" onChange="{{sg.toggle}}" style="width: 22px; height: 22px; accent-color: #1F4FBF; flex-shrink: 0">
+</label>
+</sc-for>
+</div>
+<label style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; font-weight: 700">Minimum AI confidence to flag a match
+<select value="{{threshold}}" onChange="{{setThreshold}}" style="min-height: 44px; border-radius: 10px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; padding: 0 10px">
+<option value="75">75% · catch more, more field work</option>
+<option value="85">85% · recommended</option>
+<option value="95">95% · only very strong matches</option>
+</select>
+</label>
+</section>
+</sc-if>
+
+<sc-if value="{{tabAudit}}" hint-placeholder-val="{{false}}">
+<section aria-label="Audit log" style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 10px; max-width: 980px">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800">Audit log</h2>
+<span style="font-size: 14px; color: #4F5B6B">Every sign-in and decision is recorded with officer, time and reason. Entries cannot be edited.</span>
+<sc-for list="{{audit}}" as="au" hint-placeholder-count="5">
+<div style="display: flex; flex-wrap: wrap; gap: 4px 16px; padding: 10px 12px; border: 1px solid #ECEAE3; border-radius: 10px">
+<span style="font-size: 13px; font-weight: 700; color: #4F5B6B; min-width: 150px">{{au.time}}</span>
+<span style="font-size: 14px; font-weight: 700; min-width: 180px">{{au.who}}</span>
+<span style="font-size: 14px; flex: 1 1 260px">{{au.what}}</span>
+</div>
+</sc-for>
+</section>
+</sc-if>
+
+</main>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":1500}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      step: 'creds', role: 'ceo', uid: '', pw: '', otp: '',
+      tab: 'overview', district: 'all', sel: 'C-1042', threshold: '85',
+      decisions: {},
+      settings: { auto: true, crs: true, photo: true, notify: true, voterNotice: true },
+      audit: [
+        { time: '22 Oct 2026 · 09:10', who: 'System', what: 'Q4 scan finished: 2,83,950 possible matches flagged at 85% confidence.' },
+        { time: '21 Oct 2026 · 17:42', who: 'DEO Lucknow', what: 'Sent 1,240 cases to BLOs for field verification.' },
+        { time: '21 Oct 2026 · 11:05', who: 'ERO 172', what: 'Cleared case C-0987 as different people (age gap 18 years).' }
+      ],
+      exportMsg: ''
+    };
+  }
+
+  log(what) {
+    const now = new Date();
+    const pad = (n) => (n < 10 ? '0' : '') + n;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const time = now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear() + ' · ' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+    const who = { ceo: 'CEO office', deo: 'DEO', ero: 'ERO' }[this.state.role] + ' · ' + (this.state.uid || 'officer');
+    this.setState({ audit: [{ time, who, what }].concat(this.state.audit) });
+  }
+
+  renderVals() {
+    const st = this.state;
+    const CASES = [
+      { id: 'C-1042', type: 'SIMILAR DETAILS', district: 'Lucknow', conf: 96, photo: 91,
+        title: 'Ramesh Kumar Verma · listed twice',
+        a: { name: 'Ramesh Kumar Verma', rel: 's/o Shyam Lal', age: '46 · M', epic: 'XYZ1234567', part: 'Part 142 · Ram Nagar', addr: 'H-12, Sector B, Ram Nagar' },
+        b: { name: 'Ramesh K. Verma', rel: 's/o Shyam Lal', age: '47 · M', epic: 'XYZ7654321', part: 'Part 88 · Indira Nagar', addr: '4/221, Indira Nagar' },
+        same: ['rel'],
+        why: 'Same father’s name, near-identical name and age, and 91% face match. Entry B is from 2019; Entry A was added in 2024 after a shift of address, but the old entry was never removed.',
+        suggest: 'Likely shifted voter. Ask the BLO of Part 88 to confirm, then notify the voter that the old entry will be removed.' },
+      { id: 'C-1043', type: 'SAME EPIC NUMBER', district: 'Prayagraj', conf: 99, photo: 22,
+        title: 'One EPIC number, two different people',
+        a: { name: 'Anil Kumar', rel: 's/o Ram Prakash', age: '39 · M', epic: 'ABC0045123', part: 'Part 12 · Civil Lines', addr: '18, Civil Lines' },
+        b: { name: 'Anil Kumar Pal', rel: 's/o Sukhdev Pal', age: '52 · M', epic: 'ABC0045123', part: 'Part 301 · Kanpur Nagar', addr: '77, Govind Nagar' },
+        same: ['epic'],
+        why: 'The EPIC number is identical, but father’s name, age and face (22% match) are different. This is a numbering error, not a duplicate voter.',
+        suggest: 'Do not delete. Issue a fresh EPIC number to one voter and inform both.' },
+      { id: 'C-1044', type: 'PHOTO MATCH', district: 'Varanasi', conf: 88, photo: 96,
+        title: 'Suman Devi / Suman Yadav',
+        a: { name: 'Suman Devi', rel: 'd/o Hari Ram', age: '27 · F', epic: 'PQR5566778', part: 'Part 54 · Sigra', addr: '9, Sigra Colony' },
+        b: { name: 'Suman Yadav', rel: 'w/o Deepak Yadav', age: '28 · F', epic: 'PQR9988776', part: 'Part 210 · Lanka', addr: 'B-3, Lanka' },
+        same: [],
+        why: 'Very high face match (96%) with different surnames and relatives. Possibly listed at her parents’ home and again after marriage.',
+        suggest: 'Field check by BLO. If confirmed, keep the voter’s chosen address and remove the other entry after notice.' },
+      { id: 'C-1045', type: 'DECEASED · CRS MATCH', district: 'Gorakhpur', conf: 93, photo: 0,
+        title: 'Kailash Nath · death record found',
+        a: { name: 'Kailash Nath', rel: 's/o Badri Nath', age: '81 · M', epic: 'GKP3344556', part: 'Part 77 · Rapti Nagar', addr: '22, Rapti Nagar' },
+        b: { name: 'Kailash Nath (death record)', rel: 's/o Badri Nath', age: 'Died Aug 2026', epic: '—', part: 'Civil registration record', addr: '22, Rapti Nagar' },
+        same: ['rel', 'addr'],
+        why: 'Name, father’s name and address match a death registered in August 2026 with the civil registration system.',
+        suggest: 'BLO to visit the family and collect Form 7 before the ERO orders deletion.' },
+      { id: 'C-1046', type: 'SIMILAR DETAILS', district: 'Meerut', conf: 76, photo: 31,
+        title: 'Mohd. Salim / Mohd. Saleem',
+        a: { name: 'Mohd. Salim', rel: 's/o Abdul Karim', age: '34 · M', epic: 'MRT1122334', part: 'Part 19 · Shastri Nagar', addr: '5, Shastri Nagar' },
+        b: { name: 'Mohd. Saleem', rel: 's/o Abdul Kareem', age: '52 · M', epic: 'MRT4433221', part: 'Part 19 · Shastri Nagar', addr: '61, Shastri Nagar' },
+        same: ['part'],
+        why: 'Names sound alike, but the ages differ by 18 years and the face match is low (31%).',
+        suggest: 'Probably different people. Clear unless the BLO reports otherwise.' },
+      { id: 'C-1047', type: 'SHIFTED · NOT DELETED', district: 'Agra', conf: 94, photo: 93,
+        title: 'Neha Sharma · Agra and Lucknow',
+        a: { name: 'Neha Sharma', rel: 'd/o Vijay Sharma', age: '31 · F', epic: 'AGR6677889', part: 'Part 40 · Kamla Nagar', addr: '14, Kamla Nagar' },
+        b: { name: 'Neha Sharma', rel: 'd/o Vijay Sharma', age: '31 · F', epic: 'LKO2211009', part: 'Lucknow · Part 160', addr: '3-C, Gomti Nagar' },
+        same: ['name', 'rel', 'age'],
+        why: 'Identical name, father and age with 93% face match. Form 8 shifting to Lucknow was approved in 2025, but the Agra entry remains.',
+        suggest: 'Notify the voter and remove the Agra entry after the reply period.' }
+    ];
+
+    const statusText = { same: 'Notice sent via ERO', field: 'With BLO for field check', diff: 'Cleared · different people' };
+    const filtered = CASES.filter((c) => st.district === 'all' || c.district === st.district);
+    const shownCases = filtered.length ? filtered : CASES;
+    const selCase = CASES.find((c) => c.id === st.sel) || CASES[0];
+    const pendingCount = CASES.filter((c) => !st.decisions[c.id]).length;
+
+    const confStyle = (v) => 'font-size: 13px; font-weight: 800; border-radius: 999px; padding: 2px 10px; white-space: nowrap; ' +
+      (v >= 90 ? 'background: #FCEBDD; color: #8A3A07' : v >= 80 ? 'background: #E6EDFB; color: #163A8F' : 'background: #ECEAE3; color: #4F5B6B');
+
+    const caseList = shownCases.map((c) => {
+      const on = c.id === selCase.id;
+      const dec = st.decisions[c.id];
+      return {
+        type: c.type, title: c.title, where: c.district + ' · ' + c.id,
+        conf: c.conf + '%', confStyle: confStyle(c.conf),
+        status: dec ? statusText[dec] : 'Pending review',
+        statusStyle: 'font-size: 12px; font-weight: 700; color: ' + (dec ? '#0F6E63' : '#8A3A07'),
+        pressed: on ? 'true' : 'false',
+        style: 'width: 100%; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; border-radius: 12px; padding: 10px 12px; color: #13233A; ' +
+          (on ? 'border: 2px solid #1F4FBF; background: #E6EDFB' : 'border: 1px solid #E2E0D8; background: #FFFFFF'),
+        pick: () => this.setState({ sel: c.id })
+      };
+    });
+
+    const fields = [['name', 'Name'], ['rel', 'Relative'], ['age', 'Age · gender'], ['epic', 'EPIC no.'], ['part', 'Part · area'], ['addr', 'Address']];
+    const cell = 'padding: 10px 12px; border-top: 1px solid #ECEAE3; font-size: 15px; ';
+    const selDec = st.decisions[selCase.id];
+    const sel = {
+      id: selCase.id, type: selCase.type, title: selCase.title,
+      conf: selCase.conf + '%', confStyle: confStyle(selCase.conf),
+      photo: selCase.photo ? selCase.photo + '%' : 'n/a',
+      photoStyle: 'font-size: 14px; font-weight: 800; ' + (selCase.photo >= 85 ? 'color: #8A3A07' : 'color: #4F5B6B'),
+      why: selCase.why, suggest: selCase.suggest,
+      status: selDec ? statusText[selDec] : '',
+      rows: fields.map(([k, label]) => {
+        const match = selCase.a[k] === selCase.b[k] || selCase.same.indexOf(k) >= 0;
+        const s = cell + (match ? 'background: #FFF6E5; font-weight: 700' : '');
+        return { f: label, a: selCase.a[k], b: selCase.b[k], aStyle: s, bStyle: s };
+      })
+    };
+
+    const decide = (kind) => () => {
+      this.setState({ decisions: Object.assign({}, st.decisions, { [selCase.id]: kind }) });
+      this.log(selCase.id + ' (' + selCase.district + '): ' + statusText[kind] + '.');
+    };
+
+    const DISTRICTS = [
+      ['Lucknow', '40.1 L', 7420, 74, 4810, 'On track'],
+      ['Prayagraj', '46.3 L', 8960, 61, 4230, 'On track'],
+      ['Kanpur Nagar', '35.8 L', 6110, 58, 3020, 'At risk'],
+      ['Varanasi', '30.2 L', 5040, 69, 3150, 'On track'],
+      ['Gorakhpur', '33.9 L', 6890, 47, 2410, 'At risk'],
+      ['Agra', '33.1 L', 5510, 72, 3640, 'On track'],
+      ['Meerut', '27.4 L', 4970, 66, 2990, 'On track'],
+      ['Bareilly', '33.7 L', 6320, 51, 2700, 'At risk']
+    ];
+    const fmt = (n) => n.toLocaleString('en-IN');
+    const districtRows = DISTRICTS.filter((d) => st.district === 'all' || d[0] === st.district);
+    const districts = districtRows.map((d) => ({
+      name: d[0], electors: d[1], flagged: fmt(d[2]), verified: d[3] + '%', decided: fmt(d[4]), pending: fmt(d[2] - d[4]),
+      bar: 'display: block; height: 100%; width: ' + d[3] + '%; background: #1F4FBF',
+      status: d[5],
+      badge: 'font-size: 12px; font-weight: 800; border-radius: 999px; padding: 3px 10px; white-space: nowrap; ' +
+        (d[5] === 'On track' ? 'background: #E3F1EE; color: #0F6E63' : 'background: #FCEBDD; color: #8A3A07')
+    }));
+
+    const TYPES = [
+      ['Similar details (name, relative, age)', 142300, 'Fuzzy match on name, relative’s name, age and gender in Hindi and English spellings'],
+      ['Photo match', 61200, 'Face similarity between photos on different entries'],
+      ['Shifted but not deleted', 48700, 'Form 8 shift approved, old entry still on the roll'],
+      ['Deceased · civil registration match', 21900, 'Matched with registered deaths'],
+      ['Same EPIC number', 9850, 'One EPIC number on more than one person']
+    ];
+    const maxT = TYPES[0][1];
+    const types = TYPES.map((x) => ({
+      label: x[0], count: fmt(x[1]), how: x[2],
+      bar: 'height: 100%; width: ' + Math.round((x[1] / maxT) * 100) + '%; background: #1F4FBF; border-radius: 5px'
+    }));
+
+    const kpis = [
+      { label: 'Electors scanned', value: '15.31 Cr', note: 'All 75 districts · demo figure', valStyle: 'font-size: 30px; font-weight: 800' },
+      { label: 'Possible matches flagged', value: '2,83,950', note: '1.85% of the roll · at ' + st.threshold + '% confidence', valStyle: 'font-size: 30px; font-weight: 800; color: #8A3A07' },
+      { label: 'Decided by EROs', value: '1,96,420', note: '69% of flagged · 70 days left', valStyle: 'font-size: 30px; font-weight: 800; color: #0F6E63' },
+      { label: 'Cleared as different people', value: '41,380', note: 'No action on these voters', valStyle: 'font-size: 30px; font-weight: 800' }
+    ];
+
+    const stepState = (k) => ({ done: 'DONE', now: 'IN PROGRESS', next: 'UPCOMING' }[k]);
+    const steps = [
+      ['done', '1 · AI scan', '2–5 Oct · whole roll'],
+      ['now', '2 · DEO / ERO review', 'Check each flagged pair'],
+      ['now', '3 · BLO field check', 'Doorstep verification'],
+      ['next', '4 · Notice to voter', 'Reply window before any removal'],
+      ['next', '5 · ERO orders', 'Roll updated with reasons'],
+      ['next', '6 · Report to ECI', 'Cycle summary by 31 Dec']
+    ].map(([k, title, sub]) => ({
+      title, sub, state: stepState(k),
+      style: 'border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 4px; ' +
+        (k === 'now' ? 'border: 2px solid #1F4FBF; background: #E6EDFB' : k === 'done' ? 'border: 1px solid #0F6E63; background: #E3F1EE' : 'border: 1px solid #E2E0D8; background: #FFFFFF'),
+      badge: 'align-self: flex-start; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; border-radius: 999px; padding: 2px 8px; ' +
+        (k === 'now' ? 'background: #1F4FBF; color: #FFFFFF' : k === 'done' ? 'background: #0F6E63; color: #FFFFFF' : 'background: #ECEAE3; color: #4F5B6B')
+    }));
+
+    const quarters = [
+      ['Q1', '2 January', 'after qualifying date 1 Jan', 'next'],
+      ['Q2', '2 April', 'after qualifying date 1 Apr', 'next'],
+      ['Q3', '2 July', 'after qualifying date 1 Jul', 'done'],
+      ['Q4', '2 October', 'after qualifying date 1 Oct', 'now']
+    ].map(([q, run, after, k]) => ({
+      q, run, after,
+      state: k === 'now' ? 'Running now' : k === 'done' ? 'Completed' : 'Scheduled',
+      style: 'border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; ' +
+        (k === 'now' ? 'border: 2px solid #1F4FBF; background: #E6EDFB' : 'border: 1px solid #E2E0D8; background: #FFFFFF'),
+      badge: 'align-self: flex-start; font-size: 12px; font-weight: 800; border-radius: 999px; padding: 2px 10px; ' +
+        (k === 'now' ? 'background: #1F4FBF; color: #FFFFFF' : k === 'done' ? 'background: #E3F1EE; color: #0F6E63' : 'background: #ECEAE3; color: #4F5B6B')
+    }));
+
+    const SET = [
+      ['auto', 'Run automatically every 3 months', 'Starts the day after each qualifying date'],
+      ['photo', 'Include photo matching', 'Face similarity across entries in the state'],
+      ['crs', 'Check civil death registrations', 'Flag entries that match a registered death'],
+      ['notify', 'Alert DEOs and EROs when a cycle starts', 'SMS and email with their district queue'],
+      ['voterNotice', 'Notify voters in Apna Booth Roll Watch', 'Voters see any notice on their entry and can reply']
+    ];
+    const settings = SET.map(([k, label, sub]) => ({
+      label, sub, on: !!st.settings[k],
+      toggle: () => {
+        const on = !st.settings[k];
+        this.setState({ settings: Object.assign({}, st.settings, { [k]: on }) });
+        this.log('Setting changed: "' + label + '" ' + (on ? 'on' : 'off') + '.');
+      }
+    }));
+
+    const tabStyle = (on) => 'min-height: 40px; padding: 0 14px; border-radius: 10px; font-size: 15px; font-weight: 700; ' +
+      (on ? 'border: none; background: #FFFFFF; color: #13233A' : 'border: 1px solid #4A5F80; background: transparent; color: #FFFFFF');
+    const tabs = [['overview', 'Overview'], ['review', 'Review queue'], ['schedule', 'Schedule'], ['audit', 'Audit log']].map(([id, label]) => ({
+      label: id === 'review' ? label + ' (' + pendingCount + ')' : label,
+      current: st.tab === id ? 'page' : 'false',
+      style: tabStyle(st.tab === id),
+      pick: () => this.setState({ tab: id })
+    }));
+
+    const credsOk = st.uid.trim().length > 0 && st.pw.length > 0;
+    const otpOk = /^\d{6}$/.test(st.otp);
+    const btn = (ok) => 'min-height: 52px; border-radius: 12px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 17px; font-weight: 800' + (ok ? '' : '; opacity: 0.45');
+    const roleNames = { ceo: 'CEO office · Rolls cell', deo: 'District Election Officer', ero: 'Electoral Registration Officer' };
+
+    const exportCsv = async () => {
+      const head = 'District,Electors,Flagged,BLO verified %,ERO decided,Pending,Status';
+      const lines = DISTRICTS.map((d) => [d[0], d[1], d[2], d[3], d[4], d[2] - d[4], d[5]].join(','));
+      const csv = ['Apna Booth - Q4 2026 de-duplication report (demo data)', head].concat(lines).join('\r\n') + '\r\n';
+      let dl = null;
+      try { dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { dl = null; }
+      if (!dl) {
+        try {
+          const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'dedup_report_Q4_2026.csv';
+          a.click();
+          setTimeout(() => URL.revokeObjectURL(url), 4000);
+          this.setState({ exportMsg: 'Saved dedup_report_Q4_2026.csv' });
+          this.log('Exported Q4 district report (CSV).');
+        } catch (e) {
+          this.setState({ exportMsg: 'Export is not available in this browser.' });
+        }
+        return;
+      }
+      try {
+        await dl.save({ filename: 'dedup_report_Q4_2026.csv', data: csv });
+        this.setState({ exportMsg: 'Saved dedup_report_Q4_2026.csv' });
+        this.log('Exported Q4 district report (CSV).');
+      } catch (e) {
+        this.setState({ exportMsg: e && e.code === 'declined' ? 'Export cancelled.' : 'Export is not available here.' });
+      }
+    };
+
+    return {
+      isLogin: st.step !== 'app', isCreds: st.step === 'creds', isOtp: st.step === 'otp', isApp: st.step === 'app',
+      role: st.role, uid: st.uid, pw: st.pw, otp: st.otp,
+      setRole: (e) => this.setState({ role: e.target.value }),
+      setUid: (e) => this.setState({ uid: e.target.value }),
+      setPw: (e) => this.setState({ pw: e.target.value }),
+      setOtp: (e) => this.setState({ otp: e.target.value.replace(/\D/g, '').slice(0, 6) }),
+      credsDisabled: !credsOk, credsBtn: btn(credsOk),
+      otpDisabled: !otpOk, otpBtn: btn(otpOk),
+      toOtp: () => this.setState({ step: 'otp' }),
+      backToCreds: () => this.setState({ step: 'creds', otp: '' }),
+      signIn: () => { if (!otpOk) return; this.setState({ step: 'app', pw: '', otp: '' }); this.log('Signed in with OTP.'); },
+      logout: () => { this.log('Signed out.'); this.setState({ step: 'creds', tab: 'overview' }); },
+      roleName: roleNames[st.role], uidShow: st.uid || 'officer',
+
+      tabs, tabOverview: st.tab === 'overview', tabReview: st.tab === 'review', tabSchedule: st.tab === 'schedule', tabAudit: st.tab === 'audit',
+      goReview: () => this.setState({ tab: 'review' }),
+      steps, kpis, types, districts,
+      district: st.district,
+      setDistrict: (e) => {
+        const v = e.target.value;
+        const first = CASES.find((c) => v === 'all' || c.district === v);
+        this.setState({ district: v, sel: first ? first.id : st.sel });
+      },
+      pendingCount: String(pendingCount), doneCount: String(CASES.length - pendingCount),
+      caseList, sel, selPending: !selDec, selDone: !!selDec,
+      actSame: decide('same'), actField: decide('field'), actDiff: decide('diff'),
+      undo: () => {
+        const d = Object.assign({}, st.decisions);
+        delete d[selCase.id];
+        this.setState({ decisions: d });
+        this.log(selCase.id + ': decision undone.');
+      },
+      quarters, settings,
+      threshold: st.threshold,
+      setThreshold: (e) => { this.setState({ threshold: e.target.value }); this.log('Match threshold set to ' + e.target.value + '%.'); },
+      audit: st.audit,
+      exportCsv, exportMsg: st.exportMsg, exportMsgOn: !!st.exportMsg
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<style>html{background:#1E2633}body{margin:0 auto!important;width:390px}</style>
+<title>Apna Booth — Ballot Rehearsal</title>
+<script data-offline-shim>(function(){var M={"VoiceNav.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"hi\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Voice navigation\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\n@keyframes vn-pulse{0%{box-shadow:0 0 0 0 rgba(255,213,74,.7)}70%{box-shadow:0 0 0 18px rgba(255,213,74,0)}100%{box-shadow:0 0 0 0 rgba(255,213,74,0)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"font-family: 'Mukta', system-ui, sans-serif; color: #13233A\">\n\n\u003csc-if value=\"{{isFab}}\" hint-placeholder-val=\"{{true}}\">\n\u003cbutton aria-label=\"बोलकर चलाएँ — Speak to navigate\" onClick=\"{{open}}\" style=\"width: 60px; height: 60px; border-radius: 30px; border: 3px solid #FFFFFF; background: #13233A; color: #FFD54A; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(19,35,58,0.35); cursor: pointer\">\n\u003csvg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isBanner}}\" hint-placeholder-val=\"{{false}}\">\n\u003cbutton onClick=\"{{open}}\" style=\"width: 100%; min-height: 60px; border-radius: 14px; border: none; background: #13233A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 8px 14px; text-align: left; font-family: inherit; cursor: pointer\">\n\u003cspan style=\"width: 44px; height: 44px; border-radius: 22px; background: #FFD54A; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"font-size: 16px; font-weight: 800\">बोलकर कहीं भी जाएँ\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #C9D2E0\">Speak to go anywhere · \"मेरा बूथ\", \"ई-स्लिप\", \"SOS\"\u003c/span>\n\u003c/span>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isOpen}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"position: fixed; inset: 0; z-index: 1000; background: rgba(11,18,32,0.55); display: flex; flex-direction: column; justify-content: flex-end\">\n\u003cdiv role=\"dialog\" aria-label=\"Voice navigation\" style=\"background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 12px; max-height: 92%; overflow-y: auto; box-sizing: border-box\">\n\n\u003cdiv style=\"display: flex; align-items: center; justify-content: space-between; gap: 8px\">\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.15\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">{{t.title}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{t.sub}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; gap: 6px\">\n\u003cbutton aria-label=\"{{t.langAria}}\" onClick=\"{{toggleLang}}\" style=\"min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; font-family: inherit\">{{langBtn}}\u003c/button>\n\u003cbutton aria-label=\"{{t.close}}\" onClick=\"{{close}}\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6 6l12 12M18 6L6 18\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0\">\n\u003cbutton aria-label=\"{{micAria}}\" onClick=\"{{mic}}\" style=\"{{micStyle}}\">\n\u003csvg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003cspan role=\"status\" aria-live=\"polite\" style=\"font-size: 16px; font-weight: 700; text-align: center; min-height: 24px\">{{statusText}}\u003c/span>\n\u003csc-if value=\"{{hasHeard}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 18px; font-weight: 800; color: #1F4FBF; text-align: center\">“{{heard}}”\u003c/span>\n\u003c/sc-if>\n\u003csc-if value=\"{{hasNote}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 13px; color: #8A3A07; background: #FCEBDD; border-radius: 10px; padding: 6px 10px; text-align: center; line-height: 1.35\">{{note}}\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cspan style=\"font-size: 14px; font-weight: 700\">{{t.tryLabel}}\u003c/span>\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 6px\">\n\u003csc-for list=\"{{chips}}\" as=\"c\" hint-placeholder-count=\"12\">\n\u003cbutton onClick=\"{{c.go}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; font-family: inherit\">{{c.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; gap: 8px\">\n\u003clabel style=\"flex: 1; display: flex\">\n\u003cspan style=\"position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)\">{{t.typeLabel}}\u003c/span>\n\u003cinput type=\"text\" value=\"{{typed}}\" onChange=\"{{setTyped}}\" onKeyDown=\"{{onKey}}\" placeholder=\"{{t.typePh}}\" style=\"flex: 1; width: 100%; box-sizing: border-box; min-height: 46px; border-radius: 23px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 14px; font-family: inherit\">\n\u003c/label>\n\u003cbutton onClick=\"{{submitTyped}}\" style=\"min-height: 46px; padding: 0 16px; border-radius: 23px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 800; font-family: inherit\">{{t.go}}\u003c/button>\n\u003c/div>\n\n\u003ca ref=\"{{linkRef}}\" href=\"{{goHref}}\" aria-hidden=\"true\" tabindex=\"-1\" style=\"display: none\">go\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"variant\":{\"editor\":\"enum\",\"options\":[\"fab\",\"banner\"],\"default\":\"fab\"},\"$preview\":{\"width\":390,\"height\":120}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = { open: false, listening: false, heard: '', note: '', lang: 'hi', typed: '', go: null, goLabel: '' };\n    this.linkRef = (el) => { this.linkEl = el; };\n  }\n\n  componentWillUnmount() {\n    clearTimeout(this.goTimer);\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  componentDidUpdate() {\n    const prevGo = this._prevGo;\n    this._prevGo = this.state.go;\n    if (this.state.go && this.state.go !== prevGo) {\n      clearTimeout(this.goTimer);\n      this.goTimer = setTimeout(() => { try { if (this.linkEl) this.linkEl.click(); } catch (e) {} }, 900);\n    }\n  }\n\n  destinations() {\n    return [\n      { file: 'Access.dc.html#isl', hi: 'सांकेतिक भाषा मदद', en: 'Sign language help', keys: ['सांकेतिक', 'साइन', 'sign', 'isl', 'बधिर', 'deaf', 'मूक'] },\n      { file: 'Access.dc.html', hi: 'बूथ साथी', en: 'Booth Buddy', keys: ['बूथ साथी', 'साथी', 'buddy', 'volunteer', 'स्वयंसेवक', 'व्हीलचेयर', 'wheelchair', 'सुगम्य', 'accessib', 'दिव्यांग', 'disab'] },\n      { file: 'ESlip.dc.html', hi: 'ई-स्लिप', en: 'e-Slip', keys: ['स्लिप', 'पर्ची', 'slip', 'qr', 'क्यूआर', 'सूची', 'list', 'नाम', 'epic', 'एपिक', 'क्रमांक', 'serial'] },\n      { file: 'Safety.dc.html', hi: 'सुरक्षा और SOS', en: 'Safety and SOS', keys: ['sos', 'एसओएस', 'सुरक्षा', 'safety', 'safe', 'पुलिस', 'police', 'capf', 'सीएपीएफ', 'खतरा', 'danger'] },\n      { file: 'Queue.dc.html', hi: 'मेरा बूथ', en: 'My booth', keys: ['मेरा बूथ', 'बूथ', 'booth', 'लाइन', 'कतार', 'queue', 'line', 'मतदान केंद्र', 'polling', 'रास्ता', 'route', 'way'] },\n      { file: 'Rehearsal.dc.html', hi: 'मतपत्र अभ्यास', en: 'Ballot practice', keys: ['अभ्यास', 'practice', 'rehearsal', 'evm', 'ईवीएम', 'ballot', 'मतपत्र', 'vvpat'] },\n      { file: 'Selfie.dc.html', hi: 'सेल्फी', en: 'Selfie', keys: ['सेल्फी', 'selfie', 'फोटो', 'photo', 'इनाम', 'prize', 'contest'] },\n      { file: 'Chat.dc.html', hi: 'सहायक', en: 'Sahayak chat', keys: ['सहायक', 'sahayak', 'chat', 'चैट', 'सवाल', 'question', 'helpline', 'हेल्पलाइन', '1950'] },\n      { file: 'AiVoice.dc.html', hi: 'सुनें और अनुवाद', en: 'Listen & Translate', keys: ['अनुवाद', 'translate', 'सूचना', 'notice', 'ब्रेल', 'braille', 'पढ़', 'read'] },\n      { file: 'RampCheck.dc.html', hi: 'बूथ रेटिंग', en: 'Rate your booth', keys: ['रैंप', 'ramp', 'रेटिंग', 'rating', 'rate', 'best booth', 'सुविधा'] },\n      { file: 'Main.dc.html', hi: 'होम', en: 'Home', keys: ['होम', 'home', 'मुख्य', 'शुरू', 'start', 'back', 'वापस'] },\n    ];\n  }\n\n  speak(text) {\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = this.state.lang === 'en' ? 'en-IN' : 'hi-IN';\n      const v = (ss.getVoices() || []).find((x) => (x.lang || '').toLowerCase().indexOf(this.state.lang === 'en' ? 'en' : 'hi') === 0);\n      if (v) u.voice = v;\n      ss.speak(u);\n    } catch (e) {}\n  }\n\n  navigate(d) {\n    const label = this.state.lang === 'en' ? d.en : d.hi;\n    this.setState({ go: d.file, goLabel: label, note: '', listening: false });\n    this.speak((this.state.lang === 'en' ? 'Opening ' : 'खोल रहे हैं: ') + label);\n  }\n\n  handle(texts) {\n    const list = this.destinations();\n    for (const raw of texts) {\n      const s = String(raw || '').toLowerCase();\n      const d = list.find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n      if (d) { this.navigate(d); return; }\n    }\n    const msg = this.state.lang === 'en' ? \"Sorry, I didn't catch a place. Try again or tap one below.\" : 'माफ़ कीजिए, समझ नहीं आया। दोबारा बोलें या नीचे से चुनें।';\n    this.setState({ note: msg, listening: false });\n    this.speak(msg);\n  }\n\n  handleQuiet(v) {\n    const s = String(v || '').toLowerCase();\n    const d = this.destinations().find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n    if (d && !this.state.go) this.navigate(d);\n  }\n\n  listen() {\n    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;\n    const L = this.state.lang;\n    if (!SR) {\n      this.setState({ note: L === 'en' ? 'Voice recognition is not available here. Tap the box below and use the 🎤 on your keyboard to speak.' : 'यहाँ आवाज़ पहचान उपलब्ध नहीं है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें।' });\n      return;\n    }\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    const rec = new SR();\n    rec.lang = L === 'en' ? 'en-IN' : 'hi-IN';\n    rec.interimResults = true;\n    rec.maxAlternatives = 3;\n    rec.onresult = (e) => {\n      const res = e.results[e.results.length - 1];\n      const heard = res[0].transcript;\n      this.setState({ heard: heard });\n      if (res.isFinal) {\n        const alts = [];\n        for (let i = 0; i \u003c res.length; i++) alts.push(res[i].transcript);\n        this.handle(alts);\n      }\n    };\n    rec.onerror = (ev) => {\n      const blocked = ev && (ev.error === 'not-allowed' || ev.error === 'service-not-allowed');\n      this.setState({ listening: false, note: blocked\n        ? (L === 'en' ? 'This preview blocks the browser microphone. Tap the box below and use the 🎤 on your phone keyboard to speak — it works the same way.' : 'इस प्रीव्यू में ब्राउज़र माइक बंद है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें — वैसे ही काम करेगा।')\n        : (L === 'en' ? 'Could not hear clearly. Try again.' : 'साफ़ सुनाई नहीं दिया। दोबारा बोलें।') });\n    };\n    rec.onend = () => this.setState({ listening: false });\n    this.rec = rec;\n    this.setState({ listening: true, heard: '', note: '', go: null });\n    try { rec.start(); } catch (e) { this.setState({ listening: false }); }\n  }\n\n  renderVals() {\n    const st = this.state;\n    const L = st.lang;\n    const T = {\n      hi: { title: 'कहाँ जाना है?', sub: 'माइक दबाएँ और बोलें, जैसे \"मेरा बूथ\"', close: 'बंद करें', langAria: 'Switch to English',\n        tryLabel: 'बोलकर देखें या टैप करें', typeLabel: 'लिखकर बताएँ', typePh: 'लिखें या कीबोर्ड 🎤 से बोलें…', go: 'जाएँ',\n        idle: 'माइक दबाकर बोलें', listening: 'सुन रहे हैं…', opening: 'खोल रहे हैं: ' },\n      en: { title: 'Where do you want to go?', sub: 'Tap the mic and say, for example, \"my booth\"', close: 'Close', langAria: 'हिंदी में बदलें',\n        tryLabel: 'Say or tap one of these', typeLabel: 'Type a place', typePh: 'Type, or speak with keyboard 🎤…', go: 'Go',\n        idle: 'Tap the mic and speak', listening: 'Listening…', opening: 'Opening ' },\n    };\n    const t = T[L];\n    const variant = this.props.variant || 'fab';\n    const seen = {};\n    const chips = this.destinations().filter((d) => { const k = d.hi; if (seen[k]) return false; seen[k] = 1; return true; })\n      .map((d) => ({ label: L === 'en' ? d.en : d.hi, go: () => this.navigate(d) }));\n    const statusText = st.go ? t.opening + st.goLabel : (st.listening ? t.listening : t.idle);\n    const submit = () => { const v = (st.typed || '').trim(); if (v) this.handle([v]); };\n    return {\n      t, chips, statusText,\n      isFab: variant === 'fab',\n      isBanner: variant === 'banner',\n      isOpen: st.open,\n      heard: st.heard,\n      hasHeard: !!st.heard,\n      note: st.note,\n      hasNote: !!st.note,\n      typed: st.typed,\n      langBtn: L === 'en' ? 'हिं' : 'EN',\n      goHref: st.go || 'Main.dc.html',\n      linkRef: this.linkRef,\n      micAria: st.listening ? t.listening : t.idle,\n      micStyle: 'width: 96px; height: 96px; border-radius: 48px; border: none; color: #13233A; display: flex; align-items: center; justify-content: center; cursor: pointer; background: ' +\n        (st.listening ? '#FFD54A; animation: vn-pulse 1.2s infinite' : '#FFD54A'),\n      open: () => { this.setState({ open: true, note: '', heard: '', go: null }); setTimeout(() => this.listen(), 150); },\n      close: () => { try { if (this.rec) this.rec.abort(); } catch (e) {} clearTimeout(this.goTimer); this.setState({ open: false, listening: false, go: null }); },\n      mic: () => this.listen(),\n      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en', note: '' }),\n      setTyped: (e) => { const v = e.target.value; this.setState({ typed: v }); clearTimeout(this.typeTimer); if (v && v.trim().length > 2) this.typeTimer = setTimeout(() => this.handleQuiet(v), 1400); },\n      onKey: (e) => { if (e.key === 'Enter') submit(); },\n      submitTyped: submit,\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n", "Rehearsal.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Ballot Rehearsal\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\na{color:#FFD54A;text-decoration:none}a:hover{color:#FFE58A}\nbutton{font-family:inherit;cursor:pointer}\n@keyframes ab-slip{0%{transform:translateY(-110%)}12%{transform:translateY(0)}88%{transform:translateY(0)}100%{transform:translateY(120%)}}\n@keyframes ab-glow{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,.9)}50%{box-shadow:0 0 10px 4px rgba(229,57,53,.9)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv lang=\"{{L}}\" style=\"position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0B1220; font-family: 'Mukta', system-ui, sans-serif; color: #FFFFFF; display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 12px; overflow: hidden\">\n\n\u003cdiv style=\"display: flex; align-items: center; gap: 8px\">\n\u003ca href=\"Access.dc.html\" aria-label=\"Back to accessibility\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; color: #FFFFFF; flex-shrink: 0\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M15 5l-7 7 7 7\">\u003c/path>\u003c/svg>\n\u003c/a>\n\u003cdiv style=\"flex: 1; display: flex; flex-direction: column; line-height: 1.1; min-width: 0\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">{{t.title}}\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #C9D2E0\">{{t.sub}}\u003c/span>\n\u003c/div>\n\u003cbutton aria-label=\"{{t.langAria}}\" onClick=\"{{toggleLang}}\" style=\"min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; font-size: 15px; font-weight: 800\">{{langBtn}}\u003c/button>\n\u003cspan style=\"font-size: 11px; font-weight: 800; color: #0B1220; background: #FFD54A; border-radius: 999px; padding: 4px 8px; display: flex; align-items: center; gap: 4px; white-space: nowrap\">\n\u003csvg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6\">\u003c/path>\u003c/svg>\n{{t.voiceOn}}\u003c/span>\n\u003c/div>\n\n\u003cdiv role=\"status\" aria-live=\"polite\" style=\"border: 2px solid #FFD54A; border-radius: 14px; padding: 8px 12px; display: flex; align-items: center; gap: 12px\">\n\u003cspan style=\"font-size: 30px; font-weight: 800; color: #FFD54A; line-height: 1\">{{num}}\u003c/span>\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.2; min-width: 0\">\n\u003cspan style=\"font-size: 16px; font-weight: 800\">{{curName}}\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #C9D2E0\">{{curParty}}\u003c/span>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"background: #B9BCB6; border-radius: 14px; padding: 8px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 2px 0 rgba(255,255,255,0.4)\">\n\u003cdiv style=\"display: flex; justify-content: space-between; align-items: center; padding: 0 4px\">\n\u003cspan style=\"font-size: 11px; font-weight: 800; color: #2B2F2A; letter-spacing: 1px\">{{t.bu}}\u003c/span>\n\u003cspan style=\"display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: #2B2F2A\">\n\u003cspan style=\"{{readyLamp}}\">\u003c/span>{{readyText}}\u003c/span>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; border: 2px solid #4A4F48; border-radius: 6px; overflow: hidden\">\n\u003csc-for list=\"{{rows}}\" as=\"r\" hint-placeholder-count=\"9\">\n\u003cdiv style=\"{{r.rowStyle}}\">\n\u003cbutton onClick=\"{{r.focus}}\" aria-label=\"{{r.aria}}\" style=\"flex: 1; display: flex; align-items: center; gap: 6px; height: 100%; padding: 0 6px; border: none; background: #FFFFFF; color: #111111; text-align: left; min-width: 0\">\n\u003cspan style=\"width: 22px; font-size: 16px; font-weight: 800; text-align: center; flex-shrink: 0\">{{r.n}}\u003c/span>\n\u003cspan style=\"flex: 1; display: flex; flex-direction: column; line-height: 1.12; min-width: 0\">\n\u003cspan style=\"font-size: 14px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis\">{{r.nameHi}}\u003c/span>\n\u003cspan style=\"font-size: 11px; font-weight: 600; color: #3A3F45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis\">{{r.nameEn}}\u003c/span>\n\u003c/span>\n\u003cspan style=\"{{r.photoStyle}}\">\n\u003csvg width=\"22\" height=\"26\" viewBox=\"0 0 24 28\" aria-hidden=\"true\">\u003ccircle cx=\"12\" cy=\"9\" r=\"5.5\" fill=\"#8C939C\">\u003c/circle>\u003cpath d=\"M2 28c0-7 4.5-11 10-11s10 4 10 11z\" fill=\"#8C939C\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003cspan style=\"width: 40px; height: 40px; border: 1.5px solid #111111; border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #FFFFFF\">\n\u003csvg width=\"32\" height=\"32\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"{{r.sym}}\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003c/button>\n\u003cdiv style=\"width: 96px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-around; padding: 0 4px; background: #B9BCB6; border-left: 2px solid #4A4F48\">\n\u003cspan style=\"{{r.lamp}}\">\u003c/span>\n\u003cbutton aria-label=\"{{r.voteAria}}\" onClick=\"{{r.vote}}\" disabled=\"{{busy}}\" style=\"width: 40px; height: 28px; border-radius: 14px; border: 2px solid #0D2F7A; background: #1E56D6; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.25); flex-shrink: 0\">\u003c/button>\n\u003cspan aria-hidden=\"true\" style=\"font-size: 15px; color: #111111; line-height: 1; letter-spacing: 1px\">{{r.braille}}\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; justify-content: space-between; gap: 8px\">\n\u003cbutton aria-label=\"{{t.prev}}\" onClick=\"{{prev}}\" style=\"flex: 1; height: 56px; border-radius: 16px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M18 6l-8 6 8 6z\">\u003c/path>\u003cpath d=\"M6 6v12\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003cbutton aria-label=\"{{t.repeatAria}}\" onClick=\"{{repeat}}\" style=\"flex: 1.4; height: 56px; border-radius: 16px; border: none; background: #FFD54A; color: #0B1220; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 800\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11\">\u003c/path>\u003c/svg>\n{{t.repeat}}\n\u003c/button>\n\u003cbutton aria-label=\"{{t.next}}\" onClick=\"{{next}}\" style=\"flex: 1; height: 56px; border-radius: 16px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6 6l8 6-8 6z\">\u003c/path>\u003cpath d=\"M18 6v12\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/div>\n\n\u003cspan style=\"font-size: 12px; color: #C9D2E0; text-align: center; line-height: 1.35\">{{t.foot}}\u003c/span>\n\n\u003csc-if value=\"{{slipOn}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv role=\"dialog\" aria-label=\"{{t.vvpat}}\" style=\"position: absolute; left: 0; right: 0; bottom: 0; background: #1A1F1A; border-top: 3px solid #FFD54A; border-radius: 20px 20px 0 0; padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -12px 30px rgba(0,0,0,0.5)\">\n\u003cdiv style=\"display: flex; justify-content: space-between; align-items: center\">\n\u003cspan style=\"font-size: 16px; font-weight: 800\">{{t.vvpat}}\u003c/span>\n\u003cspan style=\"font-size: 14px; font-weight: 800; color: #FFD54A\">{{t.visible}} {{secs}}s\u003c/span>\n\u003c/div>\n\u003cdiv style=\"height: 230px; border-radius: 12px; background: #2E352E; border: 6px solid #4A524A; overflow: hidden; display: flex; justify-content: center; align-items: flex-start; padding-top: 10px; box-sizing: border-box\">\n\u003cdiv style=\"width: 170px; background: #FDFCF7; color: #111111; border-radius: 2px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; animation: ab-slip 7s linear forwards; box-shadow: 0 2px 6px rgba(0,0,0,0.4)\">\n\u003cspan style=\"font-size: 30px; font-weight: 800; line-height: 1\">{{slip.n}}\u003c/span>\n\u003cspan style=\"font-size: 16px; font-weight: 800; text-align: center; line-height: 1.15\">{{slip.nameHi}}\u003c/span>\n\u003cspan style=\"font-size: 12px; font-weight: 600; text-align: center\">{{slip.nameEn}}\u003c/span>\n\u003csvg width=\"56\" height=\"56\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"#111111\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" role=\"img\" aria-label=\"{{slip.symName}}\">\u003cpath d=\"{{slip.sym}}\">\u003c/path>\u003c/svg>\n\u003c/div>\n\u003c/div>\n\u003cspan style=\"font-size: 13px; color: #C9D2E0; text-align: center; line-height: 1.35\">{{t.vvpatNote}}\u003c/span>\n\u003c/div>\n\u003c/sc-if>\n\n\u003cdiv style=\"position: absolute; right: 16px; bottom: 160px; z-index: 40\">\u003cdc-import name=\"VoiceNav\" variant=\"fab\" hint-size=\"60px,60px\">\u003c/dc-import>\u003c/div>\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"$preview\":{\"width\":390,\"height\":844}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = { i: 2, lang: 'en', voted: null, secs: 0 };\n  }\n\n  componentWillUnmount() {\n    clearInterval(this.slipTimer);\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n    try { if (this.ac) this.ac.close(); } catch (e) {}\n  }\n\n  say(text) {\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      const lang = this.state.lang === 'hi' ? 'hi-IN' : 'en-IN';\n      u.lang = lang;\n      u.rate = 0.9;\n      const vs = ss.getVoices() || [];\n      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||\n        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);\n      if (v) u.voice = v;\n      ss.speak(u);\n    } catch (e) {}\n  }\n\n  beep() {\n    try {\n      const AC = window.AudioContext || window.webkitAudioContext;\n      if (!AC) return;\n      if (!this.ac) this.ac = new AC();\n      const o = this.ac.createOscillator();\n      const g = this.ac.createGain();\n      o.type = 'sine';\n      o.frequency.value = 1050;\n      g.gain.value = 0.12;\n      o.connect(g);\n      g.connect(this.ac.destination);\n      o.start();\n      o.stop(this.ac.currentTime + 1.6);\n    } catch (e) {}\n  }\n\n  renderVals() {\n    const circle = (cx, cy, r) => 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0';\n    let petals = '';\n    for (let k = 0; k \u003c 8; k++) {\n      const a = (Math.PI / 4) * k;\n      petals += circle(+(12 + 5 * Math.cos(a)).toFixed(2), +(9 + 5 * Math.sin(a)).toFixed(2), 1.8);\n    }\n    const SYM = {\n      sunflower: circle(12, 9, 2.4) + petals + 'M12 15.8V22M12 19q-3-2.5-5.5-1M12 20.5q3-2.5 5.5-1',\n      bell: 'M12 3v2M8 8.5a4 4 0 0 1 8 0c0 4 1 6.5 2.5 8.5h-13C7 15 8 12.5 8 8.5z' + circle(12, 19.3, 1.5),\n      jug: 'M8 5h7l-1 3.5c3 1.5 4 4 4 7 0 3.5-2.5 5.5-6 5.5s-6-2-6-5.5c0-3 1-5.5 4-7zM8 5L5.5 3.5M17.5 9.5c2.5 0 3.5 2 3.5 4s-1.5 3.5-3.5 3.5',\n      ship: 'M3 15h18l-3 5H6zM12 3v12M12 4l6 9h-6M12 6.5l-4.5 6.5H12',\n      nib: 'M12 22L7 13l2-8h6l2 8zM12 22v-7.7M9 5h6' + circle(12, 13, 1.3),\n      tree: circle(12, 9, 6.5) + 'M12 15.5V22M9 22h6M12 18.5l-2.5-2M12 17.5l2.5-2',\n      umbrella: 'M2.5 12a9.5 8 0 0 1 19 0c-1.5-1.2-3.2-1.2-4.75 0-1.5-1.2-3.2-1.2-4.75 0-1.5-1.2-3.2-1.2-4.75 0-1.5-1.2-3.2-1.2-4.75 0zM12 12v7.5a2 2 0 0 1-4 0M12 2.5V4',\n      bucket: 'M5 8h14l-2 13H7zM5 8c0-5.5 14-5.5 14 0M6 12h12',\n      nota: 'M6 3h12v18H6zM9 8l6 8M15 8l-6 8'\n    };\n    const list = [\n      { en: 'Asha Singh', hi: 'आशा सिंह', pEn: 'Lok Seva Dal', pHi: 'लोक सेवा दल', s: 'sunflower', sEn: 'Sunflower', sHi: 'सूरजमुखी' },\n      { en: 'Mohd. Imran', hi: 'मो. इमरान', pEn: 'Nagrik Ekta Party', pHi: 'नागरिक एकता पार्टी', s: 'bell', sEn: 'Bell', sHi: 'घंटी' },\n      { en: 'Rakesh Kumar', hi: 'राकेश कुमार', pEn: 'Gram Vikas Morcha', pHi: 'ग्राम विकास मोर्चा', s: 'jug', sEn: 'Water jug', sHi: 'पानी का जग' },\n      { en: 'Sunil Gupta', hi: 'सुनील गुप्ता', pEn: 'Independent', pHi: 'निर्दलीय', s: 'ship', sEn: 'Ship', sHi: 'जहाज़' },\n      { en: 'Pooja Rani', hi: 'पूजा रानी', pEn: 'Shiksha Nyay Party', pHi: 'शिक्षा न्याय पार्टी', s: 'nib', sEn: 'Pen nib', sHi: 'पेन की निब' },\n      { en: 'Harish Chandra', hi: 'हरीश चंद्र', pEn: 'Kisan Shakti Dal', pHi: 'किसान शक्ति दल', s: 'tree', sEn: 'Tree', sHi: 'पेड़' },\n      { en: 'Fatima Bano', hi: 'फ़ातिमा बानो', pEn: 'Independent', pHi: 'निर्दलीय', s: 'umbrella', sEn: 'Umbrella', sHi: 'छाता' },\n      { en: 'Vinod Mishra', hi: 'विनोद मिश्रा', pEn: 'Yuva Jan Party', pHi: 'युवा जन पार्टी', s: 'bucket', sEn: 'Bucket', sHi: 'बाल्टी' },\n      { en: 'None of the Above', hi: 'इनमें से कोई नहीं', pEn: 'NOTA', pHi: 'नोटा', s: 'nota', sEn: 'NOTA symbol', sHi: 'नोटा चिन्ह', nota: true }\n    ];\n    const BR = ['⠼⠁', '⠼⠃', '⠼⠉', '⠼⠙', '⠼⠑', '⠼⠋', '⠼⠛', '⠼⠓', '⠼⠊'];\n\n    const L = this.state.lang;\n    const T = {\n      en: {\n        title: 'Ballot rehearsal', sub: 'Practice EVM · Sample Constituency · demo', voiceOn: 'VOICE', langAria: 'Switch to Hindi',\n        bu: 'BALLOT UNIT', ready: 'READY', busy: 'BUSY', prev: 'Previous candidate', next: 'Next candidate', repeat: 'Repeat',\n        repeatAria: 'Repeat this candidate aloud', vvpat: 'VVPAT slip', visible: 'Visible for',\n        vvpatNote: 'Check the serial number, name and symbol on the slip. In the real booth the slip drops into a sealed box after 7 seconds.',\n        foot: 'Tap a row to hear it · press the blue button to practise · Braille numbers sit beside each button. Demo data: all names, parties and symbols are fictional.',\n        button: 'Button', of: 'of', symbol: 'Symbol', pressBtn: 'Practice vote for button',\n        voted: 'Beep. You pressed button', checkSlip: 'Check the VVPAT slip.'\n      },\n      hi: {\n        title: 'मतपत्र अभ्यास', sub: 'EVM अभ्यास · नमूना निर्वाचन क्षेत्र · डेमो', voiceOn: 'आवाज़', langAria: 'Switch to English',\n        bu: 'बैलेट यूनिट', ready: 'तैयार', busy: 'व्यस्त', prev: 'पिछला उम्मीदवार', next: 'अगला उम्मीदवार', repeat: 'दोबारा',\n        repeatAria: 'यह उम्मीदवार फिर सुनें', vvpat: 'VVPAT पर्ची', visible: 'दिखेगी',\n        vvpatNote: 'पर्ची पर क्रम संख्या, नाम और चिन्ह जाँचें। असली बूथ में 7 सेकंड बाद पर्ची सील बक्से में गिर जाती है।',\n        foot: 'सुनने के लिए पंक्ति पर टैप करें · अभ्यास के लिए नीला बटन दबाएँ · हर बटन के पास ब्रेल अंक है। डेमो: सभी नाम, दल और चिन्ह काल्पनिक हैं।',\n        button: 'बटन', of: 'में से', symbol: 'चिन्ह', pressBtn: 'अभ्यास वोट, बटन',\n        voted: 'बीप। आपने बटन दबाया', checkSlip: 'VVPAT पर्ची जाँचें।'\n      }\n    };\n    const t = T[L];\n    const i = this.state.i;\n    const busy = this.state.voted !== null;\n\n    const describe = (k) => {\n      const c = list[k];\n      return t.button + ' ' + (k + 1) + (L === 'hi' ? ', कुल ' : ' of ') + list.length + '. ' + c[L] + '. ' + (c.nota ? '' : c[L === 'hi' ? 'pHi' : 'pEn'] + '. ') +\n        t.symbol + ': ' + c[L === 'hi' ? 'sHi' : 'sEn'] + '.';\n    };\n    const focusOn = (k) => { this.setState({ i: k }); this.say(describe(k)); };\n\n    const vote = (k) => {\n      if (this.state.voted !== null) return;\n      this.beep();\n      this.setState({ i: k, voted: k, secs: 7 });\n      const c = list[k];\n      this.say(t.voted + ' ' + (k + 1) + ', ' + c[L] + '. ' + t.checkSlip);\n      clearInterval(this.slipTimer);\n      this.slipTimer = setInterval(() => {\n        const s = this.state.secs - 1;\n        if (s \u003c= 0) { clearInterval(this.slipTimer); this.setState({ voted: null, secs: 0 }); }\n        else this.setState({ secs: s });\n      }, 1000);\n    };\n\n    const rows = list.map((c, k) => {\n      const on = k === i;\n      const lit = this.state.voted === k;\n      return {\n        n: String(k + 1),\n        nameHi: c.hi,\n        nameEn: c.en,\n        sym: SYM[c.s],\n        braille: BR[k],\n        aria: describe(k),\n        voteAria: t.pressBtn + ' ' + (k + 1) + ', ' + c[L],\n        rowStyle: 'display: flex; height: 54px; border-bottom: ' + (k === list.length - 1 ? 'none' : '1.5px solid #4A4F48') + '; ' +\n          (on ? 'outline: 3px solid #FFD54A; outline-offset: -3px; position: relative; z-index: 1' : ''),\n        photoStyle: 'width: 34px; height: 40px; border: 1px solid #9AA0A6; background: ' + (c.nota ? '#FFFFFF' : '#E6E8EA') +\n          '; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; flex-shrink: 0' + (c.nota ? '; visibility: hidden' : ''),\n        lamp: 'width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; border: 1.5px solid #5A1010; background: ' +\n          (lit ? '#FF3B30; animation: ab-glow 0.9s ease-in-out infinite' : '#7A2A2A'),\n        focus: () => focusOn(k),\n        vote: () => vote(k)\n      };\n    });\n\n    const cur = list[i];\n    const slipK = this.state.voted;\n    const sc = slipK !== null ? list[slipK] : null;\n\n    return {\n      L, t, rows, busy,\n      langBtn: L === 'en' ? 'हिं' : 'EN',\n      num: String(i + 1),\n      curName: cur[L],\n      curParty: (cur.nota ? '' : cur[L === 'hi' ? 'pHi' : 'pEn'] + ' · ') + t.symbol + ': ' + cur[L === 'hi' ? 'sHi' : 'sEn'],\n      readyText: busy ? t.busy : t.ready,\n      readyLamp: 'width: 10px; height: 10px; border-radius: 5px; border: 1.5px solid #1C3B1C; background: ' + (busy ? '#3B4A3B' : '#2ECC40'),\n      slipOn: slipK !== null,\n      secs: String(this.state.secs),\n      slip: sc ? { n: String(slipK + 1), nameHi: sc.hi, nameEn: sc.en, sym: SYM[sc.s], symName: sc[L === 'hi' ? 'sHi' : 'sEn'] }\n        : { n: '', nameHi: '', nameEn: '', sym: '', symName: '' },\n      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en' }),\n      prev: () => focusOn(Math.max(0, i - 1)),\n      next: () => focusOn(Math.min(list.length - 1, i + 1)),\n      repeat: () => this.say(describe(i))\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n"};var of=window.fetch;window.fetch=function(u,o){try{var s=String(u&&u.url||u);var n=s.split("#")[0].split("?")[0].split("/").pop();if(location.protocol==="file:"&&Object.prototype.hasOwnProperty.call(M,n)){return Promise.resolve(new Response(M[n],{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}}));}}catch(e){}return of.apply(this,arguments);};})();</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFD54A;text-decoration:none}a:hover{color:#FFE58A}
+button{font-family:inherit;cursor:pointer}
+@keyframes ab-slip{0%{transform:translateY(-110%)}12%{transform:translateY(0)}88%{transform:translateY(0)}100%{transform:translateY(120%)}}
+@keyframes ab-glow{0%,100%{box-shadow:0 0 0 0 rgba(229,57,53,.9)}50%{box-shadow:0 0 10px 4px rgba(229,57,53,.9)}}
+</style>
+</helmet>
+<div lang="{{L}}" style="position: relative; width: 390px; height: 844px; box-sizing: border-box; background: #0B1220; font-family: 'Mukta', system-ui, sans-serif; color: #FFFFFF; display: flex; flex-direction: column; gap: 10px; padding: 14px 14px 12px; overflow: hidden">
+
+<div style="display: flex; align-items: center; gap: 8px">
+<a href="Access.dc.html" aria-label="Back to accessibility" style="width: 44px; height: 44px; border-radius: 22px; border: 2px solid #FFFFFF; display: flex; align-items: center; justify-content: center; color: #FFFFFF; flex-shrink: 0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div style="flex: 1; display: flex; flex-direction: column; line-height: 1.1; min-width: 0">
+<span style="font-size: 20px; font-weight: 800">{{t.title}}</span>
+<span style="font-size: 12px; color: #C9D2E0">{{t.sub}}</span>
+</div>
+<button aria-label="{{t.langAria}}" onClick="{{toggleLang}}" style="min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; font-size: 15px; font-weight: 800">{{langBtn}}</button>
+<span style="font-size: 11px; font-weight: 800; color: #0B1220; background: #FFD54A; border-radius: 999px; padding: 4px 8px; display: flex; align-items: center; gap: 4px; white-space: nowrap">
+<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6"></path></svg>
+{{t.voiceOn}}</span>
+</div>
+
+<div role="status" aria-live="polite" style="border: 2px solid #FFD54A; border-radius: 14px; padding: 8px 12px; display: flex; align-items: center; gap: 12px">
+<span style="font-size: 30px; font-weight: 800; color: #FFD54A; line-height: 1">{{num}}</span>
+<div style="display: flex; flex-direction: column; line-height: 1.2; min-width: 0">
+<span style="font-size: 16px; font-weight: 800">{{curName}}</span>
+<span style="font-size: 12px; color: #C9D2E0">{{curParty}}</span>
+</div>
+</div>
+
+<div style="background: #B9BCB6; border-radius: 14px; padding: 8px; display: flex; flex-direction: column; gap: 6px; box-shadow: inset 0 2px 0 rgba(255,255,255,0.4)">
+<div style="display: flex; justify-content: space-between; align-items: center; padding: 0 4px">
+<span style="font-size: 11px; font-weight: 800; color: #2B2F2A; letter-spacing: 1px">{{t.bu}}</span>
+<span style="display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; color: #2B2F2A">
+<span style="{{readyLamp}}"></span>{{readyText}}</span>
+</div>
+
+<div style="display: flex; flex-direction: column; border: 2px solid #4A4F48; border-radius: 6px; overflow: hidden">
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="9">
+<div style="{{r.rowStyle}}">
+<button onClick="{{r.focus}}" aria-label="{{r.aria}}" style="flex: 1; display: flex; align-items: center; gap: 6px; height: 100%; padding: 0 6px; border: none; background: #FFFFFF; color: #111111; text-align: left; min-width: 0">
+<span style="width: 22px; font-size: 16px; font-weight: 800; text-align: center; flex-shrink: 0">{{r.n}}</span>
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.12; min-width: 0">
+<span style="font-size: 14px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.nameHi}}</span>
+<span style="font-size: 11px; font-weight: 600; color: #3A3F45; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.nameEn}}</span>
+</span>
+<span style="{{r.photoStyle}}">
+<svg width="22" height="26" viewBox="0 0 24 28" aria-hidden="true"><circle cx="12" cy="9" r="5.5" fill="#8C939C"></circle><path d="M2 28c0-7 4.5-11 10-11s10 4 10 11z" fill="#8C939C"></path></svg>
+</span>
+<span style="width: 40px; height: 40px; border: 1.5px solid #111111; border-radius: 3px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #FFFFFF">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{r.sym}}"></path></svg>
+</span>
+</button>
+<div style="width: 96px; flex-shrink: 0; display: flex; align-items: center; justify-content: space-around; padding: 0 4px; background: #B9BCB6; border-left: 2px solid #4A4F48">
+<span style="{{r.lamp}}"></span>
+<button aria-label="{{r.voteAria}}" onClick="{{r.vote}}" disabled="{{busy}}" style="width: 40px; height: 28px; border-radius: 14px; border: 2px solid #0D2F7A; background: #1E56D6; box-shadow: inset 0 -3px 0 rgba(0,0,0,0.25); flex-shrink: 0"></button>
+<span aria-hidden="true" style="font-size: 15px; color: #111111; line-height: 1; letter-spacing: 1px">{{r.braille}}</span>
+</div>
+</div>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; gap: 8px">
+<button aria-label="{{t.prev}}" onClick="{{prev}}" style="flex: 1; height: 56px; border-radius: 16px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6l-8 6 8 6z"></path><path d="M6 6v12"></path></svg>
+</button>
+<button aria-label="{{t.repeatAria}}" onClick="{{repeat}}" style="flex: 1.4; height: 56px; border-radius: 16px; border: none; background: #FFD54A; color: #0B1220; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 17px; font-weight: 800">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+{{t.repeat}}
+</button>
+<button aria-label="{{t.next}}" onClick="{{next}}" style="flex: 1; height: 56px; border-radius: 16px; border: 2px solid #FFFFFF; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l8 6-8 6z"></path><path d="M18 6v12"></path></svg>
+</button>
+</div>
+
+<span style="font-size: 12px; color: #C9D2E0; text-align: center; line-height: 1.35">{{t.foot}}</span>
+
+<sc-if value="{{slipOn}}" hint-placeholder-val="{{false}}">
+<div role="dialog" aria-label="{{t.vvpat}}" style="position: absolute; left: 0; right: 0; bottom: 0; background: #1A1F1A; border-top: 3px solid #FFD54A; border-radius: 20px 20px 0 0; padding: 16px 18px 20px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 -12px 30px rgba(0,0,0,0.5)">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 16px; font-weight: 800">{{t.vvpat}}</span>
+<span style="font-size: 14px; font-weight: 800; color: #FFD54A">{{t.visible}} {{secs}}s</span>
+</div>
+<div style="height: 230px; border-radius: 12px; background: #2E352E; border: 6px solid #4A524A; overflow: hidden; display: flex; justify-content: center; align-items: flex-start; padding-top: 10px; box-sizing: border-box">
+<div style="width: 170px; background: #FDFCF7; color: #111111; border-radius: 2px; padding: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px; animation: ab-slip 7s linear forwards; box-shadow: 0 2px 6px rgba(0,0,0,0.4)">
+<span style="font-size: 30px; font-weight: 800; line-height: 1">{{slip.n}}</span>
+<span style="font-size: 16px; font-weight: 800; text-align: center; line-height: 1.15">{{slip.nameHi}}</span>
+<span style="font-size: 12px; font-weight: 600; text-align: center">{{slip.nameEn}}</span>
+<svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#111111" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="{{slip.symName}}"><path d="{{slip.sym}}"></path></svg>
+</div>
+</div>
+<span style="font-size: 13px; color: #C9D2E0; text-align: center; line-height: 1.35">{{t.vvpatNote}}</span>
+</div>
+</sc-if>
+
+<div style="position: absolute; right: 16px; bottom: 160px; z-index: 40"><dc-import name="VoiceNav" variant="fab" hint-size="60px,60px"></dc-import></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 2, lang: 'en', voted: null, secs: 0 };
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.slipTimer);
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+    try { if (this.ac) this.ac.close(); } catch (e) {}
+  }
+
+  say(text) {
+    try {
+      const ss = window.speechSynthesis;
+      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;
+      ss.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      const lang = this.state.lang === 'hi' ? 'hi-IN' : 'en-IN';
+      u.lang = lang;
+      u.rate = 0.9;
+      const vs = ss.getVoices() || [];
+      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||
+        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);
+      if (v) u.voice = v;
+      ss.speak(u);
+    } catch (e) {}
+  }
+
+  beep() {
+    try {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return;
+      if (!this.ac) this.ac = new AC();
+      const o = this.ac.createOscillator();
+      const g = this.ac.createGain();
+      o.type = 'sine';
+      o.frequency.value = 1050;
+      g.gain.value = 0.12;
+      o.connect(g);
+      g.connect(this.ac.destination);
+      o.start();
+      o.stop(this.ac.currentTime + 1.6);
+    } catch (e) {}
+  }
+
+  renderVals() {
+    const circle = (cx, cy, r) => 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0';
+    let petals = '';
+    for (let k = 0; k < 8; k++) {
+      const a = (Math.PI / 4) * k;
+      petals += circle(+(12 + 5 * Math.cos(a)).toFixed(2), +(9 + 5 * Math.sin(a)).toFixed(2), 1.8);
+    }
+    const SYM = {
+      sunflower: circle(12, 9, 2.4) + petals + 'M12 15.8V22M12 19q-3-2.5-5.5-1M12 20.5q3-2.5 5.5-1',
+      bell: 'M12 3v2M8 8.5a4 4 0 0 1 8 0c0 4 1 6.5 2.5 8.5h-13C7 15 8 12.5 8 8.5z' + circle(12, 19.3, 1.5),
+      jug: 'M8 5h7l-1 3.5c3 1.5 4 4 4 7 0 3.5-2.5 5.5-6 5.5s-6-2-6-5.5c0-3 1-5.5 4-7zM8 5L5.5 3.5M17.5 9.5c2.5 0 3.5 2 3.5 4s-1.5 3.5-3.5 3.5',
+      ship: 'M3 15h18l-3 5H6zM12 3v12M12 4l6 9h-6M12 6.5l-4.5 6.5H12',
+      nib: 'M12 22L7 13l2-8h6l2 8zM12 22v-7.7M9 5h6' + circle(12, 13, 1.3),
+      tree: circle(12, 9, 6.5) + 'M12 15.5V22M9 22h6M12 18.5l-2.5-2M12 17.5l2.5-2',
+      umbrella: 'M2.5 12a9.5 8 0 0 1 19 0c-1.5-1.2-3.2-1.2-4.75 0-1.5-1.2-3.2-1.2-4.75 0-1.5-1.2-3.2-1.2-4.75 0-1.5-1.2-3.2-1.2-4.75 0zM12 12v7.5a2 2 0 0 1-4 0M12 2.5V4',
+      bucket: 'M5 8h14l-2 13H7zM5 8c0-5.5 14-5.5 14 0M6 12h12',
+      nota: 'M6 3h12v18H6zM9 8l6 8M15 8l-6 8'
+    };
+    const list = [
+      { en: 'Asha Singh', hi: 'आशा सिंह', pEn: 'Lok Seva Dal', pHi: 'लोक सेवा दल', s: 'sunflower', sEn: 'Sunflower', sHi: 'सूरजमुखी' },
+      { en: 'Mohd. Imran', hi: 'मो. इमरान', pEn: 'Nagrik Ekta Party', pHi: 'नागरिक एकता पार्टी', s: 'bell', sEn: 'Bell', sHi: 'घंटी' },
+      { en: 'Rakesh Kumar', hi: 'राकेश कुमार', pEn: 'Gram Vikas Morcha', pHi: 'ग्राम विकास मोर्चा', s: 'jug', sEn: 'Water jug', sHi: 'पानी का जग' },
+      { en: 'Sunil Gupta', hi: 'सुनील गुप्ता', pEn: 'Independent', pHi: 'निर्दलीय', s: 'ship', sEn: 'Ship', sHi: 'जहाज़' },
+      { en: 'Pooja Rani', hi: 'पूजा रानी', pEn: 'Shiksha Nyay Party', pHi: 'शिक्षा न्याय पार्टी', s: 'nib', sEn: 'Pen nib', sHi: 'पेन की निब' },
+      { en: 'Harish Chandra', hi: 'हरीश चंद्र', pEn: 'Kisan Shakti Dal', pHi: 'किसान शक्ति दल', s: 'tree', sEn: 'Tree', sHi: 'पेड़' },
+      { en: 'Fatima Bano', hi: 'फ़ातिमा बानो', pEn: 'Independent', pHi: 'निर्दलीय', s: 'umbrella', sEn: 'Umbrella', sHi: 'छाता' },
+      { en: 'Vinod Mishra', hi: 'विनोद मिश्रा', pEn: 'Yuva Jan Party', pHi: 'युवा जन पार्टी', s: 'bucket', sEn: 'Bucket', sHi: 'बाल्टी' },
+      { en: 'None of the Above', hi: 'इनमें से कोई नहीं', pEn: 'NOTA', pHi: 'नोटा', s: 'nota', sEn: 'NOTA symbol', sHi: 'नोटा चिन्ह', nota: true }
+    ];
+    const BR = ['⠼⠁', '⠼⠃', '⠼⠉', '⠼⠙', '⠼⠑', '⠼⠋', '⠼⠛', '⠼⠓', '⠼⠊'];
+
+    const L = this.state.lang;
+    const T = {
+      en: {
+        title: 'Ballot rehearsal', sub: 'Practice EVM · Sample Constituency · demo', voiceOn: 'VOICE', langAria: 'Switch to Hindi',
+        bu: 'BALLOT UNIT', ready: 'READY', busy: 'BUSY', prev: 'Previous candidate', next: 'Next candidate', repeat: 'Repeat',
+        repeatAria: 'Repeat this candidate aloud', vvpat: 'VVPAT slip', visible: 'Visible for',
+        vvpatNote: 'Check the serial number, name and symbol on the slip. In the real booth the slip drops into a sealed box after 7 seconds.',
+        foot: 'Tap a row to hear it · press the blue button to practise · Braille numbers sit beside each button. Demo data: all names, parties and symbols are fictional.',
+        button: 'Button', of: 'of', symbol: 'Symbol', pressBtn: 'Practice vote for button',
+        voted: 'Beep. You pressed button', checkSlip: 'Check the VVPAT slip.'
+      },
+      hi: {
+        title: 'मतपत्र अभ्यास', sub: 'EVM अभ्यास · नमूना निर्वाचन क्षेत्र · डेमो', voiceOn: 'आवाज़', langAria: 'Switch to English',
+        bu: 'बैलेट यूनिट', ready: 'तैयार', busy: 'व्यस्त', prev: 'पिछला उम्मीदवार', next: 'अगला उम्मीदवार', repeat: 'दोबारा',
+        repeatAria: 'यह उम्मीदवार फिर सुनें', vvpat: 'VVPAT पर्ची', visible: 'दिखेगी',
+        vvpatNote: 'पर्ची पर क्रम संख्या, नाम और चिन्ह जाँचें। असली बूथ में 7 सेकंड बाद पर्ची सील बक्से में गिर जाती है।',
+        foot: 'सुनने के लिए पंक्ति पर टैप करें · अभ्यास के लिए नीला बटन दबाएँ · हर बटन के पास ब्रेल अंक है। डेमो: सभी नाम, दल और चिन्ह काल्पनिक हैं।',
+        button: 'बटन', of: 'में से', symbol: 'चिन्ह', pressBtn: 'अभ्यास वोट, बटन',
+        voted: 'बीप। आपने बटन दबाया', checkSlip: 'VVPAT पर्ची जाँचें।'
+      }
+    };
+    const t = T[L];
+    const i = this.state.i;
+    const busy = this.state.voted !== null;
+
+    const describe = (k) => {
+      const c = list[k];
+      return t.button + ' ' + (k + 1) + (L === 'hi' ? ', कुल ' : ' of ') + list.length + '. ' + c[L] + '. ' + (c.nota ? '' : c[L === 'hi' ? 'pHi' : 'pEn'] + '. ') +
+        t.symbol + ': ' + c[L === 'hi' ? 'sHi' : 'sEn'] + '.';
+    };
+    const focusOn = (k) => { this.setState({ i: k }); this.say(describe(k)); };
+
+    const vote = (k) => {
+      if (this.state.voted !== null) return;
+      this.beep();
+      this.setState({ i: k, voted: k, secs: 7 });
+      const c = list[k];
+      this.say(t.voted + ' ' + (k + 1) + ', ' + c[L] + '. ' + t.checkSlip);
+      clearInterval(this.slipTimer);
+      this.slipTimer = setInterval(() => {
+        const s = this.state.secs - 1;
+        if (s <= 0) { clearInterval(this.slipTimer); this.setState({ voted: null, secs: 0 }); }
+        else this.setState({ secs: s });
+      }, 1000);
+    };
+
+    const rows = list.map((c, k) => {
+      const on = k === i;
+      const lit = this.state.voted === k;
+      return {
+        n: String(k + 1),
+        nameHi: c.hi,
+        nameEn: c.en,
+        sym: SYM[c.s],
+        braille: BR[k],
+        aria: describe(k),
+        voteAria: t.pressBtn + ' ' + (k + 1) + ', ' + c[L],
+        rowStyle: 'display: flex; height: 54px; border-bottom: ' + (k === list.length - 1 ? 'none' : '1.5px solid #4A4F48') + '; ' +
+          (on ? 'outline: 3px solid #FFD54A; outline-offset: -3px; position: relative; z-index: 1' : ''),
+        photoStyle: 'width: 34px; height: 40px; border: 1px solid #9AA0A6; background: ' + (c.nota ? '#FFFFFF' : '#E6E8EA') +
+          '; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; flex-shrink: 0' + (c.nota ? '; visibility: hidden' : ''),
+        lamp: 'width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; border: 1.5px solid #5A1010; background: ' +
+          (lit ? '#FF3B30; animation: ab-glow 0.9s ease-in-out infinite' : '#7A2A2A'),
+        focus: () => focusOn(k),
+        vote: () => vote(k)
+      };
+    });
+
+    const cur = list[i];
+    const slipK = this.state.voted;
+    const sc = slipK !== null ? list[slipK] : null;
+
+    return {
+      L, t, rows, busy,
+      langBtn: L === 'en' ? 'हिं' : 'EN',
+      num: String(i + 1),
+      curName: cur[L],
+      curParty: (cur.nota ? '' : cur[L === 'hi' ? 'pHi' : 'pEn'] + ' · ') + t.symbol + ': ' + cur[L === 'hi' ? 'sHi' : 'sEn'],
+      readyText: busy ? t.busy : t.ready,
+      readyLamp: 'width: 10px; height: 10px; border-radius: 5px; border: 1.5px solid #1C3B1C; background: ' + (busy ? '#3B4A3B' : '#2ECC40'),
+      slipOn: slipK !== null,
+      secs: String(this.state.secs),
+      slip: sc ? { n: String(slipK + 1), nameHi: sc.hi, nameEn: sc.en, sym: SYM[sc.s], symName: sc[L === 'hi' ? 'sHi' : 'sEn'] }
+        : { n: '', nameHi: '', nameEn: '', sym: '', symName: '' },
+      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en' }),
+      prev: () => focusOn(Math.max(0, i - 1)),
+      next: () => focusOn(Math.min(list.length - 1, i + 1)),
+      repeat: () => this.say(describe(i))
+    };
+  }
+}
+</script>
+</body>
+</html>

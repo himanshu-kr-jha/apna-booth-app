@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<style>html{background:#1E2633}body{margin:0 auto!important;width:390px}</style>
+<title>Apna Booth — Voice navigation</title>
+<script data-offline-shim>(function(){var M={"VoiceNav.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"hi\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Voice navigation\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\n@keyframes vn-pulse{0%{box-shadow:0 0 0 0 rgba(255,213,74,.7)}70%{box-shadow:0 0 0 18px rgba(255,213,74,0)}100%{box-shadow:0 0 0 0 rgba(255,213,74,0)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"font-family: 'Mukta', system-ui, sans-serif; color: #13233A\">\n\n\u003csc-if value=\"{{isFab}}\" hint-placeholder-val=\"{{true}}\">\n\u003cbutton aria-label=\"बोलकर चलाएँ — Speak to navigate\" onClick=\"{{open}}\" style=\"width: 60px; height: 60px; border-radius: 30px; border: 3px solid #FFFFFF; background: #13233A; color: #FFD54A; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(19,35,58,0.35); cursor: pointer\">\n\u003csvg width=\"28\" height=\"28\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isBanner}}\" hint-placeholder-val=\"{{false}}\">\n\u003cbutton onClick=\"{{open}}\" style=\"width: 100%; min-height: 60px; border-radius: 14px; border: none; background: #13233A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 8px 14px; text-align: left; font-family: inherit; cursor: pointer\">\n\u003cspan style=\"width: 44px; height: 44px; border-radius: 22px; background: #FFD54A; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n\u003csvg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/span>\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"font-size: 16px; font-weight: 800\">बोलकर कहीं भी जाएँ\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #C9D2E0\">Speak to go anywhere · \"मेरा बूथ\", \"ई-स्लिप\", \"SOS\"\u003c/span>\n\u003c/span>\n\u003c/button>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isOpen}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"position: fixed; inset: 0; z-index: 1000; background: rgba(11,18,32,0.55); display: flex; flex-direction: column; justify-content: flex-end\">\n\u003cdiv role=\"dialog\" aria-label=\"Voice navigation\" style=\"background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 12px; max-height: 92%; overflow-y: auto; box-sizing: border-box\">\n\n\u003cdiv style=\"display: flex; align-items: center; justify-content: space-between; gap: 8px\">\n\u003cdiv style=\"display: flex; flex-direction: column; line-height: 1.15\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">{{t.title}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B\">{{t.sub}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"display: flex; gap: 6px\">\n\u003cbutton aria-label=\"{{t.langAria}}\" onClick=\"{{toggleLang}}\" style=\"min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; font-family: inherit\">{{langBtn}}\u003c/button>\n\u003cbutton aria-label=\"{{t.close}}\" onClick=\"{{close}}\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.4\" stroke-linecap=\"round\" aria-hidden=\"true\">\u003cpath d=\"M6 6l12 12M18 6L6 18\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0\">\n\u003cbutton aria-label=\"{{micAria}}\" onClick=\"{{mic}}\" style=\"{{micStyle}}\">\n\u003csvg width=\"40\" height=\"40\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003cspan role=\"status\" aria-live=\"polite\" style=\"font-size: 16px; font-weight: 700; text-align: center; min-height: 24px\">{{statusText}}\u003c/span>\n\u003csc-if value=\"{{hasHeard}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 18px; font-weight: 800; color: #1F4FBF; text-align: center\">“{{heard}}”\u003c/span>\n\u003c/sc-if>\n\u003csc-if value=\"{{hasNote}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 13px; color: #8A3A07; background: #FCEBDD; border-radius: 10px; padding: 6px 10px; text-align: center; line-height: 1.35\">{{note}}\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cspan style=\"font-size: 14px; font-weight: 700\">{{t.tryLabel}}\u003c/span>\n\u003cdiv style=\"display: flex; flex-wrap: wrap; gap: 6px\">\n\u003csc-for list=\"{{chips}}\" as=\"c\" hint-placeholder-count=\"12\">\n\u003cbutton onClick=\"{{c.go}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; font-family: inherit\">{{c.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; gap: 8px\">\n\u003clabel style=\"flex: 1; display: flex\">\n\u003cspan style=\"position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)\">{{t.typeLabel}}\u003c/span>\n\u003cinput type=\"text\" value=\"{{typed}}\" onChange=\"{{setTyped}}\" onKeyDown=\"{{onKey}}\" placeholder=\"{{t.typePh}}\" style=\"flex: 1; width: 100%; box-sizing: border-box; min-height: 46px; border-radius: 23px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 14px; font-family: inherit\">\n\u003c/label>\n\u003cbutton onClick=\"{{submitTyped}}\" style=\"min-height: 46px; padding: 0 16px; border-radius: 23px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 800; font-family: inherit\">{{t.go}}\u003c/button>\n\u003c/div>\n\n\u003ca ref=\"{{linkRef}}\" href=\"{{goHref}}\" aria-hidden=\"true\" tabindex=\"-1\" style=\"display: none\">go\u003c/a>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"variant\":{\"editor\":\"enum\",\"options\":[\"fab\",\"banner\"],\"default\":\"fab\"},\"$preview\":{\"width\":390,\"height\":120}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = { open: false, listening: false, heard: '', note: '', lang: 'hi', typed: '', go: null, goLabel: '' };\n    this.linkRef = (el) => { this.linkEl = el; };\n  }\n\n  componentWillUnmount() {\n    clearTimeout(this.goTimer);\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  componentDidUpdate() {\n    const prevGo = this._prevGo;\n    this._prevGo = this.state.go;\n    if (this.state.go && this.state.go !== prevGo) {\n      clearTimeout(this.goTimer);\n      this.goTimer = setTimeout(() => { try { if (this.linkEl) this.linkEl.click(); } catch (e) {} }, 900);\n    }\n  }\n\n  destinations() {\n    return [\n      { file: 'Access.dc.html#isl', hi: 'सांकेतिक भाषा मदद', en: 'Sign language help', keys: ['सांकेतिक', 'साइन', 'sign', 'isl', 'बधिर', 'deaf', 'मूक'] },\n      { file: 'Access.dc.html', hi: 'बूथ साथी', en: 'Booth Buddy', keys: ['बूथ साथी', 'साथी', 'buddy', 'volunteer', 'स्वयंसेवक', 'व्हीलचेयर', 'wheelchair', 'सुगम्य', 'accessib', 'दिव्यांग', 'disab'] },\n      { file: 'ESlip.dc.html', hi: 'ई-स्लिप', en: 'e-Slip', keys: ['स्लिप', 'पर्ची', 'slip', 'qr', 'क्यूआर', 'सूची', 'list', 'नाम', 'epic', 'एपिक', 'क्रमांक', 'serial'] },\n      { file: 'Safety.dc.html', hi: 'सुरक्षा और SOS', en: 'Safety and SOS', keys: ['sos', 'एसओएस', 'सुरक्षा', 'safety', 'safe', 'पुलिस', 'police', 'capf', 'सीएपीएफ', 'खतरा', 'danger'] },\n      { file: 'Queue.dc.html', hi: 'मेरा बूथ', en: 'My booth', keys: ['मेरा बूथ', 'बूथ', 'booth', 'लाइन', 'कतार', 'queue', 'line', 'मतदान केंद्र', 'polling', 'रास्ता', 'route', 'way'] },\n      { file: 'Rehearsal.dc.html', hi: 'मतपत्र अभ्यास', en: 'Ballot practice', keys: ['अभ्यास', 'practice', 'rehearsal', 'evm', 'ईवीएम', 'ballot', 'मतपत्र', 'vvpat'] },\n      { file: 'Selfie.dc.html', hi: 'सेल्फी', en: 'Selfie', keys: ['सेल्फी', 'selfie', 'फोटो', 'photo', 'इनाम', 'prize', 'contest'] },\n      { file: 'Chat.dc.html', hi: 'सहायक', en: 'Sahayak chat', keys: ['सहायक', 'sahayak', 'chat', 'चैट', 'सवाल', 'question', 'helpline', 'हेल्पलाइन', '1950'] },\n      { file: 'AiVoice.dc.html', hi: 'सुनें और अनुवाद', en: 'Listen & Translate', keys: ['अनुवाद', 'translate', 'सूचना', 'notice', 'ब्रेल', 'braille', 'पढ़', 'read'] },\n      { file: 'RampCheck.dc.html', hi: 'बूथ रेटिंग', en: 'Rate your booth', keys: ['रैंप', 'ramp', 'रेटिंग', 'rating', 'rate', 'best booth', 'सुविधा'] },\n      { file: 'Main.dc.html', hi: 'होम', en: 'Home', keys: ['होम', 'home', 'मुख्य', 'शुरू', 'start', 'back', 'वापस'] },\n    ];\n  }\n\n  speak(text) {\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = this.state.lang === 'en' ? 'en-IN' : 'hi-IN';\n      const v = (ss.getVoices() || []).find((x) => (x.lang || '').toLowerCase().indexOf(this.state.lang === 'en' ? 'en' : 'hi') === 0);\n      if (v) u.voice = v;\n      ss.speak(u);\n    } catch (e) {}\n  }\n\n  navigate(d) {\n    const label = this.state.lang === 'en' ? d.en : d.hi;\n    this.setState({ go: d.file, goLabel: label, note: '', listening: false });\n    this.speak((this.state.lang === 'en' ? 'Opening ' : 'खोल रहे हैं: ') + label);\n  }\n\n  handle(texts) {\n    const list = this.destinations();\n    for (const raw of texts) {\n      const s = String(raw || '').toLowerCase();\n      const d = list.find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n      if (d) { this.navigate(d); return; }\n    }\n    const msg = this.state.lang === 'en' ? \"Sorry, I didn't catch a place. Try again or tap one below.\" : 'माफ़ कीजिए, समझ नहीं आया। दोबारा बोलें या नीचे से चुनें।';\n    this.setState({ note: msg, listening: false });\n    this.speak(msg);\n  }\n\n  handleQuiet(v) {\n    const s = String(v || '').toLowerCase();\n    const d = this.destinations().find((x) => x.keys.some((k) => s.indexOf(k) >= 0));\n    if (d && !this.state.go) this.navigate(d);\n  }\n\n  listen() {\n    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;\n    const L = this.state.lang;\n    if (!SR) {\n      this.setState({ note: L === 'en' ? 'Voice recognition is not available here. Tap the box below and use the 🎤 on your keyboard to speak.' : 'यहाँ आवाज़ पहचान उपलब्ध नहीं है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें।' });\n      return;\n    }\n    try { if (this.rec) this.rec.abort(); } catch (e) {}\n    const rec = new SR();\n    rec.lang = L === 'en' ? 'en-IN' : 'hi-IN';\n    rec.interimResults = true;\n    rec.maxAlternatives = 3;\n    rec.onresult = (e) => {\n      const res = e.results[e.results.length - 1];\n      const heard = res[0].transcript;\n      this.setState({ heard: heard });\n      if (res.isFinal) {\n        const alts = [];\n        for (let i = 0; i \u003c res.length; i++) alts.push(res[i].transcript);\n        this.handle(alts);\n      }\n    };\n    rec.onerror = (ev) => {\n      const blocked = ev && (ev.error === 'not-allowed' || ev.error === 'service-not-allowed');\n      this.setState({ listening: false, note: blocked\n        ? (L === 'en' ? 'This preview blocks the browser microphone. Tap the box below and use the 🎤 on your phone keyboard to speak — it works the same way.' : 'इस प्रीव्यू में ब्राउज़र माइक बंद है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें — वैसे ही काम करेगा।')\n        : (L === 'en' ? 'Could not hear clearly. Try again.' : 'साफ़ सुनाई नहीं दिया। दोबारा बोलें।') });\n    };\n    rec.onend = () => this.setState({ listening: false });\n    this.rec = rec;\n    this.setState({ listening: true, heard: '', note: '', go: null });\n    try { rec.start(); } catch (e) { this.setState({ listening: false }); }\n  }\n\n  renderVals() {\n    const st = this.state;\n    const L = st.lang;\n    const T = {\n      hi: { title: 'कहाँ जाना है?', sub: 'माइक दबाएँ और बोलें, जैसे \"मेरा बूथ\"', close: 'बंद करें', langAria: 'Switch to English',\n        tryLabel: 'बोलकर देखें या टैप करें', typeLabel: 'लिखकर बताएँ', typePh: 'लिखें या कीबोर्ड 🎤 से बोलें…', go: 'जाएँ',\n        idle: 'माइक दबाकर बोलें', listening: 'सुन रहे हैं…', opening: 'खोल रहे हैं: ' },\n      en: { title: 'Where do you want to go?', sub: 'Tap the mic and say, for example, \"my booth\"', close: 'Close', langAria: 'हिंदी में बदलें',\n        tryLabel: 'Say or tap one of these', typeLabel: 'Type a place', typePh: 'Type, or speak with keyboard 🎤…', go: 'Go',\n        idle: 'Tap the mic and speak', listening: 'Listening…', opening: 'Opening ' },\n    };\n    const t = T[L];\n    const variant = this.props.variant || 'fab';\n    const seen = {};\n    const chips = this.destinations().filter((d) => { const k = d.hi; if (seen[k]) return false; seen[k] = 1; return true; })\n      .map((d) => ({ label: L === 'en' ? d.en : d.hi, go: () => this.navigate(d) }));\n    const statusText = st.go ? t.opening + st.goLabel : (st.listening ? t.listening : t.idle);\n    const submit = () => { const v = (st.typed || '').trim(); if (v) this.handle([v]); };\n    return {\n      t, chips, statusText,\n      isFab: variant === 'fab',\n      isBanner: variant === 'banner',\n      isOpen: st.open,\n      heard: st.heard,\n      hasHeard: !!st.heard,\n      note: st.note,\n      hasNote: !!st.note,\n      typed: st.typed,\n      langBtn: L === 'en' ? 'हिं' : 'EN',\n      goHref: st.go || 'Main.dc.html',\n      linkRef: this.linkRef,\n      micAria: st.listening ? t.listening : t.idle,\n      micStyle: 'width: 96px; height: 96px; border-radius: 48px; border: none; color: #13233A; display: flex; align-items: center; justify-content: center; cursor: pointer; background: ' +\n        (st.listening ? '#FFD54A; animation: vn-pulse 1.2s infinite' : '#FFD54A'),\n      open: () => { this.setState({ open: true, note: '', heard: '', go: null }); setTimeout(() => this.listen(), 150); },\n      close: () => { try { if (this.rec) this.rec.abort(); } catch (e) {} clearTimeout(this.goTimer); this.setState({ open: false, listening: false, go: null }); },\n      mic: () => this.listen(),\n      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en', note: '' }),\n      setTyped: (e) => { const v = e.target.value; this.setState({ typed: v }); clearTimeout(this.typeTimer); if (v && v.trim().length > 2) this.typeTimer = setTimeout(() => this.handleQuiet(v), 1400); },\n      onKey: (e) => { if (e.key === 'Enter') submit(); },\n      submitTyped: submit,\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n"};var of=window.fetch;window.fetch=function(u,o){try{var s=String(u&&u.url||u);var n=s.split("#")[0].split("?")[0].split("/").pop();if(location.protocol==="file:"&&Object.prototype.hasOwnProperty.call(M,n)){return Promise.resolve(new Response(M[n],{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}}));}}catch(e){}return of.apply(this,arguments);};})();</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+@keyframes vn-pulse{0%{box-shadow:0 0 0 0 rgba(255,213,74,.7)}70%{box-shadow:0 0 0 18px rgba(255,213,74,0)}100%{box-shadow:0 0 0 0 rgba(255,213,74,0)}}
+</style>
+</helmet>
+<div style="font-family: 'Mukta', system-ui, sans-serif; color: #13233A">
+
+<sc-if value="{{isFab}}" hint-placeholder-val="{{true}}">
+<button aria-label="बोलकर चलाएँ — Speak to navigate" onClick="{{open}}" style="width: 60px; height: 60px; border-radius: 30px; border: 3px solid #FFFFFF; background: #13233A; color: #FFD54A; display: flex; align-items: center; justify-content: center; box-shadow: 0 6px 18px rgba(19,35,58,0.35); cursor: pointer">
+<svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+</button>
+</sc-if>
+
+<sc-if value="{{isBanner}}" hint-placeholder-val="{{false}}">
+<button onClick="{{open}}" style="width: 100%; min-height: 60px; border-radius: 14px; border: none; background: #13233A; color: #FFFFFF; display: flex; align-items: center; gap: 12px; padding: 8px 14px; text-align: left; font-family: inherit; cursor: pointer">
+<span style="width: 44px; height: 44px; border-radius: 22px; background: #FFD54A; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+</span>
+<span style="display: flex; flex-direction: column; line-height: 1.2">
+<span style="font-size: 16px; font-weight: 800">बोलकर कहीं भी जाएँ</span>
+<span style="font-size: 13px; color: #C9D2E0">Speak to go anywhere · "मेरा बूथ", "ई-स्लिप", "SOS"</span>
+</span>
+</button>
+</sc-if>
+
+<sc-if value="{{isOpen}}" hint-placeholder-val="{{false}}">
+<div style="position: fixed; inset: 0; z-index: 1000; background: rgba(11,18,32,0.55); display: flex; flex-direction: column; justify-content: flex-end">
+<div role="dialog" aria-label="Voice navigation" style="background: #FFFFFF; border-radius: 22px 22px 0 0; padding: 18px 18px 22px; display: flex; flex-direction: column; gap: 12px; max-height: 92%; overflow-y: auto; box-sizing: border-box">
+
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<div style="display: flex; flex-direction: column; line-height: 1.15">
+<span style="font-size: 20px; font-weight: 800">{{t.title}}</span>
+<span style="font-size: 13px; color: #4F5B6B">{{t.sub}}</span>
+</div>
+<div style="display: flex; gap: 6px">
+<button aria-label="{{t.langAria}}" onClick="{{toggleLang}}" style="min-height: 44px; min-width: 48px; padding: 0 10px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; font-family: inherit">{{langBtn}}</button>
+<button aria-label="{{t.close}}" onClick="{{close}}" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg>
+</button>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 8px 0">
+<button aria-label="{{micAria}}" onClick="{{mic}}" style="{{micStyle}}">
+<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+</button>
+<span role="status" aria-live="polite" style="font-size: 16px; font-weight: 700; text-align: center; min-height: 24px">{{statusText}}</span>
+<sc-if value="{{hasHeard}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 18px; font-weight: 800; color: #1F4FBF; text-align: center">“{{heard}}”</span>
+</sc-if>
+<sc-if value="{{hasNote}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; color: #8A3A07; background: #FCEBDD; border-radius: 10px; padding: 6px 10px; text-align: center; line-height: 1.35">{{note}}</span>
+</sc-if>
+</div>
+
+<span style="font-size: 14px; font-weight: 700">{{t.tryLabel}}</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{chips}}" as="c" hint-placeholder-count="12">
+<button onClick="{{c.go}}" style="min-height: 40px; padding: 0 12px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; font-family: inherit">{{c.label}}</button>
+</sc-for>
+</div>
+
+<div style="display: flex; gap: 8px">
+<label style="flex: 1; display: flex">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.typeLabel}}</span>
+<input type="text" value="{{typed}}" onChange="{{setTyped}}" onKeyDown="{{onKey}}" placeholder="{{t.typePh}}" style="flex: 1; width: 100%; box-sizing: border-box; min-height: 46px; border-radius: 23px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 14px; font-family: inherit">
+</label>
+<button onClick="{{submitTyped}}" style="min-height: 46px; padding: 0 16px; border-radius: 23px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 15px; font-weight: 800; font-family: inherit">{{t.go}}</button>
+</div>
+
+<a ref="{{linkRef}}" href="{{goHref}}" aria-hidden="true" tabindex="-1" style="display: none">go</a>
+</div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","options":["fab","banner"],"default":"fab"},"$preview":{"width":390,"height":120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: false, listening: false, heard: '', note: '', lang: 'hi', typed: '', go: null, goLabel: '' };
+    this.linkRef = (el) => { this.linkEl = el; };
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.goTimer);
+    try { if (this.rec) this.rec.abort(); } catch (e) {}
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+  }
+
+  componentDidUpdate() {
+    const prevGo = this._prevGo;
+    this._prevGo = this.state.go;
+    if (this.state.go && this.state.go !== prevGo) {
+      clearTimeout(this.goTimer);
+      this.goTimer = setTimeout(() => { try { if (this.linkEl) this.linkEl.click(); } catch (e) {} }, 900);
+    }
+  }
+
+  destinations() {
+    return [
+      { file: 'Access.dc.html#isl', hi: 'सांकेतिक भाषा मदद', en: 'Sign language help', keys: ['सांकेतिक', 'साइन', 'sign', 'isl', 'बधिर', 'deaf', 'मूक'] },
+      { file: 'Access.dc.html', hi: 'बूथ साथी', en: 'Booth Buddy', keys: ['बूथ साथी', 'साथी', 'buddy', 'volunteer', 'स्वयंसेवक', 'व्हीलचेयर', 'wheelchair', 'सुगम्य', 'accessib', 'दिव्यांग', 'disab'] },
+      { file: 'ESlip.dc.html', hi: 'ई-स्लिप', en: 'e-Slip', keys: ['स्लिप', 'पर्ची', 'slip', 'qr', 'क्यूआर', 'सूची', 'list', 'नाम', 'epic', 'एपिक', 'क्रमांक', 'serial'] },
+      { file: 'Safety.dc.html', hi: 'सुरक्षा और SOS', en: 'Safety and SOS', keys: ['sos', 'एसओएस', 'सुरक्षा', 'safety', 'safe', 'पुलिस', 'police', 'capf', 'सीएपीएफ', 'खतरा', 'danger'] },
+      { file: 'Queue.dc.html', hi: 'मेरा बूथ', en: 'My booth', keys: ['मेरा बूथ', 'बूथ', 'booth', 'लाइन', 'कतार', 'queue', 'line', 'मतदान केंद्र', 'polling', 'रास्ता', 'route', 'way'] },
+      { file: 'Rehearsal.dc.html', hi: 'मतपत्र अभ्यास', en: 'Ballot practice', keys: ['अभ्यास', 'practice', 'rehearsal', 'evm', 'ईवीएम', 'ballot', 'मतपत्र', 'vvpat'] },
+      { file: 'Selfie.dc.html', hi: 'सेल्फी', en: 'Selfie', keys: ['सेल्फी', 'selfie', 'फोटो', 'photo', 'इनाम', 'prize', 'contest'] },
+      { file: 'Chat.dc.html', hi: 'सहायक', en: 'Sahayak chat', keys: ['सहायक', 'sahayak', 'chat', 'चैट', 'सवाल', 'question', 'helpline', 'हेल्पलाइन', '1950'] },
+      { file: 'AiVoice.dc.html', hi: 'सुनें और अनुवाद', en: 'Listen & Translate', keys: ['अनुवाद', 'translate', 'सूचना', 'notice', 'ब्रेल', 'braille', 'पढ़', 'read'] },
+      { file: 'RampCheck.dc.html', hi: 'बूथ रेटिंग', en: 'Rate your booth', keys: ['रैंप', 'ramp', 'रेटिंग', 'rating', 'rate', 'best booth', 'सुविधा'] },
+      { file: 'Main.dc.html', hi: 'होम', en: 'Home', keys: ['होम', 'home', 'मुख्य', 'शुरू', 'start', 'back', 'वापस'] },
+    ];
+  }
+
+  speak(text) {
+    try {
+      const ss = window.speechSynthesis;
+      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') return;
+      ss.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = this.state.lang === 'en' ? 'en-IN' : 'hi-IN';
+      const v = (ss.getVoices() || []).find((x) => (x.lang || '').toLowerCase().indexOf(this.state.lang === 'en' ? 'en' : 'hi') === 0);
+      if (v) u.voice = v;
+      ss.speak(u);
+    } catch (e) {}
+  }
+
+  navigate(d) {
+    const label = this.state.lang === 'en' ? d.en : d.hi;
+    this.setState({ go: d.file, goLabel: label, note: '', listening: false });
+    this.speak((this.state.lang === 'en' ? 'Opening ' : 'खोल रहे हैं: ') + label);
+  }
+
+  handle(texts) {
+    const list = this.destinations();
+    for (const raw of texts) {
+      const s = String(raw || '').toLowerCase();
+      const d = list.find((x) => x.keys.some((k) => s.indexOf(k) >= 0));
+      if (d) { this.navigate(d); return; }
+    }
+    const msg = this.state.lang === 'en' ? "Sorry, I didn't catch a place. Try again or tap one below." : 'माफ़ कीजिए, समझ नहीं आया। दोबारा बोलें या नीचे से चुनें।';
+    this.setState({ note: msg, listening: false });
+    this.speak(msg);
+  }
+
+  handleQuiet(v) {
+    const s = String(v || '').toLowerCase();
+    const d = this.destinations().find((x) => x.keys.some((k) => s.indexOf(k) >= 0));
+    if (d && !this.state.go) this.navigate(d);
+  }
+
+  listen() {
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    const L = this.state.lang;
+    if (!SR) {
+      this.setState({ note: L === 'en' ? 'Voice recognition is not available here. Tap the box below and use the 🎤 on your keyboard to speak.' : 'यहाँ आवाज़ पहचान उपलब्ध नहीं है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें।' });
+      return;
+    }
+    try { if (this.rec) this.rec.abort(); } catch (e) {}
+    const rec = new SR();
+    rec.lang = L === 'en' ? 'en-IN' : 'hi-IN';
+    rec.interimResults = true;
+    rec.maxAlternatives = 3;
+    rec.onresult = (e) => {
+      const res = e.results[e.results.length - 1];
+      const heard = res[0].transcript;
+      this.setState({ heard: heard });
+      if (res.isFinal) {
+        const alts = [];
+        for (let i = 0; i < res.length; i++) alts.push(res[i].transcript);
+        this.handle(alts);
+      }
+    };
+    rec.onerror = (ev) => {
+      const blocked = ev && (ev.error === 'not-allowed' || ev.error === 'service-not-allowed');
+      this.setState({ listening: false, note: blocked
+        ? (L === 'en' ? 'This preview blocks the browser microphone. Tap the box below and use the 🎤 on your phone keyboard to speak — it works the same way.' : 'इस प्रीव्यू में ब्राउज़र माइक बंद है। नीचे के बॉक्स पर टैप करें और कीबोर्ड के 🎤 से बोलें — वैसे ही काम करेगा।')
+        : (L === 'en' ? 'Could not hear clearly. Try again.' : 'साफ़ सुनाई नहीं दिया। दोबारा बोलें।') });
+    };
+    rec.onend = () => this.setState({ listening: false });
+    this.rec = rec;
+    this.setState({ listening: true, heard: '', note: '', go: null });
+    try { rec.start(); } catch (e) { this.setState({ listening: false }); }
+  }
+
+  renderVals() {
+    const st = this.state;
+    const L = st.lang;
+    const T = {
+      hi: { title: 'कहाँ जाना है?', sub: 'माइक दबाएँ और बोलें, जैसे "मेरा बूथ"', close: 'बंद करें', langAria: 'Switch to English',
+        tryLabel: 'बोलकर देखें या टैप करें', typeLabel: 'लिखकर बताएँ', typePh: 'लिखें या कीबोर्ड 🎤 से बोलें…', go: 'जाएँ',
+        idle: 'माइक दबाकर बोलें', listening: 'सुन रहे हैं…', opening: 'खोल रहे हैं: ' },
+      en: { title: 'Where do you want to go?', sub: 'Tap the mic and say, for example, "my booth"', close: 'Close', langAria: 'हिंदी में बदलें',
+        tryLabel: 'Say or tap one of these', typeLabel: 'Type a place', typePh: 'Type, or speak with keyboard 🎤…', go: 'Go',
+        idle: 'Tap the mic and speak', listening: 'Listening…', opening: 'Opening ' },
+    };
+    const t = T[L];
+    const variant = this.props.variant || 'fab';
+    const seen = {};
+    const chips = this.destinations().filter((d) => { const k = d.hi; if (seen[k]) return false; seen[k] = 1; return true; })
+      .map((d) => ({ label: L === 'en' ? d.en : d.hi, go: () => this.navigate(d) }));
+    const statusText = st.go ? t.opening + st.goLabel : (st.listening ? t.listening : t.idle);
+    const submit = () => { const v = (st.typed || '').trim(); if (v) this.handle([v]); };
+    return {
+      t, chips, statusText,
+      isFab: variant === 'fab',
+      isBanner: variant === 'banner',
+      isOpen: st.open,
+      heard: st.heard,
+      hasHeard: !!st.heard,
+      note: st.note,
+      hasNote: !!st.note,
+      typed: st.typed,
+      langBtn: L === 'en' ? 'हिं' : 'EN',
+      goHref: st.go || 'Main.dc.html',
+      linkRef: this.linkRef,
+      micAria: st.listening ? t.listening : t.idle,
+      micStyle: 'width: 96px; height: 96px; border-radius: 48px; border: none; color: #13233A; display: flex; align-items: center; justify-content: center; cursor: pointer; background: ' +
+        (st.listening ? '#FFD54A; animation: vn-pulse 1.2s infinite' : '#FFD54A'),
+      open: () => { this.setState({ open: true, note: '', heard: '', go: null }); setTimeout(() => this.listen(), 150); },
+      close: () => { try { if (this.rec) this.rec.abort(); } catch (e) {} clearTimeout(this.goTimer); this.setState({ open: false, listening: false, go: null }); },
+      mic: () => this.listen(),
+      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en', note: '' }),
+      setTyped: (e) => { const v = e.target.value; this.setState({ typed: v }); clearTimeout(this.typeTimer); if (v && v.trim().length > 2) this.typeTimer = setTimeout(() => this.handleQuiet(v), 1400); },
+      onKey: (e) => { if (e.key === 'Enter') submit(); },
+      submitTyped: submit,
+    };
+  }
+}
+</script>
+</body>
+</html>
