@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<style>html{background:#1E2633}body{margin:0 auto!important;width:390px}</style>
+<title>Apna Booth — Listen and Translate</title>
+<script data-offline-shim>(function(){var M={"AiVoice.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Listen and Translate\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;family=Noto+Nastaliq+Urdu:wght@400;600&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\na{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}\nbutton{font-family:inherit;cursor:pointer}\n@keyframes ab-wave{0%{transform:scaleY(.3)}100%{transform:scaleY(1)}}\n@keyframes ab-armL{0%{transform:rotate(0deg)}100%{transform:rotate(-38deg)}}\n@keyframes ab-foreL{0%{transform:rotate(0deg)}100%{transform:rotate(-55deg)}}\n@keyframes ab-armR{0%{transform:rotate(0deg)}100%{transform:rotate(32deg)}}\n@keyframes ab-foreR{0%{transform:rotate(0deg)}100%{transform:rotate(60deg)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv style=\"width: 390px; height: 844px; box-sizing: border-box; background: #F6F5F1; font-family: 'Mukta', system-ui, sans-serif; color: #13233A; display: flex; flex-direction: column; overflow: hidden\">\n\n\u003cdiv style=\"background: #FFFFFF; border-bottom: 1px solid #E2E0D8; padding: 14px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0\">\n\u003ca href=\"Main.dc.html\" aria-label=\"Back to home\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D9D6CC; display: flex; align-items: center; justify-content: center; color: #13233A; flex-shrink: 0\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M15 5l-7 7 7 7\">\u003c/path>\u003c/svg>\n\u003c/a>\n\u003cdiv style=\"flex: 1; display: flex; flex-direction: column; line-height: 1.15\">\n\u003cspan style=\"font-size: 20px; font-weight: 800\">Listen &amp; Translate\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #4F5B6B; font-weight: 500\">सुनें और अनुवाद करें · any notice, any language\u003c/span>\n\u003c/div>\n\u003cspan style=\"font-size: 12px; font-weight: 800; color: #FFFFFF; background: #1F4FBF; border-radius: 999px; padding: 4px 10px\">AI\u003c/span>\n\u003c/div>\n\n\u003cdiv style=\"flex: 1; overflow-y: auto; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 12px\">\n\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 6px\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">1 · What should we read?\u003c/span>\n\u003cdiv style=\"display: flex; gap: 6px; flex-wrap: wrap\">\n\u003csc-for list=\"{{sources}}\" as=\"sr\" hint-placeholder-count=\"2\">\n\u003cbutton aria-pressed=\"{{sr.pressed}}\" onClick=\"{{sr.pick}}\" style=\"{{sr.style}}\">{{sr.label}}\u003c/button>\n\u003c/sc-for>\n\u003cbutton onClick=\"{{scan}}\" style=\"min-height: 44px; padding: 0 14px; border-radius: 22px; border: 1px dashed #9AA6B8; background: transparent; color: #163A8F; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px\">\n\u003csvg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 8h3l2-3h6l2 3h3v11H4z\">\u003c/path>\u003ccircle cx=\"12\" cy=\"13\" r=\"3.5\">\u003c/circle>\u003c/svg>\nScan a paper notice\n\u003c/button>\n\u003c/div>\n\u003csc-if value=\"{{scanned}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 13px; color: #0F6E63; font-weight: 700\">Scanned · text read from the photo\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 6px\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">2 · Choose language or format\u003c/span>\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px\">\n\u003csc-for list=\"{{langs}}\" as=\"l\" hint-placeholder-count=\"6\">\n\u003cbutton aria-pressed=\"{{l.pressed}}\" onClick=\"{{l.pick}}\" style=\"{{l.style}}\">\n\u003cspan style=\"{{l.nativeStyle}}\">{{l.native}}\u003c/span>\n\u003cspan style=\"font-size: 11px; font-weight: 600; opacity: 0.85\">{{l.en}}\u003c/span>\n\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\u003clabel style=\"display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 12px; padding: 6px 14px\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">Easy words\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B\">Short sentences for low literacy and cognitive disabilities\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{easy}}\" onChange=\"{{toggleEasy}}\" style=\"width: 24px; height: 24px; accent-color: #1F4FBF; flex-shrink: 0\">\n\u003c/label>\n\u003c/div>\n\n\u003cdiv style=\"background: #FFFFFF; border: 2px solid #1F4FBF; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px\">\n\u003cdiv style=\"display: flex; justify-content: space-between; align-items: center\">\n\u003cspan style=\"font-size: 12px; font-weight: 800; color: #163A8F; letter-spacing: 0.6px\">{{outLabel}}\u003c/span>\n\u003cspan style=\"font-size: 12px; font-weight: 700; color: #4F5B6B\">{{srcName}}\u003c/span>\n\u003c/div>\n\n\u003csc-if value=\"{{isText}}\" hint-placeholder-val=\"{{true}}\">\n\u003cp dir=\"{{dir}}\" lang=\"{{htmlLang}}\" style=\"{{textStyle}}\">{{outText}}\u003c/p>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{isSign}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"position: relative; border-radius: 14px; overflow: hidden; background: #1B2A44; display: flex; flex-direction: column\">\n\u003csc-if value=\"{{spellOn}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv aria-hidden=\"true\" style=\"position: absolute; top: 10px; right: 10px; min-width: 56px; height: 56px; padding: 0 8px; box-sizing: border-box; border-radius: 14px; background: #FFD54A; color: #13233A; font-size: 34px; font-weight: 800; display: flex; align-items: center; justify-content: center\">{{spellChar}}\u003c/div>\n\u003c/sc-if>\n\u003csc-if value=\"{{nmOn}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"position: absolute; top: 10px; left: 10px; max-width: 150px; border-radius: 10px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 12px; font-weight: 700; padding: 4px 8px; line-height: 1.3\">{{nmText}}\u003c/div>\n\u003c/sc-if>\n\u003csvg width=\"100%\" height=\"200\" viewBox=\"0 0 200 180\" preserveAspectRatio=\"xMidYMid meet\" role=\"img\" aria-label=\"{{signAria}}\" style=\"display: block\">\n\u003crect x=\"0\" y=\"0\" width=\"200\" height=\"180\" fill=\"#1B2A44\">\u003c/rect>\n\u003cpath d=\"M48 180 C50 150 72 132 100 132 C128 132 150 150 152 180 Z\" fill=\"#2E5BC9\">\u003c/path>\n\u003crect x=\"91\" y=\"98\" width=\"18\" height=\"18\" rx=\"6\" fill=\"#B97A4E\">\u003c/rect>\n\u003ccircle cx=\"100\" cy=\"78\" r=\"26\" fill=\"#C98A5B\">\u003c/circle>\n\u003cpath d=\"M74 76 C74 54 88 46 100 46 C114 46 127 54 126 76 C120 64 110 60 100 60 C90 60 80 64 74 76 Z\" fill=\"#1F1B18\">\u003c/path>\n\u003ccircle cx=\"91\" cy=\"80\" r=\"2.6\" fill=\"#1F1B18\">\u003c/circle>\n\u003ccircle cx=\"109\" cy=\"80\" r=\"2.6\" fill=\"#1F1B18\">\u003c/circle>\n\u003cpath d=\"M86 73 L95 72 M105 72 L114 73\" stroke=\"#1F1B18\" stroke-width=\"2.4\" stroke-linecap=\"round\">\u003c/path>\n\u003cpath d=\"M93 90 Q100 95 107 90\" stroke=\"#7A3E22\" stroke-width=\"2.4\" fill=\"none\" stroke-linecap=\"round\">\u003c/path>\n\u003cg style=\"transform-origin: 74px 142px; {{av.armL}}\">\n\u003cpath d=\"M74 142 L58 170\" stroke=\"#4A76E8\" stroke-width=\"15\" stroke-linecap=\"round\">\u003c/path>\n\u003cg style=\"transform-origin: 58px 170px; {{av.foreL}}\">\n\u003cpath d=\"M58 170 L80 140\" stroke=\"#C98A5B\" stroke-width=\"10\" stroke-linecap=\"round\">\u003c/path>\n\u003cg transform=\"translate(82 138)\">\n\u003crect x=\"-8\" y=\"-13\" width=\"16\" height=\"15\" rx=\"5\" fill=\"#E2AC7C\">\u003c/rect>\n\u003cpath d=\"M-6 -13v-8M-2 -14v-10M2 -14v-10M6 -13v-8M-8 -5l-6 -4\" stroke=\"#E2AC7C\" stroke-width=\"3.6\" stroke-linecap=\"round\">\u003c/path>\n\u003c/g>\n\u003c/g>\n\u003c/g>\n\u003cg style=\"transform-origin: 126px 142px; {{av.armR}}\">\n\u003cpath d=\"M126 142 L142 170\" stroke=\"#4A76E8\" stroke-width=\"15\" stroke-linecap=\"round\">\u003c/path>\n\u003cg style=\"transform-origin: 142px 170px; {{av.foreR}}\">\n\u003cpath d=\"M142 170 L120 140\" stroke=\"#C98A5B\" stroke-width=\"10\" stroke-linecap=\"round\">\u003c/path>\n\u003cg transform=\"translate(118 138)\">\n\u003crect x=\"-8\" y=\"-13\" width=\"16\" height=\"15\" rx=\"5\" fill=\"#E2AC7C\">\u003c/rect>\n\u003cpath d=\"M6 -13v-8M2 -14v-10M-2 -14v-10M-6 -13v-8M8 -5l6 -4\" stroke=\"#E2AC7C\" stroke-width=\"3.6\" stroke-linecap=\"round\">\u003c/path>\n\u003c/g>\n\u003c/g>\n\u003c/g>\n\u003c/svg>\n\u003cdiv role=\"log\" aria-label=\"Sign-language captions\" style=\"background: #0F1A2E; padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center\">\n\u003csc-for list=\"{{gloss}}\" as=\"g\" hint-placeholder-count=\"10\">\n\u003cspan style=\"{{g.style}}\">{{g.w}}\u003c/span>\n\u003c/sc-for>\n\u003c/div>\n\u003c/div>\n\u003csc-if value=\"{{slipIsl}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px\">\n\u003cdiv style=\"background: #F6F5F1; border-radius: 10px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px\">\n\u003cspan style=\"font-size: 11px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.5px\">TYPE\u003c/span>\n\u003cspan style=\"font-size: 14px; font-weight: 800\">{{tok.kind}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"background: #F6F5F1; border-radius: 10px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px\">\n\u003cspan style=\"font-size: 11px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.5px\">SIGN\u003c/span>\n\u003cspan style=\"font-size: 14px; font-weight: 800\">{{tok.g}}\u003c/span>\n\u003c/div>\n\u003cdiv style=\"background: #F6F5F1; border-radius: 10px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px\">\n\u003cspan style=\"font-size: 11px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.5px\">FACE / HEAD\u003c/span>\n\u003cspan style=\"font-size: 13px; font-weight: 700; line-height: 1.2\">{{tok.nm}}\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003cdiv style=\"background: #E6EDFB; color: #163A8F; border-radius: 10px; padding: 8px 12px; font-size: 14px; line-height: 1.4\">\u003cb>{{tok.sLabel}}\u003c/b> {{tok.sentence}}\u003c/div>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B; line-height: 1.35\">ISL word order: topic first, time before the action, verb last. Names are fingerspelled, numbers use number handshapes. Each sign maps to an ISLRTC dictionary clip ({{tok.clip}}); a certified ISL interpreter approves before release.\u003c/span>\n\u003c/sc-if>\n\u003csc-if value=\"{{noticeIsl}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"background: #FCEBDD; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px\">\n\u003cspan style=\"font-size: 14px; color: #6B2D05; line-height: 1.4\">The full sign-by-sign ISL sequence is built for the \u003cb>voter slip\u003c/b>. This notice shows a draft gloss only.\u003c/span>\n\u003cbutton onClick=\"{{useSlip}}\" style=\"min-height: 44px; border-radius: 10px; border: none; background: #B4500E; color: #FFFFFF; font-size: 14px; font-weight: 700\">Show the voter slip in ISL\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\u003c/sc-if>\n\n\u003cdiv style=\"display: flex; align-items: center; gap: 12px\">\n\u003cbutton aria-label=\"{{playAria}}\" onClick=\"{{play}}\" style=\"{{playStyle}}\">\n\u003csc-if value=\"{{speaking}}\" hint-placeholder-val=\"{{false}}\">\n\u003csvg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\">\u003crect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\">\u003c/rect>\u003c/svg>\n\u003c/sc-if>\n\u003csc-if value=\"{{notSpeaking}}\" hint-placeholder-val=\"{{true}}\">\n\u003csvg width=\"26\" height=\"26\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\">\u003cpath d=\"M8 5l11 7-11 7z\">\u003c/path>\u003c/svg>\n\u003c/sc-if>\n\u003c/button>\n\u003cdiv aria-hidden=\"true\" style=\"flex: 1; height: 40px; display: flex; align-items: center; gap: 3px\">\n\u003csc-for list=\"{{bars}}\" as=\"b\" hint-placeholder-count=\"22\">\n\u003cspan style=\"{{b.style}}\">\u003c/span>\n\u003c/sc-for>\n\u003c/div>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; gap: 6px\">\n\u003csc-for list=\"{{speeds}}\" as=\"v\" hint-placeholder-count=\"3\">\n\u003cbutton aria-pressed=\"{{v.pressed}}\" onClick=\"{{v.pick}}\" style=\"{{v.style}}\">{{v.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\u003csc-if value=\"{{dialectNote}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 12px; color: #4F5B6B\">Read with a Hindi voice until a {{dialectName}} voice is added.\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 6px\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">3 · Send it to someone\u003c/span>\n\u003cdiv style=\"display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px\">\n\u003cbutton style=\"min-height: 48px; border-radius: 12px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">WhatsApp voice note\u003c/button>\n\u003cbutton style=\"min-height: 48px; border-radius: 12px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">Phone call (IVR)\u003c/button>\n\u003cbutton style=\"min-height: 48px; border-radius: 12px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">SMS in this language\u003c/button>\n\u003cbutton aria-pressed=\"{{brailleOpenStr}}\" onClick=\"{{toggleBraille}}\" style=\"{{brailleBtnStyle}}\">Braille-ready file\u003c/button>\n\u003c/div>\n\u003c/div>\n\n\u003csc-if value=\"{{brailleOpen}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"background: #FFFFFF; border: 2px solid #13233A; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px\">\n\u003cdiv style=\"display: flex; justify-content: space-between; align-items: baseline; gap: 8px\">\n\u003cspan style=\"font-size: 15px; font-weight: 800\">Braille preview\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B; font-weight: 700; text-align: right\">{{brailleCode}}\u003c/span>\n\u003c/div>\n\u003csc-if value=\"{{brailleHas}}\" hint-placeholder-val=\"{{true}}\">\n\u003cp aria-label=\"{{brailleAria}}\" style=\"margin: 0; font-size: 22px; line-height: 1.6; letter-spacing: 1px; word-break: break-word; color: #13233A; background: #F6F5F1; border-radius: 10px; padding: 10px 12px\">{{brailleText}}\u003c/p>\n\u003cdiv style=\"display: flex; gap: 8px; align-items: center\">\n\u003cspan style=\"flex: 1; font-size: 13px; color: #4F5B6B; word-break: break-all\">{{brailleFile}}\u003c/span>\n\u003cbutton onClick=\"{{downloadBrf}}\" style=\"min-height: 44px; padding: 0 14px; border-radius: 12px; border: none; background: #13233A; color: #FFFFFF; font-size: 14px; font-weight: 700; flex-shrink: 0\">Download .brf\u003c/button>\n\u003c/div>\n\u003csc-if value=\"{{dlMsgOn}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan role=\"status\" style=\"font-size: 13px; font-weight: 700; color: #0F6E63\">{{dlMsg}}\u003c/span>\n\u003c/sc-if>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B\">40 cells × 25 lines · for braille embossers and refreshable braille displays\u003c/span>\n\u003c/sc-if>\n\u003csc-if value=\"{{brailleNone}}\" hint-placeholder-val=\"{{false}}\">\n\u003cspan style=\"font-size: 14px; color: #4F5B6B; line-height: 1.4\">{{brailleNoneText}}\u003c/span>\n\u003c/sc-if>\n\u003c/div>\n\u003c/sc-if>\n\n\u003cdiv style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px\">\n\u003clabel style=\"display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px\">\n\u003cspan style=\"display: flex; flex-direction: column; line-height: 1.2\">\n\u003cspan style=\"font-size: 15px; font-weight: 700\">Live captions · for deaf voters\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B\">Turns booth announcements and phone calls into text\u003c/span>\n\u003c/span>\n\u003cinput type=\"checkbox\" checked=\"{{captions}}\" onChange=\"{{toggleCaptions}}\" style=\"width: 24px; height: 24px; accent-color: #1F4FBF; flex-shrink: 0\">\n\u003c/label>\n\u003csc-if value=\"{{captions}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv role=\"log\" style=\"background: #13233A; color: #FFFFFF; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.35\">\n\u003cspan>\u003cb style=\"color: #FFD54A\">Booth announcement:\u003c/b> Women and senior citizens, please use the queue on the left.\u003c/span>\n\u003cspan>\u003cb style=\"color: #FFD54A\">घोषणा:\u003c/b> महिलाएँ और वरिष्ठ नागरिक बाईं ओर की लाइन में आएँ।\u003c/span>\n\u003c/div>\n\u003c/sc-if>\n\u003c/div>\n\n\u003cspan style=\"font-size: 12px; color: #4F5B6B; text-align: center; line-height: 1.35\">AI translation for easier understanding. For dates and legal deadlines, the official notice is final.\u003c/span>\n\n\u003c/div>\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"$preview\":{\"width\":390,\"height\":844}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = { src: 'notice', lang: 'bho', easy: false, speaking: false, speed: 1, captions: true, scanned: false, signIdx: -1, braille: false };\n  }\n\n  stopSign() {\n    clearInterval(this.signTimer);\n    this.setState({ speaking: false, signIdx: -1 });\n  }\n\n  startSign() {\n    clearInterval(this.signTimer);\n    this.setState({ speaking: true, signIdx: 0 });\n    this.signTimer = setInterval(() => {\n      const words = this._words || [];\n      const next = this.state.signIdx + 1;\n      if (next >= words.length) { this.stopSign(); return; }\n      this.setState({ signIdx: next });\n    }, 700);\n  }\n\n  componentWillUnmount() {\n    clearInterval(this.signTimer);\n    clearTimeout(this.speakTimer);\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  speak(text, lang) {\n    const done = () => this.setState({ speaking: false });\n    if (this.state.speaking) {\n      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n      clearTimeout(this.speakTimer);\n      done();\n      return;\n    }\n    this.setState({ speaking: true });\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined' || !text) {\n        clearTimeout(this.speakTimer);\n        this.speakTimer = setTimeout(done, 4000);\n        return;\n      }\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = lang;\n      u.rate = this.state.speed;\n      const vs = ss.getVoices() || [];\n      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||\n        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);\n      if (v) u.voice = v;\n      u.onend = done;\n      u.onerror = done;\n      ss.speak(u);\n    } catch (e) {\n      done();\n    }\n  }\n\n  renderVals() {\n    const st = this.state;\n    const TX = {\n      slip: {\n        en: 'Your polling booth: Part 142, Room 2, Government Primary School, Ram Nagar. Voting is from 7 AM to 6 PM. Carry your EPIC or any approved photo ID.',\n        hi: 'आपका मतदान केंद्र: भाग 142, कमरा 2, सरकारी प्राथमिक विद्यालय, राम नगर। मतदान सुबह 7 बजे से शाम 6 बजे तक होगा। अपना EPIC या कोई भी मान्य फ़ोटो पहचान पत्र साथ लाएँ।',\n        ur: 'آپ کا پولنگ بوتھ: حصہ 142، کمرہ 2، سرکاری پرائمری اسکول، رام نگر۔ ووٹنگ صبح 7 بجے سے شام 6 بجے تک ہوگی۔ اپنا EPIC یا کوئی بھی منظور شدہ فوٹو شناختی کارڈ ساتھ لائیں۔',\n        bho: 'रउआ के मतदान केंद्र: भाग 142, कमरा 2, सरकारी प्राथमिक विद्यालय, राम नगर। वोट सबेरे 7 बजे से साँझ 6 बजे ले पड़ी। आपन EPIC भा कवनो मान्य फोटो पहचान पत्र साथे ले आईं।',\n        awa: 'तोहार मतदान केंद्र: भाग 142, कमरा 2, सरकारी प्राथमिक विद्यालय, राम नगर। वोट सबेरे 7 बजे से साँझ 6 बजे तक पड़ी। आपन EPIC या कौनो मान्य फोटो पहचान पत्र संग लै आवा।'\n      },\n      notice: {\n        en: 'Notice: An objection (Form 7) has been filed to delete the name of Sunita Verma from the electoral roll of Part 142. You may present documents proving residence before the Electoral Registration Officer by [DATE].',\n        hi: 'सूचना: भाग 142 की मतदाता सूची से सुनीता वर्मा का नाम हटाने के लिए आपत्ति (फ़ॉर्म 7) दर्ज की गई है। आप [तारीख़] तक निर्वाचक रजिस्ट्रीकरण अधिकारी के समक्ष निवास का प्रमाण प्रस्तुत कर सकते हैं।',\n        ur: 'اطلاع: حصہ 142 کی انتخابی فہرست سے سنیتا ورما کا نام حذف کرنے کے لیے اعتراض (فارم 7) درج کیا گیا ہے۔ آپ [تاریخ] تک الیکٹورل رجسٹریشن آفیسر کے سامنے رہائش کا ثبوت پیش کر سکتے ہیں۔',\n        bho: 'सूचना: भाग 142 के मतदाता सूची से सुनीता वर्मा के नाम हटावे खातिर आपत्ति (फ़ॉर्म 7) दर्ज भइल बा। रउआ [तारीख़] ले निर्वाचक रजिस्ट्रीकरण अधिकारी के सामने रहे के सबूत दे सकीले।',\n        awa: 'सूचना: भाग 142 कै मतदाता सूची से सुनीता वर्मा कै नाम हटावै बदे आपत्ति (फ़ॉर्म 7) दर्ज भै है। आप [तारीख़] तक निर्वाचक रजिस्ट्रीकरण अधिकारी के आगे रहै कै सबूत दै सकत हैं।'\n      },\n      noticeEasy: {\n        en: \"Someone has asked to remove Sunita Verma's name from the voter list. If she still lives here, show a proof of address to the officer before [DATE]. Then her name will stay.\",\n        hi: 'किसी ने सुनीता वर्मा का नाम वोटर लिस्ट से हटाने को कहा है। अगर वे अभी भी यहीं रहती हैं, तो [तारीख़] से पहले अधिकारी को पते का कोई सबूत दिखाएँ। तब उनका नाम बना रहेगा।',\n        ur: 'کسی نے سنیتا ورما کا نام ووٹر لسٹ سے ہٹانے کو کہا ہے۔ اگر وہ اب بھی یہیں رہتی ہیں تو [تاریخ] سے پہلے افسر کو پتے کا کوئی ثبوت دکھائیں۔ پھر ان کا نام برقرار رہے گا۔',\n        bho: 'केहू सुनीता वर्मा के नाम वोटर लिस्ट से हटावे के कहले बा। अगर ऊ अबहियो इहें रहेली, त [तारीख़] से पहिले अधिकारी के पता के कवनो सबूत देखाईं। तब उनकर नाम बनल रही।',\n        awa: 'कोई सुनीता वर्मा कै नाम वोटर लिस्ट से हटावै कहिस है। अगर ऊ अबहूँ हियैं रहत हैं, तौ [तारीख़] से पहिले अधिकारी का पता कै कौनो सबूत देखावा। तब उनकर नाम बना रही।'\n      }\n    };\n\n    const langDefs = [\n      { id: 'hi', native: 'हिन्दी', en: 'Hindi', tts: 'hi-IN' },\n      { id: 'en', native: 'English', en: 'English', tts: 'en-IN' },\n      { id: 'ur', native: 'اردو', en: 'Urdu', tts: 'ur-IN', rtl: true },\n      { id: 'bho', native: 'भोजपुरी', en: 'Bhojpuri', tts: 'hi-IN', dialect: true },\n      { id: 'awa', native: 'अवधी', en: 'Awadhi', tts: 'hi-IN', dialect: true },\n      { id: 'isl', native: 'ISL', en: 'Sign language', sign: true }\n    ];\n    const cur = langDefs.find((l) => l.id === st.lang);\n\n    const chip = (on) => 'min-height: 44px; padding: 0 14px; border-radius: 22px; font-size: 14px; font-weight: 700; ' +\n      (on ? 'border: 2px solid #1F4FBF; background: #1F4FBF; color: #FFFFFF' : 'border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A');\n\n    const sources = [['notice', 'Objection notice'], ['slip', 'Voter slip']].map(([id, label]) => {\n      const on = st.src === id;\n      return { label, pressed: on ? 'true' : 'false', style: chip(on), pick: () => this.setState({ src: id, scanned: false }) };\n    });\n\n    const langs = langDefs.map((l) => {\n      const on = st.lang === l.id;\n      return {\n        native: l.native, en: l.en, pressed: on ? 'true' : 'false',\n        nativeStyle: 'font-size: 17px; font-weight: 800; line-height: 1.2' + (l.rtl ? \"; font-family: 'Noto Nastaliq Urdu', serif; font-size: 15px\" : ''),\n        style: 'min-height: 56px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; ' +\n          (on ? 'border: 2px solid #1F4FBF; background: #1F4FBF; color: #FFFFFF' : 'border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A'),\n        pick: () => {\n          try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n          clearTimeout(this.speakTimer);\n          clearInterval(this.signTimer);\n          this.setState({ lang: l.id, speaking: false, signIdx: -1, src: l.sign ? 'slip' : st.src });\n        }\n      };\n    });\n\n    const textKey = st.src === 'notice' && st.easy ? 'noticeEasy' : st.src;\n    const textLang = cur.sign ? 'en' : cur.id;\n    const outText = TX[textKey][textLang];\n\n    const bars = [];\n    const hs = [14, 26, 18, 34, 22, 30, 12, 24, 36, 20, 28, 16, 32, 22, 14, 26, 34, 18, 24, 30, 16, 20];\n    for (let i = 0; i \u003c hs.length; i++) {\n      bars.push({\n        style: 'flex: 1; border-radius: 2px; height: ' + hs[i] + 'px; transform-origin: center; background: ' + (st.speaking ? '#1F4FBF' : '#C9C5B9') +\n          (st.speaking ? '; animation: ab-wave ' + (0.5 + (i % 5) * 0.12) + 's ease-in-out ' + (i * 0.04) + 's infinite alternate' : '')\n      });\n    }\n\n    const speeds = [[0.8, 'Slow'], [1, 'Normal'], [1.25, 'Fast']].map(([v, label]) => {\n      const on = st.speed === v;\n      return {\n        label, pressed: on ? 'true' : 'false',\n        style: 'flex: 1; min-height: 40px; border-radius: 10px; font-size: 13px; font-weight: 700; ' +\n          (on ? 'border: 2px solid #1F4FBF; background: #E6EDFB; color: #163A8F' : 'border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A'),\n        pick: () => this.setState({ speed: v })\n      };\n    });\n\n    // ---- ISL: exact sign-by-sign sequence for the voter slip ----\n    const SENT = [\n      'Your polling booth: Part 142, Room 2, Government Primary School, Ram Nagar.',\n      'Voting is from 7 AM to 6 PM.',\n      'Carry your EPIC or any approved photo ID.'\n    ];\n    const TOPIC = 'Eyebrows raised (topic)';\n    const SEQ = [\n      { g: 'YOUR', k: 'sign', pose: 'you', s: 0, nm: TOPIC },\n      { g: 'VOTE', k: 'sign', pose: 'vote', s: 0, nm: TOPIC },\n      { g: 'PLACE', k: 'sign', pose: 'place', s: 0, nm: TOPIC },\n      { g: 'R-A-M', k: 'spell', parts: ['R', 'A', 'M'], s: 0 },\n      { g: 'N-A-G-A-R', k: 'spell', parts: ['N', 'A', 'G', 'A', 'R'], s: 0 },\n      { g: 'GOVERNMENT', k: 'sign', pose: 'gov', s: 0 },\n      { g: 'SCHOOL', k: 'sign', pose: 'school', s: 0 },\n      { g: 'PART', k: 'sign', pose: 'part', s: 0 },\n      { g: '142', k: 'num', parts: ['1', '4', '2'], s: 0 },\n      { g: 'ROOM', k: 'sign', pose: 'room', s: 0 },\n      { g: '2', k: 'num', parts: ['2'], s: 0 },\n      { g: 'VOTE', k: 'sign', pose: 'vote', s: 1, nm: TOPIC },\n      { g: 'TIME', k: 'sign', pose: 'time', s: 1, nm: TOPIC },\n      { g: 'MORNING', k: 'sign', pose: 'morning', s: 1 },\n      { g: '7', k: 'num', parts: ['7'], s: 1 },\n      { g: 'TO', k: 'sign', pose: 'to', s: 1 },\n      { g: 'EVENING', k: 'sign', pose: 'evening', s: 1 },\n      { g: '6', k: 'num', parts: ['6'], s: 1 },\n      { g: 'VOTER-CARD', k: 'sign', pose: 'card', s: 2 },\n      { g: 'OR', k: 'sign', pose: 'or', s: 2, nm: 'Head tilt (choice)' },\n      { g: 'PHOTO-ID', k: 'sign', pose: 'photo', s: 2 },\n      { g: 'BRING', k: 'sign', pose: 'bring', s: 2 },\n      { g: 'MUST', k: 'sign', pose: 'must', s: 2, nm: 'Firm head nod (must)' }\n    ];\n    const POSE = {\n      neutral: [0, 0, 0, 0], you: [0, 0, 20, 72], vote: [-10, -30, 28, 80], place: [-25, -50, 25, 50],\n      spell: [0, 0, 38, 95], num: [0, 0, 30, 85], gov: [-35, -80, 0, 0], school: [-20, -55, 20, 55],\n      part: [-5, -25, 30, 70], room: [-28, -60, 28, 60], time: [-12, -45, 8, 25], morning: [-35, -70, 10, 20],\n      to: [-20, -60, 30, 65], evening: [-15, -35, 25, 55], card: [-22, -58, 22, 58], or: [-8, -30, 8, 30],\n      photo: [-25, -75, 25, 75], bring: [-30, -45, 30, 45], must: [0, 0, 15, 65]\n    };\n    const NOTICE_GLOSS = ['SOMEONE', 'ASK', 'SUNITA', 'NAME', 'VOTER LIST', 'REMOVE', 'YOU', 'ADDRESS', 'PROOF', 'OFFICER', 'SHOW', '[DATE]', 'BEFORE'];\n\n    const slipMode = !!cur.sign && st.src === 'slip';\n    let frames;\n    if (slipMode) {\n      frames = [];\n      SEQ.forEach((tk, ti) => {\n        if (tk.parts) tk.parts.forEach((p) => frames.push({ ti, part: p }));\n        else frames.push({ ti, part: null });\n      });\n    } else {\n      frames = NOTICE_GLOSS.map((w, ti) => ({ ti, part: null }));\n    }\n    this._words = frames;\n    const signing = !!cur.sign && st.speaking;\n    const fr = signing && st.signIdx >= 0 ? frames[Math.min(st.signIdx, frames.length - 1)] : null;\n    const curTi = fr ? fr.ti : -1;\n\n    const chipBase = 'font-size: 13px; font-weight: 800; letter-spacing: 0.3px; border-radius: 6px; padding: 2px 8px; ';\n    const chipStyle = (i) => chipBase + (i === curTi ? 'background: #FFD54A; color: #13233A' : i \u003c curTi ? 'color: #FFFFFF' : 'color: #8FA0BF');\n    const gloss = slipMode\n      ? SEQ.map((tk, i) => ({ w: (i > 0 && SEQ[i - 1].s !== tk.s ? '‖ ' : '') + tk.g, style: chipStyle(i) }))\n      : NOTICE_GLOSS.map((w, i) => ({ w, style: chipStyle(i) }));\n\n    let av;\n    if (slipMode) {\n      const tk = curTi >= 0 ? SEQ[curTi] : null;\n      const key = !tk ? 'neutral' : tk.k === 'spell' ? 'spell' : tk.k === 'num' ? 'num' : tk.pose;\n      const a = POSE[key];\n      const tr = '; transition: transform 0.35s ease';\n      av = { armL: 'transform: rotate(' + a[0] + 'deg)' + tr, foreL: 'transform: rotate(' + a[1] + 'deg)' + tr,\n        armR: 'transform: rotate(' + a[2] + 'deg)' + tr, foreR: 'transform: rotate(' + a[3] + 'deg)' + tr };\n    } else if (signing) {\n      av = { armL: 'animation: ab-armL 0.8s ease-in-out infinite alternate', foreL: 'animation: ab-foreL 0.55s ease-in-out infinite alternate',\n        armR: 'animation: ab-armR 0.95s ease-in-out infinite alternate', foreR: 'animation: ab-foreR 0.6s ease-in-out infinite alternate' };\n    } else {\n      av = { armL: 'animation: none', foreL: 'animation: none', armR: 'animation: none', foreR: 'animation: none' };\n    }\n\n    const showTk = slipMode ? SEQ[curTi >= 0 ? curTi : 0] : null;\n    const kindName = { sign: 'Sign', spell: 'Fingerspell', num: 'Number' };\n    const tok = showTk ? {\n      kind: kindName[showTk.k],\n      g: showTk.g,\n      nm: showTk.nm || 'Neutral',\n      sLabel: 'Sentence ' + (showTk.s + 1) + ' of 3:',\n      sentence: SENT[showTk.s],\n      clip: showTk.k === 'sign' ? 'ISLRTC: ' + showTk.g : showTk.k === 'spell' ? 'ISL alphabet' : 'ISL numbers'\n    } : { kind: '', g: '', nm: '', sLabel: '', sentence: '', clip: '' };\n    const signAriaText = slipMode\n      ? (curTi >= 0 ? 'Avatar signing ' + SEQ[curTi].g + (fr && fr.part ? ', ' + fr.part : '') : 'Sign-language avatar. Press play to sign the voter slip.')\n      : (signing ? 'Avatar signing: ' + NOTICE_GLOSS.join(' ') : 'Sign-language avatar, press play to start signing');\n\n    // ---- Braille preview ----\n    const LD = { a: '1', b: '12', c: '14', d: '145', e: '15', f: '124', g: '1245', h: '125', i: '24', j: '245', k: '13', l: '123', m: '134',\n      n: '1345', o: '135', p: '1234', q: '12345', r: '1235', s: '234', t: '2345', u: '136', v: '1236', w: '2456', x: '1346', y: '13456', z: '1356' };\n    const DG = { '1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j' };\n    const PU = { '.': ['256'], ',': ['2'], ':': ['25'], '-': ['36'], \"'\": ['3'], '(': ['5', '126'], ')': ['5', '345'], '[': ['46', '126'], ']': ['46', '345'] };\n    const DV = { 'अ': '1', 'आ': '345', 'ा': '345', 'इ': '24', 'ि': '24', 'ई': '35', 'ी': '35', 'उ': '136', 'ु': '136', 'ऊ': '1256', 'ू': '1256',\n      'ऋ': '5', 'ृ': '5', 'ए': '15', 'े': '15', 'ऐ': '34', 'ै': '34', 'ओ': '135', 'ो': '135', 'ॉ': '135', 'औ': '246', 'ौ': '246',\n      'क': '13', 'ख': '46', 'ग': '1245', 'घ': '126', 'ङ': '346', 'च': '14', 'छ': '16', 'ज': '245', 'झ': '356', 'ञ': '25', 'ट': '23456',\n      'ठ': '2456', 'ड': '1246', 'ढ': '123456', 'ण': '3456', 'त': '2345', 'थ': '1456', 'द': '145', 'ध': '2346', 'न': '1345', 'प': '1234',\n      'फ': '235', 'ब': '12', 'भ': '45', 'म': '134', 'य': '13456', 'र': '1235', 'ल': '123', 'व': '1236', 'श': '146', 'ष': '12346', 'स': '234',\n      'ह': '125', '्': '4', 'ं': '56', 'ँ': '3', 'ः': '6', '।': '256' };\n    const cellChar = (d) => String.fromCharCode(0x2800 + d.split('').reduce((acc, x) => acc + (1 \u003c\u003c (Number(x) - 1)), 0));\n    const wordsCells = (text, deva) => text.split(/\\s+/).filter(Boolean).map((word) => {\n      const cells = [];\n      const core = word.replace(/[^A-Za-z]/g, '');\n      const allCaps = !deva && core.length > 1 && core === core.toUpperCase();\n      if (allCaps) cells.push('6', '6');\n      let num = false;\n      for (const ch of word) {\n        if (/[0-9]/.test(ch)) { if (!num) { cells.push('3456'); num = true; } cells.push(LD[DG[ch]]); continue; }\n        if (deva && DV[ch]) { num = false; cells.push(DV[ch]); continue; }\n        if (/[A-Za-z]/.test(ch)) {\n          if (num && /[a-jA-J]/.test(ch)) cells.push('56');\n          num = false;\n          if (!deva && !allCaps && ch !== ch.toLowerCase()) cells.push('6');\n          cells.push(LD[ch.toLowerCase()]);\n          continue;\n        }\n        num = false;\n        if (PU[ch]) PU[ch].forEach((c) => cells.push(c));\n      }\n      return cells;\n    });\n    const toBraille = (text, deva) => wordsCells(text, deva).map((cells) => cells.map(cellChar).join('')).join(' ');\n\n    // BRF: North American ASCII braille, 40 cells x 25 lines, CRLF, form feed between pages\n    const D2A = { '': ' ', '1': 'A', '12': 'B', '14': 'C', '145': 'D', '15': 'E', '124': 'F', '1245': 'G', '125': 'H', '24': 'I', '245': 'J',\n      '13': 'K', '123': 'L', '134': 'M', '1345': 'N', '135': 'O', '1234': 'P', '12345': 'Q', '1235': 'R', '234': 'S', '2345': 'T', '136': 'U',\n      '1236': 'V', '2456': 'W', '1346': 'X', '13456': 'Y', '1356': 'Z', '12346': '&', '123456': '=', '12356': '(', '2346': '!', '23456': ')',\n      '16': '*', '126': '\u003c', '146': '%', '1456': '?', '156': ':', '1246': '$', '12456': ']', '1256': '\\\\', '246': '[', '2': '1', '23': '2',\n      '25': '3', '256': '4', '26': '5', '235': '6', '2356': '7', '236': '8', '35': '9', '356': '0', '34': '/', '346': '+', '3456': '#',\n      '345': '>', '3': \"'\", '36': '-', '4': '@', '45': '^', '456': '_', '5': '\"', '46': '.', '56': ';', '6': ',' };\n    const buildBrf = (title, text, deva) => {\n      const lines = [];\n      const flow = (words, indent) => {\n        let line = new Array(indent).fill('');\n        let has = false;\n        words.forEach((w) => {\n          if (has && line.length + 1 + w.length > 40) { lines.push(line); line = []; has = false; }\n          if (has) line.push('');\n          line = line.concat(w);\n          has = true;\n        });\n        if (has) lines.push(line);\n      };\n      flow(wordsCells(title, deva), 0);\n      lines.push([]);\n      text.split(/(?\u003c=[.।])\\s+/).filter(Boolean).forEach((para) => flow(wordsCells(para, deva), 2));\n      const pages = [];\n      for (let i = 0; i \u003c lines.length; i += 25) {\n        pages.push(lines.slice(i, i + 25).map((ln) => ln.map((d) => D2A[d] || ' ').join('').replace(/\\s+$/, '')).join('\\r\\n'));\n      }\n      return pages.join('\\f') + '\\r\\n';\n    };\n\n    const crcTable = this._crc || (this._crc = (() => {\n      const tb = new Uint32Array(256);\n      for (let n = 0; n \u003c 256; n++) { let c = n; for (let k = 0; k \u003c 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; tb[n] = c >>> 0; }\n      return tb;\n    })());\n    const zipOne = (name, bytes) => {\n      let crc = 0xFFFFFFFF;\n      for (let i = 0; i \u003c bytes.length; i++) crc = crcTable[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8);\n      crc = (crc ^ 0xFFFFFFFF) >>> 0;\n      const nb = new TextEncoder().encode(name);\n      const out = new Uint8Array(30 + nb.length + bytes.length + 46 + nb.length + 22);\n      const dv = new DataView(out.buffer);\n      let p = 0;\n      const u32 = (v) => { dv.setUint32(p, v, true); p += 4; };\n      const u16 = (v) => { dv.setUint16(p, v, true); p += 2; };\n      u32(0x04034b50); u16(20); u16(0); u16(0); u16(0); u16(33); u32(crc); u32(bytes.length); u32(bytes.length); u16(nb.length); u16(0);\n      out.set(nb, p); p += nb.length; out.set(bytes, p); p += bytes.length;\n      const cd = p;\n      u32(0x02014b50); u16(20); u16(20); u16(0); u16(0); u16(0); u16(33); u32(crc); u32(bytes.length); u32(bytes.length); u16(nb.length);\n      u16(0); u16(0); u16(0); u16(0); u32(0); u32(0);\n      out.set(nb, p); p += nb.length;\n      const cdSize = p - cd;\n      u32(0x06054b50); u16(0); u16(0); u16(1); u16(1); u32(cdSize); u32(cd); u16(0);\n      return out;\n    };\n\n    const brLang = cur.sign ? 'en' : cur.id;\n    const brText = TX[textKey][brLang];\n    const brDeva = brLang === 'hi' || brLang === 'bho' || brLang === 'awa';\n    const brUrdu = brLang === 'ur';\n    const fileBase = st.src === 'notice' ? 'objection_notice' : 'voter_slip';\n    const brailleFile = brUrdu ? '' : fileBase + '_' + brLang.toUpperCase() + (brDeva ? '_Bharati.brf' : '_UEB-grade1.brf');\n\n    const easyNote = st.easy && st.src === 'notice' ? ' · EASY WORDS' : '';\n    return {\n      sources, langs, bars, speeds, gloss, av, tok,\n      signAria: signAriaText,\n      slipIsl: slipMode,\n      noticeIsl: !!cur.sign && st.src === 'notice',\n      spellOn: slipMode && !!(fr && fr.part),\n      spellChar: fr && fr.part ? fr.part : '',\n      nmOn: slipMode && curTi >= 0 && !!SEQ[curTi].nm,\n      nmText: slipMode && curTi >= 0 ? (SEQ[curTi].nm || '') : '',\n      useSlip: () => { clearInterval(this.signTimer); this.setState({ src: 'slip', speaking: false, signIdx: -1 }); },\n\n      brailleOpen: st.braille,\n      brailleOpenStr: st.braille ? 'true' : 'false',\n      toggleBraille: () => this.setState({ braille: !st.braille }),\n      brailleBtnStyle: 'min-height: 48px; border-radius: 12px; font-size: 14px; font-weight: 700; ' +\n        (st.braille ? 'border: 2px solid #13233A; background: #13233A; color: #FFFFFF' : 'border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A'),\n      brailleHas: !brUrdu,\n      brailleNone: brUrdu,\n      brailleNoneText: 'Urdu Braille will be added with a certified braille transcriber. Choose Hindi or English for a ready file now.',\n      brailleCode: brUrdu ? 'Urdu · coming soon' : (brDeva ? 'Bharati Braille · ' + (cur.sign ? 'English' : cur.en) : 'UEB Grade 1 · English'),\n      brailleText: brUrdu ? '' : toBraille(brText, brDeva),\n      brailleAria: 'Braille cells for: ' + brText,\n      brailleFile,\n      dlMsg: st.dlMsg || '',\n      dlMsgOn: !!st.dlMsg,\n      downloadBrf: async () => {\n        if (brUrdu) return;\n        const title = st.src === 'notice'\n          ? (brDeva ? 'सूचना: फार्म 7 आपत्ति' : 'Notice: Form 7 Objection')\n          : (brDeva ? 'मतदाता पर्ची: भाग 142' : 'Voter Slip: Part 142');\n        const brf = buildBrf(title, brText, brDeva);\n        const bytes = new Uint8Array(brf.length);\n        for (let i = 0; i \u003c brf.length; i++) bytes[i] = brf.charCodeAt(i) & 0x7F;\n        const zipName = brailleFile.replace(/\\.brf$/, '.zip');\n        let dl = null;\n        try { dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { dl = null; }\n        if (!dl) {\n          try {\n            const url = URL.createObjectURL(new Blob([zipOne(brailleFile, bytes)], { type: 'application/zip' }));\n            const a = document.createElement('a');\n            a.href = url;\n            a.download = zipName;\n            a.click();\n            setTimeout(() => URL.revokeObjectURL(url), 4000);\n            this.setState({ dlMsg: 'Saved ' + zipName + ' (contains ' + brailleFile + ')' });\n          } catch (e) {\n            this.setState({ dlMsg: 'Download is not available in this browser.' });\n          }\n          return;\n        }\n        try {\n          await dl.save({ filename: zipName, data: zipOne(brailleFile, bytes) });\n          this.setState({ dlMsg: 'Saved ' + zipName + ' (contains ' + brailleFile + ')' });\n        } catch (e) {\n          const code = e && e.code;\n          this.setState({ dlMsg: code === 'declined' ? 'Download cancelled.' : code === 'rate_limited' ? 'A save prompt is already open.' : 'Download is not available here.' });\n        }\n      },\n      scanned: st.scanned,\n      easy: st.easy,\n      captions: st.captions,\n      isText: !cur.sign,\n      isSign: !!cur.sign,\n      signState: st.speaking ? 'Signing… with captions' : 'Press play to watch the notice in ISL',\n      outText,\n      outLabel: (cur.sign ? 'INDIAN SIGN LANGUAGE' : 'AI TRANSLATION · ' + cur.en.toUpperCase()) + easyNote,\n      srcName: st.src === 'notice' ? 'Form 7 notice' : 'Voter slip',\n      dir: cur.rtl ? 'rtl' : 'ltr',\n      htmlLang: cur.id === 'isl' ? 'en' : cur.id,\n      textStyle: 'margin: 0; color: #13233A; ' + (cur.rtl\n        ? \"font-family: 'Noto Nastaliq Urdu', serif; font-size: 17px; line-height: 2.1; text-align: right\"\n        : 'font-size: 17px; line-height: 1.55'),\n      speaking: st.speaking,\n      notSpeaking: !st.speaking,\n      playAria: st.speaking ? 'Stop' : (cur.sign ? 'Play sign-language video' : 'Read aloud in ' + cur.en),\n      playStyle: 'width: 60px; height: 60px; border-radius: 30px; border: none; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: ' + (st.speaking ? '#B4500E' : '#1F4FBF'),\n      dialectNote: !!cur.dialect,\n      dialectName: cur.en,\n      play: () => {\n        if (cur.sign) {\n          if (st.speaking) this.stopSign(); else this.startSign();\n          return;\n        }\n        this.speak(outText, cur.tts);\n      },\n      scan: () => this.setState({ src: 'notice', scanned: true }),\n      toggleEasy: () => this.setState({ easy: !st.easy }),\n      toggleCaptions: () => this.setState({ captions: !st.captions })\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n"};var of=window.fetch;window.fetch=function(u,o){try{var s=String(u&&u.url||u);var n=s.split("#")[0].split("?")[0].split("/").pop();if(location.protocol==="file:"&&Object.prototype.hasOwnProperty.call(M,n)){return Promise.resolve(new Response(M[n],{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}}));}}catch(e){}return of.apply(this,arguments);};})();</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;family=Noto+Nastaliq+Urdu:wght@400;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}
+button{font-family:inherit;cursor:pointer}
+@keyframes ab-wave{0%{transform:scaleY(.3)}100%{transform:scaleY(1)}}
+@keyframes ab-armL{0%{transform:rotate(0deg)}100%{transform:rotate(-38deg)}}
+@keyframes ab-foreL{0%{transform:rotate(0deg)}100%{transform:rotate(-55deg)}}
+@keyframes ab-armR{0%{transform:rotate(0deg)}100%{transform:rotate(32deg)}}
+@keyframes ab-foreR{0%{transform:rotate(0deg)}100%{transform:rotate(60deg)}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F6F5F1; font-family: 'Mukta', system-ui, sans-serif; color: #13233A; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="background: #FFFFFF; border-bottom: 1px solid #E2E0D8; padding: 14px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0">
+<a href="Main.dc.html" aria-label="Back to home" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D9D6CC; display: flex; align-items: center; justify-content: center; color: #13233A; flex-shrink: 0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div style="flex: 1; display: flex; flex-direction: column; line-height: 1.15">
+<span style="font-size: 20px; font-weight: 800">Listen &amp; Translate</span>
+<span style="font-size: 13px; color: #4F5B6B; font-weight: 500">सुनें और अनुवाद करें · any notice, any language</span>
+</div>
+<span style="font-size: 12px; font-weight: 800; color: #FFFFFF; background: #1F4FBF; border-radius: 999px; padding: 4px 10px">AI</span>
+</div>
+
+<div style="flex: 1; overflow-y: auto; padding: 14px 18px 18px; display: flex; flex-direction: column; gap: 12px">
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 15px; font-weight: 700">1 · What should we read?</span>
+<div style="display: flex; gap: 6px; flex-wrap: wrap">
+<sc-for list="{{sources}}" as="sr" hint-placeholder-count="2">
+<button aria-pressed="{{sr.pressed}}" onClick="{{sr.pick}}" style="{{sr.style}}">{{sr.label}}</button>
+</sc-for>
+<button onClick="{{scan}}" style="min-height: 44px; padding: 0 14px; border-radius: 22px; border: 1px dashed #9AA6B8; background: transparent; color: #163A8F; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 6px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+Scan a paper notice
+</button>
+</div>
+<sc-if value="{{scanned}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 13px; color: #0F6E63; font-weight: 700">Scanned · text read from the photo</span>
+</sc-if>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 15px; font-weight: 700">2 · Choose language or format</span>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<sc-for list="{{langs}}" as="l" hint-placeholder-count="6">
+<button aria-pressed="{{l.pressed}}" onClick="{{l.pick}}" style="{{l.style}}">
+<span style="{{l.nativeStyle}}">{{l.native}}</span>
+<span style="font-size: 11px; font-weight: 600; opacity: 0.85">{{l.en}}</span>
+</button>
+</sc-for>
+</div>
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 12px; padding: 6px 14px">
+<span style="display: flex; flex-direction: column; line-height: 1.2">
+<span style="font-size: 15px; font-weight: 700">Easy words</span>
+<span style="font-size: 12px; color: #4F5B6B">Short sentences for low literacy and cognitive disabilities</span>
+</span>
+<input type="checkbox" checked="{{easy}}" onChange="{{toggleEasy}}" style="width: 24px; height: 24px; accent-color: #1F4FBF; flex-shrink: 0">
+</label>
+</div>
+
+<div style="background: #FFFFFF; border: 2px solid #1F4FBF; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="font-size: 12px; font-weight: 800; color: #163A8F; letter-spacing: 0.6px">{{outLabel}}</span>
+<span style="font-size: 12px; font-weight: 700; color: #4F5B6B">{{srcName}}</span>
+</div>
+
+<sc-if value="{{isText}}" hint-placeholder-val="{{true}}">
+<p dir="{{dir}}" lang="{{htmlLang}}" style="{{textStyle}}">{{outText}}</p>
+</sc-if>
+
+<sc-if value="{{isSign}}" hint-placeholder-val="{{false}}">
+<div style="position: relative; border-radius: 14px; overflow: hidden; background: #1B2A44; display: flex; flex-direction: column">
+<sc-if value="{{spellOn}}" hint-placeholder-val="{{false}}">
+<div aria-hidden="true" style="position: absolute; top: 10px; right: 10px; min-width: 56px; height: 56px; padding: 0 8px; box-sizing: border-box; border-radius: 14px; background: #FFD54A; color: #13233A; font-size: 34px; font-weight: 800; display: flex; align-items: center; justify-content: center">{{spellChar}}</div>
+</sc-if>
+<sc-if value="{{nmOn}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 10px; left: 10px; max-width: 150px; border-radius: 10px; background: rgba(255,255,255,0.14); color: #FFFFFF; font-size: 12px; font-weight: 700; padding: 4px 8px; line-height: 1.3">{{nmText}}</div>
+</sc-if>
+<svg width="100%" height="200" viewBox="0 0 200 180" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{signAria}}" style="display: block">
+<rect x="0" y="0" width="200" height="180" fill="#1B2A44"></rect>
+<path d="M48 180 C50 150 72 132 100 132 C128 132 150 150 152 180 Z" fill="#2E5BC9"></path>
+<rect x="91" y="98" width="18" height="18" rx="6" fill="#B97A4E"></rect>
+<circle cx="100" cy="78" r="26" fill="#C98A5B"></circle>
+<path d="M74 76 C74 54 88 46 100 46 C114 46 127 54 126 76 C120 64 110 60 100 60 C90 60 80 64 74 76 Z" fill="#1F1B18"></path>
+<circle cx="91" cy="80" r="2.6" fill="#1F1B18"></circle>
+<circle cx="109" cy="80" r="2.6" fill="#1F1B18"></circle>
+<path d="M86 73 L95 72 M105 72 L114 73" stroke="#1F1B18" stroke-width="2.4" stroke-linecap="round"></path>
+<path d="M93 90 Q100 95 107 90" stroke="#7A3E22" stroke-width="2.4" fill="none" stroke-linecap="round"></path>
+<g style="transform-origin: 74px 142px; {{av.armL}}">
+<path d="M74 142 L58 170" stroke="#4A76E8" stroke-width="15" stroke-linecap="round"></path>
+<g style="transform-origin: 58px 170px; {{av.foreL}}">
+<path d="M58 170 L80 140" stroke="#C98A5B" stroke-width="10" stroke-linecap="round"></path>
+<g transform="translate(82 138)">
+<rect x="-8" y="-13" width="16" height="15" rx="5" fill="#E2AC7C"></rect>
+<path d="M-6 -13v-8M-2 -14v-10M2 -14v-10M6 -13v-8M-8 -5l-6 -4" stroke="#E2AC7C" stroke-width="3.6" stroke-linecap="round"></path>
+</g>
+</g>
+</g>
+<g style="transform-origin: 126px 142px; {{av.armR}}">
+<path d="M126 142 L142 170" stroke="#4A76E8" stroke-width="15" stroke-linecap="round"></path>
+<g style="transform-origin: 142px 170px; {{av.foreR}}">
+<path d="M142 170 L120 140" stroke="#C98A5B" stroke-width="10" stroke-linecap="round"></path>
+<g transform="translate(118 138)">
+<rect x="-8" y="-13" width="16" height="15" rx="5" fill="#E2AC7C"></rect>
+<path d="M6 -13v-8M2 -14v-10M-2 -14v-10M-6 -13v-8M8 -5l6 -4" stroke="#E2AC7C" stroke-width="3.6" stroke-linecap="round"></path>
+</g>
+</g>
+</g>
+</svg>
+<div role="log" aria-label="Sign-language captions" style="background: #0F1A2E; padding: 8px 10px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center">
+<sc-for list="{{gloss}}" as="g" hint-placeholder-count="10">
+<span style="{{g.style}}">{{g.w}}</span>
+</sc-for>
+</div>
+</div>
+<sc-if value="{{slipIsl}}" hint-placeholder-val="{{false}}">
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px">
+<div style="background: #F6F5F1; border-radius: 10px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 11px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.5px">TYPE</span>
+<span style="font-size: 14px; font-weight: 800">{{tok.kind}}</span>
+</div>
+<div style="background: #F6F5F1; border-radius: 10px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 11px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.5px">SIGN</span>
+<span style="font-size: 14px; font-weight: 800">{{tok.g}}</span>
+</div>
+<div style="background: #F6F5F1; border-radius: 10px; padding: 6px 8px; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 11px; font-weight: 800; color: #4F5B6B; letter-spacing: 0.5px">FACE / HEAD</span>
+<span style="font-size: 13px; font-weight: 700; line-height: 1.2">{{tok.nm}}</span>
+</div>
+</div>
+<div style="background: #E6EDFB; color: #163A8F; border-radius: 10px; padding: 8px 12px; font-size: 14px; line-height: 1.4"><b>{{tok.sLabel}}</b> {{tok.sentence}}</div>
+<span style="font-size: 12px; color: #4F5B6B; line-height: 1.35">ISL word order: topic first, time before the action, verb last. Names are fingerspelled, numbers use number handshapes. Each sign maps to an ISLRTC dictionary clip ({{tok.clip}}); a certified ISL interpreter approves before release.</span>
+</sc-if>
+<sc-if value="{{noticeIsl}}" hint-placeholder-val="{{false}}">
+<div style="background: #FCEBDD; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 14px; color: #6B2D05; line-height: 1.4">The full sign-by-sign ISL sequence is built for the <b>voter slip</b>. This notice shows a draft gloss only.</span>
+<button onClick="{{useSlip}}" style="min-height: 44px; border-radius: 10px; border: none; background: #B4500E; color: #FFFFFF; font-size: 14px; font-weight: 700">Show the voter slip in ISL</button>
+</div>
+</sc-if>
+</sc-if>
+
+<div style="display: flex; align-items: center; gap: 12px">
+<button aria-label="{{playAria}}" onClick="{{play}}" style="{{playStyle}}">
+<sc-if value="{{speaking}}" hint-placeholder-val="{{false}}">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"></rect></svg>
+</sc-if>
+<sc-if value="{{notSpeaking}}" hint-placeholder-val="{{true}}">
+<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5l11 7-11 7z"></path></svg>
+</sc-if>
+</button>
+<div aria-hidden="true" style="flex: 1; height: 40px; display: flex; align-items: center; gap: 3px">
+<sc-for list="{{bars}}" as="b" hint-placeholder-count="22">
+<span style="{{b.style}}"></span>
+</sc-for>
+</div>
+</div>
+
+<div style="display: flex; gap: 6px">
+<sc-for list="{{speeds}}" as="v" hint-placeholder-count="3">
+<button aria-pressed="{{v.pressed}}" onClick="{{v.pick}}" style="{{v.style}}">{{v.label}}</button>
+</sc-for>
+</div>
+<sc-if value="{{dialectNote}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 12px; color: #4F5B6B">Read with a Hindi voice until a {{dialectName}} voice is added.</span>
+</sc-if>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 15px; font-weight: 700">3 · Send it to someone</span>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 6px">
+<button style="min-height: 48px; border-radius: 12px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">WhatsApp voice note</button>
+<button style="min-height: 48px; border-radius: 12px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">Phone call (IVR)</button>
+<button style="min-height: 48px; border-radius: 12px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">SMS in this language</button>
+<button aria-pressed="{{brailleOpenStr}}" onClick="{{toggleBraille}}" style="{{brailleBtnStyle}}">Braille-ready file</button>
+</div>
+</div>
+
+<sc-if value="{{brailleOpen}}" hint-placeholder-val="{{false}}">
+<div style="background: #FFFFFF; border: 2px solid #13233A; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px">
+<span style="font-size: 15px; font-weight: 800">Braille preview</span>
+<span style="font-size: 12px; color: #4F5B6B; font-weight: 700; text-align: right">{{brailleCode}}</span>
+</div>
+<sc-if value="{{brailleHas}}" hint-placeholder-val="{{true}}">
+<p aria-label="{{brailleAria}}" style="margin: 0; font-size: 22px; line-height: 1.6; letter-spacing: 1px; word-break: break-word; color: #13233A; background: #F6F5F1; border-radius: 10px; padding: 10px 12px">{{brailleText}}</p>
+<div style="display: flex; gap: 8px; align-items: center">
+<span style="flex: 1; font-size: 13px; color: #4F5B6B; word-break: break-all">{{brailleFile}}</span>
+<button onClick="{{downloadBrf}}" style="min-height: 44px; padding: 0 14px; border-radius: 12px; border: none; background: #13233A; color: #FFFFFF; font-size: 14px; font-weight: 700; flex-shrink: 0">Download .brf</button>
+</div>
+<sc-if value="{{dlMsgOn}}" hint-placeholder-val="{{false}}">
+<span role="status" style="font-size: 13px; font-weight: 700; color: #0F6E63">{{dlMsg}}</span>
+</sc-if>
+<span style="font-size: 12px; color: #4F5B6B">40 cells × 25 lines · for braille embossers and refreshable braille displays</span>
+</sc-if>
+<sc-if value="{{brailleNone}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 14px; color: #4F5B6B; line-height: 1.4">{{brailleNoneText}}</span>
+</sc-if>
+</div>
+</sc-if>
+
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 16px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px">
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px">
+<span style="display: flex; flex-direction: column; line-height: 1.2">
+<span style="font-size: 15px; font-weight: 700">Live captions · for deaf voters</span>
+<span style="font-size: 12px; color: #4F5B6B">Turns booth announcements and phone calls into text</span>
+</span>
+<input type="checkbox" checked="{{captions}}" onChange="{{toggleCaptions}}" style="width: 24px; height: 24px; accent-color: #1F4FBF; flex-shrink: 0">
+</label>
+<sc-if value="{{captions}}" hint-placeholder-val="{{true}}">
+<div role="log" style="background: #13233A; color: #FFFFFF; border-radius: 10px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.35">
+<span><b style="color: #FFD54A">Booth announcement:</b> Women and senior citizens, please use the queue on the left.</span>
+<span><b style="color: #FFD54A">घोषणा:</b> महिलाएँ और वरिष्ठ नागरिक बाईं ओर की लाइन में आएँ।</span>
+</div>
+</sc-if>
+</div>
+
+<span style="font-size: 12px; color: #4F5B6B; text-align: center; line-height: 1.35">AI translation for easier understanding. For dates and legal deadlines, the official notice is final.</span>
+
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { src: 'notice', lang: 'bho', easy: false, speaking: false, speed: 1, captions: true, scanned: false, signIdx: -1, braille: false };
+  }
+
+  stopSign() {
+    clearInterval(this.signTimer);
+    this.setState({ speaking: false, signIdx: -1 });
+  }
+
+  startSign() {
+    clearInterval(this.signTimer);
+    this.setState({ speaking: true, signIdx: 0 });
+    this.signTimer = setInterval(() => {
+      const words = this._words || [];
+      const next = this.state.signIdx + 1;
+      if (next >= words.length) { this.stopSign(); return; }
+      this.setState({ signIdx: next });
+    }, 700);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.signTimer);
+    clearTimeout(this.speakTimer);
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+  }
+
+  speak(text, lang) {
+    const done = () => this.setState({ speaking: false });
+    if (this.state.speaking) {
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+      clearTimeout(this.speakTimer);
+      done();
+      return;
+    }
+    this.setState({ speaking: true });
+    try {
+      const ss = window.speechSynthesis;
+      if (!ss || typeof SpeechSynthesisUtterance === 'undefined' || !text) {
+        clearTimeout(this.speakTimer);
+        this.speakTimer = setTimeout(done, 4000);
+        return;
+      }
+      ss.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      u.rate = this.state.speed;
+      const vs = ss.getVoices() || [];
+      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||
+        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);
+      if (v) u.voice = v;
+      u.onend = done;
+      u.onerror = done;
+      ss.speak(u);
+    } catch (e) {
+      done();
+    }
+  }
+
+  renderVals() {
+    const st = this.state;
+    const TX = {
+      slip: {
+        en: 'Your polling booth: Part 142, Room 2, Government Primary School, Ram Nagar. Voting is from 7 AM to 6 PM. Carry your EPIC or any approved photo ID.',
+        hi: 'आपका मतदान केंद्र: भाग 142, कमरा 2, सरकारी प्राथमिक विद्यालय, राम नगर। मतदान सुबह 7 बजे से शाम 6 बजे तक होगा। अपना EPIC या कोई भी मान्य फ़ोटो पहचान पत्र साथ लाएँ।',
+        ur: 'آپ کا پولنگ بوتھ: حصہ 142، کمرہ 2، سرکاری پرائمری اسکول، رام نگر۔ ووٹنگ صبح 7 بجے سے شام 6 بجے تک ہوگی۔ اپنا EPIC یا کوئی بھی منظور شدہ فوٹو شناختی کارڈ ساتھ لائیں۔',
+        bho: 'रउआ के मतदान केंद्र: भाग 142, कमरा 2, सरकारी प्राथमिक विद्यालय, राम नगर। वोट सबेरे 7 बजे से साँझ 6 बजे ले पड़ी। आपन EPIC भा कवनो मान्य फोटो पहचान पत्र साथे ले आईं।',
+        awa: 'तोहार मतदान केंद्र: भाग 142, कमरा 2, सरकारी प्राथमिक विद्यालय, राम नगर। वोट सबेरे 7 बजे से साँझ 6 बजे तक पड़ी। आपन EPIC या कौनो मान्य फोटो पहचान पत्र संग लै आवा।'
+      },
+      notice: {
+        en: 'Notice: An objection (Form 7) has been filed to delete the name of Sunita Verma from the electoral roll of Part 142. You may present documents proving residence before the Electoral Registration Officer by [DATE].',
+        hi: 'सूचना: भाग 142 की मतदाता सूची से सुनीता वर्मा का नाम हटाने के लिए आपत्ति (फ़ॉर्म 7) दर्ज की गई है। आप [तारीख़] तक निर्वाचक रजिस्ट्रीकरण अधिकारी के समक्ष निवास का प्रमाण प्रस्तुत कर सकते हैं।',
+        ur: 'اطلاع: حصہ 142 کی انتخابی فہرست سے سنیتا ورما کا نام حذف کرنے کے لیے اعتراض (فارم 7) درج کیا گیا ہے۔ آپ [تاریخ] تک الیکٹورل رجسٹریشن آفیسر کے سامنے رہائش کا ثبوت پیش کر سکتے ہیں۔',
+        bho: 'सूचना: भाग 142 के मतदाता सूची से सुनीता वर्मा के नाम हटावे खातिर आपत्ति (फ़ॉर्म 7) दर्ज भइल बा। रउआ [तारीख़] ले निर्वाचक रजिस्ट्रीकरण अधिकारी के सामने रहे के सबूत दे सकीले।',
+        awa: 'सूचना: भाग 142 कै मतदाता सूची से सुनीता वर्मा कै नाम हटावै बदे आपत्ति (फ़ॉर्म 7) दर्ज भै है। आप [तारीख़] तक निर्वाचक रजिस्ट्रीकरण अधिकारी के आगे रहै कै सबूत दै सकत हैं।'
+      },
+      noticeEasy: {
+        en: "Someone has asked to remove Sunita Verma's name from the voter list. If she still lives here, show a proof of address to the officer before [DATE]. Then her name will stay.",
+        hi: 'किसी ने सुनीता वर्मा का नाम वोटर लिस्ट से हटाने को कहा है। अगर वे अभी भी यहीं रहती हैं, तो [तारीख़] से पहले अधिकारी को पते का कोई सबूत दिखाएँ। तब उनका नाम बना रहेगा।',
+        ur: 'کسی نے سنیتا ورما کا نام ووٹر لسٹ سے ہٹانے کو کہا ہے۔ اگر وہ اب بھی یہیں رہتی ہیں تو [تاریخ] سے پہلے افسر کو پتے کا کوئی ثبوت دکھائیں۔ پھر ان کا نام برقرار رہے گا۔',
+        bho: 'केहू सुनीता वर्मा के नाम वोटर लिस्ट से हटावे के कहले बा। अगर ऊ अबहियो इहें रहेली, त [तारीख़] से पहिले अधिकारी के पता के कवनो सबूत देखाईं। तब उनकर नाम बनल रही।',
+        awa: 'कोई सुनीता वर्मा कै नाम वोटर लिस्ट से हटावै कहिस है। अगर ऊ अबहूँ हियैं रहत हैं, तौ [तारीख़] से पहिले अधिकारी का पता कै कौनो सबूत देखावा। तब उनकर नाम बना रही।'
+      }
+    };
+
+    const langDefs = [
+      { id: 'hi', native: 'हिन्दी', en: 'Hindi', tts: 'hi-IN' },
+      { id: 'en', native: 'English', en: 'English', tts: 'en-IN' },
+      { id: 'ur', native: 'اردو', en: 'Urdu', tts: 'ur-IN', rtl: true },
+      { id: 'bho', native: 'भोजपुरी', en: 'Bhojpuri', tts: 'hi-IN', dialect: true },
+      { id: 'awa', native: 'अवधी', en: 'Awadhi', tts: 'hi-IN', dialect: true },
+      { id: 'isl', native: 'ISL', en: 'Sign language', sign: true }
+    ];
+    const cur = langDefs.find((l) => l.id === st.lang);
+
+    const chip = (on) => 'min-height: 44px; padding: 0 14px; border-radius: 22px; font-size: 14px; font-weight: 700; ' +
+      (on ? 'border: 2px solid #1F4FBF; background: #1F4FBF; color: #FFFFFF' : 'border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A');
+
+    const sources = [['notice', 'Objection notice'], ['slip', 'Voter slip']].map(([id, label]) => {
+      const on = st.src === id;
+      return { label, pressed: on ? 'true' : 'false', style: chip(on), pick: () => this.setState({ src: id, scanned: false }) };
+    });
+
+    const langs = langDefs.map((l) => {
+      const on = st.lang === l.id;
+      return {
+        native: l.native, en: l.en, pressed: on ? 'true' : 'false',
+        nativeStyle: 'font-size: 17px; font-weight: 800; line-height: 1.2' + (l.rtl ? "; font-family: 'Noto Nastaliq Urdu', serif; font-size: 15px" : ''),
+        style: 'min-height: 56px; border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; ' +
+          (on ? 'border: 2px solid #1F4FBF; background: #1F4FBF; color: #FFFFFF' : 'border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A'),
+        pick: () => {
+          try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+          clearTimeout(this.speakTimer);
+          clearInterval(this.signTimer);
+          this.setState({ lang: l.id, speaking: false, signIdx: -1, src: l.sign ? 'slip' : st.src });
+        }
+      };
+    });
+
+    const textKey = st.src === 'notice' && st.easy ? 'noticeEasy' : st.src;
+    const textLang = cur.sign ? 'en' : cur.id;
+    const outText = TX[textKey][textLang];
+
+    const bars = [];
+    const hs = [14, 26, 18, 34, 22, 30, 12, 24, 36, 20, 28, 16, 32, 22, 14, 26, 34, 18, 24, 30, 16, 20];
+    for (let i = 0; i < hs.length; i++) {
+      bars.push({
+        style: 'flex: 1; border-radius: 2px; height: ' + hs[i] + 'px; transform-origin: center; background: ' + (st.speaking ? '#1F4FBF' : '#C9C5B9') +
+          (st.speaking ? '; animation: ab-wave ' + (0.5 + (i % 5) * 0.12) + 's ease-in-out ' + (i * 0.04) + 's infinite alternate' : '')
+      });
+    }
+
+    const speeds = [[0.8, 'Slow'], [1, 'Normal'], [1.25, 'Fast']].map(([v, label]) => {
+      const on = st.speed === v;
+      return {
+        label, pressed: on ? 'true' : 'false',
+        style: 'flex: 1; min-height: 40px; border-radius: 10px; font-size: 13px; font-weight: 700; ' +
+          (on ? 'border: 2px solid #1F4FBF; background: #E6EDFB; color: #163A8F' : 'border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A'),
+        pick: () => this.setState({ speed: v })
+      };
+    });
+
+    // ---- ISL: exact sign-by-sign sequence for the voter slip ----
+    const SENT = [
+      'Your polling booth: Part 142, Room 2, Government Primary School, Ram Nagar.',
+      'Voting is from 7 AM to 6 PM.',
+      'Carry your EPIC or any approved photo ID.'
+    ];
+    const TOPIC = 'Eyebrows raised (topic)';
+    const SEQ = [
+      { g: 'YOUR', k: 'sign', pose: 'you', s: 0, nm: TOPIC },
+      { g: 'VOTE', k: 'sign', pose: 'vote', s: 0, nm: TOPIC },
+      { g: 'PLACE', k: 'sign', pose: 'place', s: 0, nm: TOPIC },
+      { g: 'R-A-M', k: 'spell', parts: ['R', 'A', 'M'], s: 0 },
+      { g: 'N-A-G-A-R', k: 'spell', parts: ['N', 'A', 'G', 'A', 'R'], s: 0 },
+      { g: 'GOVERNMENT', k: 'sign', pose: 'gov', s: 0 },
+      { g: 'SCHOOL', k: 'sign', pose: 'school', s: 0 },
+      { g: 'PART', k: 'sign', pose: 'part', s: 0 },
+      { g: '142', k: 'num', parts: ['1', '4', '2'], s: 0 },
+      { g: 'ROOM', k: 'sign', pose: 'room', s: 0 },
+      { g: '2', k: 'num', parts: ['2'], s: 0 },
+      { g: 'VOTE', k: 'sign', pose: 'vote', s: 1, nm: TOPIC },
+      { g: 'TIME', k: 'sign', pose: 'time', s: 1, nm: TOPIC },
+      { g: 'MORNING', k: 'sign', pose: 'morning', s: 1 },
+      { g: '7', k: 'num', parts: ['7'], s: 1 },
+      { g: 'TO', k: 'sign', pose: 'to', s: 1 },
+      { g: 'EVENING', k: 'sign', pose: 'evening', s: 1 },
+      { g: '6', k: 'num', parts: ['6'], s: 1 },
+      { g: 'VOTER-CARD', k: 'sign', pose: 'card', s: 2 },
+      { g: 'OR', k: 'sign', pose: 'or', s: 2, nm: 'Head tilt (choice)' },
+      { g: 'PHOTO-ID', k: 'sign', pose: 'photo', s: 2 },
+      { g: 'BRING', k: 'sign', pose: 'bring', s: 2 },
+      { g: 'MUST', k: 'sign', pose: 'must', s: 2, nm: 'Firm head nod (must)' }
+    ];
+    const POSE = {
+      neutral: [0, 0, 0, 0], you: [0, 0, 20, 72], vote: [-10, -30, 28, 80], place: [-25, -50, 25, 50],
+      spell: [0, 0, 38, 95], num: [0, 0, 30, 85], gov: [-35, -80, 0, 0], school: [-20, -55, 20, 55],
+      part: [-5, -25, 30, 70], room: [-28, -60, 28, 60], time: [-12, -45, 8, 25], morning: [-35, -70, 10, 20],
+      to: [-20, -60, 30, 65], evening: [-15, -35, 25, 55], card: [-22, -58, 22, 58], or: [-8, -30, 8, 30],
+      photo: [-25, -75, 25, 75], bring: [-30, -45, 30, 45], must: [0, 0, 15, 65]
+    };
+    const NOTICE_GLOSS = ['SOMEONE', 'ASK', 'SUNITA', 'NAME', 'VOTER LIST', 'REMOVE', 'YOU', 'ADDRESS', 'PROOF', 'OFFICER', 'SHOW', '[DATE]', 'BEFORE'];
+
+    const slipMode = !!cur.sign && st.src === 'slip';
+    let frames;
+    if (slipMode) {
+      frames = [];
+      SEQ.forEach((tk, ti) => {
+        if (tk.parts) tk.parts.forEach((p) => frames.push({ ti, part: p }));
+        else frames.push({ ti, part: null });
+      });
+    } else {
+      frames = NOTICE_GLOSS.map((w, ti) => ({ ti, part: null }));
+    }
+    this._words = frames;
+    const signing = !!cur.sign && st.speaking;
+    const fr = signing && st.signIdx >= 0 ? frames[Math.min(st.signIdx, frames.length - 1)] : null;
+    const curTi = fr ? fr.ti : -1;
+
+    const chipBase = 'font-size: 13px; font-weight: 800; letter-spacing: 0.3px; border-radius: 6px; padding: 2px 8px; ';
+    const chipStyle = (i) => chipBase + (i === curTi ? 'background: #FFD54A; color: #13233A' : i < curTi ? 'color: #FFFFFF' : 'color: #8FA0BF');
+    const gloss = slipMode
+      ? SEQ.map((tk, i) => ({ w: (i > 0 && SEQ[i - 1].s !== tk.s ? '‖ ' : '') + tk.g, style: chipStyle(i) }))
+      : NOTICE_GLOSS.map((w, i) => ({ w, style: chipStyle(i) }));
+
+    let av;
+    if (slipMode) {
+      const tk = curTi >= 0 ? SEQ[curTi] : null;
+      const key = !tk ? 'neutral' : tk.k === 'spell' ? 'spell' : tk.k === 'num' ? 'num' : tk.pose;
+      const a = POSE[key];
+      const tr = '; transition: transform 0.35s ease';
+      av = { armL: 'transform: rotate(' + a[0] + 'deg)' + tr, foreL: 'transform: rotate(' + a[1] + 'deg)' + tr,
+        armR: 'transform: rotate(' + a[2] + 'deg)' + tr, foreR: 'transform: rotate(' + a[3] + 'deg)' + tr };
+    } else if (signing) {
+      av = { armL: 'animation: ab-armL 0.8s ease-in-out infinite alternate', foreL: 'animation: ab-foreL 0.55s ease-in-out infinite alternate',
+        armR: 'animation: ab-armR 0.95s ease-in-out infinite alternate', foreR: 'animation: ab-foreR 0.6s ease-in-out infinite alternate' };
+    } else {
+      av = { armL: 'animation: none', foreL: 'animation: none', armR: 'animation: none', foreR: 'animation: none' };
+    }
+
+    const showTk = slipMode ? SEQ[curTi >= 0 ? curTi : 0] : null;
+    const kindName = { sign: 'Sign', spell: 'Fingerspell', num: 'Number' };
+    const tok = showTk ? {
+      kind: kindName[showTk.k],
+      g: showTk.g,
+      nm: showTk.nm || 'Neutral',
+      sLabel: 'Sentence ' + (showTk.s + 1) + ' of 3:',
+      sentence: SENT[showTk.s],
+      clip: showTk.k === 'sign' ? 'ISLRTC: ' + showTk.g : showTk.k === 'spell' ? 'ISL alphabet' : 'ISL numbers'
+    } : { kind: '', g: '', nm: '', sLabel: '', sentence: '', clip: '' };
+    const signAriaText = slipMode
+      ? (curTi >= 0 ? 'Avatar signing ' + SEQ[curTi].g + (fr && fr.part ? ', ' + fr.part : '') : 'Sign-language avatar. Press play to sign the voter slip.')
+      : (signing ? 'Avatar signing: ' + NOTICE_GLOSS.join(' ') : 'Sign-language avatar, press play to start signing');
+
+    // ---- Braille preview ----
+    const LD = { a: '1', b: '12', c: '14', d: '145', e: '15', f: '124', g: '1245', h: '125', i: '24', j: '245', k: '13', l: '123', m: '134',
+      n: '1345', o: '135', p: '1234', q: '12345', r: '1235', s: '234', t: '2345', u: '136', v: '1236', w: '2456', x: '1346', y: '13456', z: '1356' };
+    const DG = { '1': 'a', '2': 'b', '3': 'c', '4': 'd', '5': 'e', '6': 'f', '7': 'g', '8': 'h', '9': 'i', '0': 'j' };
+    const PU = { '.': ['256'], ',': ['2'], ':': ['25'], '-': ['36'], "'": ['3'], '(': ['5', '126'], ')': ['5', '345'], '[': ['46', '126'], ']': ['46', '345'] };
+    const DV = { 'अ': '1', 'आ': '345', 'ा': '345', 'इ': '24', 'ि': '24', 'ई': '35', 'ी': '35', 'उ': '136', 'ु': '136', 'ऊ': '1256', 'ू': '1256',
+      'ऋ': '5', 'ृ': '5', 'ए': '15', 'े': '15', 'ऐ': '34', 'ै': '34', 'ओ': '135', 'ो': '135', 'ॉ': '135', 'औ': '246', 'ौ': '246',
+      'क': '13', 'ख': '46', 'ग': '1245', 'घ': '126', 'ङ': '346', 'च': '14', 'छ': '16', 'ज': '245', 'झ': '356', 'ञ': '25', 'ट': '23456',
+      'ठ': '2456', 'ड': '1246', 'ढ': '123456', 'ण': '3456', 'त': '2345', 'थ': '1456', 'द': '145', 'ध': '2346', 'न': '1345', 'प': '1234',
+      'फ': '235', 'ब': '12', 'भ': '45', 'म': '134', 'य': '13456', 'र': '1235', 'ल': '123', 'व': '1236', 'श': '146', 'ष': '12346', 'स': '234',
+      'ह': '125', '्': '4', 'ं': '56', 'ँ': '3', 'ः': '6', '।': '256' };
+    const cellChar = (d) => String.fromCharCode(0x2800 + d.split('').reduce((acc, x) => acc + (1 << (Number(x) - 1)), 0));
+    const wordsCells = (text, deva) => text.split(/\s+/).filter(Boolean).map((word) => {
+      const cells = [];
+      const core = word.replace(/[^A-Za-z]/g, '');
+      const allCaps = !deva && core.length > 1 && core === core.toUpperCase();
+      if (allCaps) cells.push('6', '6');
+      let num = false;
+      for (const ch of word) {
+        if (/[0-9]/.test(ch)) { if (!num) { cells.push('3456'); num = true; } cells.push(LD[DG[ch]]); continue; }
+        if (deva && DV[ch]) { num = false; cells.push(DV[ch]); continue; }
+        if (/[A-Za-z]/.test(ch)) {
+          if (num && /[a-jA-J]/.test(ch)) cells.push('56');
+          num = false;
+          if (!deva && !allCaps && ch !== ch.toLowerCase()) cells.push('6');
+          cells.push(LD[ch.toLowerCase()]);
+          continue;
+        }
+        num = false;
+        if (PU[ch]) PU[ch].forEach((c) => cells.push(c));
+      }
+      return cells;
+    });
+    const toBraille = (text, deva) => wordsCells(text, deva).map((cells) => cells.map(cellChar).join('')).join(' ');
+
+    // BRF: North American ASCII braille, 40 cells x 25 lines, CRLF, form feed between pages
+    const D2A = { '': ' ', '1': 'A', '12': 'B', '14': 'C', '145': 'D', '15': 'E', '124': 'F', '1245': 'G', '125': 'H', '24': 'I', '245': 'J',
+      '13': 'K', '123': 'L', '134': 'M', '1345': 'N', '135': 'O', '1234': 'P', '12345': 'Q', '1235': 'R', '234': 'S', '2345': 'T', '136': 'U',
+      '1236': 'V', '2456': 'W', '1346': 'X', '13456': 'Y', '1356': 'Z', '12346': '&', '123456': '=', '12356': '(', '2346': '!', '23456': ')',
+      '16': '*', '126': '<', '146': '%', '1456': '?', '156': ':', '1246': '$', '12456': ']', '1256': '\\', '246': '[', '2': '1', '23': '2',
+      '25': '3', '256': '4', '26': '5', '235': '6', '2356': '7', '236': '8', '35': '9', '356': '0', '34': '/', '346': '+', '3456': '#',
+      '345': '>', '3': "'", '36': '-', '4': '@', '45': '^', '456': '_', '5': '"', '46': '.', '56': ';', '6': ',' };
+    const buildBrf = (title, text, deva) => {
+      const lines = [];
+      const flow = (words, indent) => {
+        let line = new Array(indent).fill('');
+        let has = false;
+        words.forEach((w) => {
+          if (has && line.length + 1 + w.length > 40) { lines.push(line); line = []; has = false; }
+          if (has) line.push('');
+          line = line.concat(w);
+          has = true;
+        });
+        if (has) lines.push(line);
+      };
+      flow(wordsCells(title, deva), 0);
+      lines.push([]);
+      text.split(/(?<=[.।])\s+/).filter(Boolean).forEach((para) => flow(wordsCells(para, deva), 2));
+      const pages = [];
+      for (let i = 0; i < lines.length; i += 25) {
+        pages.push(lines.slice(i, i + 25).map((ln) => ln.map((d) => D2A[d] || ' ').join('').replace(/\s+$/, '')).join('\r\n'));
+      }
+      return pages.join('\f') + '\r\n';
+    };
+
+    const crcTable = this._crc || (this._crc = (() => {
+      const tb = new Uint32Array(256);
+      for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; tb[n] = c >>> 0; }
+      return tb;
+    })());
+    const zipOne = (name, bytes) => {
+      let crc = 0xFFFFFFFF;
+      for (let i = 0; i < bytes.length; i++) crc = crcTable[(crc ^ bytes[i]) & 0xFF] ^ (crc >>> 8);
+      crc = (crc ^ 0xFFFFFFFF) >>> 0;
+      const nb = new TextEncoder().encode(name);
+      const out = new Uint8Array(30 + nb.length + bytes.length + 46 + nb.length + 22);
+      const dv = new DataView(out.buffer);
+      let p = 0;
+      const u32 = (v) => { dv.setUint32(p, v, true); p += 4; };
+      const u16 = (v) => { dv.setUint16(p, v, true); p += 2; };
+      u32(0x04034b50); u16(20); u16(0); u16(0); u16(0); u16(33); u32(crc); u32(bytes.length); u32(bytes.length); u16(nb.length); u16(0);
+      out.set(nb, p); p += nb.length; out.set(bytes, p); p += bytes.length;
+      const cd = p;
+      u32(0x02014b50); u16(20); u16(20); u16(0); u16(0); u16(0); u16(33); u32(crc); u32(bytes.length); u32(bytes.length); u16(nb.length);
+      u16(0); u16(0); u16(0); u16(0); u32(0); u32(0);
+      out.set(nb, p); p += nb.length;
+      const cdSize = p - cd;
+      u32(0x06054b50); u16(0); u16(0); u16(1); u16(1); u32(cdSize); u32(cd); u16(0);
+      return out;
+    };
+
+    const brLang = cur.sign ? 'en' : cur.id;
+    const brText = TX[textKey][brLang];
+    const brDeva = brLang === 'hi' || brLang === 'bho' || brLang === 'awa';
+    const brUrdu = brLang === 'ur';
+    const fileBase = st.src === 'notice' ? 'objection_notice' : 'voter_slip';
+    const brailleFile = brUrdu ? '' : fileBase + '_' + brLang.toUpperCase() + (brDeva ? '_Bharati.brf' : '_UEB-grade1.brf');
+
+    const easyNote = st.easy && st.src === 'notice' ? ' · EASY WORDS' : '';
+    return {
+      sources, langs, bars, speeds, gloss, av, tok,
+      signAria: signAriaText,
+      slipIsl: slipMode,
+      noticeIsl: !!cur.sign && st.src === 'notice',
+      spellOn: slipMode && !!(fr && fr.part),
+      spellChar: fr && fr.part ? fr.part : '',
+      nmOn: slipMode && curTi >= 0 && !!SEQ[curTi].nm,
+      nmText: slipMode && curTi >= 0 ? (SEQ[curTi].nm || '') : '',
+      useSlip: () => { clearInterval(this.signTimer); this.setState({ src: 'slip', speaking: false, signIdx: -1 }); },
+
+      brailleOpen: st.braille,
+      brailleOpenStr: st.braille ? 'true' : 'false',
+      toggleBraille: () => this.setState({ braille: !st.braille }),
+      brailleBtnStyle: 'min-height: 48px; border-radius: 12px; font-size: 14px; font-weight: 700; ' +
+        (st.braille ? 'border: 2px solid #13233A; background: #13233A; color: #FFFFFF' : 'border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A'),
+      brailleHas: !brUrdu,
+      brailleNone: brUrdu,
+      brailleNoneText: 'Urdu Braille will be added with a certified braille transcriber. Choose Hindi or English for a ready file now.',
+      brailleCode: brUrdu ? 'Urdu · coming soon' : (brDeva ? 'Bharati Braille · ' + (cur.sign ? 'English' : cur.en) : 'UEB Grade 1 · English'),
+      brailleText: brUrdu ? '' : toBraille(brText, brDeva),
+      brailleAria: 'Braille cells for: ' + brText,
+      brailleFile,
+      dlMsg: st.dlMsg || '',
+      dlMsgOn: !!st.dlMsg,
+      downloadBrf: async () => {
+        if (brUrdu) return;
+        const title = st.src === 'notice'
+          ? (brDeva ? 'सूचना: फार्म 7 आपत्ति' : 'Notice: Form 7 Objection')
+          : (brDeva ? 'मतदाता पर्ची: भाग 142' : 'Voter Slip: Part 142');
+        const brf = buildBrf(title, brText, brDeva);
+        const bytes = new Uint8Array(brf.length);
+        for (let i = 0; i < brf.length; i++) bytes[i] = brf.charCodeAt(i) & 0x7F;
+        const zipName = brailleFile.replace(/\.brf$/, '.zip');
+        let dl = null;
+        try { dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; } catch (e) { dl = null; }
+        if (!dl) {
+          try {
+            const url = URL.createObjectURL(new Blob([zipOne(brailleFile, bytes)], { type: 'application/zip' }));
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = zipName;
+            a.click();
+            setTimeout(() => URL.revokeObjectURL(url), 4000);
+            this.setState({ dlMsg: 'Saved ' + zipName + ' (contains ' + brailleFile + ')' });
+          } catch (e) {
+            this.setState({ dlMsg: 'Download is not available in this browser.' });
+          }
+          return;
+        }
+        try {
+          await dl.save({ filename: zipName, data: zipOne(brailleFile, bytes) });
+          this.setState({ dlMsg: 'Saved ' + zipName + ' (contains ' + brailleFile + ')' });
+        } catch (e) {
+          const code = e && e.code;
+          this.setState({ dlMsg: code === 'declined' ? 'Download cancelled.' : code === 'rate_limited' ? 'A save prompt is already open.' : 'Download is not available here.' });
+        }
+      },
+      scanned: st.scanned,
+      easy: st.easy,
+      captions: st.captions,
+      isText: !cur.sign,
+      isSign: !!cur.sign,
+      signState: st.speaking ? 'Signing… with captions' : 'Press play to watch the notice in ISL',
+      outText,
+      outLabel: (cur.sign ? 'INDIAN SIGN LANGUAGE' : 'AI TRANSLATION · ' + cur.en.toUpperCase()) + easyNote,
+      srcName: st.src === 'notice' ? 'Form 7 notice' : 'Voter slip',
+      dir: cur.rtl ? 'rtl' : 'ltr',
+      htmlLang: cur.id === 'isl' ? 'en' : cur.id,
+      textStyle: 'margin: 0; color: #13233A; ' + (cur.rtl
+        ? "font-family: 'Noto Nastaliq Urdu', serif; font-size: 17px; line-height: 2.1; text-align: right"
+        : 'font-size: 17px; line-height: 1.55'),
+      speaking: st.speaking,
+      notSpeaking: !st.speaking,
+      playAria: st.speaking ? 'Stop' : (cur.sign ? 'Play sign-language video' : 'Read aloud in ' + cur.en),
+      playStyle: 'width: 60px; height: 60px; border-radius: 30px; border: none; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: ' + (st.speaking ? '#B4500E' : '#1F4FBF'),
+      dialectNote: !!cur.dialect,
+      dialectName: cur.en,
+      play: () => {
+        if (cur.sign) {
+          if (st.speaking) this.stopSign(); else this.startSign();
+          return;
+        }
+        this.speak(outText, cur.tts);
+      },
+      scan: () => this.setState({ src: 'notice', scanned: true }),
+      toggleEasy: () => this.setState({ easy: !st.easy }),
+      toggleCaptions: () => this.setState({ captions: !st.captions })
+    };
+  }
+}
+</script>
+</body>
+</html>

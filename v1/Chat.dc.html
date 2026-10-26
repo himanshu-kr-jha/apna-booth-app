@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1">
+<style>html{background:#1E2633}body{margin:0 auto!important;width:390px}</style>
+<title>Apna Booth — Sahayak Chat</title>
+<script data-offline-shim>(function(){var M={"Chat.dc.html": "\u003c!doctype html>\n\u003chtml lang=\"en\">\n\u003chead>\n\u003cmeta charset=\"utf-8\">\n\u003ctitle>Apna Booth — Sahayak Chat\u003c/title>\n\u003cscript src=\"./support.js\">\u003c/script>\n\u003c/head>\n\u003cbody>\n\u003cx-dc>\n\u003chelmet>\n\u003clink href=\"https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap\" rel=\"stylesheet\">\n\u003cstyle>\nbody{margin:0}\na{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}\nbutton{font-family:inherit;cursor:pointer}\n@keyframes ab-dot{0%,80%,100%{opacity:.25}40%{opacity:1}}\n@keyframes ab-pulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}\n\u003c/style>\n\u003c/helmet>\n\u003cdiv lang=\"{{L}}\" style=\"width: 390px; height: 844px; box-sizing: border-box; background: #F6F5F1; font-family: 'Mukta', system-ui, sans-serif; color: #13233A; display: flex; flex-direction: column; overflow: hidden\">\n\n\u003cdiv style=\"background: #FFFFFF; border-bottom: 1px solid #E2E0D8; padding: 14px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0\">\n\u003ca href=\"Main.dc.html\" aria-label=\"{{t.back}}\" style=\"width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D9D6CC; display: flex; align-items: center; justify-content: center; color: #13233A; flex-shrink: 0\">\n\u003csvg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M15 5l-7 7 7 7\">\u003c/path>\u003c/svg>\n\u003c/a>\n\u003cdiv style=\"width: 40px; height: 40px; border-radius: 20px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0\">स\u003c/div>\n\u003cdiv style=\"flex: 1; display: flex; flex-direction: column; line-height: 1.15; min-width: 0\">\n\u003cspan style=\"font-size: 19px; font-weight: 800\">{{t.name}}\u003c/span>\n\u003cspan style=\"font-size: 12px; color: #4F5B6B; font-weight: 600\">{{t.tag}}\u003c/span>\n\u003c/div>\n\u003cbutton aria-label=\"{{t.switchLang}}\" onClick=\"{{toggleLang}}\" style=\"min-height: 44px; min-width: 52px; padding: 0 10px; border-radius: 22px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; flex-shrink: 0\">{{langBtn}}\u003c/button>\n\u003c/div>\n\n\u003cdiv ref=\"{{listRef}}\" style=\"flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px\">\n\n\u003cspan style=\"align-self: center; font-size: 12px; color: #4F5B6B; background: #ECEAE3; border-radius: 999px; padding: 3px 12px; text-align: center\">{{t.disclaimer}}\u003c/span>\n\n\u003csc-for list=\"{{msgs}}\" as=\"m\" hint-placeholder-count=\"2\">\n\n\u003csc-if value=\"{{m.isUser}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; justify-content: flex-end\">\n\u003cdiv style=\"max-width: 78%; background: #1F4FBF; color: #FFFFFF; border-radius: 16px 16px 4px 16px; padding: 10px 14px; font-size: 15px; line-height: 1.4\">{{m.text}}\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{m.isBot}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"display: flex; gap: 8px; align-items: flex-start\">\n\u003cdiv aria-hidden=\"true\" style=\"width: 28px; height: 28px; border-radius: 14px; background: #E6EDFB; color: #1F4FBF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; margin-top: 2px\">स\u003c/div>\n\u003cdiv style=\"max-width: 84%; display: flex; flex-direction: column; gap: 4px; align-items: flex-start\">\n\u003cdiv style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 4px 16px 16px 16px; padding: 10px 14px; font-size: 15px; line-height: 1.4; display: flex; flex-direction: column; gap: 8px\">\n\u003cspan>{{m.text}}\u003c/span>\n\n\u003csc-if value=\"{{m.isBooth}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"border: 1px solid #E2E0D8; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; background: #FAF9F6\">\n\u003cspan style=\"font-size: 18px; font-weight: 800\">{{m.b.title}}\u003c/span>\n\u003cspan style=\"font-size: 14px; color: #4F5B6B\">{{m.b.addr}}\u003c/span>\n\u003cspan style=\"font-size: 13px; color: #0F6E63; font-weight: 700\">{{m.b.queue}}\u003c/span>\n\u003cdiv style=\"display: flex; gap: 6px; margin-top: 4px\">\n\u003ca href=\"Safety.dc.html\" style=\"flex: 1; min-height: 44px; border-radius: 10px; background: #1F4FBF; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center\">{{m.b.dir}}\u003c/a>\n\u003cbutton style=\"flex: 1; min-height: 44px; border-radius: 10px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">{{m.b.call}}\u003c/button>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{m.isEpic}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 2px\">\n\u003csc-for list=\"{{m.steps}}\" as=\"sp\" hint-placeholder-count=\"4\">\n\u003cdiv style=\"display: flex; align-items: center; gap: 10px; min-height: 30px\">\n\u003cspan style=\"{{sp.dot}}\">\u003c/span>\n\u003cspan style=\"{{sp.style}}\">{{sp.label}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{m.isSteps}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 6px\">\n\u003csc-for list=\"{{m.steps}}\" as=\"sp\" hint-placeholder-count=\"5\">\n\u003cdiv style=\"display: flex; gap: 8px; align-items: flex-start\">\n\u003cspan style=\"width: 22px; height: 22px; border-radius: 11px; background: #E6EDFB; color: #163A8F; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px\">{{sp.n}}\u003c/span>\n\u003cspan style=\"font-size: 14px; line-height: 1.4\">{{sp.label}}\u003c/span>\n\u003c/div>\n\u003c/sc-for>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{m.isHome}}\" hint-placeholder-val=\"{{false}}\">\n\u003ca href=\"Access.dc.html\" style=\"min-height: 44px; border-radius: 10px; background: #1F4FBF; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center\">{{m.link}}\u003c/a>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{m.isHuman}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv style=\"display: flex; flex-direction: column; gap: 6px\">\n\u003cbutton style=\"min-height: 44px; border-radius: 10px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 14px; font-weight: 700\">{{m.h1}}\u003c/button>\n\u003cbutton style=\"min-height: 44px; border-radius: 10px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">{{m.h2}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\u003c/div>\n\u003cbutton aria-label=\"{{m.listenAria}}\" onClick=\"{{m.speak}}\" style=\"{{m.listenStyle}}\">\n\u003csvg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 9h4l5-4v14l-5-4H4z\">\u003c/path>\u003cpath d=\"M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11\">\u003c/path>\u003c/svg>\n{{m.listenLabel}}\n\u003c/button>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/sc-for>\n\n\u003csc-if value=\"{{typing}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv role=\"status\" aria-label=\"{{t.typing}}\" style=\"display: flex; gap: 8px; align-items: center\">\n\u003cdiv aria-hidden=\"true\" style=\"width: 28px; height: 28px; border-radius: 14px; background: #E6EDFB; color: #1F4FBF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800\">स\u003c/div>\n\u003cdiv style=\"background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 16px; padding: 12px 14px; display: flex; gap: 5px\">\n\u003cspan style=\"width: 8px; height: 8px; border-radius: 4px; background: #4F5B6B; animation: ab-dot 1.2s infinite 0s\">\u003c/span>\n\u003cspan style=\"width: 8px; height: 8px; border-radius: 4px; background: #4F5B6B; animation: ab-dot 1.2s infinite 0.2s\">\u003c/span>\n\u003cspan style=\"width: 8px; height: 8px; border-radius: 4px; background: #4F5B6B; animation: ab-dot 1.2s infinite 0.4s\">\u003c/span>\n\u003c/div>\n\u003c/div>\n\u003c/sc-if>\n\n\u003c/div>\n\n\u003cdiv style=\"flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E2E0D8; padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 8px\">\n\u003cdiv style=\"display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px\">\n\u003csc-for list=\"{{quick}}\" as=\"q\" hint-placeholder-count=\"6\">\n\u003cbutton onClick=\"{{q.pick}}\" style=\"min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; white-space: nowrap; flex-shrink: 0\">{{q.label}}\u003c/button>\n\u003c/sc-for>\n\u003c/div>\n\n\u003csc-if value=\"{{listening}}\" hint-placeholder-val=\"{{false}}\">\n\u003cdiv role=\"status\" style=\"display: flex; align-items: center; gap: 10px; background: #13233A; color: #FFFFFF; border-radius: 14px; padding: 6px 6px 6px 14px\">\n\u003cspan aria-hidden=\"true\" style=\"width: 14px; height: 14px; border-radius: 7px; background: #FFD54A; animation: ab-pulse 1s infinite\">\u003c/span>\n\u003cspan style=\"flex: 1; font-size: 15px; font-weight: 700\">{{t.listening}}\u003c/span>\n\u003cbutton onClick=\"{{stopListening}}\" style=\"min-height: 40px; padding: 0 12px; border-radius: 10px; border: none; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700\">{{t.cancel}}\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\n\u003csc-if value=\"{{notListening}}\" hint-placeholder-val=\"{{true}}\">\n\u003cdiv style=\"display: flex; gap: 8px; align-items: center\">\n\u003clabel style=\"flex: 1; display: flex\">\n\u003cspan style=\"position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)\">{{t.inputLabel}}\u003c/span>\n\u003cinput type=\"text\" value=\"{{draft}}\" onChange=\"{{setDraft}}\" onKeyDown=\"{{onKey}}\" placeholder=\"{{t.placeholder}}\" style=\"flex: 1; min-height: 48px; border-radius: 24px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 16px; font-family: inherit; box-sizing: border-box; width: 100%\">\n\u003c/label>\n\u003cbutton aria-label=\"{{t.speak}}\" onClick=\"{{startListening}}\" style=\"width: 48px; height: 48px; border-radius: 24px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003crect x=\"9\" y=\"3\" width=\"6\" height=\"12\" rx=\"3\">\u003c/rect>\u003cpath d=\"M5 11a7 7 0 0 0 14 0M12 18v3\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003cbutton aria-label=\"{{t.send}}\" onClick=\"{{send}}\" style=\"width: 48px; height: 48px; border-radius: 24px; border: none; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0\">\n\u003csvg width=\"22\" height=\"22\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\">\u003cpath d=\"M4 12l16-8-6 16-2-7z\">\u003c/path>\u003c/svg>\n\u003c/button>\n\u003c/div>\n\u003c/sc-if>\n\u003c/div>\n\n\u003c/div>\n\u003c/x-dc>\n\u003cscript type=\"text/x-dc\" data-dc-script data-props='{\"$preview\":{\"width\":390,\"height\":844}}'>\nclass Component extends DCLogic {\n  constructor(props) {\n    super(props);\n    this.state = {\n      lang: 'en',\n      msgs: [{ id: 1, from: 'bot', key: 'greet' }],\n      draft: '',\n      typing: false,\n      listening: false,\n      speakingId: null\n    };\n    this.nextId = 2;\n    this.listRef = (el) => { this.listEl = el; };\n  }\n\n  componentDidUpdate() {\n    const prev = this._prev || { n: -1, typing: null };\n    this._prev = { n: this.state.msgs.length, typing: this.state.typing };\n    if (this.listEl && (prev.n !== this.state.msgs.length || prev.typing !== this.state.typing)) {\n      this.listEl.scrollTop = this.listEl.scrollHeight;\n    }\n  }\n\n  componentWillUnmount() {\n    clearTimeout(this.replyTimer);\n    clearTimeout(this.listenTimer);\n    clearTimeout(this.speakTimer);\n    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n  }\n\n  speak(id, text, lang) {\n    const done = () => this.setState({ speakingId: null });\n    if (this.state.speakingId === id) {\n      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}\n      done();\n      return;\n    }\n    this.setState({ speakingId: id });\n    try {\n      const ss = window.speechSynthesis;\n      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') {\n        clearTimeout(this.speakTimer);\n        this.speakTimer = setTimeout(done, 3000);\n        return;\n      }\n      ss.cancel();\n      const u = new SpeechSynthesisUtterance(text);\n      u.lang = lang;\n      const vs = ss.getVoices() || [];\n      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||\n        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);\n      if (v) u.voice = v;\n      u.onend = done;\n      u.onerror = done;\n      ss.speak(u);\n    } catch (e) {\n      done();\n    }\n  }\n\n  classify(text) {\n    const s = text.toLowerCase();\n    if (/booth|बूथ|polling|मतदान केंद्र|where|कहाँ/.test(s)) return 'booth';\n    if (/epic|status|स्थिति|application|आवेदन/.test(s)) return 'epic';\n    if (/register|form 6|new voter|पंजीकरण|नाम जोड़|नया मतदाता|जोड़ें/.test(s)) return 'register';\n    if (/correct|form 8|change|shift|सुधार|बदल/.test(s)) return 'correct';\n    if (/home|12d|घर/.test(s)) return 'home';\n    if (/person|human|call|1950|व्यक्ति|कॉल|बात/.test(s)) return 'human';\n    return 'fallback';\n  }\n\n  ask(userMsg, replyKey) {\n    const uid = this.nextId++;\n    this.setState({ msgs: this.state.msgs.concat([Object.assign({ id: uid, from: 'user' }, userMsg)]), typing: true, draft: '' });\n    clearTimeout(this.replyTimer);\n    this.replyTimer = setTimeout(() => {\n      const bid = this.nextId++;\n      this.setState({ msgs: this.state.msgs.concat([{ id: bid, from: 'bot', key: replyKey }]), typing: false });\n    }, 750);\n  }\n\n  renderVals() {\n    const L = this.state.lang;\n    const UI = {\n      en: {\n        back: 'Back to home', name: 'Sahayak', tag: 'Voter helpline assistant · AI', switchLang: 'Switch to Hindi',\n        disclaimer: 'AI answers from official ECI information · urgent? call 1950',\n        typing: 'Sahayak is typing', listening: 'Listening… speak in Hindi or English', cancel: 'Cancel',\n        inputLabel: 'Type your question', placeholder: 'Ask about your booth, EPIC…', speak: 'Ask by voice', send: 'Send',\n        listen: 'Listen', stop: 'Stop'\n      },\n      hi: {\n        back: 'होम पर वापस', name: 'सहायक', tag: 'मतदाता हेल्पलाइन सहायक · AI', switchLang: 'Switch to English',\n        disclaimer: 'आधिकारिक ECI जानकारी से AI जवाब · ज़रूरी हो तो 1950 पर कॉल करें',\n        typing: 'सहायक लिख रहा है', listening: 'सुन रहे हैं… हिंदी या अंग्रेज़ी में बोलें', cancel: 'रद्द करें',\n        inputLabel: 'अपना सवाल लिखें', placeholder: 'बूथ, EPIC के बारे में पूछें…', speak: 'बोलकर पूछें', send: 'भेजें',\n        listen: 'सुनें', stop: 'रोकें'\n      }\n    };\n    const t = UI[L];\n\n    const Q = {\n      booth: { en: 'Where is my booth?', hi: 'मेरा बूथ कहाँ है?' },\n      epic: { en: 'EPIC / application status', hi: 'EPIC / आवेदन की स्थिति' },\n      register: { en: 'How to register', hi: 'नाम कैसे जोड़ें' },\n      correct: { en: 'Correct my details', hi: 'विवरण में सुधार' },\n      home: { en: 'Vote from home', hi: 'घर से मतदान' },\n      human: { en: 'Talk to a person', hi: 'किसी व्यक्ति से बात' }\n    };\n\n    const R = {\n      greet: { en: \"Namaste! I'm Sahayak, your voter helpline assistant. Ask about your booth, EPIC status or registration. Type, speak, or tap a question below.\",\n        hi: 'नमस्ते! मैं सहायक हूँ, आपका मतदाता हेल्पलाइन सहायक। अपने बूथ, EPIC की स्थिति या पंजीकरण के बारे में पूछें। लिखें, बोलें या नीचे दिया सवाल चुनें।' },\n      booth: { en: 'Here is the polling booth for your household:', hi: 'आपके परिवार का मतदान केंद्र यह है:' },\n      epic: { en: 'I found one application in your household: Aman Verma, Form 6 (new voter).', hi: 'आपके परिवार में एक आवेदन मिला: अमन वर्मा, फ़ॉर्म 6 (नया मतदाता)।' },\n      register: { en: 'To register as a new voter:', hi: 'नया मतदाता बनने के लिए:' },\n      correct: { en: 'Use Form 8 to correct your name, age or photo, shift to a new address, replace a lost EPIC, or mark yourself as a person with disability. Shall I start Form 8 for you?',\n        hi: 'नाम, उम्र या फ़ोटो में सुधार, नए पते पर स्थानांतरण, खोया EPIC बदलने या ख़ुद को दिव्यांग दर्ज करने के लिए फ़ॉर्म 8 भरें। क्या मैं आपके लिए फ़ॉर्म 8 शुरू करूँ?' },\n      home: { en: 'Voters aged 85+ and voters with 40% benchmark disability can vote from home. Fill Form 12D within 5 days of the election notification. Kamla Devi in your household is eligible.',\n        hi: '85+ आयु के मतदाता और 40% मानक दिव्यांगता वाले मतदाता घर से मतदान कर सकते हैं। चुनाव अधिसूचना के 5 दिन के भीतर फ़ॉर्म 12D भरें। आपके परिवार में कमला देवी पात्र हैं।' },\n      human: { en: 'You can talk to a person anytime:', hi: 'आप कभी भी किसी व्यक्ति से बात कर सकते हैं:' },\n      fallback: { en: \"Sorry, I didn't get that. I can help with your booth, EPIC status, registration, corrections and home voting.\",\n        hi: 'माफ़ कीजिए, मैं समझ नहीं पाया। मैं बूथ, EPIC स्थिति, पंजीकरण, सुधार और घर से मतदान में मदद कर सकता हूँ।' }\n    };\n\n    const booth = {\n      title: { en: 'Part 142 · Room 2', hi: 'भाग 142 · कमरा 2' }[L],\n      addr: { en: 'Government Primary School, Ram Nagar, Lucknow', hi: 'सरकारी प्राथमिक विद्यालय, राम नगर, लखनऊ' }[L],\n      queue: { en: 'Queue now: Short · about 6 min', hi: 'अभी लाइन: छोटी · लगभग 6 मिनट' }[L],\n      dir: { en: 'Directions', hi: 'रास्ता देखें' }[L],\n      call: { en: 'Call BLO', hi: 'BLO को कॉल' }[L]\n    };\n\n    const epicSteps = [\n      { state: 'done', en: 'Form submitted · [DATE]', hi: 'फ़ॉर्म जमा · [तारीख़]' },\n      { state: 'now', en: 'BLO verification visit · in progress', hi: 'BLO सत्यापन · जारी है' },\n      { state: 'todo', en: 'Decision by ERO', hi: 'ERO का निर्णय' },\n      { state: 'todo', en: 'e-EPIC ready to download', hi: 'e-EPIC डाउनलोड के लिए तैयार' }\n    ];\n    const regSteps = [\n      { en: 'Check you are an Indian citizen, ordinarily resident here, and 18+ on a qualifying date (1 Jan, 1 Apr, 1 Jul or 1 Oct).',\n        hi: 'जाँचें कि आप भारतीय नागरिक हैं, यहीं के सामान्य निवासी हैं, और किसी अर्हता तिथि (1 जनवरी, 1 अप्रैल, 1 जुलाई या 1 अक्टूबर) को 18+ हैं।' },\n      { en: 'Fill Form 6 online, in the app, or with your BLO.', hi: 'फ़ॉर्म 6 ऑनलाइन, ऐप में या अपने BLO के साथ भरें।' },\n      { en: 'Add a photo, age proof and address proof.', hi: 'फ़ोटो, आयु प्रमाण और पते का प्रमाण लगाएँ।' },\n      { en: 'Your BLO visits to verify.', hi: 'BLO सत्यापन के लिए आएँगे।' },\n      { en: 'Download your e-EPIC once approved.', hi: 'स्वीकृति के बाद अपना e-EPIC डाउनलोड करें।' }\n    ];\n    const homeLink = { en: 'Open home voting request', hi: 'घर से मतदान का अनुरोध खोलें' }[L];\n    const h1 = { en: 'Call 1950 voter helpline', hi: '1950 हेल्पलाइन पर कॉल करें' }[L];\n    const h2 = { en: 'Book a call with your BLO', hi: 'अपने BLO से कॉल बुक करें' }[L];\n\n    const ttsLang = L === 'hi' ? 'hi-IN' : 'en-IN';\n\n    const msgs = this.state.msgs.map((m) => {\n      if (m.from === 'user') {\n        return { isUser: true, isBot: false, text: m.key ? Q[m.key][L] : m.text };\n      }\n      const key = m.key;\n      const text = R[key][L];\n      const out = {\n        isUser: false, isBot: true, text: text,\n        isBooth: key === 'booth', isEpic: key === 'epic', isSteps: key === 'register', isHome: key === 'home', isHuman: key === 'human',\n        b: booth, link: homeLink, h1: h1, h2: h2, steps: []\n      };\n      let spoken = text;\n      if (key === 'booth') spoken += ' ' + booth.title + '. ' + booth.addr + '. ' + booth.queue + '.';\n      if (key === 'epic') {\n        out.steps = epicSteps.map((sp) => ({\n          label: sp[L],\n          dot: 'width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; ' +\n            (sp.state === 'done' ? 'background: #0F6E63' : sp.state === 'now' ? 'background: #FFFFFF; border: 3px solid #1F4FBF; box-sizing: border-box' : 'background: #D9D6CC'),\n          style: 'font-size: 14px; ' + (sp.state === 'now' ? 'font-weight: 800; color: #163A8F' : sp.state === 'done' ? 'color: #0F6E63; font-weight: 600' : 'color: #4F5B6B')\n        }));\n        spoken += ' ' + epicSteps.map((sp) => sp[L]).join('. ') + '.';\n      }\n      if (key === 'register') {\n        out.steps = regSteps.map((sp, i) => ({ n: String(i + 1), label: sp[L] }));\n        spoken += ' ' + regSteps.map((sp, i) => (i + 1) + '. ' + sp[L]).join(' ');\n      }\n      if (key === 'human') spoken += ' ' + h1 + '. ' + h2 + '.';\n      const on = this.state.speakingId === m.id;\n      out.listenLabel = on ? t.stop : t.listen;\n      out.listenAria = (on ? t.stop : t.listen) + ': ' + text;\n      out.listenStyle = 'min-height: 32px; padding: 0 10px; border-radius: 16px; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; ' +\n        (on ? 'border: none; background: #1F4FBF; color: #FFFFFF' : 'border: 1px solid #D9D6CC; background: transparent; color: #163A8F');\n      out.speak = () => this.speak(m.id, spoken, ttsLang);\n      return out;\n    });\n\n    const quick = Object.keys(Q).map((key) => ({\n      label: Q[key][L],\n      pick: () => this.ask({ key: key }, key)\n    }));\n\n    const sendNow = () => {\n      const txt = (this.state.draft || '').trim();\n      if (!txt) return;\n      this.ask({ text: txt }, this.classify(txt));\n    };\n\n    return {\n      L, t, msgs, quick,\n      listRef: this.listRef,\n      langBtn: L === 'en' ? 'हिं' : 'EN',\n      typing: this.state.typing,\n      listening: this.state.listening,\n      notListening: !this.state.listening,\n      draft: this.state.draft,\n      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en' }),\n      setDraft: (e) => this.setState({ draft: e.target.value }),\n      onKey: (e) => { if (e.key === 'Enter') sendNow(); },\n      send: sendNow,\n      startListening: () => {\n        this.setState({ listening: true });\n        clearTimeout(this.listenTimer);\n        this.listenTimer = setTimeout(() => {\n          this.setState({ listening: false });\n          this.ask({ key: 'booth' }, 'booth');\n        }, 1800);\n      },\n      stopListening: () => { clearTimeout(this.listenTimer); this.setState({ listening: false }); }\n    };\n  }\n}\n\u003c/script>\n\u003c/body>\n\u003c/html>\n"};var of=window.fetch;window.fetch=function(u,o){try{var s=String(u&&u.url||u);var n=s.split("#")[0].split("?")[0].split("/").pop();if(location.protocol==="file:"&&Object.prototype.hasOwnProperty.call(M,n)){return Promise.resolve(new Response(M[n],{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}}));}}catch(e){}return of.apply(this,arguments);};})();</script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1F4FBF;text-decoration:none}a:hover{color:#163A8F}
+button{font-family:inherit;cursor:pointer}
+@keyframes ab-dot{0%,80%,100%{opacity:.25}40%{opacity:1}}
+@keyframes ab-pulse{0%{transform:scale(1)}50%{transform:scale(1.12)}100%{transform:scale(1)}}
+</style>
+</helmet>
+<div lang="{{L}}" style="width: 390px; height: 844px; box-sizing: border-box; background: #F6F5F1; font-family: 'Mukta', system-ui, sans-serif; color: #13233A; display: flex; flex-direction: column; overflow: hidden">
+
+<div style="background: #FFFFFF; border-bottom: 1px solid #E2E0D8; padding: 14px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0">
+<a href="Main.dc.html" aria-label="{{t.back}}" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid #D9D6CC; display: flex; align-items: center; justify-content: center; color: #13233A; flex-shrink: 0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</a>
+<div style="width: 40px; height: 40px; border-radius: 20px; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; flex-shrink: 0">स</div>
+<div style="flex: 1; display: flex; flex-direction: column; line-height: 1.15; min-width: 0">
+<span style="font-size: 19px; font-weight: 800">{{t.name}}</span>
+<span style="font-size: 12px; color: #4F5B6B; font-weight: 600">{{t.tag}}</span>
+</div>
+<button aria-label="{{t.switchLang}}" onClick="{{toggleLang}}" style="min-height: 44px; min-width: 52px; padding: 0 10px; border-radius: 22px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 15px; font-weight: 800; flex-shrink: 0">{{langBtn}}</button>
+</div>
+
+<div ref="{{listRef}}" style="flex: 1; overflow-y: auto; padding: 14px 16px; display: flex; flex-direction: column; gap: 12px">
+
+<span style="align-self: center; font-size: 12px; color: #4F5B6B; background: #ECEAE3; border-radius: 999px; padding: 3px 12px; text-align: center">{{t.disclaimer}}</span>
+
+<sc-for list="{{msgs}}" as="m" hint-placeholder-count="2">
+
+<sc-if value="{{m.isUser}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; justify-content: flex-end">
+<div style="max-width: 78%; background: #1F4FBF; color: #FFFFFF; border-radius: 16px 16px 4px 16px; padding: 10px 14px; font-size: 15px; line-height: 1.4">{{m.text}}</div>
+</div>
+</sc-if>
+
+<sc-if value="{{m.isBot}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; gap: 8px; align-items: flex-start">
+<div aria-hidden="true" style="width: 28px; height: 28px; border-radius: 14px; background: #E6EDFB; color: #1F4FBF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; flex-shrink: 0; margin-top: 2px">स</div>
+<div style="max-width: 84%; display: flex; flex-direction: column; gap: 4px; align-items: flex-start">
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 4px 16px 16px 16px; padding: 10px 14px; font-size: 15px; line-height: 1.4; display: flex; flex-direction: column; gap: 8px">
+<span>{{m.text}}</span>
+
+<sc-if value="{{m.isBooth}}" hint-placeholder-val="{{false}}">
+<div style="border: 1px solid #E2E0D8; border-radius: 12px; padding: 10px 12px; display: flex; flex-direction: column; gap: 4px; background: #FAF9F6">
+<span style="font-size: 18px; font-weight: 800">{{m.b.title}}</span>
+<span style="font-size: 14px; color: #4F5B6B">{{m.b.addr}}</span>
+<span style="font-size: 13px; color: #0F6E63; font-weight: 700">{{m.b.queue}}</span>
+<div style="display: flex; gap: 6px; margin-top: 4px">
+<a href="Safety.dc.html" style="flex: 1; min-height: 44px; border-radius: 10px; background: #1F4FBF; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{m.b.dir}}</a>
+<button style="flex: 1; min-height: 44px; border-radius: 10px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">{{m.b.call}}</button>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{m.isEpic}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<sc-for list="{{m.steps}}" as="sp" hint-placeholder-count="4">
+<div style="display: flex; align-items: center; gap: 10px; min-height: 30px">
+<span style="{{sp.dot}}"></span>
+<span style="{{sp.style}}">{{sp.label}}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{m.isSteps}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<sc-for list="{{m.steps}}" as="sp" hint-placeholder-count="5">
+<div style="display: flex; gap: 8px; align-items: flex-start">
+<span style="width: 22px; height: 22px; border-radius: 11px; background: #E6EDFB; color: #163A8F; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px">{{sp.n}}</span>
+<span style="font-size: 14px; line-height: 1.4">{{sp.label}}</span>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{m.isHome}}" hint-placeholder-val="{{false}}">
+<a href="Access.dc.html" style="min-height: 44px; border-radius: 10px; background: #1F4FBF; color: #FFFFFF; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">{{m.link}}</a>
+</sc-if>
+
+<sc-if value="{{m.isHuman}}" hint-placeholder-val="{{false}}">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<button style="min-height: 44px; border-radius: 10px; border: none; background: #1F4FBF; color: #FFFFFF; font-size: 14px; font-weight: 700">{{m.h1}}</button>
+<button style="min-height: 44px; border-radius: 10px; border: 1px solid #D9D6CC; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">{{m.h2}}</button>
+</div>
+</sc-if>
+</div>
+<button aria-label="{{m.listenAria}}" onClick="{{m.speak}}" style="{{m.listenStyle}}">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h4l5-4v14l-5-4H4z"></path><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"></path></svg>
+{{m.listenLabel}}
+</button>
+</div>
+</div>
+</sc-if>
+
+</sc-for>
+
+<sc-if value="{{typing}}" hint-placeholder-val="{{false}}">
+<div role="status" aria-label="{{t.typing}}" style="display: flex; gap: 8px; align-items: center">
+<div aria-hidden="true" style="width: 28px; height: 28px; border-radius: 14px; background: #E6EDFB; color: #1F4FBF; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800">स</div>
+<div style="background: #FFFFFF; border: 1px solid #E2E0D8; border-radius: 16px; padding: 12px 14px; display: flex; gap: 5px">
+<span style="width: 8px; height: 8px; border-radius: 4px; background: #4F5B6B; animation: ab-dot 1.2s infinite 0s"></span>
+<span style="width: 8px; height: 8px; border-radius: 4px; background: #4F5B6B; animation: ab-dot 1.2s infinite 0.2s"></span>
+<span style="width: 8px; height: 8px; border-radius: 4px; background: #4F5B6B; animation: ab-dot 1.2s infinite 0.4s"></span>
+</div>
+</div>
+</sc-if>
+
+</div>
+
+<div style="flex-shrink: 0; background: #FFFFFF; border-top: 1px solid #E2E0D8; padding: 10px 12px 14px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; gap: 6px; overflow-x: auto; padding-bottom: 2px">
+<sc-for list="{{quick}}" as="q" hint-placeholder-count="6">
+<button onClick="{{q.pick}}" style="min-height: 40px; padding: 0 14px; border-radius: 20px; border: 1px solid #B8C6EA; background: #E6EDFB; color: #163A8F; font-size: 14px; font-weight: 700; white-space: nowrap; flex-shrink: 0">{{q.label}}</button>
+</sc-for>
+</div>
+
+<sc-if value="{{listening}}" hint-placeholder-val="{{false}}">
+<div role="status" style="display: flex; align-items: center; gap: 10px; background: #13233A; color: #FFFFFF; border-radius: 14px; padding: 6px 6px 6px 14px">
+<span aria-hidden="true" style="width: 14px; height: 14px; border-radius: 7px; background: #FFD54A; animation: ab-pulse 1s infinite"></span>
+<span style="flex: 1; font-size: 15px; font-weight: 700">{{t.listening}}</span>
+<button onClick="{{stopListening}}" style="min-height: 40px; padding: 0 12px; border-radius: 10px; border: none; background: #FFFFFF; color: #13233A; font-size: 14px; font-weight: 700">{{t.cancel}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{notListening}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; gap: 8px; align-items: center">
+<label style="flex: 1; display: flex">
+<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">{{t.inputLabel}}</span>
+<input type="text" value="{{draft}}" onChange="{{setDraft}}" onKeyDown="{{onKey}}" placeholder="{{t.placeholder}}" style="flex: 1; min-height: 48px; border-radius: 24px; border: 1px solid #C9C5B9; background: #F6F5F1; color: #13233A; font-size: 15px; padding: 0 16px; font-family: inherit; box-sizing: border-box; width: 100%">
+</label>
+<button aria-label="{{t.speak}}" onClick="{{startListening}}" style="width: 48px; height: 48px; border-radius: 24px; border: 1px solid #C9C5B9; background: #FFFFFF; color: #13233A; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="12" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0M12 18v3"></path></svg>
+</button>
+<button aria-label="{{t.send}}" onClick="{{send}}" style="width: 48px; height: 48px; border-radius: 24px; border: none; background: #1F4FBF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12l16-8-6 16-2-7z"></path></svg>
+</button>
+</div>
+</sc-if>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      lang: 'en',
+      msgs: [{ id: 1, from: 'bot', key: 'greet' }],
+      draft: '',
+      typing: false,
+      listening: false,
+      speakingId: null
+    };
+    this.nextId = 2;
+    this.listRef = (el) => { this.listEl = el; };
+  }
+
+  componentDidUpdate() {
+    const prev = this._prev || { n: -1, typing: null };
+    this._prev = { n: this.state.msgs.length, typing: this.state.typing };
+    if (this.listEl && (prev.n !== this.state.msgs.length || prev.typing !== this.state.typing)) {
+      this.listEl.scrollTop = this.listEl.scrollHeight;
+    }
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.replyTimer);
+    clearTimeout(this.listenTimer);
+    clearTimeout(this.speakTimer);
+    try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+  }
+
+  speak(id, text, lang) {
+    const done = () => this.setState({ speakingId: null });
+    if (this.state.speakingId === id) {
+      try { if (window.speechSynthesis) window.speechSynthesis.cancel(); } catch (e) {}
+      done();
+      return;
+    }
+    this.setState({ speakingId: id });
+    try {
+      const ss = window.speechSynthesis;
+      if (!ss || typeof SpeechSynthesisUtterance === 'undefined') {
+        clearTimeout(this.speakTimer);
+        this.speakTimer = setTimeout(done, 3000);
+        return;
+      }
+      ss.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = lang;
+      const vs = ss.getVoices() || [];
+      const v = vs.find((x) => (x.lang || '').toLowerCase() === lang.toLowerCase()) ||
+        vs.find((x) => (x.lang || '').toLowerCase().indexOf(lang.slice(0, 2)) === 0);
+      if (v) u.voice = v;
+      u.onend = done;
+      u.onerror = done;
+      ss.speak(u);
+    } catch (e) {
+      done();
+    }
+  }
+
+  classify(text) {
+    const s = text.toLowerCase();
+    if (/booth|बूथ|polling|मतदान केंद्र|where|कहाँ/.test(s)) return 'booth';
+    if (/epic|status|स्थिति|application|आवेदन/.test(s)) return 'epic';
+    if (/register|form 6|new voter|पंजीकरण|नाम जोड़|नया मतदाता|जोड़ें/.test(s)) return 'register';
+    if (/correct|form 8|change|shift|सुधार|बदल/.test(s)) return 'correct';
+    if (/home|12d|घर/.test(s)) return 'home';
+    if (/person|human|call|1950|व्यक्ति|कॉल|बात/.test(s)) return 'human';
+    return 'fallback';
+  }
+
+  ask(userMsg, replyKey) {
+    const uid = this.nextId++;
+    this.setState({ msgs: this.state.msgs.concat([Object.assign({ id: uid, from: 'user' }, userMsg)]), typing: true, draft: '' });
+    clearTimeout(this.replyTimer);
+    this.replyTimer = setTimeout(() => {
+      const bid = this.nextId++;
+      this.setState({ msgs: this.state.msgs.concat([{ id: bid, from: 'bot', key: replyKey }]), typing: false });
+    }, 750);
+  }
+
+  renderVals() {
+    const L = this.state.lang;
+    const UI = {
+      en: {
+        back: 'Back to home', name: 'Sahayak', tag: 'Voter helpline assistant · AI', switchLang: 'Switch to Hindi',
+        disclaimer: 'AI answers from official ECI information · urgent? call 1950',
+        typing: 'Sahayak is typing', listening: 'Listening… speak in Hindi or English', cancel: 'Cancel',
+        inputLabel: 'Type your question', placeholder: 'Ask about your booth, EPIC…', speak: 'Ask by voice', send: 'Send',
+        listen: 'Listen', stop: 'Stop'
+      },
+      hi: {
+        back: 'होम पर वापस', name: 'सहायक', tag: 'मतदाता हेल्पलाइन सहायक · AI', switchLang: 'Switch to English',
+        disclaimer: 'आधिकारिक ECI जानकारी से AI जवाब · ज़रूरी हो तो 1950 पर कॉल करें',
+        typing: 'सहायक लिख रहा है', listening: 'सुन रहे हैं… हिंदी या अंग्रेज़ी में बोलें', cancel: 'रद्द करें',
+        inputLabel: 'अपना सवाल लिखें', placeholder: 'बूथ, EPIC के बारे में पूछें…', speak: 'बोलकर पूछें', send: 'भेजें',
+        listen: 'सुनें', stop: 'रोकें'
+      }
+    };
+    const t = UI[L];
+
+    const Q = {
+      booth: { en: 'Where is my booth?', hi: 'मेरा बूथ कहाँ है?' },
+      epic: { en: 'EPIC / application status', hi: 'EPIC / आवेदन की स्थिति' },
+      register: { en: 'How to register', hi: 'नाम कैसे जोड़ें' },
+      correct: { en: 'Correct my details', hi: 'विवरण में सुधार' },
+      home: { en: 'Vote from home', hi: 'घर से मतदान' },
+      human: { en: 'Talk to a person', hi: 'किसी व्यक्ति से बात' }
+    };
+
+    const R = {
+      greet: { en: "Namaste! I'm Sahayak, your voter helpline assistant. Ask about your booth, EPIC status or registration. Type, speak, or tap a question below.",
+        hi: 'नमस्ते! मैं सहायक हूँ, आपका मतदाता हेल्पलाइन सहायक। अपने बूथ, EPIC की स्थिति या पंजीकरण के बारे में पूछें। लिखें, बोलें या नीचे दिया सवाल चुनें।' },
+      booth: { en: 'Here is the polling booth for your household:', hi: 'आपके परिवार का मतदान केंद्र यह है:' },
+      epic: { en: 'I found one application in your household: Aman Verma, Form 6 (new voter).', hi: 'आपके परिवार में एक आवेदन मिला: अमन वर्मा, फ़ॉर्म 6 (नया मतदाता)।' },
+      register: { en: 'To register as a new voter:', hi: 'नया मतदाता बनने के लिए:' },
+      correct: { en: 'Use Form 8 to correct your name, age or photo, shift to a new address, replace a lost EPIC, or mark yourself as a person with disability. Shall I start Form 8 for you?',
+        hi: 'नाम, उम्र या फ़ोटो में सुधार, नए पते पर स्थानांतरण, खोया EPIC बदलने या ख़ुद को दिव्यांग दर्ज करने के लिए फ़ॉर्म 8 भरें। क्या मैं आपके लिए फ़ॉर्म 8 शुरू करूँ?' },
+      home: { en: 'Voters aged 85+ and voters with 40% benchmark disability can vote from home. Fill Form 12D within 5 days of the election notification. Kamla Devi in your household is eligible.',
+        hi: '85+ आयु के मतदाता और 40% मानक दिव्यांगता वाले मतदाता घर से मतदान कर सकते हैं। चुनाव अधिसूचना के 5 दिन के भीतर फ़ॉर्म 12D भरें। आपके परिवार में कमला देवी पात्र हैं।' },
+      human: { en: 'You can talk to a person anytime:', hi: 'आप कभी भी किसी व्यक्ति से बात कर सकते हैं:' },
+      fallback: { en: "Sorry, I didn't get that. I can help with your booth, EPIC status, registration, corrections and home voting.",
+        hi: 'माफ़ कीजिए, मैं समझ नहीं पाया। मैं बूथ, EPIC स्थिति, पंजीकरण, सुधार और घर से मतदान में मदद कर सकता हूँ।' }
+    };
+
+    const booth = {
+      title: { en: 'Part 142 · Room 2', hi: 'भाग 142 · कमरा 2' }[L],
+      addr: { en: 'Government Primary School, Ram Nagar, Lucknow', hi: 'सरकारी प्राथमिक विद्यालय, राम नगर, लखनऊ' }[L],
+      queue: { en: 'Queue now: Short · about 6 min', hi: 'अभी लाइन: छोटी · लगभग 6 मिनट' }[L],
+      dir: { en: 'Directions', hi: 'रास्ता देखें' }[L],
+      call: { en: 'Call BLO', hi: 'BLO को कॉल' }[L]
+    };
+
+    const epicSteps = [
+      { state: 'done', en: 'Form submitted · [DATE]', hi: 'फ़ॉर्म जमा · [तारीख़]' },
+      { state: 'now', en: 'BLO verification visit · in progress', hi: 'BLO सत्यापन · जारी है' },
+      { state: 'todo', en: 'Decision by ERO', hi: 'ERO का निर्णय' },
+      { state: 'todo', en: 'e-EPIC ready to download', hi: 'e-EPIC डाउनलोड के लिए तैयार' }
+    ];
+    const regSteps = [
+      { en: 'Check you are an Indian citizen, ordinarily resident here, and 18+ on a qualifying date (1 Jan, 1 Apr, 1 Jul or 1 Oct).',
+        hi: 'जाँचें कि आप भारतीय नागरिक हैं, यहीं के सामान्य निवासी हैं, और किसी अर्हता तिथि (1 जनवरी, 1 अप्रैल, 1 जुलाई या 1 अक्टूबर) को 18+ हैं।' },
+      { en: 'Fill Form 6 online, in the app, or with your BLO.', hi: 'फ़ॉर्म 6 ऑनलाइन, ऐप में या अपने BLO के साथ भरें।' },
+      { en: 'Add a photo, age proof and address proof.', hi: 'फ़ोटो, आयु प्रमाण और पते का प्रमाण लगाएँ।' },
+      { en: 'Your BLO visits to verify.', hi: 'BLO सत्यापन के लिए आएँगे।' },
+      { en: 'Download your e-EPIC once approved.', hi: 'स्वीकृति के बाद अपना e-EPIC डाउनलोड करें।' }
+    ];
+    const homeLink = { en: 'Open home voting request', hi: 'घर से मतदान का अनुरोध खोलें' }[L];
+    const h1 = { en: 'Call 1950 voter helpline', hi: '1950 हेल्पलाइन पर कॉल करें' }[L];
+    const h2 = { en: 'Book a call with your BLO', hi: 'अपने BLO से कॉल बुक करें' }[L];
+
+    const ttsLang = L === 'hi' ? 'hi-IN' : 'en-IN';
+
+    const msgs = this.state.msgs.map((m) => {
+      if (m.from === 'user') {
+        return { isUser: true, isBot: false, text: m.key ? Q[m.key][L] : m.text };
+      }
+      const key = m.key;
+      const text = R[key][L];
+      const out = {
+        isUser: false, isBot: true, text: text,
+        isBooth: key === 'booth', isEpic: key === 'epic', isSteps: key === 'register', isHome: key === 'home', isHuman: key === 'human',
+        b: booth, link: homeLink, h1: h1, h2: h2, steps: []
+      };
+      let spoken = text;
+      if (key === 'booth') spoken += ' ' + booth.title + '. ' + booth.addr + '. ' + booth.queue + '.';
+      if (key === 'epic') {
+        out.steps = epicSteps.map((sp) => ({
+          label: sp[L],
+          dot: 'width: 12px; height: 12px; border-radius: 6px; flex-shrink: 0; ' +
+            (sp.state === 'done' ? 'background: #0F6E63' : sp.state === 'now' ? 'background: #FFFFFF; border: 3px solid #1F4FBF; box-sizing: border-box' : 'background: #D9D6CC'),
+          style: 'font-size: 14px; ' + (sp.state === 'now' ? 'font-weight: 800; color: #163A8F' : sp.state === 'done' ? 'color: #0F6E63; font-weight: 600' : 'color: #4F5B6B')
+        }));
+        spoken += ' ' + epicSteps.map((sp) => sp[L]).join('. ') + '.';
+      }
+      if (key === 'register') {
+        out.steps = regSteps.map((sp, i) => ({ n: String(i + 1), label: sp[L] }));
+        spoken += ' ' + regSteps.map((sp, i) => (i + 1) + '. ' + sp[L]).join(' ');
+      }
+      if (key === 'human') spoken += ' ' + h1 + '. ' + h2 + '.';
+      const on = this.state.speakingId === m.id;
+      out.listenLabel = on ? t.stop : t.listen;
+      out.listenAria = (on ? t.stop : t.listen) + ': ' + text;
+      out.listenStyle = 'min-height: 32px; padding: 0 10px; border-radius: 16px; display: flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; ' +
+        (on ? 'border: none; background: #1F4FBF; color: #FFFFFF' : 'border: 1px solid #D9D6CC; background: transparent; color: #163A8F');
+      out.speak = () => this.speak(m.id, spoken, ttsLang);
+      return out;
+    });
+
+    const quick = Object.keys(Q).map((key) => ({
+      label: Q[key][L],
+      pick: () => this.ask({ key: key }, key)
+    }));
+
+    const sendNow = () => {
+      const txt = (this.state.draft || '').trim();
+      if (!txt) return;
+      this.ask({ text: txt }, this.classify(txt));
+    };
+
+    return {
+      L, t, msgs, quick,
+      listRef: this.listRef,
+      langBtn: L === 'en' ? 'हिं' : 'EN',
+      typing: this.state.typing,
+      listening: this.state.listening,
+      notListening: !this.state.listening,
+      draft: this.state.draft,
+      toggleLang: () => this.setState({ lang: L === 'en' ? 'hi' : 'en' }),
+      setDraft: (e) => this.setState({ draft: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') sendNow(); },
+      send: sendNow,
+      startListening: () => {
+        this.setState({ listening: true });
+        clearTimeout(this.listenTimer);
+        this.listenTimer = setTimeout(() => {
+          this.setState({ listening: false });
+          this.ask({ key: 'booth' }, 'booth');
+        }, 1800);
+      },
+      stopListening: () => { clearTimeout(this.listenTimer); this.setState({ listening: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
